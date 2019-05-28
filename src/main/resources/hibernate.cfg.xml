@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">admin</property>
+    <property name="hbm2ddl.auto">update</property>
+    <property name="connection.url">jdbc:mysql://localhost/elearning?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+
+    <mapping resource="myapp/FlywaySchemaHistory.hbm.xml"/>
+    <mapping class="myapp.springLibrary.FlywaySchemaHistory"/>
+    <mapping resource="myapp/springLibrary/FlywaySchemaHistory.hbm.xml"/>
+
+    <!-- DB schema will be updated if needed -->
+
+
+    <mapping class="myapp.model.Course"></mapping>
+  </session-factory>
+</hibernate-configuration>
