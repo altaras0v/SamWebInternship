@@ -1,14 +1,13 @@
 package myapp.service.impl;
 
 import myapp.AppConfig;
-import myapp.CourseRepository;
+import myapp.repository.*;
 import myapp.dto.CourseDTO;
 import myapp.model.Course;
 import myapp.service.api.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 
 
@@ -30,6 +29,9 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private CourseRepository courseRepository;
 
+    @Autowired
+    private CustomizedCoursesNameRepository customizedCoursesNameRepository;
+
     @Transactional
     public void testMethod() {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
@@ -41,13 +43,39 @@ public class CourseServiceImpl implements CourseService {
         courseRepository.save(course);*/
         List<Course> courseList = (List<Course>) courseRepository.findAll();
         System.out.println("*******************************");
-        System.out.println(courseRepository.findAll()); //выведет лист
+        //System.out.println(courseRepository.findAll()); //выведет лист
+
+        // Создание DTO
        // System.out.println(courseList);
         //CourseDTO firstDto = new CourseDTO(courseList.get(0).getName(),courseList.get(0).getDescription());
         //System.out.println(firstDto.getDescription());
+
+        //вывести по имени
+
+       /* customizedCoursesNameRepository = ctx.getBean(CustomizedCoursesNameRepository.class);
+        Optional<Course>  courseOptional = customizedCoursesNameRepository.findByname("Irish");
+        System.out.println(courseOptional.toString()); // */
+       List<String> userNameOfCourse = new ArrayList<>();
+       String userData = "I";
+        for (Course course:courseList){
+            if (course.getName().contains(userData))
+            userNameOfCourse.add(course.getName());
+        }
+        System.out.println(userNameOfCourse.toString());
     }
-
-
+    @Transactional
+    public List<String> getNamesLikeUserData(){
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+        courseRepository = ctx.getBean(CourseRepository.class);
+        List<Course> courseList = (List<Course>) courseRepository.findAll();
+        List<String> userNameOfCourse = new ArrayList<>();
+        String userData = "I";
+        for (Course course:courseList){
+            if (course.getName().contains(userData))
+                userNameOfCourse.add(course.getName());
+        }
+        return userNameOfCourse;
+    }
 
     private List<CourseDTO> courseDTOList;
 

@@ -1,4 +1,4 @@
-package myapp;
+package myapp.repository;
 
 import myapp.model.Course;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

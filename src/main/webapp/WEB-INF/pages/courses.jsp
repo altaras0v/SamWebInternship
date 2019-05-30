@@ -60,7 +60,9 @@
                     </thead>
 
                     <tbody>
+
                     <tr>
+                        <%--<td>${nameLikeUser.get(0)}</td>--%>
                         <td>${listsCourses.get(listsCourses.size()-listsCourses.size()).name}</td>
                         <td>${listsCourses.get(listsCourses.size()-listsCourses.size()).description}</td>
                     </tr>
