@@ -1,7 +1,10 @@
 package myapp.controller;
 
 import myapp.dto.CourseDTO;
+import myapp.service.api.CourseService;
 import myapp.service.impl.CourseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +16,13 @@ import java.util.List;
 
 @Controller
 public class CourseController {
+   /* @Autowired
+    @Qualifier("CourseRepository")
+    private CourseService courseService;
+    @Autowired
+    public  void setCourseService(CourseService courseService){
+        this.courseService=courseService;
+    }*/
 
     @RequestMapping(value = {"/index", "/hello", "/", ""}, method = RequestMethod.GET)
     public ModelAndView getCourse() {

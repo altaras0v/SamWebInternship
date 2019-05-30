@@ -33,7 +33,8 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-releasetrain</artifactId>
-                <version>Lovelace-SR8</version>
+               <!-- <version>Lovelace-SR8</version>-->
+                <version>Ingalls-SR16</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>

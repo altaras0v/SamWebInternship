@@ -5,6 +5,7 @@ import myapp.dto.CourseDTO;
 import myapp.model.Course;
 import myapp.service.api.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 
 
@@ -23,14 +24,20 @@ public class CourseServiceImpl implements CourseService {
 
     // где создавать объект
     // где вызывать add
-    //@Autowired
+    @Autowired
     private CourseRepository courseRepository;
 
     @Transactional
     public void testMethod() {
-
+        /*Course course = new Course();
+        course.setId(1);
+        course.setName("First name");
+        course.setDecription("First desc");
+        courseRepository.save(course);*/
+        List<Course> courseList = (List<Course>) courseRepository.findAll();
         System.out.println("*******************************");
-        System.out.println(courseRepository.findAll());
+        //System.out.println(courseRepository.findAll());
+        System.out.println(courseList.toString());
     }
 
 
