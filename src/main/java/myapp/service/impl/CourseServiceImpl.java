@@ -1,10 +1,13 @@
 package myapp.service.impl;
 
+import myapp.AppConfig;
 import myapp.CourseRepository;
 import myapp.dto.CourseDTO;
 import myapp.model.Course;
 import myapp.service.api.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +32,8 @@ public class CourseServiceImpl implements CourseService {
 
     @Transactional
     public void testMethod() {
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+        courseRepository = ctx.getBean(CourseRepository.class);
         /*Course course = new Course();
         course.setId(1);
         course.setName("First name");

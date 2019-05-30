@@ -3,10 +3,11 @@ package myapp.model;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "courses")
-public class Course {
+public class Course implements Serializable {
 
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
