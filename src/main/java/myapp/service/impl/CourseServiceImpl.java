@@ -41,8 +41,10 @@ public class CourseServiceImpl implements CourseService {
         courseRepository.save(course);*/
         List<Course> courseList = (List<Course>) courseRepository.findAll();
         System.out.println("*******************************");
-        //System.out.println(courseRepository.findAll());
-        System.out.println(courseList.toString());
+        System.out.println(courseRepository.findAll()); //выведет лист
+       // System.out.println(courseList);
+        //CourseDTO firstDto = new CourseDTO(courseList.get(0).getName(),courseList.get(0).getDescription());
+        //System.out.println(firstDto.getDescription());
     }
 
 
