@@ -4,6 +4,7 @@ import myapp.dto.CourseDTO;
 import myapp.service.api.CourseService;
 import myapp.service.impl.CourseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@Configurable
 public class CourseController {
    /* @Autowired
     @Qualifier("CourseRepository")
@@ -22,17 +24,31 @@ public class CourseController {
     @Autowired
     public  void setCourseService(CourseService courseService){
         this.courseService=courseService;
+   2 }*/
+
+   @Autowired
+   private CourseController courseController;
+
+    @Autowired
+   private CourseServiceImpl courseService;
+
+    /*@Autowired
+    public CourseController(CourseServiceImpl courseService) {
+        this.courseService=courseService;
     }*/
+
 
     @RequestMapping(value = {"/index", "/hello", "/", ""}, method = RequestMethod.GET)
     public ModelAndView getCourse() {
+/*
         CourseServiceImpl courseService = new CourseServiceImpl();
+*/
         List<CourseDTO> listCourses = courseService.getCourses();
 
 
         ModelAndView modelAndView = new ModelAndView("courses");
         modelAndView.addObject("listsCourses", listCourses);
-        modelAndView.addObject("nameLikeUser",courseService.getNamesLikeUserData());
+        //modelAndView.addObject("nameLikeUser",courseService.getNamesLikeUserData());
 
         return modelAndView;
 

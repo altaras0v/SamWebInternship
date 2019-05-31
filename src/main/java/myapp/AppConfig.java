@@ -25,7 +25,8 @@ public class AppConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[]{"myapp"});
+        em.setPackagesToScan("myapp","myapp.controller","myapp.db","myapp.dto","myapp.model","myapp.repository"
+        ,"myapp.service.api","myapp.service.impl");
 
        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
