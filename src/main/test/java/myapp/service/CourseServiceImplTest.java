@@ -94,12 +94,34 @@ public class CourseServiceImplTest {
         //when
         assertThat(courseServiceImpl.getCoursesDescription().size()==courseServiceImpl.getCourseList().size()).isTrue();
     }
+  /*  @Test
     public void getCoursesDTOShouldReturnNotNullList() {
+        //
+
+        courseServiceImpl.getCoursesNames();
+        courseServiceImpl.getCoursesDescription();
+
+        courseServiceImpl.createCoursesDTO();
+        List<CourseDTO> courseDTOList = courseServiceImpl.getCourses();
+        when(courseServiceImpl.getCourses()).thenReturn(courseDTOList);
+        // List<CourseDTO> courses = courseService.getCourses();
+        assertThat(courseDTOList).isEmpty();
+    }*/
+    @Test
+    public void getCoursesDTOShouldReturnNullList() {
+        //
+
+
+        List<CourseDTO> courseDTOList = courseServiceImpl.getCourses();
+        when(courseServiceImpl.getCourses()).thenReturn(courseDTOList);
+        assertThat(courseDTOList).isNull();
+    }
+    // проверить на соответсвие полей
+    /*public void checkDTOFields() {
         //
         List<CourseDTO> courseDTOList = courseServiceImpl.getCourses();
         when(courseServiceImpl.getCourses()).thenReturn(courseDTOList);
         // List<CourseDTO> courses = courseService.getCourses();
         assertThat(courseDTOList).isNotNull();
-    }
-    // проверить на соответсвие полей
+    }*/
 }

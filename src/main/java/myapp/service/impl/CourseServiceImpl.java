@@ -128,7 +128,7 @@ public class CourseServiceImpl implements CourseService {
         return coursesDescription;
     }
 
-    public void CreateCoursesDTO(){
+    public void createCoursesDTO(){
         courseDTOList = new ArrayList<>();
         CourseDTO courseDTO1 = new CourseDTO(getCoursesNames().get(0),getCoursesDescription().get(0));
         CourseDTO courseDTO2 = new CourseDTO(getCoursesNames().get(1),getCoursesDescription().get(1));
@@ -147,7 +147,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public List<CourseDTO> getCourses() {
       //  courseRepository.findAll();
-       CreateCoursesDTO();
+        createCoursesDTO();
         return courseDTOList;
     }
 
