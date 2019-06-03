@@ -39,26 +39,26 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private CustomizedCoursesNameRepository customizedCoursesNameRepository;
 
-    public CourseServiceImpl(){
-        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+  /*  public CourseServiceImpl(){
+       SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
         System.out.println("************");
-       /* List<Course> courseList = (List<Course>) courseRepository.findAll();
+        List<Course> courseList = (List<Course>) courseRepository.findAll();
         System.out.println(courseRepository.findAll());
-        System.out.println("*******************************");*/
-       testMethod();
-    }
+        System.out.println("*******************************");
+       //testMethod();
+    }*/
 
-    @Transactional
+    /*@Transactional
     public void testMethod() {
-/*
+*//*
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         courseRepository = ctx.getBean(CourseRepository.class);
-*/
-        /*Course course = new Course();
+*//*
+        *//*Course course = new Course();
         course.setId(1);
         course.setName("First name");
         course.setDecription("First desc");
-        courseRepository.save(course);*/
+        courseRepository.save(course);*//*
 
         List<Course> courseList = (List<Course>) courseRepository.findAll();
         System.out.println("*******************************");
@@ -71,9 +71,9 @@ public class CourseServiceImpl implements CourseService {
 
         //вывести по имени
 
-       /* customizedCoursesNameRepository = ctx.getBean(CustomizedCoursesNameRepository.class);
+       *//* customizedCoursesNameRepository = ctx.getBean(CustomizedCoursesNameRepository.class);
         Optional<Course>  courseOptional = customizedCoursesNameRepository.findByname("Irish");
-        System.out.println(courseOptional.toString()); // */
+        System.out.println(courseOptional.toString()); // *//*
        List<String> userNameOfCourse = new ArrayList<>();
        String userData = "I";
         for (Course course:courseList){
@@ -81,13 +81,13 @@ public class CourseServiceImpl implements CourseService {
             userNameOfCourse.add(course.getName());
         }
         System.out.println(userNameOfCourse.toString());
-    }
-    @Transactional
+    }*/
+/*    @Transactional
     public List<String> getNamesLikeUserData(){
-/*
+*//*
         ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
         courseRepository = ctx.getBean(CourseRepository.class);
-*/
+*//*
         List<Course> courseList = (List<Course>) courseRepository.findAll();
         List<String> userNameOfCourse = new ArrayList<>();
         String userData = "I";
@@ -96,21 +96,57 @@ public class CourseServiceImpl implements CourseService {
                 userNameOfCourse.add(course.getName());
         }
         return userNameOfCourse;
-    }
+    }*/
 
     private List<CourseDTO> courseDTOList;
+    private  List<Course> courseList;
+    private List<String> coursesNames;
+    private List<String> coursesDescription;
 
-   /* public CourseServiceImpl(){
+    @Transactional
+     public List<Course> getCourseList(){
+        courseList = new ArrayList<>();
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
+        courseRepository.findAll();
+        List<Course> courseList = (List<Course>) courseRepository.findAll();
+        return courseList;
+    }
+
+    private List<String> getCoursesNames(){
+        coursesNames = new ArrayList<>();
+        for (Course course:getCourseList()){
+            coursesNames.add(course.getName());
+        }
+        return coursesNames;
+    }
+
+    private List<String> getCoursesDescription(){
+        coursesDescription = new ArrayList<>();
+        for (Course course:getCourseList()){
+            coursesDescription.add(course.getDescription());
+        }
+        return coursesDescription;
+    }
+
+    public void CreateCoursesDTO(){
         courseDTOList = new ArrayList<>();
-        CourseDTO courseDTO1 = new CourseDTO("English","Learn English language1qqqq");
-        CourseDTO courseDTO2 = new CourseDTO("Spanish","Learn Spanish Language");
+        CourseDTO courseDTO1 = new CourseDTO(getCoursesNames().get(0),getCoursesDescription().get(0));
+        CourseDTO courseDTO2 = new CourseDTO(getCoursesNames().get(1),getCoursesDescription().get(1));
         courseDTOList.add(courseDTO1);
         courseDTOList.add(courseDTO2);
+    }
 
-    }*/
+    public CourseServiceImpl(){
+        getCourses();
+       // CreateCoursesDTO();
+       System.out.println(getCourses().toString());
+
+    }
 
     @Override
     public List<CourseDTO> getCourses() {
+      //  courseRepository.findAll();
+       CreateCoursesDTO();
         return courseDTOList;
     }
 

@@ -29,8 +29,8 @@ public class Domain
 */
     public static void main(String[] args) {
 
-        CourseServiceImpl courseService = new CourseServiceImpl();
-        courseService.testMethod();
+       /* CourseServiceImpl courseService = new CourseServiceImpl();
+        courseService.testMethod();*/
 
       /*  Result results = JUnitCore.runClasses(CalculatorTesf.class);
         for (Failure failure : results.getFailures()) {
