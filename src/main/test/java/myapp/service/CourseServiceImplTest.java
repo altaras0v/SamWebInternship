@@ -1,6 +1,7 @@
 package myapp.service;
 
 import myapp.dto.CourseDTO;
+import myapp.model.Course;
 import myapp.repository.CourseRepository;
 import myapp.service.api.CourseService;
 import myapp.service.impl.CourseServiceImpl;
@@ -17,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.Silent.class)
 public class CourseServiceImplTest {
 
     @Mock
@@ -30,37 +31,75 @@ public class CourseServiceImplTest {
     private CourseServiceImpl courseServiceImpl = new CourseServiceImpl();
 
     @Test
-    public void getCoursesShouldCallRepository () {
+    public void getCoursesListShouldCallRepository () {
 
         //when
-        courseService.getCourses();
-       // courseServiceImpl.getCourseList();
+        courseServiceImpl.getCourseList();
+
 
         //then
         verify(courseRepository).findAll();
     }
 
     @Test
-    public void getCoursesShouldReturnNotNullListWhenRepositoryReturnEmptyCollection() {
+    public void getCoursesListShouldReturnNotNullListWhenRepositoryReturnEmptyCollection() {
         //
         when(courseRepository.findAll()).thenReturn(Collections.emptyList());
 
         //when
-        List<CourseDTO> courses = courseService.getCourses();
+      //  List<CourseDTO> courses = courseService.getCourses();
+        List<Course>  coursesList = courseServiceImpl.getCourseList();
 
         //then
-        assertThat(courses).isNotNull();
+        //assertThat(courses).isNotNull();
+        assertThat(coursesList).isNotNull();
     }
 
     @Test
-    public void getCoursesShouldReturnEmptyListWhenRepositoryReturnEmptyCollection() {
+    public void getCoursesListShouldReturnEmptyListWhenRepositoryReturnEmptyCollection() {
         //
         when(courseRepository.findAll()).thenReturn(Collections.emptyList());
 
         //when
-        List<CourseDTO> courses = courseService.getCourses();
-
+        List<Course> courseList = courseServiceImpl.getCourseList();
+       // List<CourseDTO> courses = courseService.getCourses();
         //then
-        assertThat(courses).isEmpty();
+       // assertThat(courses).isEmpty();
+        assertThat(courseList).isEmpty();
     }
+    @Test
+    public void getCourseNamesShouldReturnNotNull() {
+        //when
+        List<String> namesList = courseServiceImpl.getCoursesNames();
+        when(courseServiceImpl.getCoursesNames()).thenReturn(namesList);
+        // List<CourseDTO> courses = courseService.getCourses();
+        assertThat(namesList).isNotNull();
+    }
+    @Test
+    public void getCourseNamesCheckSize() {
+        //when
+        List<String> namesList = courseServiceImpl.getCoursesNames();
+        assertThat(courseServiceImpl.getCoursesNames().size()==courseServiceImpl.getCourseList().size()).isTrue();
+    }
+    @Test
+    public void getCourseDescriptionShouldReturnNotNull() {
+        //when
+        List<String> descList = courseServiceImpl.getCoursesDescription();
+        when(courseServiceImpl.getCoursesNames()).thenReturn(descList);
+        // List<CourseDTO> courses = courseService.getCourses();
+        assertThat(descList).isNotNull();
+    }
+    @Test
+    public void getCourseDescriptionCheckSize() {
+        //when
+        assertThat(courseServiceImpl.getCoursesDescription().size()==courseServiceImpl.getCourseList().size()).isTrue();
+    }
+    public void getCoursesDTOShouldReturnNotNullList() {
+        //
+        List<CourseDTO> courseDTOList = courseServiceImpl.getCourses();
+        when(courseServiceImpl.getCourses()).thenReturn(courseDTOList);
+        // List<CourseDTO> courses = courseService.getCourses();
+        assertThat(courseDTOList).isNotNull();
+    }
+    // проверить на соответсвие полей
 }

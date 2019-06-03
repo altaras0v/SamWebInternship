@@ -105,14 +105,14 @@ public class CourseServiceImpl implements CourseService {
 
     @Transactional
      public List<Course> getCourseList(){
+       SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
         courseList = new ArrayList<>();
-        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-        courseRepository.findAll();
         List<Course> courseList = (List<Course>) courseRepository.findAll();
+
         return courseList;
     }
 
-    private List<String> getCoursesNames(){
+    public List<String> getCoursesNames(){
         coursesNames = new ArrayList<>();
         for (Course course:getCourseList()){
             coursesNames.add(course.getName());
@@ -120,7 +120,7 @@ public class CourseServiceImpl implements CourseService {
         return coursesNames;
     }
 
-    private List<String> getCoursesDescription(){
+    public List<String> getCoursesDescription(){
         coursesDescription = new ArrayList<>();
         for (Course course:getCourseList()){
             coursesDescription.add(course.getDescription());
@@ -137,9 +137,10 @@ public class CourseServiceImpl implements CourseService {
     }
 
     public CourseServiceImpl(){
-        getCourses();
+
+        //getCourses();
        // CreateCoursesDTO();
-       System.out.println(getCourses().toString());
+      // System.out.println(getCourses().toString());
 
     }
 
