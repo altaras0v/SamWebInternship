@@ -1,22 +1,17 @@
 package myapp.service.impl;
 
-import myapp.AppConfig;
-import myapp.repository.*;
 import myapp.dto.CourseDTO;
 import myapp.model.Course;
+import myapp.repository.CourseRepository;
+import myapp.repository.CustomizedCoursesNameRepository;
 import myapp.service.api.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 // inject to coursecontroller
 // return list of dto
@@ -98,20 +93,9 @@ public class CourseServiceImpl implements CourseService {
         return userNameOfCourse;
     }*/
 
-    private List<CourseDTO> courseDTOList;
+ /*   private List<CourseDTO> courseDTOList;
     private  List<Course> courseList;
     private List<String> coursesNames;
-    private List<String> coursesDescription;
-
-    @Transactional
-     public List<Course> getCourseList(){
-       SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-        courseList = new ArrayList<>();
-        List<Course> courseList = (List<Course>) courseRepository.findAll();
-
-        return courseList;
-    }
-
     public List<String> getCoursesNames(){
         coursesNames = new ArrayList<>();
         for (Course course:getCourseList()){
@@ -119,15 +103,23 @@ public class CourseServiceImpl implements CourseService {
         }
         return coursesNames;
     }
+    private List<String> coursesDescription;
+*/
 
-    public List<String> getCoursesDescription(){
-        coursesDescription = new ArrayList<>();
-        for (Course course:getCourseList()){
-            coursesDescription.add(course.getDescription());
-        }
-        return coursesDescription;
-    }
+//    private List<Course> getCourseList(){
+//
+//    }
 
+//    public List<String> getCoursesDescription(){
+//        coursesDescription = new ArrayList<>();
+//        for (Course course:getCourseList()){
+//            coursesDescription.add(course.getDescription());
+//        }
+//        return coursesDescription;
+//    }
+//
+
+/*
     public void createCoursesDTO(){
         courseDTOList = new ArrayList<>();
         CourseDTO courseDTO1 = new CourseDTO(getCoursesNames().get(0),getCoursesDescription().get(0));
@@ -135,6 +127,7 @@ public class CourseServiceImpl implements CourseService {
         courseDTOList.add(courseDTO1);
         courseDTOList.add(courseDTO2);
     }
+*/
 
     public CourseServiceImpl(){
 
@@ -145,10 +138,14 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional
     public List<CourseDTO> getCourses() {
-      //  courseRepository.findAll();
-        createCoursesDTO();
-        return courseDTOList;
-    }
+        List<Course> courses = (List<Course>) courseRepository.findAll();
+
+        return courses
+                .stream()
+                .map(c -> new CourseDTO(c.getName(), c.getDescription()))
+                .collect(Collectors.toList());
+        }
 
 }

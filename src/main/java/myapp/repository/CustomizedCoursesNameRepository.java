@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CustomizedCoursesNameRepository extends CrudRepository<Course,Integer>,JpaSpecificationExecutor<Course> {
+public interface CustomizedCoursesNameRepository extends CrudRepository<Course, Integer>, JpaSpecificationExecutor<Course> {
     Optional<Course> findByname(String fName);
 
-  //  List<Course> findFirst2ByFirstNameStartsWithOrderByFirstName(String firstNameStartsWith);
+    //  List<Course> findFirst2ByFirstNameStartsWithOrderByFirstName(String firstNameStartsWith);
 }

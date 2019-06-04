@@ -2,35 +2,19 @@ package myapp.controller;
 
 import myapp.dto.CourseDTO;
 import myapp.service.api.CourseService;
-import myapp.service.impl.CourseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@Configurable
 public class CourseController {
-   /* @Autowired
-    @Qualifier("CourseRepository")
+
+    @Autowired
     private CourseService courseService;
-    @Autowired
-    public  void setCourseService(CourseService courseService){
-        this.courseService=courseService;
-   2 }*/
-
-   @Autowired
-   private CourseController courseController;
-
-    @Autowired
-   private CourseServiceImpl courseService;
 
     /*@Autowired
     public CourseController(CourseServiceImpl courseService) {

@@ -5,36 +5,51 @@ import myapp.model.Course;
 import myapp.repository.CourseRepository;
 import myapp.service.api.CourseService;
 import myapp.service.impl.CourseServiceImpl;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.anyIterable;
+import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class CourseServiceImplTest {
 
+
     @Mock
     private CourseRepository courseRepository;
+
 
     @InjectMocks
     private CourseService courseService = new CourseServiceImpl();
 
-    @InjectMocks
-    private CourseServiceImpl courseServiceImpl = new CourseServiceImpl();
+
+    public List<Course> createCourseList() {
+        Course courseOne = new Course();
+        courseOne.setName("My Course 1");
+        courseOne.setDecription("Desc1");
+        Course courseTwo = new Course();
+        courseTwo.setName("My Course 2");
+        courseTwo.setDecription("Desc2");
+        List<Course> courseList = new ArrayList<>();
+        courseList.add(courseOne); courseList.add(courseTwo);
+        return courseList;
+    }
 
     @Test
-    public void getCoursesListShouldCallRepository () {
+    public void getCoursesShouldCallRepository () {
 
         //when
-        courseServiceImpl.getCourseList();
+        courseService.getCourses();
 
 
         //then
@@ -42,86 +57,96 @@ public class CourseServiceImplTest {
     }
 
     @Test
-    public void getCoursesListShouldReturnNotNullListWhenRepositoryReturnEmptyCollection() {
+    public void getCoursesShouldReturnNotNullListWhenRepositoryReturnEmptyCollection() {
         //
         when(courseRepository.findAll()).thenReturn(Collections.emptyList());
 
         //when
-      //  List<CourseDTO> courses = courseService.getCourses();
-        List<Course>  coursesList = courseServiceImpl.getCourseList();
+        List<CourseDTO>  coursesList = courseService.getCourses();
 
         //then
-        //assertThat(courses).isNotNull();
         assertThat(coursesList).isNotNull();
     }
 
     @Test
     public void getCoursesListShouldReturnEmptyListWhenRepositoryReturnEmptyCollection() {
         //
+
         when(courseRepository.findAll()).thenReturn(Collections.emptyList());
 
         //when
-        List<Course> courseList = courseServiceImpl.getCourseList();
-       // List<CourseDTO> courses = courseService.getCourses();
+        List<CourseDTO> courseList = courseService.getCourses();
+
         //then
-       // assertThat(courses).isEmpty();
         assertThat(courseList).isEmpty();
     }
-    @Test
+ /*   @Test
     public void getCourseNamesShouldReturnNotNull() {
-        //when
+
+        when(courseRepository.findAll()).thenReturn(createCourseList());
+
+        //then
         List<String> namesList = courseServiceImpl.getCoursesNames();
-        when(courseServiceImpl.getCoursesNames()).thenReturn(namesList);
-        // List<CourseDTO> courses = courseService.getCourses();
         assertThat(namesList).isNotNull();
     }
-    @Test
-    public void getCourseNamesCheckSize() {
+ */
+   /*
+   @Test
+   public void getCourseNamesShouldReturnNames() {
+
+
+        when(courseRepository.findAll()).thenReturn(createCourseList());
+
         //when
         List<String> namesList = courseServiceImpl.getCoursesNames();
-        assertThat(courseServiceImpl.getCoursesNames().size()==courseServiceImpl.getCourseList().size()).isTrue();
+
+        //then
+        assertThat(namesList).containsExactly("My Course 1", "My Course 2");
     }
+
     @Test
     public void getCourseDescriptionShouldReturnNotNull() {
+        when(courseRepository.findAll()).thenReturn(createCourseList());
+
+        //then
+        List<String> descList = courseServiceImpl.getCoursesDescription();
+        assertThat(descList).isNotNull();
+
+    }
+
+    @Test
+    public void getCourseDescriptionShouldReturnNames() {
+
+        when(courseRepository.findAll()).thenReturn(createCourseList());
+
         //when
         List<String> descList = courseServiceImpl.getCoursesDescription();
-        when(courseServiceImpl.getCoursesNames()).thenReturn(descList);
-        // List<CourseDTO> courses = courseService.getCourses();
-        assertThat(descList).isNotNull();
+
+        //then
+        assertThat(descList).containsExactly("Desc1", "Desc2");
     }
+
+   */
+
     @Test
-    public void getCourseDescriptionCheckSize() {
-        //when
-        assertThat(courseServiceImpl.getCoursesDescription().size()==courseServiceImpl.getCourseList().size()).isTrue();
-    }
-  /*  @Test
     public void getCoursesDTOShouldReturnNotNullList() {
-        //
 
-        courseServiceImpl.getCoursesNames();
-        courseServiceImpl.getCoursesDescription();
+        when(courseRepository.findAll()).thenReturn(createCourseList());
 
-        courseServiceImpl.createCoursesDTO();
-        List<CourseDTO> courseDTOList = courseServiceImpl.getCourses();
-        when(courseServiceImpl.getCourses()).thenReturn(courseDTOList);
-        // List<CourseDTO> courses = courseService.getCourses();
-        assertThat(courseDTOList).isEmpty();
-    }*/
-    @Test
-    public void getCoursesDTOShouldReturnNullList() {
-        //
+        List<CourseDTO> courseDTOList = courseService.getCourses();
 
-
-        List<CourseDTO> courseDTOList = courseServiceImpl.getCourses();
-        when(courseServiceImpl.getCourses()).thenReturn(courseDTOList);
-        assertThat(courseDTOList).isNull();
-    }
-    // проверить на соответсвие полей
-    /*public void checkDTOFields() {
-        //
-        List<CourseDTO> courseDTOList = courseServiceImpl.getCourses();
-        when(courseServiceImpl.getCourses()).thenReturn(courseDTOList);
-        // List<CourseDTO> courses = courseService.getCourses();
         assertThat(courseDTOList).isNotNull();
-    }*/
+    }
+
+    @Test
+    public void getCoursesDTOShouldReturnNames() {
+
+        when(courseRepository.findAll()).thenReturn(createCourseList());
+
+        List<CourseDTO> courseDTOList = courseService.getCourses();
+
+        assertThat(courseDTOList.get(0).getName().contains("My Course 1")&&courseDTOList.get(0).getDescription().contains("Desc1")).isTrue();
+        assertThat(courseDTOList.get(1).getName().contains("My Course 2")&&courseDTOList.get(1).getDescription().contains("Desc2")).isTrue();
+    }
+
 }
