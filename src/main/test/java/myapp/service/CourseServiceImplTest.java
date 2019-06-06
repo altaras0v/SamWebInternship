@@ -37,12 +37,13 @@ public class CourseServiceImplTest {
         courseTwo.setName("My Course 2");
         courseTwo.setDescription("Desc2");
         List<Course> courseList = new ArrayList<>();
-        courseList.add(courseOne); courseList.add(courseTwo);
+        courseList.add(courseOne);
+        courseList.add(courseTwo);
         return courseList;
     }
 
     @Test
-    public void getCoursesShouldCallRepository () {
+    public void getCoursesShouldCallRepository() {
 
         //when
         courseService.getCourses();
@@ -58,7 +59,7 @@ public class CourseServiceImplTest {
         when(courseRepository.findAll()).thenReturn(Collections.emptyList());
 
         //when
-        List<CourseDTO>  coursesList = courseService.getCourses();
+        List<CourseDTO> coursesList = courseService.getCourses();
 
         //then
         assertThat(coursesList).isNotNull();
@@ -76,53 +77,6 @@ public class CourseServiceImplTest {
         //then
         assertThat(courseList).isEmpty();
     }
- /*   @Test
-    public void getCourseNamesShouldReturnNotNull() {
-
-        when(courseRepository.findAll()).thenReturn(createCourseList());
-
-        //then
-        List<String> namesList = courseServiceImpl.getCoursesNames();
-        assertThat(namesList).isNotNull();
-    }
- */
-   /*
-   @Test
-   public void getCourseNamesShouldReturnNames() {
-
-
-        when(courseRepository.findAll()).thenReturn(createCourseList());
-
-        //when
-        List<String> namesList = courseServiceImpl.getCoursesNames();
-
-        //then
-        assertThat(namesList).containsExactly("My Course 1", "My Course 2");
-    }
-
-    @Test
-    public void getCourseDescriptionShouldReturnNotNull() {
-        when(courseRepository.findAll()).thenReturn(createCourseList());
-
-        //then
-        List<String> descList = courseServiceImpl.getCoursesDescription();
-        assertThat(descList).isNotNull();
-
-    }
-
-    @Test
-    public void getCourseDescriptionShouldReturnNames() {
-
-        when(courseRepository.findAll()).thenReturn(createCourseList());
-
-        //when
-        List<String> descList = courseServiceImpl.getCoursesDescription();
-
-        //then
-        assertThat(descList).containsExactly("Desc1", "Desc2");
-    }
-
-   */
 
     @Test
     public void getCoursesDTOShouldReturnNotNullList() {
@@ -141,8 +95,19 @@ public class CourseServiceImplTest {
 
         List<CourseDTO> courseDTOList = courseService.getCourses();
 
-        assertThat(courseDTOList.get(0).getName().contains("My Course 1")&&courseDTOList.get(0).getDescription().contains("Desc1")).isTrue();
-        assertThat(courseDTOList.get(1).getName().contains("My Course 2")&&courseDTOList.get(1).getDescription().contains("Desc2")).isTrue();
+        assertThat(courseDTOList.get(0).getName().contains("My Course 1") && courseDTOList.get(0).getDescription().contains("Desc1")).isTrue();
+        assertThat(courseDTOList.get(1).getName().contains("My Course 2") && courseDTOList.get(1).getDescription().contains("Desc2")).isTrue();
     }
+
+    @Test
+    public void addCoursesShouldCallRepository() {
+        //when
+        Course course = new Course("name", "desc");
+        courseService.addCourse(course);
+
+        //then
+        verify(courseRepository).save(course);
+    }
+
 
 }
