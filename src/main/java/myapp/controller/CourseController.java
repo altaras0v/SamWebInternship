@@ -43,15 +43,16 @@ public class CourseController {
 
 
     }
+
     @RequestMapping(value = "/AddCourse", method = RequestMethod.GET)
     public ModelAndView showRegister(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView("AddCourse");
-        mav.addObject("course", new Course());
+        mav.addObject("course", new CourseDTO());
         return mav;
     }
 
     @RequestMapping(value = "/AddCourse", method = RequestMethod.POST)
-    public ModelAndView AddCourse(HttpServletRequest request, @ModelAttribute("course")  Course course,
+    public ModelAndView AddCourse(HttpServletRequest request, @ModelAttribute("course")  CourseDTO course,
                                    HttpServletResponse response) {
        // courseService.editUser(user);
         ModelAndView mav = new ModelAndView("AddCourse");

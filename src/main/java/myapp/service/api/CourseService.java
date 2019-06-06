@@ -9,5 +9,5 @@ import java.util.List;
 @Service
 public interface CourseService {
     List<CourseDTO> getCourses();
-    void addCourse(Course course);
+    void addCourse(CourseDTO course);
 }

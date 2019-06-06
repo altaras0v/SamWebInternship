@@ -5,11 +5,18 @@ public class CourseDTO {
     private String description;
     private int id;
 
+    public CourseDTO(){}
+
     public CourseDTO(String name,String description,int id){
         this.name = name;
         this.description = description;
         this.id = id;
     }
+    public CourseDTO(String name,String description){
+        this.name = name;
+        this.description = description;
+    }
+
 
     public String getName() {
         return name;
@@ -19,7 +26,7 @@ public class CourseDTO {
         this.name = name;
     }
 
-    public void setDecription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

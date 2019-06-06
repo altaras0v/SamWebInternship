@@ -14,6 +14,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -102,11 +104,13 @@ public class CourseServiceImplTest {
     @Test
     public void addCoursesShouldCallRepository() {
         //when
-        Course course = new Course("name", "desc");
+
+        CourseDTO course = new CourseDTO("name", "desc");
         courseService.addCourse(course);
+         Course course1 = new  Course("name","desc");
 
         //then
-        verify(courseRepository).save(course);
+        verify(courseRepository).save(course1);
     }
 
 
