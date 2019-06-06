@@ -5,19 +5,15 @@ import myapp.model.Course;
 import myapp.repository.CourseRepository;
 import myapp.service.api.CourseService;
 import myapp.service.impl.CourseServiceImpl;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.anyIterable;
-import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -36,10 +32,10 @@ public class CourseServiceImplTest {
     public List<Course> createCourseList() {
         Course courseOne = new Course();
         courseOne.setName("My Course 1");
-        courseOne.setDecription("Desc1");
+        courseOne.setDescription("Desc1");
         Course courseTwo = new Course();
         courseTwo.setName("My Course 2");
-        courseTwo.setDecription("Desc2");
+        courseTwo.setDescription("Desc2");
         List<Course> courseList = new ArrayList<>();
         courseList.add(courseOne); courseList.add(courseTwo);
         return courseList;

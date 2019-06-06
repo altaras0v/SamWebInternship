@@ -3,10 +3,12 @@ package myapp.dto;
 public class CourseDTO {
     private String name;
     private String description;
+    private int id;
 
-    public CourseDTO(String name,String description){
+    public CourseDTO(String name,String description,int id){
         this.name = name;
         this.description = description;
+        this.id = id;
     }
 
     public String getName() {
@@ -23,5 +25,9 @@ public class CourseDTO {
 
     public String getDescription() {
         return description;
+    }
+
+    public int getId() {
+        return id;
     }
 }

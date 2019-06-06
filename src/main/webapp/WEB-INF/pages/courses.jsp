@@ -1,5 +1,6 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE html>
 
@@ -60,33 +61,20 @@
                     </thead>
 
                     <tbody>
-
-                    <tr>
-                        <%--<td>${nameLikeUser.get(0)}</td>--%>
-                        <td>${listsCourses.get(listsCourses.size()-listsCourses.size()).name}</td>
-                        <td>${listsCourses.get(listsCourses.size()-listsCourses.size()).description}</td>
-                    </tr>
-                    <tr>
-                        <td>${listsCourses.get(listsCourses.size()-listsCourses.size()+1).name}</td>
-                        <td>${listsCourses.get(listsCourses.size()-listsCourses.size()+1).description}</td>
-                    </tr>
-                    <tr>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>-</td>
-                        <td>-</td>
-                    </tr>
+                    <c:forEach items="${listsCourses}" var="course">
+                        <tr>
+                            <td>${course.name}</td>
+                            <td>${course.description}</td>
+                        </tr>
+                    </c:forEach>
 
                     </tbody>
                 </table>
             </div>
+
+
         </div>
+        <a href="<c:url value = "/AddCourse"/>">Creazione Nuovo Corso</a>
 
         <footer class="row jumbotron">
 

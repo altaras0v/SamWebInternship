@@ -37,7 +37,7 @@ public class Course implements Serializable {
         this.name = name;
     }
 
-    public void setDecription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
