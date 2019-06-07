@@ -5,19 +5,21 @@ import myapp.model.Course;
 import myapp.repository.CourseRepository;
 import myapp.service.api.CourseService;
 import myapp.service.impl.CourseServiceImpl;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyIterable;
 import static org.mockito.ArgumentMatchers.anyObject;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class CourseServiceImplTest {
@@ -103,15 +105,25 @@ public class CourseServiceImplTest {
 
     @Test
     public void addCoursesShouldCallRepository() {
+        //given
+        CourseDTO course = new CourseDTO();
         //when
-
-        CourseDTO course = new CourseDTO("name", "desc");
         courseService.addCourse(course);
-         Course course1 = new  Course("name","desc");
-
         //then
-        verify(courseRepository).save(course1);
+        verify(courseRepository).save(Mockito.any(Course.class));
     }
 
+    @Test
+    public void addCoursesShouldAddCourse() {
+        //given
+        CourseDTO course1 = new CourseDTO("1","1");
+        Course course = new Course(course1.getName(),course1.getDescription());
+        when(courseRepository.save(Mockito.any(Course.class))).thenReturn(course);
+        //when
+        courseService.addCourse(course1);
+        //then
+        verify(courseRepository,times(1)).save(Mockito.any(Course.class));
+
+    }
 
 }
