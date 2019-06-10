@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
+
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,7 +59,6 @@ public class CourseServiceImpl implements CourseService {
     @Override
     @Transactional
     public void addCourse(CourseDTO course) {
-
         courseRepository.save(new Course(course.getName(),course.getDescription()));
     }
 
