@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 // и вывести в bootstrap
 
 @Service
-
 @ComponentScan(basePackages = {"myapp"})
 public class CourseServiceImpl implements CourseService {
 

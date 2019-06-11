@@ -19,27 +19,25 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component;
 
 import javax.naming.Context;
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
+
+import static java.lang.Math.pow;
+
 @Component
-public class Domain
-{
+public class Domain {
     /*@Autowired
     static CourseRepository courseRepository;
 */
     public static void main(String[] args) {
-
-       /* CourseServiceImpl courseService = new CourseServiceImpl();
-        courseService.testMethod();*/
-
-      /*  Result results = JUnitCore.runClasses(CalculatorTesf.class);
-        for (Failure failure : results.getFailures()) {
-            System.out.println("Тест не пройден: " + failure);
-        }*/
-
-      //ctrl+shift+T
-
-
-
+        BigInteger pr;
+        pr = BigInteger.valueOf(1);
+        for (int i = 1; i <= 200; i++) {
+            int squar = (int) pow(i, 2);
+            System.out.println(pr.multiply(BigInteger.valueOf(squar)));
+        }
     }
 }
