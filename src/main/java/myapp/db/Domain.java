@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.Math.pow;
+import static java.lang.Math.signum;
 
 @Component
 public class Domain {
@@ -33,11 +34,21 @@ public class Domain {
     static CourseRepository courseRepository;
 */
     public static void main(String[] args) {
-        BigInteger pr;
-        pr = BigInteger.valueOf(1);
-        for (int i = 1; i <= 200; i++) {
-            int squar = (int) pow(i, 2);
-            System.out.println(pr.multiply(BigInteger.valueOf(squar)));
+        Scanner num = new Scanner(System.in);
+        System.out.println("Введите число e:");
+        double e = num.nextDouble();
+        int n = 0;
+        double sum = 0;
+        while (true) {
+            n++;
+            double numSer = 1 / pow(2, n) + 1 / pow(3, n);
+            sum += numSer;
+            if (Math.abs(numSer) >= e) {
+                System.out.println(sum);
+                break;
+            }
         }
+
+
     }
 }
