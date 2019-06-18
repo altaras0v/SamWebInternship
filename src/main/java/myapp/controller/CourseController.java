@@ -62,22 +62,7 @@ public class CourseController {
         return mav;
     }
 
-/*    @RequestMapping(value = {"/JavaCourse"}, method = RequestMethod.GET)
-    public ModelAndView getAboutCourse() {
-*//*
-        CourseServiceImpl courseService = new CourseServiceImpl();
-*//*
-        List<CourseDTO> listCourses = courseService.getCourses();
 
-
-        ModelAndView modelAndView = new ModelAndView("courses");
-        modelAndView.addObject("listsCourses", listCourses);
-        //modelAndView.addObject("nameLikeUser",courseService.getNamesLikeUserData());
-
-        return modelAndView;
-
-
-    }*/
 
 
 }
