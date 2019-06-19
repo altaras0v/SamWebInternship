@@ -24,7 +24,7 @@ import java.util.Properties;
 public class AppConfig {
         //private Properties dataSourceProperties;
 
-  
+
 
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver multipartResolver() {
