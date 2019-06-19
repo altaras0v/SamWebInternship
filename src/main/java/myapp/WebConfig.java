@@ -21,6 +21,7 @@ public class WebConfig {
     ViewResolver viewResolver(){
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setPrefix("/WEB-INF/pages/");
+        //resolver.setPrefix("");
         resolver.setSuffix(".jsp");
         return resolver;
     }

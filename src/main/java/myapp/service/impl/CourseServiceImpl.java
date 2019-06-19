@@ -51,7 +51,7 @@ public class CourseServiceImpl implements CourseService {
     @Transactional
     public List<CourseDTO> getCourses() {
         List<Course> courses = (List<Course>) courseRepository.findAll();
-        logger.info("getCourses method");
+       // logger.info("getCourses method");
         return courses
                 .stream()
                 .map(c -> new CourseDTO(c.getName(), c.getDescription(), c.getId()))
