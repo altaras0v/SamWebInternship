@@ -1,125 +1,90 @@
 
 <!DOCTYPE html>
-<html lang="en">
-<meta charset="utf-8">
+<html lang="en" class="no-js">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Custom File Inputs | Codrops</title>
+    <meta name="description" content="Demo for the tutorial: Styling and Customizing File Inputs the Smart Way" />
+    <meta name="keywords" content="cutom file input, styling, label, cross-browser, accessible, input type file" />
+    <meta name="author" content="Osvaldas Valutis for Codrops" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-    <title>This is a Bootstrap example</title>
-
-
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/base.css">
-
-  <%--  <link href="../assets/css/bootstrap.css" rel="stylesheet">--%>
-
-    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
+    <!-- remove this if you use Modernizr -->
+    <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
 </head>
 <body>
 
-<div class="jumbotron">
-    <div class="container">
-        <!-- row 1 -->
-        <div class="row">
-            <header class="col-md-12">
-                <h2>E-Learning System</h2>
-            </header>
+HTML  JS Result
+EDIT ON
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="myscript.js"></script>
+<div class="container" style="margin-top: 20px;">
+    <div class="row">
+
+        <div class="col-lg-6 col-sm-6 col-12">
+            <div class="jumbotron">
+                <h1>Bootstrap File Input Demo</h1>
+            </div>
         </div>
+
+        <div class="col-lg-6 col-sm-6 col-12">
+            <h4>Standard Button</h4>
+            <label class="btn btn-primary">
+                Browse&hellip; <input type="file" style="display: none;">
+            </label>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-12">
+            <h4>Block-level Button</h4>
+                <label class="btn btn-block btn-primary">
+                    Browse&hellip; <input type="file" style="display: none;">
+                </label>
+        </div>
+
+        <div class="col-lg-6 col-sm-6 col-12">
+            <h4>Button Groups</h4>
+            <div class="btn-group">
+                <a href="#" class="btn btn-default">Action 1</a>
+                <a href="#" class="btn btn-default">Action 2</a>
+                <label class="btn btn-primary">
+                    Browse&hellip; <input type="file" style="display: none;">
+                </label>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-12">
+            <h4>Input Groups</h4>
+            <div class="input-group">
+                <label class="input-group-btn" for="browse">
+
+                        Browse&hellip; <input type="file" id="browse" onchange="$('#textfield').html(this.files[0].name)" style="display: none;" multiple>
+
+                </label>
+                <input type="text" id="textfield" class="form-control">
+            </div>
+            <span class="help-block">
+                Try selecting one or more files and watch the feedback
+            </span>
+        </div>
+
     </div>
 </div>
-<div class="container">
-
-    <div class="row">
-        <div class="col-md-offset-4 col-md-4">
-            <h3>
-                List of courses
-            </h3>
-        </div>
-
-
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                <tr>
-                    <th class="info">
-                        <h4 class="text-center w-5 p-3">Name of course</h4>
-                    </th>
-                    <th class="success">
-                        <h4 class="text-center">Description</h4>
-                    </th>
-
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Name1</td>
-                    <td>Desc1</td>
-                </tr>
-                <tr>
-                    <td>English</td>
-                    <td>Some desc about course</td>
-                </tr>
-                <tr>
-                    <td>Name3</td>
-                    <td>Desc3</td>
-                </tr>
-                <tr>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <footer class="row jumbotron">
-
-        <div class="col-md-3">
-            <address>
-                <strong>Name, Inc.</strong><br>
-                Address line 1<br>
-                Address line 2<br>
-                <abbr title="Phone">P:</abbr> (123) 456-7890
-            </address>
-        </div>
-    </footer>
+<div class="col-lg-6 col-sm-6 col-12">
+    <label class="btn btn-primary" for="my-file-selector">
+        <input id="my-file-selector" type="file" style="display:none"
+               onchange="$('#upload-file-info').html(this.files[0].name)">
+        Button Text Here
+    </label>
+    <span class='label label-info' id="upload-file-info"></span>
 </div>
-
-
-</div>
-</div>
-</div>
-
-
-
-
-<script src="../assets/js/jquery.js"></script>
-<script src="../assets/js/bootstrap-transition.js"></script>
-<script src="../assets/js/bootstrap-alert.js"></script>
-<script src="../assets/js/bootstrap-modal.js"></script>
-<script src="../assets/js/bootstrap-dropdown.js"></script>
-<script src="../assets/js/bootstrap-scrollspy.js"></script>
-<script src="../assets/js/bootstrap-tab.js"></script>
-<script src="../assets/js/bootstrap-tooltip.js"></script>
-<script src="../assets/js/bootstrap-popover.js"></script>
-<script src="../assets/js/bootstrap-button.js"></script>
-<script src="../assets/js/bootstrap-collapse.js"></script>
-<script src="../assets/js/bootstrap-carousel.js"></script>
-<script src="../assets/js/bootstrap-typeahead.js"></script>
-</body>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>

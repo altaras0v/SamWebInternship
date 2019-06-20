@@ -27,14 +27,14 @@ public class FileValidator implements Validator {
         if (file.getFile().getSize()==0){
             errors.rejectValue("file","uploadForm.selectFile","Please select a file!");
         }
-        if (file.getFile().getSize()>16567500){
-            errors.rejectValue("file","uploadForm.selectFile","File size too large! Max size 16 MB");
+        else {
+            if (file.getFile().getSize() > 16567500) {
+                errors.rejectValue("file", "uploadForm.selectFile", "File size too large! Max size 16 MB");
+            }
+            String fileExtension = file.getFile().getOriginalFilename().substring(file.getFile().getOriginalFilename().indexOf(".") + 1, file.getFile().getOriginalFilename().length());
+            if (!fileTypes.contains(fileExtension.toLowerCase())) {
+                errors.rejectValue("file", "uploadForm.selectFile", "This file format is not supported!");
+            }
         }
-        String fileExtension = file.getFile().getOriginalFilename()
-                .substring(file.getFile().getOriginalFilename().indexOf(".")+1,file.getFile().getOriginalFilename().length());
-        if (!fileTypes.contains(fileExtension.toLowerCase())){
-            errors.rejectValue("file","uploadForm.selectFile","This file format is not supported!");
-        }
-
     }
 }

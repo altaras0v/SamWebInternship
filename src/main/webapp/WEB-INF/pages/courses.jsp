@@ -76,6 +76,8 @@
 
         </div>
         <a href="<c:url value = "/AddCourse"/>">Creazione Nuovo Corso</a>
+        <br>
+        <a href="<c:url value = "/upload"/>">Upload files</a>
 
         <footer class="row jumbotron">
 
