@@ -34,7 +34,6 @@ public class FileUploadController {
     ModelAndView uploadFileHandler(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, BindingResult result) {
 
         ModelAndView modelAndView = new ModelAndView();
-
         String name = null;
 
         MultipartFile file = uploadedFile.getFile();
