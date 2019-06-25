@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * Flyway entity for database
+ */
 @Entity
 @Table(name = "flyway_schema_history", schema = "elearning", catalog = "")
 public class FlywaySchemaHistory {

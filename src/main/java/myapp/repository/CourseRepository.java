@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repository for course
+ */
 @Repository
 public interface CourseRepository extends CrudRepository<Course,Integer>,JpaSpecificationExecutor<Course> {
 }

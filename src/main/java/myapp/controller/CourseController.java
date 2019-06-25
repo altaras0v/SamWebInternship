@@ -18,35 +18,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+/**
+ * Controller for courses (courses.jsp)
+ */
 @Controller
 public class CourseController {
 
     @Autowired
     private CourseService courseService;
 
-    /*@Autowired
-    public CourseController(CourseServiceImpl courseService) {
-        this.courseService=courseService;
-    }*/
-
-
+    /**
+     * Get courses from database and set them to list
+     * @return modelAndView - list of courses
+     */
     @RequestMapping(value = {"/index", "/hello","/courses", "/", ""}, method = RequestMethod.GET)
     public ModelAndView getCourse() {
-/*
-        CourseServiceImpl courseService = new CourseServiceImpl();
-*/
-        List<CourseDTO> listCourses = courseService.getCourses();
 
+        List<CourseDTO> listCourses = courseService.getCourses();
 
         ModelAndView modelAndView = new ModelAndView("courses");
         modelAndView.addObject("listsCourses", listCourses);
-        //modelAndView.addObject("nameLikeUser",courseService.getNamesLikeUserData());
 
         return modelAndView;
 
-
     }
 
+    /**
+     * Send to JSP DTO
+     * @return mav - courseDTO
+     */
     @RequestMapping(value = "/AddCourse", method = RequestMethod.GET)
     public ModelAndView showRegister(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView mav = new ModelAndView("AddCourse");
@@ -54,6 +54,12 @@ public class CourseController {
         return mav;
     }
 
+    //СДЕЛАТЬ РЕДИРЕКТ
+    /**
+     *  Add course to database
+     * @param course - CourseDTO
+     * @return - view where adding course
+     */
     @RequestMapping(value = "/AddCourse", method = RequestMethod.POST)
     public ModelAndView AddCourse(HttpServletRequest request, @ModelAttribute("course")  CourseDTO course,
                                    HttpServletResponse response) {
@@ -64,6 +70,4 @@ public class CourseController {
         //mav.addObject("usersList", users);
         return mav;
     }
-
-
 }

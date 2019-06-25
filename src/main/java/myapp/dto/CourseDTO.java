@@ -1,5 +1,8 @@
 package myapp.dto;
-//add fields
+
+/**
+ * Course data transfer object
+ */
 public class CourseDTO {
     private String name;
     private String description;

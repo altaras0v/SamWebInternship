@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<h1>Spring MVC Download File Example</h1>
+<h1>Spring MVC Download File </h1>
 
 
 
@@ -24,8 +24,9 @@
 <form:form name="first" action="../download/a" method="get">
     <button type="submit" name="first" value="1.txt" class="btn btn-link">Button</button>
 </form:form>
-
-
+<style>
+    :focus {outline:none !important;}
+</style>
 <script src="../assets/js/jquery.js"></script>
 <script src="../assets/js/bootstrap-transition.js"></script>
 <script src="../assets/js/bootstrap-alert.js"></script>

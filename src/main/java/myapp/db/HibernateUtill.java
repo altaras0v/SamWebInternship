@@ -3,6 +3,9 @@ package myapp.db;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+/**
+ * Util class for Hibernate
+ */
 public class HibernateUtill {
 
     private static final SessionFactory sessionFactory = buildSessionFactory();

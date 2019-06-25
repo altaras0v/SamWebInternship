@@ -9,7 +9,7 @@ import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
-public class WebAppInitialiser extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     /*//@Override
     public void onStartup(ServletContext servletContext) throws ServletException {
@@ -35,9 +35,12 @@ public class WebAppInitialiser extends AbstractAnnotationConfigDispatcherServlet
         // TODO Auto-generated method stub
         return new String[]{"/"};
     }
+
+    /**
+     * Filter for character encoding
+     */
     @Override
     protected Filter[] getServletFilters() {
-
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
         characterEncodingFilter.setForceEncoding(true);

@@ -5,6 +5,9 @@ import org.springframework.data.annotation.Id;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Class that is entity for course
+ */
 @Entity
 @Table(name = "courses")
 public class Course implements Serializable {
@@ -61,5 +64,4 @@ public class Course implements Serializable {
                 " description=" + description +
                 "}";
     }
-
 }

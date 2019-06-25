@@ -19,6 +19,9 @@ import java.io.FileOutputStream;
 
 @Controller
 @SessionAttributes("filename")
+/**
+ * Controller for uploading files
+ */
 public class FileUploadController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
@@ -68,11 +71,13 @@ public class FileUploadController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         return modelAndView;
-
     }
+
+    /**
+     * Go to upload.jsp
+     */
     @RequestMapping(value = "/upload",method = RequestMethod.GET)
     public String fileUploaded(){
         return "upload";
