@@ -1,6 +1,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
 <!DOCTYPE html>
@@ -64,7 +65,10 @@
                     <tbody>
                     <c:forEach items="${listsCourses}"  var="course">
                         <tr>
-                            <td>${course.name}</td>
+                            <%--<td>${course.name}</td>--%>
+                                <td><form:form name="first" action="../redirect/courseRedirect" method="get">
+                                    <button type="submit" name="first" value="${course.id}" class="btn btn-link">${course.name}</button>
+                                </form:form></td>
                             <td>${course.description}</td>
                         </tr>
                     </c:forEach>
@@ -97,7 +101,9 @@
 </div>
 </div>
 
-
+<style>
+    :focus {outline:none !important;}
+</style>
 
 
 

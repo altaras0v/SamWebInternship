@@ -5,11 +5,10 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 /**
  * Repository for course
  */
 @Repository
 public interface CourseRepository extends CrudRepository<Course,Integer>,JpaSpecificationExecutor<Course> {
+    Course findById(int id);
 }

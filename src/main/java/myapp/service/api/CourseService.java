@@ -10,4 +10,5 @@ import java.util.List;
 public interface CourseService {
     List<CourseDTO> getCourses();
     void addCourse(CourseDTO course);
+    CourseDTO getCourseById(int id);
 }

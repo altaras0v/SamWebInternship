@@ -64,4 +64,11 @@ public class CourseServiceImpl implements CourseService {
         courseRepository.save(new Course(course.getName(),course.getDescription()));
     }
 
+    //Написать тесты!!!
+    @Override
+    @Transactional
+    public CourseDTO getCourseById(int id) {
+        Course course = courseRepository.findById(id);
+        return new CourseDTO(course.getName(),course.getDescription(),course.getId());
+    }
 }
