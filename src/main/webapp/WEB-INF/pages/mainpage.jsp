@@ -1,9 +1,18 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page isELIgnored="false" %>
+<%@ page language="java" contentType="text/html; charset=Cp1251" pageEncoding="Cp1251"%>
 <!DOCTYPE html>
-<html dir="ltr" lang="en" xml:lang="en">
+<html>
+<meta http-equiv="content-type" content="text/html; charset=cp1251">
 <head>
     <title>Moodle Demo Environment</title>
     <link rel="shortcut icon" href="http://moodle.lmsace.com/theme/image.php/eguru/theme/1560834156/favicon"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=cp1251"/>
     <meta name="keywords" content="moodle, Moodle Demo Environment"/>
     <link rel="stylesheet" type="text/css"
           href="http://moodle.lmsace.com/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple.css"/>
@@ -469,50 +478,50 @@
     }
 </style>
 <div class="theme-slider">
-<div class="homepage-carousel">
-    <div id="home-page-carousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#home-page-carousel" data-slide-to="0 class=active"></li>
-            <li data-target="#home-page-carousel" data-slide-to="1"></li>
-            <li data-target="#home-page-carousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div
-                    class="carousel-item active"
-                    style="background-image: url(http://moodle.lmsace.com/theme/image.php/eguru/theme/1560834156/home/slide1)">
-                <div class="carousel-overlay-content container-fluid">
-                    <div class="carousel-content"><h2>Moodle Learning Management System</h2>
-                        <div class="carousel-btn"><a href="http://www.example.com/" class="read-more">Know More<i
-                                class="fa fa-arrow-right"></i></a></div>
+    <div class="homepage-carousel">
+        <div id="home-page-carousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#home-page-carousel" data-slide-to="0 class=active"></li>
+                <li data-target="#home-page-carousel" data-slide-to="1"></li>
+                <li data-target="#home-page-carousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div
+                        class="carousel-item active"
+                        style="background-image: url(http://moodle.lmsace.com/theme/image.php/eguru/theme/1560834156/home/slide1)">
+                    <div class="carousel-overlay-content container-fluid">
+                        <div class="carousel-content"><h2>Moodle Learning Management System</h2>
+                            <div class="carousel-btn"><a href="http://www.example.com/" class="read-more">Know More<i
+                                    class="fa fa-arrow-right"></i></a></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div
-                    class="carousel-item"
-                    style="background-image: url(http://moodle.lmsace.com/theme/image.php/eguru/theme/1560834156/home/slide2)">
-                <div class="carousel-overlay-content container-fluid">
-                    <div class="carousel-content"><h2>Moodle Learning Management System</h2>
-                        <div class="carousel-btn"><a href="http://www.example.com/" class="read-more">Know More<i
-                                class="fa fa-arrow-right"></i></a></div>
+                <div
+                        class="carousel-item"
+                        style="background-image: url(http://moodle.lmsace.com/theme/image.php/eguru/theme/1560834156/home/slide2)">
+                    <div class="carousel-overlay-content container-fluid">
+                        <div class="carousel-content"><h2>Moodle Learning Management System</h2>
+                            <div class="carousel-btn"><a href="http://www.example.com/" class="read-more">Know More<i
+                                    class="fa fa-arrow-right"></i></a></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div
-                    class="carousel-item"
-                    style="background-image: url(http://moodle.lmsace.com/theme/image.php/eguru/theme/1560834156/home/slide0)">
-                <div class="carousel-overlay-content container-fluid">
-                    <div class="carousel-content"><h2>Moodle Learning Management System</h2>
-                        <div class="carousel-btn"><a href="http://www.example.com/" class="read-more">Know More<i
-                                class="fa fa-arrow-right"></i></a></div>
+                <div
+                        class="carousel-item"
+                        style="background-image: url(http://moodle.lmsace.com/theme/image.php/eguru/theme/1560834156/home/slide0)">
+                    <div class="carousel-overlay-content container-fluid">
+                        <div class="carousel-content"><h2>Moodle Learning Management System</h2>
+                            <div class="carousel-btn"><a href="http://www.example.com/" class="read-more">Know More<i
+                                    class="fa fa-arrow-right"></i></a></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <%--<a class="left carousel-control carousel-control-prev" href="#home-page-carousel"
-               data-slide="prev">&lt;%&ndash;<span class="carousel-control-prev-icon"></span>&ndash;%&gt;</a><a
-                class="right carousel-control carousel-control-next" href="#home-page-carousel" data-slide="next">&lt;%&ndash;<span
-                class="carousel-control-next-icon"></span>&ndash;%&gt;</a>--%></div>
+                <%--<a class="left carousel-control carousel-control-prev" href="#home-page-carousel"
+                   data-slide="prev">&lt;%&ndash;<span class="carousel-control-prev-icon"></span>&ndash;%&gt;</a><a
+                    class="right carousel-control carousel-control-next" href="#home-page-carousel" data-slide="next">&lt;%&ndash;<span
+                    class="carousel-control-next-icon"></span>&ndash;%&gt;</a>--%></div>
+        </div>
     </div>
-</div>
 </div>
 
 <div class="custom-site-expo">
@@ -522,7 +531,7 @@
             <div class="col-md-3">
                 <div class="ebox">
                     <div class="ebox-head">
-                        <div class="rcthumb"><i class="fa fa-globe"></i></div>
+                        <div class="rcthumb"><img src="/img/paradrop.png" width="210" height="160" /></td><i class="fa fa-globe"></i></div>
                     </div>
                     <div class="ebox-body"><h6>Online Study</h6>
                         <p>Online education is a convenient and flexible way to study, and opens the door to higher education for many people.
@@ -564,27 +573,23 @@
                             </h3></div>
                             <div class="content">
                                 <div class="courses frontpage-category-combo">
+                                    <c:forEach items="${listsCourses}" var="course">
+                                        <td><form:form name="first" action="../redirect/courseRedirect" method="get">
                                     <div class="coursebox clearfix odd first collapsed" data-courseid="6"
                                          data-type="1">
-                                        <div class="info">
-                                            <div class="coursename"><a class=""
-                                                                       href="http://moodle.lmsace.com/course/view.php?id=6">The
-                                                Bug Files - Documenting the Itchy Side of Green School</a></div>
+
+                                            <div class="info">
+
+                                                <div class="coursename"><button style="color: #4BA89C" title="${course.description}" type="submit" name="first" value="${course.id}" class="btn btn-link">${course.name}</button>
+                                                  </div>
 
                                         </div>
+
                                         <div class="content "></div>
                                     </div>
+                                        </form:form></td>
+                                    </c:forEach>
 
-                                    <div class="coursebox clearfix odd last collapsed" data-courseid="2"
-                                         data-type="1">
-                                        <div class="info">
-                                            <div class="coursename"><a class=""
-                                                                       href="http://moodle.lmsace.com/course/view.php?id=2">Applied
-                                                English for Science and Technology</a></div>
-
-                                        </div>
-                                        <div class="content "></div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -632,8 +637,6 @@
                 prevArrow: '#Promoted-Courses .pagenav .slick-prev',
                 nextArrow: '#Promoted-Courses .pagenav .slick-next',
             });
-
-
         });
     </script>
 
@@ -726,12 +729,11 @@
 
                 </div>
 
-
             </div>
         </div>
         <div class="footer-foot">
-            <div class="container"><p class="text-center">Copyright &copy; 2015 - Developed by <a
-                    href="http://www.lmsace.com/">LMSACE.com</a>.Powered by <a href="https://moodle.org">Moodle</a></p>
+            <div class="container"><p class="text-center">Copyright &copy; localhost:8080&#128518;,2019. All rights reserved.</p>
+                <p>Contact: altaras0b@gmail.com</p>
             </div>
         </div>
 

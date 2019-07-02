@@ -31,12 +31,12 @@ public class CourseController {
      * Get courses from database and set them to list
      * @return modelAndView - list of courses
      */
-    @RequestMapping(value = {"/index", "/hello","/courses","mainpage", "/", ""}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/index", "/hello","/mainpage", "/", ""}, method = RequestMethod.GET)
     public ModelAndView getCourse() {
 
         List<CourseDTO> listCourses = courseService.getCourses();
 
-        ModelAndView modelAndView = new ModelAndView("courses");
+        ModelAndView modelAndView = new ModelAndView("mainpage");
         modelAndView.addObject("listsCourses", listCourses);
 
         return modelAndView;
