@@ -462,24 +462,17 @@
                     <div class="card-body">
                         <span class="notifications" id="user-notifications"></span>
                         <div role="main"><span id="maincontent"></span>
-                            <center> <h2>Enrolment options</h2></center>
+                            <center> <h2>${courseDTO.name}</h2></center>
                             <div class="box generalbox info py-3">
                                 <div class="coursebox clearfix" data-courseid="6" data-type="1">
-                                    <div class="info"><h3 class="coursename"><a class=""
-                                                                                href="http://moodle.lmsace.com/course/view.php?id=6">The
-                                        Bug Files - Documenting the Itchy Side of Green School</a></h3>
+                                    <div class="info"><h3 class="coursename"> ${courseDTO.name} </h3>
                                         <div class="moreinfo"></div>
                                     </div>
                                     <div class="content ">
                                         <div class="summary">
-                                            <div class="no-overflow"><p>We have so many bugs at Green School, and
-                                                many of them are unique and exciting. In this course, you will
-                                                document the bugs, learn more about their importance in the ecology
-                                                of the area, and build a database for future Greenschooligans to
-                                                explore.&nbsp;</p></div>
+                                            <div class="no-overflow"><p>${courseDTO.fullDescription}</p></div>
                                         </div>
-                                        <div class="courseimage"><img
-                                                src="http://moodle.lmsace.com/pluginfile.php/144/course/overviewfiles/monarch-780177_1280.jpg"/>
+                                        <div class="courseimage"><img src="/img/logo.png" width="210" height="500"/>
                                         </div>
                                     </div>
                                 </div>
