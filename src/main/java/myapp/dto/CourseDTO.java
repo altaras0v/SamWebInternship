@@ -6,13 +6,15 @@ package myapp.dto;
 public class CourseDTO {
     private String name;
     private String description;
+    private String fullDescription;
     private int id;
 
     public CourseDTO(){}
 
-    public CourseDTO(String name,String description,int id){
+    public CourseDTO(String name,String description,String fullDescription,int id){
         this.name = name;
         this.description = description;
+        this.fullDescription = fullDescription;
         this.id = id;
     }
     public CourseDTO(String name,String description){
@@ -39,5 +41,13 @@ public class CourseDTO {
 
     public int getId() {
         return id;
+    }
+
+    public String getFullDescription() {
+        return fullDescription;
+    }
+
+    public void setFullDescription(String fullDescription) {
+        this.fullDescription = fullDescription;
     }
 }

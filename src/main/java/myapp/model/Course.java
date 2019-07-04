@@ -23,6 +23,9 @@ public class Course implements Serializable {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "full_description")
+    private String fullDescription;
+
     public Course(){
 
     }
@@ -63,5 +66,13 @@ public class Course implements Serializable {
                 " name=" + name +
                 " description=" + description +
                 "}";
+    }
+
+    public String getFullDescription() {
+        return fullDescription;
+    }
+
+    public void setFullDescription(String fullDescription) {
+        this.fullDescription = fullDescription;
     }
 }
