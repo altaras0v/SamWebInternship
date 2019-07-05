@@ -16,19 +16,11 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-// inject to coursecontroller
-// return list of dto
-// это в jsp (в модель)
-// и вывести в bootstrap
-
 @Service
 @ComponentScan(basePackages = {"myapp"})
 public class CourseServiceImpl implements CourseService {
+
     private  static final org.slf4j.Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
-
-    // где создавать объект
-    // где вызывать add
-
 
     @Autowired
     private CourseRepository courseRepository;
