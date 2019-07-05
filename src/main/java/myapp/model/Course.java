@@ -37,6 +37,7 @@ public class Course implements Serializable {
         this.description = description;
     }
 
+    @ElementCollection(targetClass = Lesson.class)
     private Set<Lesson> lessons = new HashSet<Lesson>();
 
     @OneToMany(mappedBy = "courses", cascade = CascadeType.ALL, orphanRemoval = true)

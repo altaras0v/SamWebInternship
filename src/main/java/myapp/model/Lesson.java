@@ -1,12 +1,13 @@
 package myapp.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "lesson")
-public class Lesson {
+public class Lesson implements Serializable {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -39,7 +40,7 @@ public class Lesson {
         this.course = course;
     }
 
-
+    @ElementCollection(targetClass = LessonFile.class)
     private Set<LessonFile> lessonFiles = new HashSet<LessonFile>();
 
     @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
