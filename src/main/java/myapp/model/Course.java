@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Class that is entity for course
@@ -34,6 +36,27 @@ public class Course implements Serializable {
         this.name = name;
         this.description = description;
     }
+
+    private Set<Lesson> lessons = new HashSet<Lesson>();
+
+    @OneToMany(mappedBy = "courses", cascade = CascadeType.ALL, orphanRemoval = true)
+    public Set<Lesson> getLessons () {
+        return lessons;
+    }
+
+    public void setLesson(Set<Lesson> lessons) {
+        this.lessons = lessons;
+    }
+
+    public void addLesson(Lesson lesson){
+        lesson.setCourse(this);
+        getLessons().add(lesson);
+    }
+
+    public void removeLesson(Lesson lesson){
+        getLessons().remove(lesson);
+    }
+
 
     public String getName() {
         return name;

@@ -18,6 +18,6 @@
     <!-- DB schema will be updated if needed -->
 
 
-    <mapping class="myapp.model.Course"></mapping>
+    <!--<mapping class="myapp.model.Course"></mapping>-->
   </session-factory>
 </hibernate-configuration>

@@ -17,7 +17,6 @@ public class Lesson {
     @Column(name = "description")
     private String description;
 
-
     public Lesson(){
 
     }
@@ -26,6 +25,18 @@ public class Lesson {
         this.id = id;
         this.name = name;
         this.description = description;
+    }
+
+    private Course course;
+
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
 
