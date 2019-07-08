@@ -11,8 +11,12 @@ public class LessonFile implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "path")
-    private String filePath;
+    @Column(name = "name")
+    private String name;
+
+    @Lob
+    @Column(name = "file", columnDefinition="BLOB")
+    private byte[] file;
 
     private Lesson lesson;
 
@@ -36,12 +40,19 @@ public class LessonFile implements Serializable {
     }
 
     public String getFilePath() {
-        return filePath;
+        return name;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setFilePath(String name) {
+        this.name = name;
     }
 
 
+    public byte[] getFile() {
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
+    }
 }

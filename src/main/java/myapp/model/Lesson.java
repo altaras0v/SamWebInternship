@@ -2,7 +2,9 @@ package myapp.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -28,10 +30,12 @@ public class Lesson implements Serializable {
         this.description = description;
     }
 
-    private Course course;
-
     @ManyToOne
     @JoinColumn(name = "course_id")
+    private Course course;
+
+//    @ManyToOne
+//    @JoinColumn(name = "course_id")
     public Course getCourse() {
         return course;
     }
@@ -40,15 +44,17 @@ public class Lesson implements Serializable {
         this.course = course;
     }
 
-    @ElementCollection(targetClass = LessonFile.class)
-    private Set<LessonFile> lessonFiles = new HashSet<LessonFile>();
+   /* @ElementCollection(targetClass = LessonFile.class)
+    private List<LessonFile> lessonFiles = new ArrayList<>(0);*/
 
-    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, orphanRemoval = true)
-    public Set<LessonFile> getLessonFiles() {
+    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<LessonFile> lessonFiles = new ArrayList<>();
+
+    public List<LessonFile> getLessonFiles() {
         return lessonFiles;
     }
 
-    public void setLessonFiles(Set<LessonFile> lessonFiles) {
+    public void setLessonFiles(List<LessonFile> lessonFiles) {
         this.lessonFiles = lessonFiles;
     }
 

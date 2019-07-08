@@ -4,7 +4,9 @@ import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -37,15 +39,17 @@ public class Course implements Serializable {
         this.description = description;
     }
 
-    @ElementCollection(targetClass = Lesson.class)
-    private Set<Lesson> lessons = new HashSet<Lesson>();
+    /*@ElementCollection(targetClass = Lesson.class)
+    private List<Lesson> lessons = new ArrayList<>();*/
 
-    @OneToMany(mappedBy = "courses", cascade = CascadeType.ALL, orphanRemoval = true)
-    public Set<Lesson> getLessons () {
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Lesson> lessons = new ArrayList<>();
+
+    public List<Lesson> getLessons () {
         return lessons;
     }
 
-    public void setLesson(Set<Lesson> lessons) {
+    public void setLesson(List<Lesson> lessons) {
         this.lessons = lessons;
     }
 
