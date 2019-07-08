@@ -1,18 +1,15 @@
 package myapp.dto;
 
 public class LessonDTO {
-
-
-    public class Lesson {
         private int id;
         private String name;
         private String description;
 
-        public Lesson(){
+        public LessonDTO(){
 
         }
 
-        public Lesson(int id,String name,String description){
+        public LessonDTO(int id,String name,String description){
             this.id = id;
             this.name = name;
             this.description = description;
@@ -43,4 +40,4 @@ public class LessonDTO {
         }
     }
 
-}
+
