@@ -57,7 +57,8 @@ public class CourseServiceImpl implements CourseService {
         courseRepository.save(new Course(course.getName(),course.getDescription()));
     }
 
-    //Написать тесты!!!
+    // TODO: 08.07.2019   Написать тесты!!!
+
     @Override
     @Transactional
     public CourseDTO getCourseById(int id) {

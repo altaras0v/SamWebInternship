@@ -1,18 +1,24 @@
 package myapp.model;
 
-import org.springframework.data.annotation.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 /**
  * Class that is entity for course
  */
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "courses")
 public class Course implements Serializable {
 
@@ -30,28 +36,15 @@ public class Course implements Serializable {
     @Column(name = "full_description")
     private String fullDescription;
 
-    public Course(){
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Lesson> lessons = new ArrayList<>();
 
-    }
 
     public Course(String name,String description){
         this.name = name;
         this.description = description;
     }
 
-    /*@ElementCollection(targetClass = Lesson.class)
-    private List<Lesson> lessons = new ArrayList<>();*/
-
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Lesson> lessons = new ArrayList<>();
-
-    public List<Lesson> getLessons () {
-        return lessons;
-    }
-
-    public void setLesson(List<Lesson> lessons) {
-        this.lessons = lessons;
-    }
 
     public void addLesson(Lesson lesson){
         lesson.setCourse(this);
@@ -60,30 +53,6 @@ public class Course implements Serializable {
 
     public void removeLesson(Lesson lesson){
         getLessons().remove(lesson);
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
 
@@ -96,11 +65,5 @@ public class Course implements Serializable {
                 "}";
     }
 
-    public String getFullDescription() {
-        return fullDescription;
-    }
 
-    public void setFullDescription(String fullDescription) {
-        this.fullDescription = fullDescription;
-    }
 }

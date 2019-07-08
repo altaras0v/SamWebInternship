@@ -18,7 +18,7 @@ public class LessonController {
     @Autowired
     private LessonService lessonService;
 
-    @RequestMapping(value = { "/courses"}, method = RequestMethod.GET)
+    @RequestMapping(value = { "/courses",/*"/", ""*/}, method = RequestMethod.GET)
     public ModelAndView getLesson() {
 
         List<LessonDTO> listLesson = lessonService.getLessons();

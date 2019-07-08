@@ -1,8 +1,6 @@
 package myapp.service.impl;
 
-import myapp.dto.CourseDTO;
 import myapp.dto.LessonDTO;
-import myapp.model.Course;
 import myapp.model.Lesson;
 import myapp.repository.LessonRepository;
 import myapp.service.api.LessonService;
@@ -32,7 +30,6 @@ public class LessonServiceImpl implements LessonService {
     public List<LessonDTO> getLessons() {
         List<Lesson> lessons = (List<Lesson>) lessonRepository.findAll();
         logger.info("getLessons method");
-        System.out.println(lessons.toString());
 
         return lessons
                 .stream()

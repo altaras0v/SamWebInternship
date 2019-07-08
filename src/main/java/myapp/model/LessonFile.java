@@ -1,9 +1,18 @@
 package myapp.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "lesson_file")
 public class LessonFile implements Serializable {
 
@@ -18,41 +27,8 @@ public class LessonFile implements Serializable {
     @Column(name = "file", columnDefinition="BLOB")
     private byte[] file;
 
-    private Lesson lesson;
-
     @ManyToOne
     @JoinColumn(name = "lesson_id")
-    public Lesson getLesson() {
-        return lesson;
-    }
+    private Lesson lesson;
 
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFilePath() {
-        return name;
-    }
-
-    public void setFilePath(String name) {
-        this.name = name;
-    }
-
-
-    public byte[] getFile() {
-        return file;
-    }
-
-    public void setFile(byte[] file) {
-        this.file = file;
-    }
 }
