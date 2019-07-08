@@ -32,6 +32,7 @@ public class LessonServiceImpl implements LessonService {
     public List<LessonDTO> getLessons() {
         List<Lesson> lessons = (List<Lesson>) lessonRepository.findAll();
         logger.info("getLessons method");
+        System.out.println(lessons.toString());
 
         return lessons
                 .stream()
