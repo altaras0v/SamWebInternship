@@ -8,4 +8,5 @@ import java.util.List;
 @Service
 public interface LessonService {
     List<LessonDTO> getLessons();
+    List<LessonDTO> getLessonsByCourseId(int id);
 }

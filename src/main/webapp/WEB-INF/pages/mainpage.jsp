@@ -579,7 +579,6 @@
                                          data-type="1">
 
                                             <div class="info">
-
                                                 <div class="coursename"><button style="color: #4BA89C" title="${course.description}" type="submit" name="first" value="${course.id}" class="btn btn-link">${course.name}</button>
                                                   </div>
 

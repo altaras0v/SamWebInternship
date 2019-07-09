@@ -36,4 +36,17 @@ public class LessonServiceImpl implements LessonService {
                 .map(c -> new LessonDTO(c.getId(), c.getName(), c.getDescription()))
                 .collect(Collectors.toList());
     }
+
+    // TODO: 09.07.2019 Сделать тесты!
+    @Override
+    public List<LessonDTO> getLessonsByCourseId(int id) {
+        logger.info("getLessonsByCourseId");
+        List<Lesson> lessons = (List<Lesson>) lessonRepository.findAllByCourse_Id(id);
+
+
+        return lessons
+                .stream()
+                .map(c -> new LessonDTO(c.getId(), c.getName(), c.getDescription()))
+                .collect(Collectors.toList());
+    }
 }

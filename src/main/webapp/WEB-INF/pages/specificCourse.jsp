@@ -477,6 +477,29 @@
                                     </div>
                                 </div>
                             </div>
+                            <br>
+                            <div class="info"><center><h2 class="coursename"> Lessons </h2></center>
+                                <div class="moreinfo"></div>
+                            </div>
+                            <br>
+                            <c:forEach items="${listLesson}" var="lesson">
+                            <td><form:form name="first" action="../redirect/courseRedirect" method="get">
+                            <div class="coursebox clearfix odd first collapsed" data-courseid="6"
+                                 data-type="1">
+
+                                <div class="info">
+
+                                    <div class="coursename"><button style="color: #4BA89C"  type="submit" name="first" value="${lesson.id}" class="btn btn-link">${lesson.name}</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="content "></div>
+                            </div>
+                            </form:form></td>
+                            </c:forEach>
+
+
                             <div id="notice" class="box generalbox py-3">Guests cannot access this course. Please
                                 log in.
                             </div>
@@ -501,7 +524,7 @@
 
 </div>
 
-< id="footer" class="py-3 bg-dark text-light">
+<footer id="footer" class="py-3 bg-dark text-light">
     <div class="footer-main">
         <div class="container">
             <div class="row">
@@ -513,9 +536,10 @@
                                      width="183" height="67" alt="Eguru">
                             </a>
                         </div>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer
-                            took a galley of type and tronic typesetting, sheets taining Lorem Ipsum passages.</p>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                            has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown
+                            printer took a galley of type and tronic typesetting, sheets taining Lorem Ipsum
+                            passages.</p>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -584,13 +608,16 @@
                         </p>
 
                     </div>
+
                 </div>
+
             </div>
+
         </div>
     </div>
     <div class="footer-foot">
-        <div class="container"><p class="text-center">Copyright &copy; 2015 - Developed by <a
-                href="http://www.lmsace.com/">LMSACE.com</a>.Powered by <a href="https://moodle.org">Moodle</a></p>
+        <div class="container"><p class="text-center">Copyright &copy; localhost:8080&#128518;,2019. All rights reserved.</p>
+            <p>Contact: altaras0b@gmail.com</p>
         </div>
     </div>
 
