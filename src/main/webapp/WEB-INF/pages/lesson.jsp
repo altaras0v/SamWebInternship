@@ -462,14 +462,15 @@
                     <div class="card-body">
                         <span class="notifications" id="user-notifications"></span>
                         <div role="main"><span id="maincontent"></span>
-                            <center> <h2>${courseDTO.name}</h2></center>
+                            <center> <h2>${lessonDTO.name}</h2></center>
                             <div class="box generalbox info py-3">
                                 <div class="coursebox clearfix" data-courseid="6" data-type="1">
-                                    <h3 class="coursename"> ${courseDTO.name} &nbsp;&nbsp;- &nbsp;&nbsp;      eLearning course </h3>
-
+                                   <%-- <div class="info"><center><h3 class="coursename"> ${lessonDTO.name} </h3></center>
+                                        <div class="moreinfo"></div>
+                                    </div>--%>
                                     <div class="content ">
                                         <div class="summary">
-                                            <div class="no-overflow"><p>${courseDTO.fullDescription}</p></div>
+                                            <div class="no-overflow"><p>${lessonDTO.description}</p></div>
                                         </div>
                                         <div class="courseimage"><img src="/img/logo.png" width="210" height="500"/>
                                         </div>
@@ -477,26 +478,11 @@
                                 </div>
                             </div>
                             <br>
-                            <div class="info"><center><h2 class="coursename"> Lessons </h2></center>
+                            <div class="info"><center><h2 class="coursename"> Files for lesson </h2></center>
                                 <div class="moreinfo"></div>
                             </div>
                             <br>
-                            <c:forEach items="${listLesson}" var="lesson">
-                            <td><form:form name="first" action="../redirect/lessonRedirect" method="get">
-                            <div class="coursebox clearfix odd first collapsed" data-courseid="6"
-                                 data-type="1">
 
-                                <div class="info">
-
-                                    <div class="coursename"><button style="color: #4BA89C"  type="submit" name="id" value="${lesson.id}" class="btn btn-link">${lesson.name}</button>
-                                    </div>
-
-                                </div>
-
-                                <div class="content "></div>
-                            </div>
-                            </form:form></td>
-                            </c:forEach>
 
 
                             <div id="notice" class="box generalbox py-3">Guests cannot access this course. Please

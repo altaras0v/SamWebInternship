@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface LessonRepository extends CrudRepository<Lesson,Integer>,JpaSpecificationExecutor<Lesson> {
     List<Lesson> findAllByCourse_Id(int id);
+    Lesson findById(int id);
 }

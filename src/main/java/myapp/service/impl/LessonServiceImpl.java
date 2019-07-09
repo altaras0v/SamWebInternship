@@ -49,4 +49,10 @@ public class LessonServiceImpl implements LessonService {
                 .map(c -> new LessonDTO(c.getId(), c.getName(), c.getDescription()))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public LessonDTO getLessonsById(int id) {
+        Lesson lesson = lessonRepository.findById(id);
+        return new LessonDTO(lesson.getId(),lesson.getName(),lesson.getDescription());
+    }
 }
