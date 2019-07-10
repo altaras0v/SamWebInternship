@@ -38,14 +38,14 @@ public class LessonFileServiceImpl implements LessonFileService {
     @Override
     public List<LessonFileDTO> getFilesByLessonId(int id) {
         logger.info("getFilesByLessonId method");
-        List<LessonFile> files = (List<LessonFile>) lessonFileRepository.findByLesson_Id(id);
+        List<LessonFile> files = (List<LessonFile>) lessonFileRepository.findByLessonId(id);
 
         return files
                 .stream().map(c -> new LessonFileDTO(c.getId(),c.getName(),c.getFile()))
                 .collect(Collectors.toList());
     }
 
-    // TODO: 10.07.2019 Make tests! 
+    // TODO: 10.07.2019 Make tests!
     
     @Override
     public LessonFileDTO getFileById(int id) {

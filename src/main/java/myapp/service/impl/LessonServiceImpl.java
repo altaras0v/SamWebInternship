@@ -41,7 +41,7 @@ public class LessonServiceImpl implements LessonService {
     @Override
     public List<LessonDTO> getLessonsByCourseId(int id) {
         logger.info("getLessonsByCourseId");
-        List<Lesson> lessons = (List<Lesson>) lessonRepository.findAllByCourse_Id(id);
+        List<Lesson> lessons = (List<Lesson>) lessonRepository.findAllByCourseId(id);
 
 
         return lessons
