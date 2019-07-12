@@ -1,9 +1,9 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <%@ page isELIgnored="false" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <%@ page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=Cp1251" pageEncoding="Cp1251"%>
 <!DOCTYPE html>
@@ -421,7 +421,7 @@
                             <div class="page-context-header">
                                 <div class="page-header-headings"><h1>The Bug Files - Documenting the Itchy Side of
                                     Green School</h1></div>
-                            </div>
+                              </div>
                         </div>
 
                     </div>
@@ -478,6 +478,14 @@
                                 </div>
                             </div>
                             <br>
+                            <td><form:form name="id"  action="../uploadRedirect" method="post">
+
+
+
+                                        <div class="coursename"><button style="color: #4BA89C"  type="submit" name="id" value="${lessonDTO.id}" class="btn btn-link">Загрузить файл</button>
+                                        </div>
+
+                            </form:form></td>
                             <div class="info"><center><h2 class="coursename"> Files for lesson </h2></center>
                                 <div class="moreinfo"></div>
                             </div>

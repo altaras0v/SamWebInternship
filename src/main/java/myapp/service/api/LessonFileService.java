@@ -10,5 +10,6 @@ public interface LessonFileService {
     List<LessonFileDTO> getFiles();
     List<LessonFileDTO> getFilesByLessonId(int id);
     LessonFileDTO getFileById(int id);
+    void addFile(LessonFileDTO lessonFileDTO);
 
 }

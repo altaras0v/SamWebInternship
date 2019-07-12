@@ -56,4 +56,10 @@ public class LessonFileServiceImpl implements LessonFileService {
         return new LessonFileDTO(file.getId(),file.getName(),file.getFile()) ;
     }
 
+    @Override
+    public void addFile(LessonFileDTO lessonFileDTO) {
+        logger.info("addFilemethod");
+        lessonFileRepository.save(new LessonFile(lessonFileDTO.getName(),lessonFileDTO.getFile()));
+    }
+
 }

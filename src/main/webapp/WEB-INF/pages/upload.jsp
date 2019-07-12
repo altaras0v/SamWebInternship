@@ -3,6 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="false" %>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"/>
@@ -19,7 +20,9 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3 well">
             <h3 class="text-center">Add files</h3>
+
             <form:form method="post" enctype="multipart/form-data" modelAttribute="uploadedFile" action="../uploadFile">
+
             <div class="col-xs-12">
                 <div class="form-group">
                     <div class="text-center col-xs-12">
@@ -29,7 +32,9 @@
                                     <input name="file"
                                          onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());"
                                              style="display: none;" type="file">
+
                                 </span>
+
                             <span class="form-control"></span>
                         </div>
                         <h3 style="color: red; font-style: italic" ;><form:errors path="file"/></h3>
@@ -37,6 +42,7 @@
                             <input type="submit" value="Upload">
                         </div>
                     </div>
+
                 </div>
                 </form:form>
             </div>
