@@ -63,6 +63,8 @@
                     </thead>
 
                     <tbody>
+
+
                     <c:forEach items="${listsCourses}"  var="course">
                         <tr>
                             <%--<td>${course.name}</td>--%>

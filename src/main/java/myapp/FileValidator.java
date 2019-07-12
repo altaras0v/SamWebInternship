@@ -43,7 +43,7 @@ public class FileValidator implements Validator {
                 errors.rejectValue("file", "uploadForm.selectFile", "File size too large! Max size 16 MB");
             }
             //Check valid format of file
-            String fileExtension = file.getFile().getOriginalFilename().substring(file.getFile().getOriginalFilename().indexOf(".") + 1, file.getFile().getOriginalFilename().length());
+            String fileExtension = file.getFile().getOriginalFilename().substring(file.getFile().getOriginalFilename().lastIndexOf(".") + 1, file.getFile().getOriginalFilename().length());
             if (!TYPES_OF_FILE.contains(fileExtension.toLowerCase())) {
                 errors.rejectValue("file", "uploadForm.selectFile", "This file format is not supported!");
             }

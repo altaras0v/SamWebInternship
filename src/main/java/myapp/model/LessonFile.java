@@ -31,4 +31,9 @@ public class LessonFile implements Serializable {
     @JoinColumn(name = "lesson_id")
     private Lesson lesson;
 
+    public LessonFile(String name,byte[] file,Lesson lesson){
+        this.name = name;
+        this.file = file;
+        this.lesson = lesson;
+    }
 }

@@ -4,6 +4,8 @@ import myapp.FileValidator;
 import myapp.UploadedFile;
 import myapp.dto.LessonDTO;
 import myapp.dto.LessonFileDTO;
+import myapp.model.Lesson;
+import myapp.model.LessonFile;
 import myapp.service.api.LessonFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,8 +34,6 @@ public class FileUploadController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
-
-
     private final LessonFileService lessonFileService;
 
     @Autowired
@@ -45,31 +45,22 @@ public class FileUploadController {
     FileValidator fileValidator;
 
     @RequestMapping(value = {"/uploadRedirect"}, method = RequestMethod.POST)
-    public String redirectToLesson(HttpServletRequest request, HttpServletResponse response,@ModelAttribute LessonDTO lessonDTO, ModelMap model) {
+    public String redirectToUpload(HttpServletRequest request, HttpServletResponse response,@ModelAttribute LessonDTO lessonDTO, ModelMap model) {
         Integer id = Integer.parseInt(request.getParameter("id"));
-
-        LessonDTO lessonDTO1 = new LessonDTO(id);
-
-
-        ModelAndView modelAndView = new ModelAndView("upload");
-        model.addAttribute("lessonId",lessonDTO1);
-
+        model.addAttribute("lessonId",id);
+        logger.info("redirectToUpload method");
         return "/upload";
-
     }
 
 
     /**
      * Upload single file using Spring Controller
      */
-    @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public @ResponseBody
     ModelAndView uploadFileHandler(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, BindingResult result,ModelMap model) {
 
-        LessonDTO lessonDTO = (LessonDTO) model.get("lessonId");
-
-        System.out.println("Transporter"+lessonDTO.getId());
-
+        int id = (int)model.get("lessonId");
 
         ModelAndView modelAndView = new ModelAndView();
         String name = null;
@@ -78,38 +69,28 @@ public class FileUploadController {
         fileValidator.validate(uploadedFile, result);
 
         if (result.hasErrors()) {
+            logger.info("uploadFile method error");
             modelAndView.setViewName("upload");
         } else {
             try {
 
-
                 byte[] bytes = file.getBytes();
 
                 name = file.getOriginalFilename();
-
-                LessonFileDTO fileDTO = new LessonFileDTO(name,bytes);
-
-                // Creating the directory to store file
-                String rootPath = System.getProperty("catalina.home");
-                File dir = new File(rootPath + File.separator + "tmpFiles");
-                if (!dir.exists()) dir.mkdirs();
-
-                // Create the file on server
-                File serverFile = new File(dir.getAbsolutePath() + File.separator + name);
-                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-                stream.write(bytes);
-                stream.close();
-
-                logger.info("Server File Location=" + serverFile.getAbsolutePath());
+                Lesson lesson = new Lesson();
+                lesson.setId(id);
+                LessonFile lessonFile = new LessonFile(name,bytes,lesson);
+                lessonFileService.addFile(lessonFile);
 
                 RedirectView redirectView = new RedirectView("upload");
                 redirectView.setStatusCode(HttpStatus.FOUND);
                 modelAndView.setView(redirectView);
-               // modelAndView.addObject("filename",name);
+                modelAndView.addObject("lessonId",id);
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            logger.info("uploadFile method successful");
         }
         return modelAndView;
     }
