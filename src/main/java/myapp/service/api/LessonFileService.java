@@ -10,7 +10,7 @@ import java.util.List;
 public interface LessonFileService {
     List<LessonFileDTO> getFiles();
     List<LessonFileDTO> getFilesByLessonId(int id);
-    LessonFileDTO getFileById(int id);
+    LessonFile getFileById(int id);
     void addFile(LessonFile lessonFile);
 
 }

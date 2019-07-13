@@ -27,8 +27,8 @@ public class testWriteFileToDB {
             myConn = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/elearning?characterEncoding=utf8&useConfigs=maxPerformance&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "admin");
 
-            // 2. Prepare statement
-            String sql = "update test set file=? where id='1'";
+            /* 2. Prepare statement */
+            String sql = "update t set file=? where id='1'";
             myStmt = myConn.prepareStatement(sql);
 
             // 3. Set parameter for resume file name

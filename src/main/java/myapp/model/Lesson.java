@@ -31,24 +31,14 @@ public class Lesson implements Serializable {
     @JoinColumn(name = "course_id")
     private Course course;
 
-    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<LessonFile> lessonFiles = new ArrayList<>();
 
 
-    public Lesson(int id,String name,String description){
+    public Lesson(int id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
     }
-
-    public void addLessonFile(LessonFile lessonFile){
-        lessonFile.setLesson(this);
-        getLessonFiles().add(lessonFile);
-    }
-
-    public void removeLessonFile(LessonFile lessonFile){
-        getLessonFiles().remove(lessonFile);
-    }
-
 
 }

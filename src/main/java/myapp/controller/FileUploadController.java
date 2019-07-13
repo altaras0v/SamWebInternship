@@ -45,11 +45,14 @@ public class FileUploadController {
     FileValidator fileValidator;
 
     @RequestMapping(value = {"/uploadRedirect"}, method = RequestMethod.POST)
-    public String redirectToUpload(HttpServletRequest request, HttpServletResponse response,@ModelAttribute LessonDTO lessonDTO, ModelMap model) {
+    public ModelAndView redirectToUpload(HttpServletRequest request, HttpServletResponse response,@ModelAttribute LessonDTO lessonDTO, ModelMap model) {
         Integer id = Integer.parseInt(request.getParameter("id"));
         model.addAttribute("lessonId",id);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("upload");
+        modelAndView.addObject("id",id);
         logger.info("redirectToUpload method");
-        return "/upload";
+        return modelAndView;
     }
 
 
@@ -70,7 +73,7 @@ public class FileUploadController {
 
         if (result.hasErrors()) {
             logger.info("uploadFile method error");
-            modelAndView.setViewName("upload");
+           modelAndView.setViewName("upload");
         } else {
             try {
 

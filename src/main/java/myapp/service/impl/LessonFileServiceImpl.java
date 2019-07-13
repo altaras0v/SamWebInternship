@@ -38,7 +38,7 @@ public class LessonFileServiceImpl implements LessonFileService {
     @Override
     public List<LessonFileDTO> getFilesByLessonId(int id) {
         logger.info("getFilesByLessonId method");
-        List<LessonFile> files = (List<LessonFile>) lessonFileRepository.findByLessonId(id);
+        List<LessonFile> files = (List<LessonFile>) lessonFileRepository.findAllByLessonId(id);
 
         return files
                 .stream().map(c -> new LessonFileDTO(c.getId(),c.getName(),c.getFile()))
@@ -48,12 +48,12 @@ public class LessonFileServiceImpl implements LessonFileService {
     // TODO: 10.07.2019 Make tests!
     
     @Override
-    public LessonFileDTO getFileById(int id) {
+    public LessonFile getFileById(int id) {
 
         logger.info("getFileById method");
 
         LessonFile file = (LessonFile) lessonFileRepository.findById(id);
-        return new LessonFileDTO(file.getId(),file.getName(),file.getFile()) ;
+        return file;
     }
 
     @Override

@@ -45,17 +45,6 @@ public class Course implements Serializable {
         this.description = description;
     }
 
-
-    public void addLesson(Lesson lesson){
-        lesson.setCourse(this);
-        getLessons().add(lesson);
-    }
-
-    public void removeLesson(Lesson lesson){
-        getLessons().remove(lesson);
-    }
-
-
     @Override
     public String toString(){
         return "Course{ " +

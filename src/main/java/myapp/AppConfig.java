@@ -114,7 +114,7 @@ public class AppConfig {
         Properties properties = new Properties();
         //properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-
+        properties.setProperty("hibernate.show_sql","true");
         return properties;
     }
 }

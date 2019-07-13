@@ -21,7 +21,7 @@
 
    <%-- <a href="<c:url value='/download/a'/>" name="first" >Download file via servlet response.</a><br/>--%>
 
-<form:form name="first" action="../download/a" method="get">
+<form:form name="first" action="../download" method="get">
     <button type="submit" name="first" value="1.txt" class="btn btn-link">Button</button>
 </form:form>
 <style>

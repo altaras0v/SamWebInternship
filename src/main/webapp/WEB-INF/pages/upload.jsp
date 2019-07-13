@@ -44,7 +44,12 @@
                     </div>
 
                 </div>
+
                 </form:form>
+                <td><form:form name="id" action="/" method="get">
+                            <div class="coursename"><button style="color: steelblue"  type="submit" name="id"  class="btn btn-link">На главную</button>
+                            </div>
+                </form:form></td>
             </div>
         </div>
     </div>

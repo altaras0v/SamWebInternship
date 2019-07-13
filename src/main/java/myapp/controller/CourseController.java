@@ -24,19 +24,22 @@ import java.util.List;
 @Controller
 public class CourseController {
 
-    @Autowired
-    private CourseService courseService;
+    private final CourseService courseService;
 
+    @Autowired
+    public CourseController(CourseService courseService) {
+        this.courseService = courseService;
+    }
     /**
      * Get courses from database and set them to list
      * @return modelAndView - list of courses
      */
-    @RequestMapping(value = {"/index","/mainpage", "/", ""}, method = RequestMethod.GET)
-    public ModelAndView getCourse() {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public  ModelAndView getCourse() {
 
         List<CourseDTO> listCourses = courseService.getCourses();
 
-        ModelAndView modelAndView = new ModelAndView("mainpage");
+        ModelAndView modelAndView = new ModelAndView("courses");
         modelAndView.addObject("listsCourses", listCourses);
 
         return modelAndView;
@@ -55,6 +58,7 @@ public class CourseController {
     }
 
     //СДЕЛАТЬ РЕДИРЕКТ
+    // TODO: 12.07.2019 Переделать метод. В БД - энтити 
     /**
      *  Add course to database
      * @param course - CourseDTO

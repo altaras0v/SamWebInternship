@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page isELIgnored="false" %>
 <%@ page language="java" contentType="text/html; charset=Cp1251" pageEncoding="Cp1251"%>
@@ -490,7 +491,19 @@
                                 <div class="moreinfo"></div>
                             </div>
                             <br>
-
+                            <br>
+                            <c:forEach items="${listFiles}" var="files">
+                                <td><form:form name="first" action="../download" method="get">
+                                    <div class="coursebox clearfix odd first collapsed" data-courseid="6"
+                                         data-type="1">
+                                            <button   type="submit" name="id" value="${files.id}" class="btn btn-link">${files.name}</button>
+                                        <div class="content "></div>
+                                    </div>
+                                </form:form></td>
+                                <style>
+                                    :focus {outline:none !important;}
+                                </style>
+                            </c:forEach>
 
 
                             <div id="notice" class="box generalbox py-3">Guests cannot access this course. Please
@@ -1383,7 +1396,7 @@
                 M.util.js_complete('random5d1b3626211ec11');
             });
         })();
-        //]]>
+
     </script>
 
 
