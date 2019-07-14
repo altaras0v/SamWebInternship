@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="myapp.springLibrary.FlywaySchemaHistory" table="flyway_schema_history" schema="elearning">
+    <class name="myapp.springLibrary.FlywaySchemaHistory" table="flyway_schema_history" schema="e_learning">
         <id name="installedRank" column="installed_rank"/>
         <property name="version" column="version"/>
         <property name="description" column="description"/>
