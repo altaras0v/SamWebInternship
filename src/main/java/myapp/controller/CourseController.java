@@ -39,7 +39,7 @@ public class CourseController {
 
         List<CourseDTO> listCourses = courseService.getCourses();
 
-        ModelAndView modelAndView = new ModelAndView("courses");
+        ModelAndView modelAndView = new ModelAndView("mainpage");
         modelAndView.addObject("listsCourses", listCourses);
 
         return modelAndView;
