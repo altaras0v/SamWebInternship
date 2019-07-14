@@ -4,14 +4,14 @@ public class LessonFileDTO {
 
     private int id;
     private String name;
-    private byte[] file;
+    private String description;
 
     LessonFileDTO(){}
 
-    public LessonFileDTO(int id, String name, byte[] file){
+    public LessonFileDTO(int id, String name,String description){
         this.id=id;
         this.name=name;
-        this.file=file;
+        this.description=description;
     }
 
     public int getId() {
@@ -30,11 +30,11 @@ public class LessonFileDTO {
         this.name = name;
     }
 
-    public byte[] getFile() {
-        return file;
+    public String getDescription() {
+        return description;
     }
 
-    public void setFile(byte[] file) {
-        this.file = file;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

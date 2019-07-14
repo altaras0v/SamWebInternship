@@ -1,6 +1,8 @@
 package myapp.controller;
 
+import myapp.model.BlobFile;
 import myapp.model.LessonFile;
+import myapp.service.api.BlobFileService;
 import myapp.service.api.LessonFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,9 @@ public class FileDownloadController {
         this.lessonFileService = lessonFileService;
     }
 
+    @Autowired
+    private BlobFileService blobFileService;
+
     /**
      * Download single file from server to user
      *
@@ -44,7 +49,8 @@ public class FileDownloadController {
 
 
         LessonFile lessonFile = lessonFileService.getFileById(id);
-        byte[] bytes = lessonFile.getFile();
+        BlobFile blobFile = blobFileService.getFileByLessonFileId(lessonFile.getId());
+        byte[] bytes = blobFile.getFile();
         File file = new File(lessonFile.getName());
         System.out.println(lessonFile.getName());
 

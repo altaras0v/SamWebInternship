@@ -31,7 +31,7 @@ public class LessonFileServiceImpl implements LessonFileService {
 
         return files
                 .stream()
-                .map(c -> new LessonFileDTO(c.getId(),c.getName(),c.getFile()))
+                .map(c -> new LessonFileDTO(c.getId(),c.getName(),c.getDescription()))
                 .collect(Collectors.toList());
     }
 
@@ -41,7 +41,7 @@ public class LessonFileServiceImpl implements LessonFileService {
         List<LessonFile> files = (List<LessonFile>) lessonFileRepository.findAllByLessonId(id);
 
         return files
-                .stream().map(c -> new LessonFileDTO(c.getId(),c.getName(),c.getFile()))
+                .stream().map(c -> new LessonFileDTO(c.getId(),c.getName(),c.getDescription()))
                 .collect(Collectors.toList());
     }
 

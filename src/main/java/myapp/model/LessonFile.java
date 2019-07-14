@@ -23,17 +23,16 @@ public class LessonFile implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Lob
-    @Column(name = "file", columnDefinition="BLOB")
-    private byte[] file;
+    @Column(name = "description")
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "lesson_id")
     private Lesson lesson;
 
-    public LessonFile(String name,byte[] file,Lesson lesson){
+    public LessonFile(String name,String description,Lesson lesson){
         this.name = name;
-        this.file = file;
+        this.description = description;
         this.lesson = lesson;
     }
 }

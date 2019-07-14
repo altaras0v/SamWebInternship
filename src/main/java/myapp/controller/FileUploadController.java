@@ -4,8 +4,10 @@ import myapp.FileValidator;
 import myapp.UploadedFile;
 import myapp.dto.LessonDTO;
 import myapp.dto.LessonFileDTO;
+import myapp.model.BlobFile;
 import myapp.model.Lesson;
 import myapp.model.LessonFile;
+import myapp.service.api.BlobFileService;
 import myapp.service.api.LessonFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,16 +23,13 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+
 
 @Controller
 @SessionAttributes("lessonId")
 /**
  * Controller for uploading files
- */
-public class FileUploadController {
+ */ public class FileUploadController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
@@ -42,15 +41,18 @@ public class FileUploadController {
     }
 
     @Autowired
+    private BlobFileService blobFileService;
+
+    @Autowired
     FileValidator fileValidator;
 
     @RequestMapping(value = {"/uploadRedirect"}, method = RequestMethod.POST)
-    public ModelAndView redirectToUpload(HttpServletRequest request, HttpServletResponse response,@ModelAttribute LessonDTO lessonDTO, ModelMap model) {
+    public ModelAndView redirectToUpload(HttpServletRequest request, HttpServletResponse response, @ModelAttribute LessonDTO lessonDTO, ModelMap model) {
         Integer id = Integer.parseInt(request.getParameter("id"));
-        model.addAttribute("lessonId",id);
+        model.addAttribute("lessonId", id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("upload");
-        modelAndView.addObject("id",id);
+        modelAndView.addObject("id", id);
         logger.info("redirectToUpload method");
         return modelAndView;
     }
@@ -61,19 +63,25 @@ public class FileUploadController {
      */
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public @ResponseBody
-    ModelAndView uploadFileHandler(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, BindingResult result,ModelMap model) {
+    ModelAndView uploadFileHandler(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, BindingResult result, ModelMap model) {
 
-        int id = (int)model.get("lessonId");
+        int id = (int) model.get("lessonId");
 
         ModelAndView modelAndView = new ModelAndView();
         String name = null;
 
         MultipartFile file = uploadedFile.getFile();
         fileValidator.validate(uploadedFile, result);
+        String desc;
+        if (uploadedFile.getDescription() != null) {
+            desc = uploadedFile.getDescription();
+        } else {
+            desc = "";
+        }
 
         if (result.hasErrors()) {
             logger.info("uploadFile method error");
-           modelAndView.setViewName("upload");
+            modelAndView.setViewName("upload");
         } else {
             try {
 
@@ -82,13 +90,15 @@ public class FileUploadController {
                 name = file.getOriginalFilename();
                 Lesson lesson = new Lesson();
                 lesson.setId(id);
-                LessonFile lessonFile = new LessonFile(name,bytes,lesson);
+                LessonFile lessonFile = new LessonFile(name, desc, lesson);
                 lessonFileService.addFile(lessonFile);
+                BlobFile blobFile = new BlobFile(bytes,lessonFile);
+                blobFileService.addFile(blobFile);
 
                 RedirectView redirectView = new RedirectView("upload");
                 redirectView.setStatusCode(HttpStatus.FOUND);
                 modelAndView.setView(redirectView);
-                modelAndView.addObject("lessonId",id);
+                modelAndView.addObject("lessonId", id);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -101,8 +111,8 @@ public class FileUploadController {
     /**
      * Go to upload.jsp
      */
-    @RequestMapping(value = "/upload",method = RequestMethod.GET)
-    public String fileUploaded(){
+    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+    public String fileUploaded() {
         return "upload";
     }
 }

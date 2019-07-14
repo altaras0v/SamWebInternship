@@ -57,72 +57,8 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 
 <style>
-    input[type="button"]:not(.default), input[type="submit"]:not(.default) {
-        -webkit-border-radius: 3px;
-        -webkit-background-clip: padding-box;
-        -moz-border-radius: 3px;
-        -moz-background-clip: padding;
-        border-radius: 3px;
-        background-clip: padding-box;
-        -webkit-transition: color 0.2s ease, border 0.2s ease, background 0.2s ease, -webkit-box-shadow 0.2s ease;
-        -moz-transition: color 0.2s ease, border 0.2s ease, background 0.2s ease, -moz-box-shadow 0.2s ease;
-        -o-transition: color 0.2s ease, border 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-        transition: color 0.2s ease, border 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-        position: relative;
-        margin: 0 7px;
-        display: inline-block;
-        min-width: 144px;
-        max-width: 100%;
-        padding: 15px 25px;
-        font-family: "Arial", "Helvetica Neue", Arial, Helvetica, sans-serif;
-        font-size: 14px;
-        font-weight: 600;
-        text-transform: uppercase;
-        line-height: 1;
-        border-width: 1px;
-        border-style: solid;
-        background-color: steelblue;
-        color: #ddd;
-    }
 
-    .form {
-        zoom: 1;
-        display: block;
-        width: auto;
-        padding: 25px 0 0;
-    }
 
-    .form:before,
-    .form:after {
-        content: "";
-        display: table;
-    }
-
-    .form:after {
-        clear: both;
-    }
-
-    .form .form-group {
-        zoom: 1;
-        position: relative;
-        margin-bottom: 25px;
-    }
-
-    .form .form-group:before,
-    .form .form-group:after {
-        content: "";
-        display: table;
-    }
-
-    .form .form-group:after {
-        clear: both;
-    }
-
-    .form .form-group:after {
-        content: '';
-        display: block;
-        clear: both;
-    }
 
     .form .form-group[class*="col-"] input[type=text],
     .form .form-group[class*="col-"] input[type=email],
@@ -133,26 +69,6 @@
         max-width: 100%;
     }
 
-    .form .form-control {
-        -webkit-border-radius: 0;
-        -webkit-background-clip: padding-box;
-        -moz-border-radius: 0;
-        -moz-background-clip: padding;
-        border-radius: 0;
-        background-clip: padding-box;
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        box-shadow: none;
-        height: auto;
-        font-size: 17px;
-        font-weight: 300;
-        background-color: #ffffff;
-        border-style: solid;
-        border-width: 1px 1px 1px 3px;
-        border-top-color: #d7d7d7;
-        border-right-color: #d7d7d7;
-        border-bottom-color: #d7d7d7;
-    }
 
     input[type=text],
     input[type=email],

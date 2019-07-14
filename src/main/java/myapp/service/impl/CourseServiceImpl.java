@@ -3,7 +3,6 @@ package myapp.service.impl;
 import myapp.dto.CourseDTO;
 import myapp.model.Course;
 import myapp.repository.CourseRepository;
-import myapp.repository.CustomizedCoursesNameRepository;
 import myapp.service.api.CourseService;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,17 +23,7 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private CourseRepository courseRepository;
 
-
-    @Autowired
-    private CustomizedCoursesNameRepository customizedCoursesNameRepository;
-
-
-
     public CourseServiceImpl(){
-
-        //getCourses();
-       // CreateCoursesDTO();
-      // System.out.println(getCourses().toString());
 
     }
 

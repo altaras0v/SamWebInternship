@@ -8,6 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public class UploadedFile {
 
+    private String description;
+
     private MultipartFile file;
 
     public MultipartFile getFile(){
@@ -18,4 +20,11 @@ public class UploadedFile {
         this.file = file;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

@@ -36,12 +36,25 @@
                                 </span>
 
                             <span class="form-control"></span>
+
+
                         </div>
+                        <br>
+                        <div class="col-xs-12">
+                            <div class="text-center col-xs-12">
+                            <div class="form-group">
+                                <input type="text" placeholder="Description"   name="description"
+                                       id="description"/>
+                            </div>
+                            </div>
+                        </div>
+
                         <h3 style="color: red; font-style: italic" ;><form:errors path="file"/></h3>
                         <div class="text-center col-xs-12">
                             <input type="submit" value="Upload">
                         </div>
                     </div>
+
 
                 </div>
 
@@ -57,6 +70,44 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 
 <style>
+
+    input[type=text],
+    input[type=email],
+    input[type=password] {
+        -webkit-transition: color 0.2s ease, background 0.3s ease;
+        -moz-transition: color 0.2s ease, background 0.3s ease;
+        -o-transition: color 0.2s ease, background 0.3s ease;
+        transition: color 0.2s ease, background 0.3s ease;
+        -webkit-border-radius: 0;
+        -webkit-background-clip: padding-box;
+        -moz-border-radius: 0;
+        -moz-background-clip: padding;
+        border-radius: 0;
+        background-clip: padding-box;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        margin: 0;
+        vertical-align: top;
+        display: inline-block;
+        width: 100%;
+        font-size: 22px;
+        color: #8d8d8d;
+        background-color: #ffffff;
+        border-style: solid;
+        border-width: 1px 1px 1px 3px;
+        border-top-color: #d7d7d7;
+        border-right-color: #d7d7d7;
+        border-bottom-color: #d7d7d7;
+        outline: none;
+    }
+
+
+    input[type=text]:hover,
+    input[type=email]:hover,
+    input[type=password]:hover {
+        color: #000000;
+    }
 
     body{
         background-color: lightblue; /* Цвет фона веб-страницы */
