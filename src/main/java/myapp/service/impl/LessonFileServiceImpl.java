@@ -52,7 +52,7 @@ public class LessonFileServiceImpl implements LessonFileService {
 
         logger.info("getFileById method");
 
-        LessonFile file = (LessonFile) lessonFileRepository.findById(id);
+        LessonFile file = (LessonFile) lessonFileRepository.findOne(id);
         return file;
     }
 
@@ -60,7 +60,6 @@ public class LessonFileServiceImpl implements LessonFileService {
     public void addFile(LessonFile lessonFile) {
         lessonFileRepository.save(lessonFile);
         logger.info("addFile method");
-        //lessonFileRepository.save(new LessonFile(lessonFileDTO.getName(),lessonFileDTO.getFile()));
     }
 
 }

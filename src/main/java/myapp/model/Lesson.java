@@ -27,7 +27,7 @@ public class Lesson implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private Course course;
 

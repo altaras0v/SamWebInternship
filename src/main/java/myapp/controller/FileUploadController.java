@@ -67,7 +67,7 @@ import javax.servlet.http.HttpServletResponse;
         int id = (int) model.get("lessonId");
 
         ModelAndView modelAndView = new ModelAndView();
-        String name = null;
+        String name ;
 
         MultipartFile file = uploadedFile.getFile();
         fileValidator.validate(uploadedFile, result);

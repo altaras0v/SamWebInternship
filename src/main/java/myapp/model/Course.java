@@ -26,7 +26,6 @@ public class Course implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
     @Column(name = "name")
     private String name;
 
@@ -38,7 +37,6 @@ public class Course implements Serializable {
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Lesson> lessons = new ArrayList<>();
-
 
     public Course(String name,String description){
         this.name = name;
@@ -53,6 +51,4 @@ public class Course implements Serializable {
                 " description=" + description +
                 "}";
     }
-
-
 }

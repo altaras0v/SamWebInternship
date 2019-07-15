@@ -58,7 +58,6 @@ public class FileDownloadController {
         out.write(bytes);
         out.close();
 
-
         InputStream in = new FileInputStream(file);
         response.setCharacterEncoding("utf-8");
         response.setContentType(APPLICATION_PDF);

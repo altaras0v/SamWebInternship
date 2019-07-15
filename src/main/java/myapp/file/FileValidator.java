@@ -14,9 +14,10 @@ import java.util.List;
 @Component
 public class FileValidator implements Validator {
 
-    final List<String> TYPES_OF_FILE = Arrays.asList("png", "jpg", "pdf", "mp3", "mp4", "doc", "docx", "txt",
-            "xls", "xlsx", "html", "jpeg"); // valid format for uploading file
-    final int MAX_SIZE = 16567500; // size for medium BLOB format
+    // valid format for uploading file
+    private final List<String> TYPES_OF_FILE = Arrays.asList("png", "jpg", "pdf",
+            "mp3", "mp4", "doc", "docx", "txt", "xls", "xlsx", "html", "jpeg");
+    private final int MAX_SIZE = 16567500; // size for medium BLOB format (bytes)
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -43,7 +44,11 @@ public class FileValidator implements Validator {
                 errors.rejectValue("file", "uploadForm.selectFile", "File size too large! Max size 16 MB");
             }
             //Check valid format of file
-            String fileExtension = file.getFile().getOriginalFilename().substring(file.getFile().getOriginalFilename().lastIndexOf(".") + 1, file.getFile().getOriginalFilename().length());
+            String fileExtension = file.getFile()
+                    .getOriginalFilename()
+                    .substring(file.getFile().getOriginalFilename().lastIndexOf(".") + 1,
+                               file.getFile().getOriginalFilename().length());
+
             if (!TYPES_OF_FILE.contains(fileExtension.toLowerCase())) {
                 errors.rejectValue("file", "uploadForm.selectFile", "This file format is not supported!");
             }

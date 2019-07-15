@@ -56,7 +56,7 @@ public class LessonServiceImpl implements LessonService {
     public LessonDTO getLessonsById(int id) {
         logger.info("getLessonsById method");
 
-        Lesson lesson = lessonRepository.findById(id);
+        Lesson lesson = lessonRepository.findOne(id);
         return new LessonDTO(lesson.getId(),lesson.getName(),lesson.getDescription());
     }
 }

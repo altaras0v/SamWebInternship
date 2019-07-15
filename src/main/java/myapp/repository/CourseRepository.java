@@ -10,5 +10,4 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CourseRepository extends CrudRepository<Course,Integer>,JpaSpecificationExecutor<Course> {
-    Course findById(int id);
 }
