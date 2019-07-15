@@ -21,6 +21,8 @@ Some functional you can test in course "C#". Other did not add to database.
 * Add adding/deleting for course,lesson and file(for lesson) (in development now) .
 * Add spring security and make roles (in development now) .
 * Add searching (courses,lessons,files).
+* Add choosing mentor/or student.
+* Add  learning achievement.
 * Add integration tests.
 * Add Selenium tests.
 
