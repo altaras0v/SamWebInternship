@@ -24,8 +24,5 @@ Some functional you can test in course "C#". Other did not add to database.
 * Add integration tests.
 * Add Selenium tests.
 
-# Attention
-Code in views jsp will be totally(read like Caps Lock:) ) refactoring (JS will be move to files and etc.,
-but it will be something like this on the screen,so please be gentle).
-
+# Thanks
 Thanks Sam Solutions for the opportunity and Alex Rabtsau for help!
