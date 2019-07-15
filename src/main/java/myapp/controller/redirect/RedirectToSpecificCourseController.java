@@ -1,8 +1,7 @@
-package myapp.controller.RedirectController;
+package myapp.controller.redirect;
 
 import myapp.dto.CourseDTO;
 import myapp.dto.LessonDTO;
-import myapp.model.Course;
 import myapp.service.api.CourseService;
 import myapp.service.api.LessonService;
 import org.springframework.beans.factory.annotation.Autowired;

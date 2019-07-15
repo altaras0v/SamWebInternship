@@ -15,6 +15,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Table(name = "blob_file")
 public class BlobFile implements Serializable {
+
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -22,7 +23,7 @@ public class BlobFile implements Serializable {
     @Column(name = "file")
     private byte[] file;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "file_id")
     private LessonFile lessonFile;
 

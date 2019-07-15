@@ -1,9 +1,8 @@
 package myapp.controller;
 
-import myapp.FileValidator;
-import myapp.UploadedFile;
+import myapp.file.FileValidator;
+import myapp.file.UploadedFile;
 import myapp.dto.LessonDTO;
-import myapp.dto.LessonFileDTO;
 import myapp.model.BlobFile;
 import myapp.model.Lesson;
 import myapp.model.LessonFile;
@@ -68,7 +67,7 @@ import javax.servlet.http.HttpServletResponse;
         int id = (int) model.get("lessonId");
 
         ModelAndView modelAndView = new ModelAndView();
-        String name = null;
+        String name ;
 
         MultipartFile file = uploadedFile.getFile();
         fileValidator.validate(uploadedFile, result);

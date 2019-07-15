@@ -10,6 +10,5 @@ import java.util.List;
 
 @Repository
 public interface LessonFileRepository extends CrudRepository<LessonFile,Integer>,JpaSpecificationExecutor<LessonFile> {
-    LessonFile findById(int id);
     List<LessonFile> findAllByLessonId(int id);
 }

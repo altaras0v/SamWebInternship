@@ -1,4 +1,4 @@
-package myapp.springLibrary;
+package myapp.config;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
