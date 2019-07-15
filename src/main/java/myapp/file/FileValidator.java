@@ -1,4 +1,4 @@
-package myapp;
+package myapp.file;
 
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

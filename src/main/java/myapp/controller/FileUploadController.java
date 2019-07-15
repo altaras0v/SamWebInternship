@@ -1,9 +1,8 @@
 package myapp.controller;
 
-import myapp.FileValidator;
-import myapp.UploadedFile;
+import myapp.file.FileValidator;
+import myapp.file.UploadedFile;
 import myapp.dto.LessonDTO;
-import myapp.dto.LessonFileDTO;
 import myapp.model.BlobFile;
 import myapp.model.Lesson;
 import myapp.model.LessonFile;

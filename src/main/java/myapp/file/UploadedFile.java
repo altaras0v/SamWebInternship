@@ -1,4 +1,4 @@
-package myapp;
+package myapp.file;
 
 import org.springframework.web.multipart.MultipartFile;
 

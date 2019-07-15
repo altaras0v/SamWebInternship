@@ -1,5 +1,5 @@
 
-package myapp;
+package myapp.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

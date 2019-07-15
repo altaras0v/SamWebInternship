@@ -1,4 +1,4 @@
-package myapp;
+package myapp.config;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.context.annotation.Bean;
@@ -49,7 +49,7 @@ public class AppConfig {
         em.setPackagesToScan("myapp","myapp.controller","myapp.db","myapp.dto","myapp.model","myapp.repository"
         ,"myapp.service.api","myapp.service.impl");
 
-       JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         em.setJpaProperties(additionalProperties());
 
@@ -112,7 +112,6 @@ public class AppConfig {
      */
     Properties additionalProperties() {
         Properties properties = new Properties();
-        //properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         properties.setProperty("hibernate.show_sql","true");
         return properties;
