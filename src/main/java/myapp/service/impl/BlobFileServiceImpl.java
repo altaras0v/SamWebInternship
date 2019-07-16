@@ -14,26 +14,26 @@ import javax.transaction.Transactional;
 @ComponentScan(basePackages = {"myapp"})
 public class BlobFileServiceImpl implements BlobFileService {
 
-    private  static final org.slf4j.Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
+	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
 
-    final BlobFileRepository blobFileRepository;
+	final BlobFileRepository blobFileRepository;
 
-    @Autowired
-    public BlobFileServiceImpl(BlobFileRepository blobFileRepository) {
-        this.blobFileRepository = blobFileRepository;
-    }
+	@Autowired
+	public BlobFileServiceImpl(BlobFileRepository blobFileRepository) {
+		this.blobFileRepository = blobFileRepository;
+	}
 
-    // TODO: 14.07.2019 Make Tests 
-    @Override
-    @Transactional
-    public BlobFile getFileByLessonFileId(int id) {
-        BlobFile blobFile = blobFileRepository.findByLessonFileId(id);
-        return blobFile;
-    }
+	// TODO: 14.07.2019 Make Tests
+	@Override
+	@Transactional
+	public BlobFile getFileByLessonFileId(int id) {
+		BlobFile blobFile = blobFileRepository.findByLessonFileId(id);
+		return blobFile;
+	}
 
-    @Override
-    @Transactional
-    public void addFile(BlobFile blobFile) {
-        blobFileRepository.save(blobFile);
-    }
+	@Override
+	@Transactional
+	public void addFile(BlobFile blobFile) {
+		blobFileRepository.save(blobFile);
+	}
 }

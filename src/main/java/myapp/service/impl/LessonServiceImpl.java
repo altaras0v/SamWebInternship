@@ -13,50 +13,49 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import java.lang.instrument.Instrumentation;
-
 @Service
 @ComponentScan(basePackages = {"myapp"})
 public class LessonServiceImpl implements LessonService {
 
-    private  static final org.slf4j.Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
+	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
 
-    @Autowired
-    private LessonRepository lessonRepository;
+	@Autowired
+	private LessonRepository lessonRepository;
 
-    public LessonServiceImpl(){
+	public LessonServiceImpl() {
 
-    }
-    @Override
-    @Transactional
-    public List<LessonDTO> getLessons() {
-        List<Lesson> lessons = (List<Lesson>) lessonRepository.findAll();
-        logger.info("getLessons method");
+	}
 
-        return lessons
-                .stream()
-                .map(c -> new LessonDTO(c.getId(), c.getName(), c.getDescription()))
-                .collect(Collectors.toList());
-    }
+	@Override
+	@Transactional
+	public List<LessonDTO> getLessons() {
+		List<Lesson> lessons = (List<Lesson>) lessonRepository.findAll();
+		logger.info("getLessons method");
 
-    // TODO: 09.07.2019 Сделать тесты!
-    @Override
-    public List<LessonDTO> getLessonsByCourseId(int id) {
-        logger.info("getLessonsByCourseId");
-        List<Lesson> lessons = (List<Lesson>) lessonRepository.findAllByCourseId(id);
+		return lessons
+				.stream()
+				.map(c -> new LessonDTO(c.getId(), c.getName(), c.getDescription()))
+				.collect(Collectors.toList());
+	}
+
+	// TODO: 09.07.2019 Сделать тесты!
+	@Override
+	public List<LessonDTO> getLessonsByCourseId(int id) {
+		logger.info("getLessonsByCourseId");
+		List<Lesson> lessons = lessonRepository.findAllByCourseId(id);
 
 
-        return lessons
-                .stream()
-                .map(c -> new LessonDTO(c.getId(), c.getName(), c.getDescription()))
-                .collect(Collectors.toList());
-    }
+		return lessons
+				.stream()
+				.map(c -> new LessonDTO(c.getId(), c.getName(), c.getDescription()))
+				.collect(Collectors.toList());
+	}
 
-    @Override
-    public LessonDTO getLessonsById(int id) {
-        logger.info("getLessonsById method");
+	@Override
+	public LessonDTO getLessonsById(int id) {
+		logger.info("getLessonsById method");
 
-        Lesson lesson = lessonRepository.findOne(id);
-        return new LessonDTO(lesson.getId(),lesson.getName(),lesson.getDescription());
-    }
+		Lesson lesson = lessonRepository.findOne(id);
+		return new LessonDTO(lesson.getId(), lesson.getName(), lesson.getDescription());
+	}
 }

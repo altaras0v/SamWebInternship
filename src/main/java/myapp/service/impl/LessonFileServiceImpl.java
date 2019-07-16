@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,49 +16,51 @@ import java.util.stream.Collectors;
 @ComponentScan(basePackages = {"myapp"})
 public class LessonFileServiceImpl implements LessonFileService {
 
-    private  static final org.slf4j.Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
+	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
 
-    @Autowired
-    LessonFileRepository lessonFileRepository;
+	@Autowired
+	LessonFileRepository lessonFileRepository;
 
-    public LessonFileServiceImpl(){}
+	public LessonFileServiceImpl() {
+	}
 
-    @Override
-    public List<LessonFileDTO> getFiles() {
-        logger.info("getFiles method");
-        List<LessonFile> files = (List<LessonFile>) lessonFileRepository.findAll();
+	@Override
+	public List<LessonFileDTO> getFiles() {
+		logger.info("getFiles method");
+		List<LessonFile> files = (List<LessonFile>) lessonFileRepository.findAll();
 
-        return files
-                .stream()
-                .map(c -> new LessonFileDTO(c.getId(),c.getName(),c.getDescription()))
-                .collect(Collectors.toList());
-    }
+		return files
+				.stream()
+				.map(c -> new LessonFileDTO(c.getId(), c.getName(), c.getDescription()))
+				.collect(Collectors.toList());
+	}
 
-    @Override
-    public List<LessonFileDTO> getFilesByLessonId(int id) {
-        logger.info("getFilesByLessonId method");
-        List<LessonFile> files = (List<LessonFile>) lessonFileRepository.findAllByLessonId(id);
+	@Override
+	public List<LessonFileDTO> getFilesByLessonId(int id) {
+		logger.info("getFilesByLessonId method");
+		List<LessonFile> files = lessonFileRepository.findAllByLessonId(id);
 
-        return files
-                .stream().map(c -> new LessonFileDTO(c.getId(),c.getName(),c.getDescription()))
-                .collect(Collectors.toList());
-    }
+		return files
+				.stream()
+				.map(c -> new LessonFileDTO(c.getId(), c.getName(), c.getDescription()))
+				.collect(Collectors.toList());
+	}
 
-    // TODO: 10.07.2019 Make tests!
-    
-    @Override
-    public LessonFile getFileById(int id) {
+	// TODO: 10.07.2019 Make tests!
 
-        logger.info("getFileById method");
+	@Override
+	public LessonFile getFileById(int id) {
 
-        LessonFile file = (LessonFile) lessonFileRepository.findOne(id);
-        return file;
-    }
+		logger.info("getFileById method");
 
-    @Override
-    public void addFile(LessonFile lessonFile) {
-        lessonFileRepository.save(lessonFile);
-        logger.info("addFile method");
-    }
+		LessonFile file = lessonFileRepository.findOne(id);
+		return file;
+	}
+
+	@Override
+	public void addFile(LessonFile lessonFile) {
+		lessonFileRepository.save(lessonFile);
+		logger.info("addFile method");
+	}
 
 }

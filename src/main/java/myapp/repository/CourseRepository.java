@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  * Repository for course
  */
 @Repository
-public interface CourseRepository extends CrudRepository<Course,Integer>,JpaSpecificationExecutor<Course> {
+public interface CourseRepository extends CrudRepository<Course, Integer>, JpaSpecificationExecutor<Course> {
 }

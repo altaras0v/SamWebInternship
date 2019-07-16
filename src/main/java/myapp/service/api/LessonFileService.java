@@ -8,9 +8,12 @@ import java.util.List;
 
 @Service
 public interface LessonFileService {
-    List<LessonFileDTO> getFiles();
-    List<LessonFileDTO> getFilesByLessonId(int id);
-    LessonFile getFileById(int id);
-    void addFile(LessonFile lessonFile);
+	List<LessonFileDTO> getFiles();
+
+	List<LessonFileDTO> getFilesByLessonId(int id);
+
+	LessonFile getFileById(int id);
+
+	void addFile(LessonFile lessonFile);
 
 }

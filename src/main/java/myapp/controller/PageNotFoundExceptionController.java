@@ -12,7 +12,7 @@ public class PageNotFoundExceptionController {
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleNotFound(){
-        return "/AddCourse";
+        return "/addCourse";
     }
 
 }

@@ -18,25 +18,24 @@ import java.util.List;
 @RequestMapping("/redirect")
 public class RedirectToSpecificCourseController {
 
-    @Autowired
-    private CourseService courseService;
+	@Autowired
+	private CourseService courseService;
 
-    @Autowired
-    private LessonService lessonService;
+	@Autowired
+	private LessonService lessonService;
 
-    @RequestMapping(value = {"/courseRedirect"}, method = RequestMethod.GET)
-    public ModelAndView redirectToCourse(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("first"));
+	@RequestMapping(value = {"/courseRedirect"}, method = RequestMethod.GET)
+	public ModelAndView redirectToCourse(HttpServletRequest request, HttpServletResponse response) {
+		int id = Integer.parseInt(request.getParameter("first"));
 
-        CourseDTO courseDTO = courseService.getCourseById(id);
-        List<LessonDTO> listLesson = lessonService.getLessonsByCourseId(id);
+		CourseDTO courseDTO = courseService.getCourseById(id);
+		List<LessonDTO> listLesson = lessonService.getLessonsByCourseId(id);
 
-        ModelAndView modelAndView = new ModelAndView("specificCourse");
-        modelAndView.addObject("listLesson",listLesson);
-        modelAndView.addObject("courseDTO", courseDTO);
+		ModelAndView modelAndView = new ModelAndView("specificCourse");
+		modelAndView.addObject("listLesson", listLesson);
+		modelAndView.addObject("courseDTO", courseDTO);
 
+		return modelAndView;
 
-        return modelAndView;
-
-    }
+	}
 }

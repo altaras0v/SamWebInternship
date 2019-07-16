@@ -247,7 +247,6 @@
 
 <body id="page-site-index"
       class="format-site course path-site safari dir-ltr lang-en yui-skin-sam yui3-skin-sam moodle-lmsace-com pagelayout-frontpage course-1 context-2 notloggedin ">
-<spring:message code="mainpage.title"/>
 <div>
     <a class="sr-only sr-only-focusable" href="#maincontent">Skip to main content</a>
 </div>

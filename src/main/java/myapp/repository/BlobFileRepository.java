@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BlobFileRepository extends CrudRepository<BlobFile,Integer>,JpaSpecificationExecutor<BlobFile> {
-    BlobFile findByLessonFileId(int id);
+public interface BlobFileRepository extends CrudRepository<BlobFile, Integer>, JpaSpecificationExecutor<BlobFile> {
+	BlobFile findByLessonFileId(int id);
 }
