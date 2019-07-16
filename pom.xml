@@ -12,8 +12,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <spring.version>4.3.24.RELEASE</spring.version>
         <spring.security.version>4.1.3.RELEASE</spring.security.version>
         <flyway.version>5.2.4</flyway.version>
@@ -24,7 +24,19 @@
         <hibernate.version>5.0.1.Final</hibernate.version>
         <junit.version>4.12</junit.version>
         <mockito.version>2.10.0</mockito.version>
-
+        <spring-data.version>Ingalls-SR16</spring-data.version>
+        <lombock.version>1.18.4</lombock.version>
+        <fileupload.version>1.3.1</fileupload.version>
+        <slf4j.version>1.6.1</slf4j.version>
+        <assertj.version>3.11.1</assertj.version>
+        <mysql.version>5.1.6</mysql.version>
+        <bootstrap.version>4.1.1</bootstrap.version>
+        <javax.persistence-api.version>2.2</javax.persistence-api.version>
+        <javaee-api.version>7.0</javaee-api.version>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <slf4j-api.version>1.7.6</slf4j-api.version>
+        <slf4j-log4j12.version>1.7.6</slf4j-log4j12.version>
+        <log4j.version>1.2.12</log4j.version>
     </properties>
 
     <dependencyManagement>
@@ -32,7 +44,7 @@
             <dependency>
                 <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-releasetrain</artifactId>
-                <version>Ingalls-SR16</version>
+                <version>${spring-data.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -42,23 +54,23 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.4</version>
+            <version>${lombock.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
-            <version>1.3.1</version>
+            <version>${fileupload.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.6.1</version>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>3.11.1</version>
+            <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -73,15 +85,11 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.6</version>
+            <version>${mysql.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -107,7 +115,7 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
-            <version>4.1.1</version>
+            <version>${bootstrap.version}</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
@@ -117,29 +125,24 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.6</version>
+            <version>${mysql.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>javax.persistence-api</artifactId>
-            <version>2.2</version>
+            <version>${javax.persistence-api.version}</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
+            <version>${javaee-api.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
         </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>${javax.servlet-api.version}</version>
         </dependency>
 
 
@@ -182,7 +185,6 @@
             <artifactId>spring-data-jpa</artifactId>
         </dependency>
 
-        <!--  Spring Security -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
@@ -193,51 +195,30 @@
             <artifactId>spring-security-config</artifactId>
             <version>${spring.security.version}</version>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>compile</scope>
-        </dependency>
+
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.6</version>
+            <version>${slf4j-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.6</version>
+            <version>${slf4j-log4j12.version}</version>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.12</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-            <version>1.3.1</version>
+            <version>${log4j.version}</version>
         </dependency>
     </dependencies>
 
 
     <build>
         <finalName>springMVC</finalName>
-        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+        <pluginManagement>
             <plugins>
-
-                <!-- <plugin>
-                     <groupId>org.flywaydb</groupId>
-                     <artifactId>flyway-maven-plugin</artifactId>
-                     <version>${flyway.version}</version>
-                 </plugin>-->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
@@ -249,7 +230,7 @@
                     <artifactId>maven-clean-plugin</artifactId>
                     <version>3.1.0</version>
                 </plugin>
-                <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+
                 <plugin>
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>3.0.2</version>
@@ -275,7 +256,6 @@
                     <version>2.8.2</version>
                 </plugin>
 
-
             </plugins>
 
         </pluginManagement>
@@ -289,33 +269,5 @@
                 </configuration>
             </plugin>
         </plugins>
-
-
     </build>
-    <!--<profiles>
-        <profile>
-            <id>js-flyway</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                &lt;!&ndash;common properties for database connection&ndash;&gt;
-                <db.driver>oracle.jdbc.driver.OracleDriver</db.driver>
-                <db.url>jdbc:oracle:thin:@localhost:1521:XE</db.url>
-                <db.username>js</db.username>
-                <db.password>jsadmin</db.password>
-                <db.schema>JS</db.schema>
-                <db.adm.user>admin</db.adm.user>
-                <db.adm.pass>123456</db.adm.pass>
-
-                &lt;!&ndash; Properties are prefixed with flyway. &ndash;&gt;
-                <flyway.user>${db.adm.user}</flyway.user>
-                <flyway.password>${db.adm.pass}</flyway.password>
-                <flyway.schemas>${db.schema}</flyway.schemas>
-                <flyway.driver>${db.driver}</flyway.driver>
-                <flyway.url>${db.url}</flyway.url>
-                <flyway.locations>db/migration/init/</flyway.locations>
-            </properties>
-        </profile>
-    </profiles>-->
 </project>

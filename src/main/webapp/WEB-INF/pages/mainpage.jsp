@@ -5,10 +5,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isELIgnored="false" %>
-<%@ page language="java" contentType="text/html; charset=Cp1251" pageEncoding="Cp1251"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<meta http-equiv="content-type" content="text/html; charset=cp1251">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <head>
     <title>Moodle Demo Environment</title>
     <link rel="shortcut icon" href="http://moodle.lmsace.com/theme/image.php/eguru/theme/1560834156/favicon"/>
@@ -247,7 +247,7 @@
 
 <body id="page-site-index"
       class="format-site course path-site safari dir-ltr lang-en yui-skin-sam yui3-skin-sam moodle-lmsace-com pagelayout-frontpage course-1 context-2 notloggedin ">
-
+<spring:message code="mainpage.title"/>
 <div>
     <a class="sr-only sr-only-focusable" href="#maincontent">Skip to main content</a>
 </div>
@@ -569,7 +569,7 @@
                         <div class="category loaded with_children" data-categoryid="1" data-depth="1"
                              data-showcourses="10" data-type="0">
                             <div class="info"><h3 class="categoryname"><a
-                                    href="http://moodle.lmsace.com/course/index.php?categoryid=1">Programming Courses</a>
+                                    href="http://moodle.lmsace.com/course/index.php?categoryid=1"><spring:message code="mainpage.title"/></a>
                             </h3></div>
                             <div class="content">
                                 <div class="courses frontpage-category-combo">

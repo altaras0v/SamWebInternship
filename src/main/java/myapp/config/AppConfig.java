@@ -1,9 +1,11 @@
 package myapp.config;
 
 import org.flywaydb.core.Flyway;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -15,9 +17,15 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.Locale;
 import java.util.Properties;
 
 /**
@@ -57,6 +65,7 @@ public class AppConfig {
         return em;
     }
 
+    // TODO: 16.07.2019 Change config
     /**
      *Bean for database connecting
      */
@@ -65,7 +74,8 @@ public class AppConfig {
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/e_learning?characterEncoding=utf8&useConfigs=maxPerformance&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
+
+        dataSource.setUrl("jdbc:mysql://localhost:3306/e_learning?characterEncoding=utf8&useConfigs=maxPerformance&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Minsk");
         dataSource.setUsername( "root" );
         dataSource.setPassword( "admin" );
         return dataSource;
@@ -81,13 +91,6 @@ public class AppConfig {
                 .dataSource(dataSource())
                 .baselineOnMigrate(true)
                 .load();
-        //flyway.migrate();
-
-/*
-        Flyway flyway = new Flyway();
-        flyway.setBaselineOnMigrate(true);
-        return flyway;
-*/
         return flyway;
     }
 
@@ -116,4 +119,6 @@ public class AppConfig {
         properties.setProperty("hibernate.show_sql","true");
         return properties;
     }
+
 }
+
