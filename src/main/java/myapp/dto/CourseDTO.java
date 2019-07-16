@@ -1,9 +1,11 @@
 package myapp.dto;
 
+import java.io.Serializable;
+
 /**
  * Course data transfer object
  */
-public class CourseDTO {
+public class CourseDTO  {
 	private String name;
 	private String description;
 	private String fullDescription;

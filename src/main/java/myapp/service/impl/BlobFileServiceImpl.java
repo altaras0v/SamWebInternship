@@ -3,18 +3,17 @@ package myapp.service.impl;
 import myapp.model.BlobFile;
 import myapp.repository.BlobFileRepository;
 import myapp.service.api.BlobFileService;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
 @Service
-@ComponentScan(basePackages = {"myapp"})
 public class BlobFileServiceImpl implements BlobFileService {
 
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
 
 	final BlobFileRepository blobFileRepository;
 
@@ -27,6 +26,7 @@ public class BlobFileServiceImpl implements BlobFileService {
 	@Override
 	@Transactional
 	public BlobFile getFileByLessonFileId(int id) {
+		logger.info("getFileByLessonId method");
 		BlobFile blobFile = blobFileRepository.findByLessonFileId(id);
 		return blobFile;
 	}
@@ -34,6 +34,7 @@ public class BlobFileServiceImpl implements BlobFileService {
 	@Override
 	@Transactional
 	public void addFile(BlobFile blobFile) {
+		logger.info("addFile method");
 		blobFileRepository.save(blobFile);
 	}
 }

@@ -32,14 +32,12 @@ public class CourseController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getCourse() {
 
-
 		List<CourseDTO> listCourses = courseService.getCourses();
 
 		ModelAndView modelAndView = new ModelAndView("mainpage");
 		modelAndView.addObject("listsCourses", listCourses);
 
 		return modelAndView;
-
 	}
 
 	/**

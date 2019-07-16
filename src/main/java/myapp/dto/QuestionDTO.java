@@ -1,6 +1,8 @@
 package myapp.dto;
 
-public class QuestionDTO {
+import java.io.Serializable;
+
+public class QuestionDTO implements Serializable {
 
 	private int id;
 	private String question;

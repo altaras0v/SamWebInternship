@@ -4,6 +4,8 @@ import myapp.dto.LessonDTO;
 import myapp.dto.LessonFileDTO;
 import myapp.service.api.LessonFileService;
 import myapp.service.api.LessonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
-
 @Controller
 @RequestMapping("/redirect")
 public class RedirectToLessonController {
+
+	private static final Logger logger = LoggerFactory.getLogger(RedirectToLessonController.class);
 
 	@Autowired
 	private LessonService lessonService;
@@ -35,6 +38,8 @@ public class RedirectToLessonController {
 		ModelAndView modelAndView = new ModelAndView("lesson");
 		modelAndView.addObject("lessonDTO", lessonDTO);
 		modelAndView.addObject("listFiles", listFiles);
+
+		logger.info("redirect to lesson controller");
 
 		return modelAndView;
 

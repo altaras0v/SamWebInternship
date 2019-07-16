@@ -4,6 +4,8 @@ import myapp.dto.CourseDTO;
 import myapp.dto.LessonDTO;
 import myapp.service.api.CourseService;
 import myapp.service.api.LessonService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
 @RequestMapping("/redirect")
 public class RedirectToSpecificCourseController {
+
+	private static final Logger logger = LoggerFactory.getLogger(RedirectToSpecificCourseController.class);
 
 	@Autowired
 	private CourseService courseService;
@@ -25,7 +28,7 @@ public class RedirectToSpecificCourseController {
 	private LessonService lessonService;
 
 	@RequestMapping(value = {"/courseRedirect"}, method = RequestMethod.GET)
-	public ModelAndView redirectToCourse(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView redirectToCourse(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("first"));
 
 		CourseDTO courseDTO = courseService.getCourseById(id);
@@ -34,6 +37,8 @@ public class RedirectToSpecificCourseController {
 		ModelAndView modelAndView = new ModelAndView("specificCourse");
 		modelAndView.addObject("listLesson", listLesson);
 		modelAndView.addObject("courseDTO", courseDTO);
+
+		logger.info("redirect to lessons list controller");
 
 		return modelAndView;
 

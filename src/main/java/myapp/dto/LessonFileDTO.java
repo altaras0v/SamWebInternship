@@ -1,6 +1,8 @@
 package myapp.dto;
 
-public class LessonFileDTO {
+import java.io.Serializable;
+
+public class LessonFileDTO implements Serializable {
 
 	private int id;
 	private String name;

@@ -5,8 +5,8 @@ import myapp.model.Course;
 import myapp.repository.CourseRepository;
 import myapp.service.api.CourseService;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -14,10 +14,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@ComponentScan(basePackages = {"myapp"})
 public class CourseServiceImpl implements CourseService {
 
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
 
 	@Autowired
 	private CourseRepository courseRepository;

@@ -5,18 +5,17 @@ import myapp.model.LessonFile;
 import myapp.repository.LessonFileRepository;
 import myapp.service.api.LessonFileService;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@ComponentScan(basePackages = {"myapp"})
 public class LessonFileServiceImpl implements LessonFileService {
 
-	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
 
 	@Autowired
 	LessonFileRepository lessonFileRepository;

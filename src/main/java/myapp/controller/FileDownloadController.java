@@ -4,6 +4,8 @@ import myapp.model.BlobFile;
 import myapp.model.LessonFile;
 import myapp.service.api.BlobFileService;
 import myapp.service.api.LessonFileService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -25,6 +27,8 @@ import java.io.InputStream;
 @Controller
 public class FileDownloadController {
 
+	private static final Logger logger = LoggerFactory.getLogger(FileDownloadController.class);
+
 	private static final String APPLICATION_PDF = "application/octet-stream";
 
 	final LessonFileService lessonFileService;
@@ -39,7 +43,6 @@ public class FileDownloadController {
 
 	/**
 	 * Download single file from server to user
-	 *
 	 * @param response - file for downloading
 	 * @param request  - id of downloading file
 	 */
@@ -66,5 +69,7 @@ public class FileDownloadController {
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + lessonFile.getName() + "\"");
 		response.setHeader("Content-Length", String.valueOf(file.length()));
 		FileCopyUtils.copy(in, response.getOutputStream());
+
+		logger.info("download file controller");
 	}
 }
