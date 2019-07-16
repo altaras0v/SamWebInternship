@@ -15,8 +15,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "lesson")
-public class Lesson implements Serializable {
+@Table(name = "test")
+public class Test implements Serializable {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -27,20 +27,16 @@ public class Lesson implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_id")
-    private Course course;
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "lesson_id")
+    private Lesson lesson;
 
-    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<LessonFile> lessonFiles = new ArrayList<>();
+    @OneToMany(mappedBy = "test", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Question> questions = new ArrayList<>();
 
-    @OneToOne(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Test test = new Test();
-
-    public Lesson(int id, String name, String description) {
-        this.id = id;
+    public Test(String name,String description,Lesson lesson){
         this.name = name;
         this.description = description;
+        this.lesson = lesson;
     }
-
 }
