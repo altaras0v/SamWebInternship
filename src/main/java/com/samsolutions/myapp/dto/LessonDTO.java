@@ -12,11 +12,12 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LessonDTO implements Serializable {
-	private int id;
+
+	private long id;
 	private String name;
 	private String description;
 
-	public LessonDTO(int id) {
+	public LessonDTO(long id) {
 		this.id = id;
 	}
 

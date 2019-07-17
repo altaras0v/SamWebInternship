@@ -50,7 +50,7 @@ public class FileDownloadController {
 	public @ResponseBody
 	void downloadFile(HttpServletResponse response, HttpServletRequest request) throws IOException {
 
-		Integer id = Integer.parseInt(request.getParameter("id"));
+		Long id = Long.parseLong(request.getParameter("id"));
 
 
 		LessonFile lessonFile = lessonFileService.getFileById(id);

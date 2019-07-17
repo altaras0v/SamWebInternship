@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -27,9 +28,9 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "lesson")
 public class Lesson implements Serializable {
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(name = "name")
     private String name;
@@ -47,7 +48,7 @@ public class Lesson implements Serializable {
     @OneToOne(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Test test = new Test();
 
-    public Lesson(int id, String name, String description) {
+    public Lesson(long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;

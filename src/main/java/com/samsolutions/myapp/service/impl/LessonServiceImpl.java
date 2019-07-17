@@ -36,7 +36,7 @@ public class LessonServiceImpl implements LessonService {
 
 	// TODO: 09.07.2019 Сделать тесты!
 	@Override
-	public List<LessonDTO> getLessonsByCourseId(int id) {
+	public List<LessonDTO> getLessonsByCourseId(long id) {
 		logger.info("getLessonsByCourseId");
 		List<Lesson> lessons = lessonRepository.findAllByCourseId(id);
 
@@ -45,7 +45,7 @@ public class LessonServiceImpl implements LessonService {
 	}
 
 	@Override
-	public LessonDTO getLessonsById(int id) {
+	public LessonDTO getLessonsById(long id) {
 		logger.info("getLessonsById method");
 
 		Lesson lesson = lessonRepository.findOne(id);

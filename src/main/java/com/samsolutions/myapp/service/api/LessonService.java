@@ -9,7 +9,7 @@ import java.util.List;
 public interface LessonService {
 	List<LessonDTO> getLessons();
 
-	List<LessonDTO> getLessonsByCourseId(int id);
+	List<LessonDTO> getLessonsByCourseId(long id);
 
-	LessonDTO getLessonsById(int id);
+	LessonDTO getLessonsById(long id);
 }

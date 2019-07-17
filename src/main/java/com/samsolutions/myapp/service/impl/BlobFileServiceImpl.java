@@ -25,7 +25,7 @@ public class BlobFileServiceImpl implements BlobFileService {
 	// TODO: 14.07.2019 Make Tests
 	@Override
 	@Transactional
-	public BlobFile getFileByLessonFileId(int id) {
+	public BlobFile getFileByLessonFileId(long id) {
 		logger.info("getFileByLessonId method");
 		BlobFile blobFile = blobFileRepository.findByLessonFileId(id);
 		return blobFile;

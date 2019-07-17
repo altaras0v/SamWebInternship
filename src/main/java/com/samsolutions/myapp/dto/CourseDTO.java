@@ -15,11 +15,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CourseDTO implements Serializable {
+
 	private String name;
 	private String description;
-
 	private String fullDescription;
-	private int id;
+	private long id;
 
 	public CourseDTO(String name, String description) {
 		this.name = name;

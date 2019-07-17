@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface LessonRepository extends CrudRepository<Lesson, Integer>, JpaSpecificationExecutor<Lesson> {
-	List<Lesson> findAllByCourseId(int id);
+public interface LessonRepository extends CrudRepository<Lesson, Long>, JpaSpecificationExecutor<Lesson> {
+	List<Lesson> findAllByCourseId(long id);
 }

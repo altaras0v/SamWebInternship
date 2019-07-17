@@ -47,7 +47,7 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	@Transactional
-	public CourseDTO getCourseById(int id) {
+	public CourseDTO getCourseById(long id) {
 		Course course = courseRepository.findOne(id);
 		return new CourseDTO(course.getName(), course.getDescription(), course.getFullDescription(), course.getId());
 	}

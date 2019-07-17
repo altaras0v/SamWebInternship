@@ -26,7 +26,7 @@ public class BlobFile implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
 	@Column(name = "file")
 	private byte[] file;

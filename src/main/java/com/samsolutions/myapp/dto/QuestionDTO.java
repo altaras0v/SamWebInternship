@@ -12,6 +12,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class QuestionDTO implements Serializable {
 
-	private int id;
+	private long id;
 	private String question;
 }

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface BlobFileService {
-	BlobFile getFileByLessonFileId(int id);
+	BlobFile getFileByLessonFileId(long id);
 
 	void addFile(BlobFile blobFile);
 }

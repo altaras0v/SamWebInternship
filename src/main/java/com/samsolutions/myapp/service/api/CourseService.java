@@ -11,5 +11,5 @@ public interface CourseService {
 
 	void addCourse(CourseDTO course); // TODO: 12.07.2019 переписать метод
 
-	CourseDTO getCourseById(int id);
+	CourseDTO getCourseById(long id);
 }

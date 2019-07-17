@@ -50,7 +50,7 @@ import javax.servlet.http.HttpServletRequest;
 
 	@RequestMapping(value = {"/uploadRedirect"}, method = RequestMethod.POST)
 	public ModelAndView redirectToUpload(HttpServletRequest request,@ModelAttribute LessonDTO lessonDTO, ModelMap model) {
-		Integer id = Integer.parseInt(request.getParameter("id"));
+		Long id = Long.parseLong(request.getParameter("id"));
 		model.addAttribute("lessonId", id);
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("upload");
@@ -67,7 +67,7 @@ import javax.servlet.http.HttpServletRequest;
 	public @ResponseBody
 	ModelAndView uploadFileHandler(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, BindingResult result, ModelMap model) {
 
-		int id = (int) model.get("lessonId");
+		long id = (long) model.get("lessonId");
 
 		ModelAndView modelAndView = new ModelAndView();
 		String name;

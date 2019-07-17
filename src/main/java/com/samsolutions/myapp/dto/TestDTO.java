@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class TestDTO implements Serializable {
 
-	private int id;
+	private long id;
 	private String name;
 	private String description;
 

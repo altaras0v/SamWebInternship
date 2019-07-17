@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface LessonFileRepository extends CrudRepository<LessonFile, Integer>, JpaSpecificationExecutor<LessonFile> {
-	 List<LessonFile> findAllByLessonId(int id);
+public interface LessonFileRepository extends CrudRepository<LessonFile, Long>, JpaSpecificationExecutor<LessonFile> {
+	 List<LessonFile> findAllByLessonId(long id);
 }
