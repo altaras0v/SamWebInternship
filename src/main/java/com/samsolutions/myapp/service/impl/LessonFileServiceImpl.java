@@ -17,10 +17,11 @@ public class LessonFileServiceImpl implements LessonFileService {
 
 	private static final Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
 
-	@Autowired
-	LessonFileRepository lessonFileRepository;
+	private final LessonFileRepository lessonFileRepository;
 
-	public LessonFileServiceImpl() {
+	@Autowired
+	public LessonFileServiceImpl(LessonFileRepository lessonFileRepository) {
+		this.lessonFileRepository = lessonFileRepository;
 	}
 
 	@Override

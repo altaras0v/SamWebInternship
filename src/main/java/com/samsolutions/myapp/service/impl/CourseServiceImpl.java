@@ -18,11 +18,12 @@ public class CourseServiceImpl implements CourseService {
 
 	private static final Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
 
+	private final CourseRepository courseRepository;
+
 	@Autowired
-	private CourseRepository courseRepository;
+	public CourseServiceImpl(CourseRepository courseRepository) {
 
-	public CourseServiceImpl() {
-
+		this.courseRepository = courseRepository;
 	}
 
 	@Override

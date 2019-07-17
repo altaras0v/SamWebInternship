@@ -39,4 +39,5 @@ public class BlobFile implements Serializable {
 		this.file = file;
 		this.lessonFile = lessonFile;
 	}
+
 }

@@ -18,11 +18,12 @@ public class LessonServiceImpl implements LessonService {
 
 	private static final Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
 
+	private final LessonRepository lessonRepository;
+
 	@Autowired
-	private LessonRepository lessonRepository;
+	public LessonServiceImpl(LessonRepository lessonRepository) {
 
-	public LessonServiceImpl() {
-
+		this.lessonRepository = lessonRepository;
 	}
 
 	@Override

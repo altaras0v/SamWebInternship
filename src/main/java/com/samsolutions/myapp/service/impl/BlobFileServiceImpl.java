@@ -15,7 +15,7 @@ public class BlobFileServiceImpl implements BlobFileService {
 
 	private static final Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
 
-	final BlobFileRepository blobFileRepository;
+	private final BlobFileRepository blobFileRepository;
 
 	@Autowired
 	public BlobFileServiceImpl(BlobFileRepository blobFileRepository) {

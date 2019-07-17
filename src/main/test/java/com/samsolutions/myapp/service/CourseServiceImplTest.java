@@ -30,7 +30,7 @@ public class CourseServiceImplTest {
 
 
     @InjectMocks
-    private CourseService courseService = new CourseServiceImpl();
+    private CourseService courseService = new CourseServiceImpl(courseRepository);
 
 
     public List<Course> createCourseList() {

@@ -37,16 +37,16 @@ import javax.servlet.http.HttpServletRequest;
 
 	private final LessonFileService lessonFileService;
 
+	private final BlobFileService blobFileService;
+
+	private final FileValidator fileValidator;
+
 	@Autowired
-	public FileUploadController(LessonFileService lessonFileService) {
+	public FileUploadController(LessonFileService lessonFileService, BlobFileService blobFileService, FileValidator fileValidator) {
 		this.lessonFileService = lessonFileService;
+		this.blobFileService = blobFileService;
+		this.fileValidator = fileValidator;
 	}
-
-	@Autowired
-	private BlobFileService blobFileService;
-
-	@Autowired
-	FileValidator fileValidator;
 
 	@RequestMapping(value = {"/uploadRedirect"}, method = RequestMethod.POST)
 	public ModelAndView redirectToUpload(HttpServletRequest request,@ModelAttribute LessonDTO lessonDTO, ModelMap model) {
@@ -58,7 +58,6 @@ import javax.servlet.http.HttpServletRequest;
 		logger.info("redirectToUpload method");
 		return modelAndView;
 	}
-
 
 	/**
 	 * Upload single file using Spring Controller

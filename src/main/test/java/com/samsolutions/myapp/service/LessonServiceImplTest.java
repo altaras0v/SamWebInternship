@@ -1,30 +1,23 @@
 package com.samsolutions.myapp.service;
 
-import com.samsolutions.myapp.dto.CourseDTO;
 import com.samsolutions.myapp.dto.LessonDTO;
-import com.samsolutions.myapp.model.Course;
 import com.samsolutions.myapp.model.Lesson;
-import com.samsolutions.myapp.repository.CourseRepository;
 import com.samsolutions.myapp.repository.LessonRepository;
-import com.samsolutions.myapp.service.api.CourseService;
 import com.samsolutions.myapp.service.api.LessonService;
-import com.samsolutions.myapp.service.impl.CourseServiceImpl;
 import com.samsolutions.myapp.service.impl.LessonServiceImpl;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyIterable;
-import static org.mockito.ArgumentMatchers.anyObject;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class LessonServiceImplTest {
@@ -33,7 +26,7 @@ public class LessonServiceImplTest {
     private LessonRepository lessonRepository;
 
     @InjectMocks
-    private LessonService lessonService = new LessonServiceImpl();
+    private LessonService lessonService = new LessonServiceImpl(lessonRepository);
 
     public List<Lesson> createLessonList(){
         Lesson lessonOne = new Lesson();

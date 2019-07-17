@@ -1,7 +1,6 @@
 package com.samsolutions.myapp.service;
 
 import com.samsolutions.myapp.dto.LessonFileDTO;
-import com.samsolutions.myapp.model.LessonFile;
 import com.samsolutions.myapp.repository.LessonFileRepository;
 import com.samsolutions.myapp.service.api.LessonFileService;
 import com.samsolutions.myapp.service.impl.LessonFileServiceImpl;
@@ -11,13 +10,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyIterable;
-import static org.mockito.ArgumentMatchers.anyObject;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class LessonFileServiceImplTest {
@@ -26,7 +24,7 @@ public class LessonFileServiceImplTest {
     LessonFileRepository lessonFileRepository;
 
     @InjectMocks
-    LessonFileService lessonFileService = new LessonFileServiceImpl();
+    LessonFileService lessonFileService = new LessonFileServiceImpl(lessonFileRepository);
 
     @Test
     public void getFilesShouldCallRepository(){

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -21,4 +22,22 @@ public class LessonDTO implements Serializable {
 		this.id = id;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		LessonDTO lessonDTO = (LessonDTO) o;
+		return id == lessonDTO.id && Objects.equals(name, lessonDTO.name) && Objects.equals(description, lessonDTO.description);
+	}
+
+	@Override
+	public int hashCode() {
+
+		return Objects.hash(id, name, description);
+	}
+
+	@Override
+	public String toString() {
+		return "LessonDTO{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + '}';
+	}
 }

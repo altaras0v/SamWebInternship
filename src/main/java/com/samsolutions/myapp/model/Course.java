@@ -49,9 +49,4 @@ public class Course implements Serializable {
 		this.name = name;
 		this.description = description;
 	}
-
-	@Override
-	public String toString() {
-		return "Course{ " + "id=" + id + " name=" + name + " description=" + description + "}";
-	}
 }

@@ -31,15 +31,15 @@ public class FileDownloadController {
 
 	private static final String APPLICATION_PDF = "application/octet-stream";
 
-	final LessonFileService lessonFileService;
+	private final LessonFileService lessonFileService;
+
+	private final BlobFileService blobFileService;
 
 	@Autowired
-	public FileDownloadController(LessonFileService lessonFileService) {
+	public FileDownloadController(LessonFileService lessonFileService, BlobFileService blobFileService) {
 		this.lessonFileService = lessonFileService;
+		this.blobFileService = blobFileService;
 	}
-
-	@Autowired
-	private BlobFileService blobFileService;
 
 	/**
 	 * Download single file from server to user
