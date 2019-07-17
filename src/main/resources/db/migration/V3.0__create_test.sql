@@ -1,6 +1,6 @@
 create table test(
-id int primary key AUTO_INCREMENT,
+id BIGINT primary key AUTO_INCREMENT,
 name varchar(100),
 description varchar(255),
-lesson_id int unique,
+lesson_id BIGINT unique,
 foreign key (lesson_id) references lesson(id));

@@ -1,5 +1,5 @@
 create table blob_file(
-id int primary key AUTO_INCREMENT,
-file_id int,
+id BIGINT primary key AUTO_INCREMENT,
+file_id BIGINT,
 file BLOB,
 foreign key (file_id) references lesson_file(id));
