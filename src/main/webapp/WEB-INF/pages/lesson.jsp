@@ -466,12 +466,10 @@
                             <center> <h2>${lessonDTO.name}</h2></center>
                             <div class="box generalbox info py-3">
                                 <div class="coursebox clearfix" data-courseid="6" data-type="1">
-                                   <%-- <div class="info"><center><h3 class="coursename"> ${lessonDTO.name} </h3></center>
-                                        <div class="moreinfo"></div>
-                                    </div>--%>
+
                                     <div class="content ">
                                         <div class="summary">
-                                            <div class="no-overflow"><p>${lessonDTO.description}</p></div>
+                                            <div class="no-overflow"><p><font style="color: #00008B">${lessonDTO.description}</font></p></div>
                                         </div>
                                         <div class="courseimage"><img src="/img/logo.png" width="210" height="500"/>
                                         </div>
@@ -497,6 +495,8 @@
                                     <div class="coursebox clearfix odd first collapsed" data-courseid="6"
                                          data-type="1">
                                             <button   type="submit" name="id" value="${files.id}" class="btn btn-link">${files.name}</button>
+                                        <div class="coursebox clearfix odd first collapsed" data-courseid="6"
+                                             data-type="1"> <font style="color: #00008B">  &nbsp;&nbsp; ${files.description}</font> </div>
                                         <div class="content "></div>
                                     </div>
                                 </form:form></td>
@@ -504,6 +504,26 @@
                                     :focus {outline:none !important;}
                                 </style>
                             </c:forEach>
+                            <br><br>
+                            <div class="info"><center><h2 class="coursename"> Test for lesson </h2></center>
+                                <div class="moreinfo"></div>
+                            </div>
+                            <br><br>
+                            <div class="coursebox clearfix odd first collapsed" data-courseid="6"
+                                 data-type="1">
+
+                                <form>
+                                    <div class="form-group">
+                                        <label style="color: #00008B" for="Textarea">Example textarea</label>
+                                        <textarea  maxlength="1000" class="form-control" id="Textarea" rows="3"></textarea>
+
+                                    </div>
+                                    <br>
+                                    <center><button type="submit" c class="btn btn-primary">Submit</button></center>
+                                </form>
+
+
+                            </div>
 
 
                             <div id="notice" class="box generalbox py-3">Guests cannot access this course. Please
