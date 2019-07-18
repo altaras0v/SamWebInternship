@@ -52,4 +52,10 @@ public class CourseServiceImpl implements CourseService {
 		Course course = courseRepository.findOne(id);
 		return new CourseDTO(course.getName(), course.getDescription(), course.getFullDescription(), course.getId());
 	}
+
+	@Override
+	@Transactional
+	public void deleteCourse(long id){
+		courseRepository.delete(id);
+	}
 }

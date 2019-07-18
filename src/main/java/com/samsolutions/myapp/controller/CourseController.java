@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -67,6 +69,36 @@ public class CourseController {
 		courseService.addCourse(course);
 		return mav;
 	}
+
+	@RequestMapping(value = "/deleteCourse", method = RequestMethod.GET)
+	public ModelAndView showCourseList()
+	{
+
+		ModelAndView mav = new ModelAndView("deleteCourse");
+		List<CourseDTO> courseDTOList = courseService.getCourses();
+		mav.addObject("courseDTOList", courseDTOList);
+		return mav;
+	}
+
+	//СДЕЛАТЬ РЕДИРЕКТ
+	// TODO: 12.07.2019 Переделать метод. В БД - энтити
+
+	/**
+	 * Add course to database
+	 *
+
+	 * @return - view where adding course
+	 */
+	@RequestMapping(value = "/deleteCourse", method = RequestMethod.POST)
+	public ModelAndView deleteCourse(HttpServletResponse response, HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("deleteCourse");
+		Long id = Long.parseLong(request.getParameter("courseId"));
+		courseService.deleteCourse(id);
+		return mav;
+	}
+
+
 
 
 }
