@@ -82,7 +82,7 @@
 
 
         </div>
-        <a href="<c:url value = "/AddCourse"/>">Creazione Nuovo Corso</a>
+        <a href="<c:url value = "/addCourse"/>">Creazione Nuovo Corso</a>
         <br>
         <a href="<c:url value = "/upload"/>">Upload files</a>
 

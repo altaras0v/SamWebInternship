@@ -22,9 +22,10 @@ public class CourseDTO implements Serializable {
 	private String fullDescription;
 	private long id;
 
-	public CourseDTO(String name, String description) {
+	public CourseDTO(String name, String description, String fullDescription) {
 		this.name = name;
 		this.description = description;
+		this.fullDescription = fullDescription;
 	}
 
 	@Override

@@ -45,8 +45,9 @@ public class Course implements Serializable {
 	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<Lesson> lessons = new ArrayList<>();
 
-	public Course(String name, String description) {
+	public Course(String name, String description, String fullDescription) {
 		this.name = name;
 		this.description = description;
+		this.fullDescription = fullDescription;
 	}
 }

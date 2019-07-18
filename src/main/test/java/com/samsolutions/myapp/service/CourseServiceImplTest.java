@@ -37,9 +37,11 @@ public class CourseServiceImplTest {
         Course courseOne = new Course();
         courseOne.setName("My Course 1");
         courseOne.setDescription("Desc1");
+        courseOne.setFullDescription("FullDesc1");
         Course courseTwo = new Course();
         courseTwo.setName("My Course 2");
         courseTwo.setDescription("Desc2");
+        courseTwo.setFullDescription("FullDesc2");
         List<Course> courseList = new ArrayList<>();
         courseList.add(courseOne);
         courseList.add(courseTwo);
@@ -116,8 +118,8 @@ public class CourseServiceImplTest {
     @Test
     public void addCoursesShouldAddCourse() {
         //given
-        CourseDTO course1 = new CourseDTO("1","1");
-        Course course = new Course(course1.getName(),course1.getDescription());
+        CourseDTO course1 = new CourseDTO("1","1","1");
+        Course course = new Course(course1.getName(),course1.getDescription(),course1.getFullDescription());
         when(courseRepository.save(Mockito.any(Course.class))).thenReturn(course);
         //when
         courseService.addCourse(course1);

@@ -470,7 +470,7 @@
 
                                     <div class="content ">
                                         <div class="summary">
-                                            <div class="no-overflow"><p>${courseDTO.fullDescription}</p></div>
+                                            <div style="color: #00008B" class="no-overflow"><p>${courseDTO.fullDescription}</p></div>
                                         </div>
                                         <div class="courseimage"><img src="/img/logo.png" width="210" height="500"/>
                                         </div>

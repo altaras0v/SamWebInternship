@@ -41,7 +41,7 @@ public class CourseServiceImpl implements CourseService {
 	@Override
 	@Transactional
 	public void addCourse(CourseDTO course) {
-		courseRepository.save(new Course(course.getName(), course.getDescription()));
+		courseRepository.save(new Course(course.getName(), course.getDescription(),course.getFullDescription()));
 	}
 
 	// TODO: 08.07.2019   Написать тесты!!!

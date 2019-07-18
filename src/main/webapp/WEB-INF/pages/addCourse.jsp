@@ -8,58 +8,62 @@
     <title>Edit User</title>
 </head>
 <body>
+<br><br><br><br><br>
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3 well">
             <h3 class="text-center">Add courses</h3>
             <form:form id="updateForm" modelAttribute="course" action="../addCourse" method="post">
-            <%--<table>--%>
+                <%--<table>--%>
                 <div class="col-xs-12">
                     <div class="form-group">
 
-                    <%-- <form:label path="name">name</form:label>--%>
-                    <form:input path="name" placeholder="Name" name="name" id="name"/>
+                            <%-- <form:label path="name">name</form:label>--%>
+                        <form:input maxlength="30" path="name" placeholder="Name" name="name" id="name"/>
 
-                    <%--<tr>
-                        <td>
-                            <form:label path="description">desc</form:label>
-                        </td>
-                        <td>--%>
-        </div>
-    </div>
-    <div class="col-xs-12">
-        <div class="form-group">
-            <form:input path="description" placeholder="Description" name="description"
-                        id="description"/>
-        </div>
-    </div>
-        <%--     </td>
-         </tr>
-         <tr>
-             <td></td>--%>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <form:input maxlength="254" path="description" placeholder="Description" name="description"
+                                    id="description"/>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <form:input maxlength="3000" path="fullDescription" placeholder="Full Description"
+                                    name="fullDescription"
+                                    id="fullDescription"/>
+                    </div>
+                </div>
+                <%--     </td>
+                 </tr>
+                 <tr>
+                     <td></td>--%>
                 <div class="text-center col-xs-12">
-                    <form:button id="sibmit" name="submit">Submit</form:button>
+                    <button class="btn btn-primary" id="sibmit" name="submit">Submit</button>
                 </div>
 
-        <%--<form:button id="sibmit" name="submit">Submit</form:button>--%>
+                <%--<form:button id="sibmit" name="submit">Submit</form:button>--%>
 
 
-<br>
-            <a href="<c:url value='..' />">Return to start page</a>
+                <br>
+                <a href="<c:url value='..' />">Return to start page</a>
 
 
-  <%--  </table>--%>
-    </form:form>
-</div>
-</div>
+                <%--  </table>--%>
+            </form:form>
+        </div>
+    </div>
 </div>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
 
 <style>
 
-
-
+    body{
+        background-color: lightblue; /* Цвет фона веб-страницы */
+    }
     .form .form-group[class*="col-"] input[type=text],
     .form .form-group[class*="col-"] input[type=email],
     .form .form-group[class*="col-"] input[type=password] {
@@ -68,7 +72,6 @@
         min-width: 0;
         max-width: 100%;
     }
-
 
     input[type=text],
     input[type=email],
@@ -92,7 +95,6 @@
         width: 100%;
         font-size: 17px;
         color: #8d8d8d;
-        background-color: #ffffff;
         border-style: solid;
         border-width: 1px 1px 1px 3px;
         border-top-color: #d7d7d7;

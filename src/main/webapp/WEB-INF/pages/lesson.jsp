@@ -490,20 +490,22 @@
                             </div>
                             <br>
                             <br>
+                            <div class="coursebox clearfix odd first collapsed" data-courseid="6"
+                                 data-type="1">
                             <c:forEach items="${listFiles}" var="files">
+
                                 <td><form:form name="first" action="../download" method="get">
-                                    <div class="coursebox clearfix odd first collapsed" data-courseid="6"
-                                         data-type="1">
+
                                             <button   type="submit" name="id" value="${files.id}" class="btn btn-link">${files.name}</button>
                                         <div class="coursebox clearfix odd first collapsed" data-courseid="6"
                                              data-type="1"> <font style="color: #00008B">  &nbsp;&nbsp; ${files.description}</font> </div>
-                                        <div class="content "></div>
-                                    </div>
+
                                 </form:form></td>
                                 <style>
                                     :focus {outline:none !important;}
                                 </style>
                             </c:forEach>
+                            </div>
                             <br><br>
                             <div class="info"><center><h2 class="coursename"> Test for lesson </h2></center>
                                 <div class="moreinfo"></div>
@@ -519,7 +521,7 @@
 
                                     </div>
                                     <br>
-                                    <center><button type="submit" c class="btn btn-primary">Submit</button></center>
+                                    <center><button type="submit"  class="btn btn-primary">Submit</button></center>
                                 </form>
 
 
