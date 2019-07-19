@@ -33,18 +33,15 @@ public class CourseController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getCourse() {
-
 		List<CourseDTO> listCourses = courseService.getCourses();
 
 		ModelAndView modelAndView = new ModelAndView("mainpage");
 		modelAndView.addObject("listsCourses", listCourses);
-
 		return modelAndView;
 	}
 
 	/**
 	 * Send to JSP DTO
-	 *
 	 * @return mav - courseDTO
 	 */
 	@RequestMapping(value = "/addCourse", method = RequestMethod.GET)
@@ -55,11 +52,9 @@ public class CourseController {
 	}
 
 	//СДЕЛАТЬ РЕДИРЕКТ
-	// TODO: 12.07.2019 Переделать метод. В БД - энтити
 
 	/**
 	 * Add course to database
-	 *
 	 * @param course - CourseDTO
 	 * @return - view where adding course
 	 */
@@ -73,20 +68,14 @@ public class CourseController {
 	@RequestMapping(value = "/deleteCourse", method = RequestMethod.GET)
 	public ModelAndView showCourseList()
 	{
-
 		ModelAndView mav = new ModelAndView("deleteCourse");
 		List<CourseDTO> courseDTOList = courseService.getCourses();
 		mav.addObject("courseDTOList", courseDTOList);
 		return mav;
 	}
 
-	//СДЕЛАТЬ РЕДИРЕКТ
-	// TODO: 12.07.2019 Переделать метод. В БД - энтити
-
 	/**
 	 * Add course to database
-	 *
-
 	 * @return - view where adding course
 	 */
 	@RequestMapping(value = "/deleteCourse", method = RequestMethod.POST)
@@ -97,8 +86,4 @@ public class CourseController {
 		courseService.deleteCourse(id);
 		return mav;
 	}
-
-
-
-
 }

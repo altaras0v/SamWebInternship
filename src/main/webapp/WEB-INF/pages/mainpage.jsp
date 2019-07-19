@@ -5,7 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isELIgnored="false" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -530,11 +530,14 @@
             <div class="col-md-3">
                 <div class="ebox">
                     <div class="ebox-head">
-                        <div class="rcthumb"><img src="/img/paradrop.png" width="210" height="160" /></td><i class="fa fa-globe"></i></div>
+                        <div class="rcthumb"><img src="/img/paradrop.png" width="210" height="160"/></td><i
+                                class="fa fa-globe"></i></div>
                     </div>
                     <div class="ebox-body"><h6>Online Study</h6>
-                        <p>Online education is a convenient and flexible way to study, and opens the door to higher education for many people.
-                            In a fast-paced digital world, the benefits of studying online speak for themselves and will pave the way for a successful future.</p></div>
+                        <p>Online education is a convenient and flexible way to study, and opens the door to higher
+                            education for many people.
+                            In a fast-paced digital world, the benefits of studying online speak for themselves and will
+                            pave the way for a successful future.</p></div>
                 </div>
             </div>
             <div class="col-md-3">
@@ -543,8 +546,10 @@
                         <div class="rcthumb"><i class="fa fa-graduation-cap"></i></div>
                     </div>
                     <div class="ebox-body"><h6>Improve your skills</h6>
-                        <p>A tremendous help when it comes to knowledge and skills acquisition is to do it the right way.
-                            You want to shorten the learning curve as much as possible. And our resource is an excellent opportunity for a quick and high-quality start in a new area of life</p></div>
+                        <p>A tremendous help when it comes to knowledge and skills acquisition is to do it the right
+                            way.
+                            You want to shorten the learning curve as much as possible. And our resource is an excellent
+                            opportunity for a quick and high-quality start in a new area of life</p></div>
                 </div>
             </div>
             <div class="col-md-3">
@@ -553,8 +558,10 @@
                         <div class="rcthumb"><i class="fa fa-bullhorn"></i></div>
                     </div>
                     <div class="ebox-body"><h6>Check your progress</h6>
-                        <p>After passing a few lessons you will be tested or perform several tasks to assess your progress.
-                            And your mentor will be able to evaluate the result and give you a plan for further development</p></div>
+                        <p>After passing a few lessons you will be tested or perform several tasks to assess your
+                            progress.
+                            And your mentor will be able to evaluate the result and give you a plan for further
+                            development</p></div>
                 </div>
             </div>
 
@@ -568,24 +575,25 @@
                         <div class="category loaded with_children" data-categoryid="1" data-depth="1"
                              data-showcourses="10" data-type="0">
                             <div class="info"><h3 class="categoryname"><a
-                                    href="http://moodle.lmsace.com/course/index.php?categoryid=1"><spring:message code="mainpage.title"/></a>
+                                    href="http://moodle.lmsace.com/course/index.php?categoryid=1"><spring:message
+                                    code="mainpage.title"/></a>
                             </h3></div>
                             <div class="content">
                                 <div class="courses frontpage-category-combo">
                                     <c:forEach items="${listsCourses}" var="course">
                                         <td><form:form name="first" action="../redirect/courseRedirect" method="get">
-                                    <div class="coursebox clearfix odd first collapsed" data-courseid="6"
-                                         data-type="1">
-
-                                            <div class="info">
-                                                <div class="coursename"><button style="color: #4BA89C" title="${course.description}" type="submit" name="first"
-                                                                                            value="${course.id}" class="btn btn-link">${course.name}</button>
-                                                  </div>
-
-                                        </div>
-
-                                        <div class="content "></div>
-                                    </div>
+                                            <div class="coursebox clearfix odd first collapsed" data-courseid="6"
+                                                 data-type="1">
+                                                <div class="info">
+                                                    <div class="coursename">
+                                                        <button style="color: #4BA89C" title="${course.description}"
+                                                                type="submit" name="first"
+                                                                value="${course.id}"
+                                                                class="btn btn-link">${course.name}</button>
+                                                    </div>
+                                                </div>
+                                              <%--  <div class="content "></div>--%>
+                                            </div>
                                         </form:form></td>
                                     </c:forEach>
 
@@ -733,7 +741,8 @@
             </div>
         </div>
         <div class="footer-foot">
-            <div class="container"><p class="text-center">Copyright &copy; localhost:8080&#128518;,2019. All rights reserved.</p>
+            <div class="container"><p class="text-center">Copyright &copy; localhost:8080&#128518;,2019. All rights
+                reserved.</p>
                 <p>Contact: altaras0b@gmail.com</p>
             </div>
         </div>

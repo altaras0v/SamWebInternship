@@ -42,6 +42,7 @@ public class CourseServiceImpl implements CourseService {
 	@Transactional
 	public void addCourse(CourseDTO course) {
 		courseRepository.save(new Course(course.getName(), course.getDescription(),course.getFullDescription()));
+		logger.info("addCourses method");
 	}
 
 	// TODO: 08.07.2019   Написать тесты!!!
@@ -50,6 +51,7 @@ public class CourseServiceImpl implements CourseService {
 	@Transactional
 	public CourseDTO getCourseById(long id) {
 		Course course = courseRepository.findOne(id);
+		logger.info("getCourseById method");
 		return new CourseDTO(course.getName(), course.getDescription(), course.getFullDescription(), course.getId());
 	}
 
@@ -57,5 +59,6 @@ public class CourseServiceImpl implements CourseService {
 	@Transactional
 	public void deleteCourse(long id){
 		courseRepository.delete(id);
+		logger.info("deleteLesson method");
 	}
 }

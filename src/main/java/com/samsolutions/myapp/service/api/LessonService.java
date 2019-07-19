@@ -1,6 +1,7 @@
 package com.samsolutions.myapp.service.api;
 
 import com.samsolutions.myapp.dto.LessonDTO;
+import com.samsolutions.myapp.model.Lesson;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,5 +12,9 @@ public interface LessonService {
 
 	List<LessonDTO> getLessonsByCourseId(long id);
 
-	LessonDTO getLessonsById(long id);
+	LessonDTO getLessonById(long id);
+
+	void deleteLesson(long id);
+
+	void addLesson(Lesson lesson);
 }

@@ -28,30 +28,30 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "lesson")
 public class Lesson implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
-    @Column(name = "name")
-    private String name;
+	@Column(name = "name")
+	private String name;
 
-    @Column(name = "description")
-    private String description;
+	@Column(name = "description")
+	private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "course_id")
-    private Course course;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "course_id")
+	private Course course;
 
-    @OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<LessonFile> lessonFiles = new ArrayList<>();
+	@OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<LessonFile> lessonFiles = new ArrayList<>();
 
-    @OneToOne(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Test test = new Test();
+	@OneToOne(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Test test = new Test();
 
-    public Lesson(long id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
+	public Lesson(String name, String description, Course course) {
+		this.name = name;
+		this.description = description;
+		this.course = course;
+	}
 
 }

@@ -32,7 +32,9 @@ public class LessonServiceImpl implements LessonService {
 		List<Lesson> lessons = (List<Lesson>) lessonRepository.findAll();
 		logger.info("getLessons method");
 
-		return lessons.stream().map(c -> new LessonDTO(c.getId(), c.getName(), c.getDescription())).collect(Collectors.toList());
+		return lessons.stream()
+				.map(c -> new LessonDTO(c.getId(), c.getName(), c.getDescription()))
+				.collect(Collectors.toList());
 	}
 
 	// TODO: 09.07.2019 Сделать тесты!
@@ -41,15 +43,28 @@ public class LessonServiceImpl implements LessonService {
 		logger.info("getLessonsByCourseId");
 		List<Lesson> lessons = lessonRepository.findAllByCourseId(id);
 
-
-		return lessons.stream().map(c -> new LessonDTO(c.getId(), c.getName(), c.getDescription())).collect(Collectors.toList());
+		return lessons.stream()
+				.map(c -> new LessonDTO(c.getId(), c.getName(), c.getDescription()))
+				.collect(Collectors.toList());
 	}
 
 	@Override
-	public LessonDTO getLessonsById(long id) {
+	public LessonDTO getLessonById(long id) {
 		logger.info("getLessonsById method");
 
 		Lesson lesson = lessonRepository.findOne(id);
 		return new LessonDTO(lesson.getId(), lesson.getName(), lesson.getDescription());
+	}
+
+	@Override
+	public void deleteLesson(long id) {
+		lessonRepository.delete(id);
+		logger.info("deleteLesson method");
+	}
+
+	@Override
+	public void addLesson(Lesson lesson) {
+		lessonRepository.save(lesson);
+		logger.info("addLesson method");
 	}
 }

@@ -32,7 +32,7 @@ public class RedirectToLessonController {
 	public ModelAndView redirectToLesson(HttpServletRequest request, HttpServletResponse response) {
 		int id = Integer.parseInt(request.getParameter("id"));
 
-		LessonDTO lessonDTO = lessonService.getLessonsById(id);
+		LessonDTO lessonDTO = lessonService.getLessonById(id);
 		List<LessonFileDTO> listFiles = lessonFileService.getFilesByLessonId(id);
 
 		ModelAndView modelAndView = new ModelAndView("lesson");

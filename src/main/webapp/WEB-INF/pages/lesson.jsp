@@ -496,7 +496,7 @@
 
                                 <td><form:form name="first" action="../download" method="get">
 
-                                            <button   type="submit" name="id" value="${files.id}" class="btn btn-link">${files.name}</button>
+                                            <button   type="submit" name="id" value="${files.id}" style="text-transform: capitalize" class="btn btn-link"><a style="text-transform: capitalize"> ${files.name}</a></button>
                                         <div class="coursebox clearfix odd first collapsed" data-courseid="6"
                                              data-type="1"> <font style="color: #00008B">  &nbsp;&nbsp; ${files.description}</font> </div>
 

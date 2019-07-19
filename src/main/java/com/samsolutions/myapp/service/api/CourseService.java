@@ -9,7 +9,7 @@ import java.util.List;
 public interface CourseService {
 	List<CourseDTO> getCourses();
 
-	void addCourse(CourseDTO course); // TODO: 12.07.2019 переписать метод
+	void addCourse(CourseDTO course);
 
 	CourseDTO getCourseById(long id);
 

@@ -5,7 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isELIgnored="false" %>
-<%@ page language="java" contentType="text/html; charset=Cp1251" pageEncoding="Cp1251"%>
+<%@ page language="java" contentType="text/html; charset=Cp1251" pageEncoding="Cp1251" %>
 <!DOCTYPE html>
 <html>
 <meta http-equiv="content-type" content="text/html; charset=cp1251">
@@ -463,14 +463,16 @@
                     <div class="card-body">
                         <span class="notifications" id="user-notifications"></span>
                         <div role="main"><span id="maincontent"></span>
-                            <center> <h2>${courseDTO.name}</h2></center>
+                            <center><h2>${courseDTO.name}</h2></center>
                             <div class="box generalbox info py-3">
                                 <div class="coursebox clearfix" data-courseid="6" data-type="1">
-                                    <h3 class="coursename"> ${courseDTO.name} &nbsp;&nbsp;- &nbsp;&nbsp;      eLearning course </h3>
+                                    <h3 class="coursename"> ${courseDTO.name} &nbsp;&nbsp;- &nbsp;&nbsp; eLearning
+                                        course </h3>
 
                                     <div class="content ">
                                         <div class="summary">
-                                            <div style="color: #00008B" class="no-overflow"><p>${courseDTO.fullDescription}</p></div>
+                                            <div style="color: #00008B" class="no-overflow">
+                                                <p>${courseDTO.fullDescription}</p></div>
                                         </div>
                                         <div class="courseimage"><img src="/img/logo.png" width="210" height="500"/>
                                         </div>
@@ -478,28 +480,49 @@
                                 </div>
                             </div>
                             <br>
-                            <div class="info"><center><h2 class="coursename"> Lessons </h2></center>
-                                <div class="moreinfo"></div>
+
+                            <div id="frontpage-category-combo"><center><h2>Lessons</h2></center>
+                                <div class="course_category_tree clearfix ">
+                                    <div class="content">
+                                        <div class="subcategories">
+                                            <div class="category loaded with_children" data-categoryid="1"
+                                                 data-depth="1"
+                                                 data-showcourses="10" data-type="0">
+                                                <div class="content">
+                                                    <div class="courses frontpage-category-combo">
+                                                        <c:forEach items="${listLesson}" var="lesson">
+                                                            <td><form:form name="first" action="../redirect/lessonRedirect" method="get">
+                                                                <div class="coursebox clearfix odd first collapsed" data-courseid="6"
+                                                                     data-type="1">
+                                                                    <div class="info">
+                                                                        <div class="coursename">
+                                                                            <button style="color: #4BA89C" type="submit" name="id"
+                                                                                    value="${lesson.id}"
+                                                                                    class="btn btn-link">${lesson.name}</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="content "></div>
+                                                                </div>
+                                                            </form:form></td>
+                                                        </c:forEach>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <br>
-                            <c:forEach items="${listLesson}" var="lesson">
-                            <td><form:form name="first" action="../redirect/lessonRedirect" method="get">
-                            <div class="coursebox clearfix odd first collapsed" data-courseid="6"
-                                 data-type="1">
-
-                                <div class="info">
-
-                                    <div class="coursename"><button style="color: #4BA89C"  type="submit" name="id" value="${lesson.id}" class="btn btn-link">${lesson.name}</button>
-                                    </div>
-
-                                </div>
-
-                                <div class="content "></div>
-                            </div>
-                            </form:form></td>
-                            </c:forEach>
-
-
+                            <form:form name="courseId" action="../addLesson" method="get">
+                                <button style="color: #3c867c;font-size: 16px" type="submit" name="courseId"
+                                        value="${courseDTO.id}" class="btn btn-link"><a
+                                        style="text-transform:capitalize">Add lesson</a></button>
+                            </form:form>
+                            <form:form name="courseId" action="../deleteLesson" method="get">
+                                <button style="color: #3c867c;font-size: 16px" type="submit" name="courseId"
+                                        value="${courseDTO.id}" class="btn btn-link"><a
+                                        style="text-transform:capitalize">Delete lesson</a></button>
+                            </form:form>
                             <div id="notice" class="box generalbox py-3">Guests cannot access this course. Please
                                 log in.
                             </div>
@@ -616,7 +639,8 @@
         </div>
     </div>
     <div class="footer-foot">
-        <div class="container"><p class="text-center">Copyright &copy; localhost:8080&#128518;,2019. All rights reserved.</p>
+        <div class="container"><p class="text-center">Copyright &copy; localhost:8080&#128518;,2019. All rights
+            reserved.</p>
             <p>Contact: altaras0b@gmail.com</p>
         </div>
     </div>
