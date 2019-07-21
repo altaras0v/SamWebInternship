@@ -26,6 +26,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "test")
+/**
+ * Entity for test
+ */
 public class Test implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +47,12 @@ public class Test implements Serializable {
 	@OneToMany(mappedBy = "test", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Question> questions = new ArrayList<>();
 
+	/**
+	 * Constructor for creating test
+	 * @param name - name of test
+	 * @param description - description of test
+	 * @param lesson - lesson for this test (use only for assignment test to lesson)
+	 */
 	public Test(String name, String description, Lesson lesson) {
 		this.name = name;
 		this.description = description;

@@ -45,6 +45,12 @@ public class Course implements Serializable {
 	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<Lesson> lessons = new ArrayList<>();
 
+	/**
+	 * Constructor for creating course
+	 * @param name - name of course
+	 * @param description - short description of course
+	 * @param fullDescription - full description for course
+	 */
 	public Course(String name, String description, String fullDescription) {
 		this.name = name;
 		this.description = description;

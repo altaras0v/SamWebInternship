@@ -21,6 +21,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Entity for lesson
+ */
 @Entity
 @Getter
 @Setter
@@ -48,6 +51,12 @@ public class Lesson implements Serializable {
 	@OneToOne(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Test test = new Test();
 
+	/**
+	 * Constructor for creating lesson
+	 * @param name - name of lesson
+	 * @param description - description of lesson
+	 * @param course - course for this lesson (use only for assignment lesson to course)
+	 */
 	public Lesson(String name, String description, Course course) {
 		this.name = name;
 		this.description = description;

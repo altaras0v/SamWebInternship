@@ -41,8 +41,9 @@ public class CourseController {
 	}
 
 	/**
-	 * Send to JSP DTO
-	 * @return mav - courseDTO
+	 * Send to JSP empty courseDTO
+	 *
+	 * @return - view for adding course with courseDTO
 	 */
 	@RequestMapping(value = "/addCourse", method = RequestMethod.GET)
 	public ModelAndView showRegister() {
@@ -50,13 +51,13 @@ public class CourseController {
 		mav.addObject("course", new CourseDTO());
 		return mav;
 	}
-
-	//СДЕЛАТЬ РЕДИРЕКТ
+	// TODO: 21.07.2019  СДЕЛАТЬ РЕДИРЕКТ
 
 	/**
 	 * Add course to database
+	 *
 	 * @param course - CourseDTO
-	 * @return - view where adding course
+	 * @return - view where adding course(course add now)
 	 */
 	@RequestMapping(value = "/addCourse", method = RequestMethod.POST)
 	public ModelAndView AddCourse(@ModelAttribute("course") CourseDTO course) {
@@ -65,9 +66,13 @@ public class CourseController {
 		return mav;
 	}
 
+	/**
+	 * Send to JSP list with courseDTOs
+	 *
+	 * @return - view for deleting course with courseDTOs(like list)
+	 */
 	@RequestMapping(value = "/deleteCourse", method = RequestMethod.GET)
-	public ModelAndView showCourseList()
-	{
+	public ModelAndView showCourseList() {
 		ModelAndView mav = new ModelAndView("deleteCourse");
 		List<CourseDTO> courseDTOList = courseService.getCourses();
 		mav.addObject("courseDTOList", courseDTOList);
@@ -75,8 +80,9 @@ public class CourseController {
 	}
 
 	/**
-	 * Add course to database
-	 * @return - view where adding course
+	 * Delete course to database
+	 *
+	 * @return - view where deleting course (course delete now)
 	 */
 	@RequestMapping(value = "/deleteCourse", method = RequestMethod.POST)
 	public ModelAndView deleteCourse(HttpServletResponse response, HttpServletRequest request) {

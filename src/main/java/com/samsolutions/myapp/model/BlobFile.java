@@ -16,6 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
+/**
+ * Entity for blob files
+ */
 @Entity
 @Getter
 @Setter
@@ -35,6 +38,11 @@ public class BlobFile implements Serializable {
 	@JoinColumn(name = "file_id")
 	private LessonFile lessonFile;
 
+	/**
+	 * Constructor for creating Blob file
+	 * @param file - bytes of this file
+	 * @param lessonFile - entity with name and description  of this file
+	 */
 	public BlobFile(byte[] file, LessonFile lessonFile) {
 		this.file = file;
 		this.lessonFile = lessonFile;

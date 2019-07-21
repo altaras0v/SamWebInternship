@@ -4,9 +4,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Data transfer object for test
+ * For sending object to views
+ * Redifined some general methods
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -34,5 +40,15 @@ public class TestDTO implements Serializable {
 	@Override
 	public String toString() {
 		return "TestDTO{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + '}';
+	}
+
+	/**
+	 * Constructor for creating test
+	 * @param name - name of test
+	 * @param description - description for test
+	 */
+	public TestDTO(String name, String description) {
+		this.name = name;
+		this.description = description;
 	}
 }

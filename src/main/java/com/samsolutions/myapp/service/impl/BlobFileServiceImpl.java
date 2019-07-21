@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+/**
+ * Implementation of {@link BlobFileService}
+ */
 @Service
 public class BlobFileServiceImpl implements BlobFileService {
 
@@ -17,12 +20,24 @@ public class BlobFileServiceImpl implements BlobFileService {
 
 	private final BlobFileRepository blobFileRepository;
 
+	/**
+	 * Constructor with needed repository
+	 *
+	 * @param blobFileRepository - repository for BLOB files
+	 */
 	@Autowired
 	public BlobFileServiceImpl(BlobFileRepository blobFileRepository) {
 		this.blobFileRepository = blobFileRepository;
 	}
 
 	// TODO: 14.07.2019 Make Tests
+
+	/**
+	 * Gets file from database with this id
+	 *
+	 * @param id - LessonFile id
+	 * @return - needed blob file
+	 */
 	@Override
 	@Transactional
 	public BlobFile getFileByLessonFileId(long id) {
@@ -31,6 +46,11 @@ public class BlobFileServiceImpl implements BlobFileService {
 		return blobFile;
 	}
 
+	/**
+	 * Add file to database
+	 *
+	 * @param blobFile - object for adding
+	 */
 	@Override
 	@Transactional
 	public void addFile(BlobFile blobFile) {

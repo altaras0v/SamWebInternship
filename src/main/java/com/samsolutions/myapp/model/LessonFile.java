@@ -16,6 +16,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
+/**
+ * Entity for file(only description,not byte)
+ */
 @Entity
 @Getter
 @Setter
@@ -38,6 +41,12 @@ public class LessonFile implements Serializable {
     @JoinColumn(name = "lesson_id")
     private Lesson lesson;
 
+    /**
+     * Constructor for creating files for lesson
+     * @param name - name of file
+     * @param description - description of file
+     * @param lesson - lesson for this file (use only for assignment file to lesson)
+     */
     public LessonFile(String name,String description,Lesson lesson){
         this.name = name;
         this.description = description;

@@ -15,18 +15,38 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * Controller for lesson list
+ * User choosed course in mainpage and it redirect to page with lessons for this course
+ */
 @Controller
 @RequestMapping("/redirect")
 public class RedirectToSpecificCourseController {
 
 	private static final Logger logger = LoggerFactory.getLogger(RedirectToSpecificCourseController.class);
 
-	@Autowired
-	private CourseService courseService;
+	private final CourseService courseService;
 
-	@Autowired
-	private LessonService lessonService;
+	private final LessonService lessonService;
 
+	/**
+	 * Constructor for controller
+	 *
+	 * @param courseService - service for course,getting course by lesson id
+	 * @param lessonService - service for lesson,getting lessons for this course
+	 */
+	@Autowired
+	public RedirectToSpecificCourseController(CourseService courseService, LessonService lessonService) {
+		this.courseService = courseService;
+		this.lessonService = lessonService;
+	}
+
+	/**
+	 * Method that takes course id, get entity from database (with this id)
+	 * And send DTO to view
+	 * @param request - course id
+	 * @return - view with list of lesson for this course
+	 */
 	@RequestMapping(value = {"/courseRedirect"}, method = RequestMethod.GET)
 	public ModelAndView redirectToCourse(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("first"));

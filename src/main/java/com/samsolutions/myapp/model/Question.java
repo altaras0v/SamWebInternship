@@ -22,6 +22,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "question")
+/**
+ * Entity for question
+ */
 public class Question implements Serializable {
 
 	@Id

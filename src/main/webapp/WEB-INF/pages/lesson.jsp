@@ -506,11 +506,19 @@
                                 </style>
                             </c:forEach>
                             </div>
+                            <td><form:form name="lessonId" action="../addTest" method="get">
+
+                                <button   type="submit" name="id" value="${lessonDTO.id}" style="text-transform: capitalize" class="btn btn-link"><a style="text-transform: capitalize"> Add test </a></button>
+                                <div class="coursebox clearfix odd first collapsed" data-courseid="6"
+                                     data-type="1"> </div>
+
+                            </form:form></td>
                             <br><br>
                             <div class="info"><center><h2 class="coursename"> Test for lesson </h2></center>
                                 <div class="moreinfo"></div>
                             </div>
                             <br><br>
+
                             <div class="coursebox clearfix odd first collapsed" data-courseid="6"
                                  data-type="1">
 

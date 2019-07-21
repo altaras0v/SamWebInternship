@@ -13,6 +13,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of {@link LessonService}
+ */
 @Service
 public class LessonServiceImpl implements LessonService {
 
@@ -20,12 +23,22 @@ public class LessonServiceImpl implements LessonService {
 
 	private final LessonRepository lessonRepository;
 
+	/**
+	 * Constructor with needed repository
+	 *
+	 * @param lessonRepository - repository for lesson
+	 */
 	@Autowired
 	public LessonServiceImpl(LessonRepository lessonRepository) {
 
 		this.lessonRepository = lessonRepository;
 	}
 
+	/**
+	 * Gel all lessons from database
+	 *
+	 * @return list with lesson DTOs
+	 */
 	@Override
 	@Transactional
 	public List<LessonDTO> getLessons() {
@@ -38,6 +51,13 @@ public class LessonServiceImpl implements LessonService {
 	}
 
 	// TODO: 09.07.2019 Сделать тесты!
+
+	/**
+	 * Get lessons from database for this course
+	 *
+	 * @param id - course id
+	 * @return list with lesson DTOs for needed course
+	 */
 	@Override
 	public List<LessonDTO> getLessonsByCourseId(long id) {
 		logger.info("getLessonsByCourseId");
@@ -48,6 +68,12 @@ public class LessonServiceImpl implements LessonService {
 				.collect(Collectors.toList());
 	}
 
+	/**
+	 * Get lesson from database with this id
+	 *
+	 * @param id - lesson id
+	 * @return lesson DTOs with needed id
+	 */
 	@Override
 	public LessonDTO getLessonById(long id) {
 		logger.info("getLessonsById method");
@@ -56,12 +82,22 @@ public class LessonServiceImpl implements LessonService {
 		return new LessonDTO(lesson.getId(), lesson.getName(), lesson.getDescription());
 	}
 
+	/**
+	 * Delete lesson from database
+	 *
+	 * @param id - lesson id
+	 */
 	@Override
 	public void deleteLesson(long id) {
 		lessonRepository.delete(id);
 		logger.info("deleteLesson method");
 	}
 
+	/**
+	 * Add lesson to database
+	 *
+	 * @param lesson - object for adding
+	 */
 	@Override
 	public void addLesson(Lesson lesson) {
 		lessonRepository.save(lesson);

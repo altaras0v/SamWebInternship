@@ -9,7 +9,9 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * Course data transfer object
+ * Data transfer object for course
+ * For sending object to views
+ * Redifined some general methods
  */
 @Getter
 @Setter
@@ -22,6 +24,12 @@ public class CourseDTO implements Serializable {
 	private String fullDescription;
 	private long id;
 
+	/**
+	 * Constructor for creating course
+	 * @param name - name of course
+	 * @param description - description of course
+	 * @param fullDescription - full description of course (on specific page)
+	 */
 	public CourseDTO(String name, String description, String fullDescription) {
 		this.name = name;
 		this.description = description;

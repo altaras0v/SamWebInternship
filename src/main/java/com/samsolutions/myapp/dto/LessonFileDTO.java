@@ -7,6 +7,11 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Data transfer object for files
+ * For sending object to views
+ * Redifined some general methods
+ */
 @Getter
 @Setter
 @AllArgsConstructor
