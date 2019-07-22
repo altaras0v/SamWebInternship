@@ -508,16 +508,18 @@
                             </div>
                             <td><form:form name="lessonId" action="../addTest" method="get">
 
-                                <button   type="submit" name="id" value="${lessonDTO.id}" style="text-transform: capitalize" class="btn btn-link"><a style="text-transform: capitalize"> Add test </a></button>
-                                <div class="coursebox clearfix odd first collapsed" data-courseid="6"
-                                     data-type="1"> </div>
+                                <button  type="submit" name="lessonId" value="${lessonDTO.id}" style="text-transform: capitalize" class="btn btn-link"><a style="text-transform: capitalize"> Add test </a></button>
 
                             </form:form></td>
                             <br><br>
-                            <div class="info"><center><h2 class="coursename"> Test for lesson </h2></center>
+                            <div class="info"><center><h2 class="coursename"> Test:&nbsp;&nbsp; ${testDTO.name} </h2></center>
                                 <div class="moreinfo"></div>
                             </div>
-                            <br><br>
+                            <br>
+                            <div style="color: #00008B;font-size: 18px">
+                                <center><span >${testDTO.description}</span></center>
+                            </div>
+                            <br>
 
                             <div class="coursebox clearfix odd first collapsed" data-courseid="6"
                                  data-type="1">
@@ -535,7 +537,11 @@
 
                             </div>
 
-
+                            <form:form name="testId" action="../deleteTest" method="get">
+                                <button style="color: #3c867c;font-size: 16px" type="submit" name="testId"
+                                        value="${testDTO.id}" class="btn btn-link"><a
+                                        style="text-transform:capitalize">Delete test</a></button>
+                            </form:form>
                             <div id="notice" class="box generalbox py-3">Guests cannot access this course. Please
                                 log in.
                             </div>
@@ -860,10 +866,10 @@
                 "nofilesavailable": "No files available",
                 "norepositoriesavailable": "Sorry, none of your current repositories can return files in the required format.",
                 "fileexistsdialogheader": "File exists",
-                "fileexistsdialog_editor": "A file with that name has already been attached to the text you are editing.",
-                "fileexistsdialog_filemanager": "A file with that name has already been attached",
+                "fileexistsdialog_editor": "A validator with that name has already been attached to the text you are editing.",
+                "fileexistsdialog_filemanager": "A validator with that name has already been attached",
                 "renameto": "Rename to \"{$a}\"",
-                "referencesexist": "There are {$a} alias\/shortcut files that use this file as their source",
+                "referencesexist": "There are {$a} alias\/shortcut files that use this validator as their source",
                 "select": "Select"
             },
             "admin": {

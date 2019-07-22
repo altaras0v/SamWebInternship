@@ -27,8 +27,28 @@ public class TestServiceImpl implements TestService {
 	@Transactional
 	public TestDTO getTestByLessonId(long id) {
 
-		Test test = testRepository.findByLessonId(id);
-		logger.info("getTestByLessonId method");
-		return new TestDTO(test.getName(),test.getDescription());
+		if (testRepository.findByLessonId(id) != null) {
+			Test test = testRepository.findByLessonId(id);
+			logger.info("getTestByLessonId method");
+			return new TestDTO(test.getId(),test.getName(), test.getDescription());
+		}
+		else {
+			return new TestDTO();
+		}
+
+	}
+
+	@Override
+	public void addTest(Test test)
+	{
+		testRepository.save(test);
+		logger.info("addTest method");
+	}
+
+	@Override
+	public void deleteTest(long id)
+	{
+		testRepository.delete(id);
+		logger.info("deleteTest method");
 	}
 }

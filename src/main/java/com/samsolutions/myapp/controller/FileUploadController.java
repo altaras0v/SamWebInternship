@@ -1,8 +1,8 @@
 package com.samsolutions.myapp.controller;
 
 import com.samsolutions.myapp.dto.LessonDTO;
-import com.samsolutions.myapp.file.FileValidator;
-import com.samsolutions.myapp.file.UploadedFile;
+import com.samsolutions.myapp.validator.FileValidator;
+import com.samsolutions.myapp.validator.UploadedFile;
 import com.samsolutions.myapp.model.BlobFile;
 import com.samsolutions.myapp.model.Lesson;
 import com.samsolutions.myapp.model.LessonFile;
@@ -60,7 +60,7 @@ import javax.servlet.http.HttpServletRequest;
 	}
 
 	/**
-	 * Upload single file using Spring Controller
+	 * Upload single validator using Spring Controller
 	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public @ResponseBody

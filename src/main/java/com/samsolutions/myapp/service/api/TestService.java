@@ -1,6 +1,7 @@
 package com.samsolutions.myapp.service.api;
 
 import com.samsolutions.myapp.dto.TestDTO;
+import com.samsolutions.myapp.model.Test;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,4 +15,8 @@ public interface TestService {
 	 * @return
 	 */
 	TestDTO getTestByLessonId(long id);
+
+	void addTest(Test test);
+
+	void deleteTest(long id);
 }

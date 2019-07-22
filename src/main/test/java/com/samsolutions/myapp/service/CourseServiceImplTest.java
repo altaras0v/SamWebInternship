@@ -54,7 +54,6 @@ public class CourseServiceImplTest {
         //when
         courseService.getCourses();
 
-
         //then
         verify(courseRepository).findAll();
     }

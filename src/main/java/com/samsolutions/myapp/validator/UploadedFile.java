@@ -1,4 +1,4 @@
-package com.samsolutions.myapp.file;
+package com.samsolutions.myapp.validator;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

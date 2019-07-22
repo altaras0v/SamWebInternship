@@ -1,4 +1,4 @@
-package com.samsolutions.myapp.file;
+package com.samsolutions.myapp.validator;
 
 import com.samsolutions.myapp.config.ApplicationProperties;
 import org.springframework.stereotype.Component;

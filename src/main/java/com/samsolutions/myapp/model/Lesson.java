@@ -48,7 +48,7 @@ public class Lesson implements Serializable {
 	@OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<LessonFile> lessonFiles = new ArrayList<>();
 
-	@OneToOne(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "lesson", fetch = FetchType.LAZY)
 	private Test test = new Test();
 
 	/**
