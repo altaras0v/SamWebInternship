@@ -508,7 +508,7 @@
                             </div>
                             <td><form:form name="lessonId" action="../addTest" method="get">
 
-                                <button  type="submit" name="lessonId" value="${lessonDTO.id}" style="text-transform: capitalize" class="btn btn-link"><a style="text-transform: capitalize"> Add test </a></button>
+                                <c:if test="${testDTO==null}"> <button  type="submit" name="lessonId" value="${lessonDTO.id}" style="text-transform: capitalize" class="btn btn-link"><a style="text-transform: capitalize"> Add test </a></button></c:if>
 
                             </form:form></td>
                             <br><br>
