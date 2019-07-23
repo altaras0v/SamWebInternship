@@ -6,11 +6,30 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ *
+ */
 @Service
 public interface QuestionService {
+	/**
+	 * Get questions for this test
+	 *
+	 * @param id - test id
+	 * @return list with questions
+	 */
 	List<QuestionDTO> getQuestionsByTestId(long id);
 
+	/**
+	 * Add question
+	 *
+	 * @param question - text of question
+	 */
 	void addQuestion(Question question);
 
+	/**
+	 * delete question
+	 *
+	 * @param id - id of question
+	 */
 	void deleteQuestion(long id);
 }

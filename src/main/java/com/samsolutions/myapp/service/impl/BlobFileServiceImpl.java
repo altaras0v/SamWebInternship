@@ -23,10 +23,11 @@ public class BlobFileServiceImpl implements BlobFileService {
 	/**
 	 * Constructor with needed repository
 	 *
-	 * @param blobFileRepository - repository for BLOB files
+	 * @param blobFileRepository - repository(CRUD) for BLOB files
 	 */
 	@Autowired
-	public BlobFileServiceImpl(BlobFileRepository blobFileRepository) {
+	public BlobFileServiceImpl(BlobFileRepository blobFileRepository)
+	{
 		this.blobFileRepository = blobFileRepository;
 	}
 
@@ -40,7 +41,8 @@ public class BlobFileServiceImpl implements BlobFileService {
 	 */
 	@Override
 	@Transactional
-	public BlobFile getFileByLessonFileId(long id) {
+	public BlobFile getFileByLessonFileId(long id)
+	{
 		logger.info("getFileByLessonId method");
 		BlobFile blobFile = blobFileRepository.findByLessonFileId(id);
 		return blobFile;
@@ -53,11 +55,17 @@ public class BlobFileServiceImpl implements BlobFileService {
 	 */
 	@Override
 	@Transactional
-	public void addFile(BlobFile blobFile) {
-		logger.info("addFile method");
+	public void addFile(BlobFile blobFile)
+	{
 		blobFileRepository.save(blobFile);
+		logger.info("addFile method");
 	}
 
+	/**
+	 * Delete file from database
+	 *
+	 * @param id - id of file that will be delete
+	 */
 	@Override
 	public void deleteFile(long id)
 	{

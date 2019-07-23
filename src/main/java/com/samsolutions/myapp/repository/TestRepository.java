@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * Repository for test
+ * repository(CRUD) for test
  */
 @Repository
 public interface TestRepository extends CrudRepository<Test, Long>, JpaSpecificationExecutor<Test> {

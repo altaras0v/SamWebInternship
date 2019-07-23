@@ -15,18 +15,35 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Controller for question
+ * testId - id of test that have these questions
+ */
 @Controller
 @SessionAttributes("testId")
 public class QuestionController {
 
 	private final QuestionService questionService;
 
+	/**
+	 * Constructor for controller
+	 *
+	 * @param questionService - service for question, adding,getting and deleting of question
+	 */
 	@Autowired
 	public QuestionController(QuestionService questionService)
 	{
 		this.questionService = questionService;
 	}
 
+	/**
+	 * Send empty questionDTO to view and set value to model
+	 *
+	 * @param request     - id of test that will have this question
+	 * @param questionDTO - DTO of question for model attribute
+	 * @param model       - model for session attribute (test id)
+	 * @return view for adding question
+	 */
 	@RequestMapping(value = "/addQuestion", method = RequestMethod.GET)
 	public ModelAndView showRegister(HttpServletRequest request, @ModelAttribute("question") QuestionDTO questionDTO, ModelMap model)
 	{
@@ -39,6 +56,13 @@ public class QuestionController {
 
 	//СДЕЛАТЬ РЕДИРЕКТ
 
+	/**
+	 * Add question to database
+	 *
+	 * @param questionDTO - object with question text from view
+	 * @param modelMap    - model for session attribute (test id)
+	 * @return view for adding question
+	 */
 	@RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
 	public ModelAndView AddQuestion(@ModelAttribute("question") QuestionDTO questionDTO, ModelMap modelMap)
 	{
@@ -46,10 +70,16 @@ public class QuestionController {
 		ModelAndView mav = new ModelAndView("addQuestion");
 		Test test = new Test();
 		test.setId(id);
-		questionService.addQuestion(new Question(questionDTO.getQuestion(),test));
+		questionService.addQuestion(new Question(questionDTO.getQuestion(), test));
 		return mav;
 	}
 
+	/**
+	 * Delete question from database
+	 *
+	 * @param request - id of question that will be delete
+	 * @return mainpage view
+	 */
 	@RequestMapping(value = "/deleteQuestion", method = RequestMethod.GET)
 	public ModelAndView deleteQuestion(HttpServletRequest request)
 	{

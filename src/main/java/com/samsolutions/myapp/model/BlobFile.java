@@ -18,6 +18,7 @@ import java.io.Serializable;
 
 /**
  * Entity for blob files
+ * Connect with lessonFile
  */
 @Entity
 @Getter
@@ -40,10 +41,12 @@ public class BlobFile implements Serializable {
 
 	/**
 	 * Constructor for creating Blob file
-	 * @param file - bytes of this file
+	 *
+	 * @param file       - bytes of this file
 	 * @param lessonFile - entity with name and description  of this file
 	 */
-	public BlobFile(byte[] file, LessonFile lessonFile) {
+	public BlobFile(byte[] file, LessonFile lessonFile)
+	{
 		this.file = file;
 		this.lessonFile = lessonFile;
 	}

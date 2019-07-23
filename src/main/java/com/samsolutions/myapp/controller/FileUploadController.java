@@ -1,13 +1,13 @@
 package com.samsolutions.myapp.controller;
 
 import com.samsolutions.myapp.dto.LessonDTO;
-import com.samsolutions.myapp.validator.FileValidator;
-import com.samsolutions.myapp.validator.UploadedFile;
 import com.samsolutions.myapp.model.BlobFile;
 import com.samsolutions.myapp.model.Lesson;
 import com.samsolutions.myapp.model.LessonFile;
 import com.samsolutions.myapp.service.api.BlobFileService;
 import com.samsolutions.myapp.service.api.LessonFileService;
+import com.samsolutions.myapp.validator.FileValidator;
+import com.samsolutions.myapp.validator.UploadedFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +26,13 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 
-
-@Controller
-@SessionAttributes("lessonId")
 /**
  * Controller for uploading files
- */ public class FileUploadController {
+ * lessonId - id of lesson that will have this file
+ */
+@Controller
+@SessionAttributes("lessonId")
+public class FileUploadController {
 
 	private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
@@ -41,6 +42,13 @@ import javax.servlet.http.HttpServletRequest;
 
 	private final FileValidator fileValidator;
 
+	/**
+	 * Constructor for controller
+	 *
+	 * @param lessonFileService - service for lessonFile (name and description of file)
+	 * @param blobFileService   - service for blobFile (bytes of file)
+	 * @param fileValidator     - validation object (check size and type of file)
+	 */
 	@Autowired
 	public FileUploadController(LessonFileService lessonFileService, BlobFileService blobFileService, FileValidator fileValidator)
 	{
@@ -49,6 +57,14 @@ import javax.servlet.http.HttpServletRequest;
 		this.fileValidator = fileValidator;
 	}
 
+	/**
+	 * Redirect to upload view
+	 *
+	 * @param request   - id of lesson that will have this file
+	 * @param lessonDTO - DTO of lesson for model attribute
+	 * @param model     - model for session attribute
+	 * @return upload view
+	 */
 	@RequestMapping(value = {"/uploadRedirect"}, method = RequestMethod.POST)
 	public ModelAndView redirectToUpload(HttpServletRequest request, @ModelAttribute LessonDTO lessonDTO, ModelMap model)
 	{
@@ -62,7 +78,12 @@ import javax.servlet.http.HttpServletRequest;
 	}
 
 	/**
-	 * Upload single validator using Spring Controller
+	 * Upload single file using Spring Controller
+	 *
+	 * @param uploadedFile - file that will be upload (Multipart file and description)
+	 * @param result       - object of error
+	 * @param model        - model for session attribute (lesson id)
+	 * @return view for uploading
 	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public @ResponseBody
@@ -124,6 +145,12 @@ import javax.servlet.http.HttpServletRequest;
 	}
 
 
+	/**
+	 * Controller for deleting files
+	 *
+	 * @param request - file id
+	 * @return mainpage
+	 */
 	@RequestMapping(value = "/deleteFile", method = RequestMethod.GET)
 	public ModelAndView deleteQuestion(HttpServletRequest request)
 	{

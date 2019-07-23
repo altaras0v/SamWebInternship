@@ -6,12 +6,13 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * Repository for BLOB files
+ * repository(CRUD) for BLOB files
  */
 @Repository
 public interface BlobFileRepository extends CrudRepository<BlobFile, Long>, JpaSpecificationExecutor<BlobFile> {
 	/**
 	 * Method that find file for this LessonFile(name and desc of file) in database
+	 *
 	 * @param id - id of Lesson File
 	 * @return BlobFile (object with bytes and etc)
 	 */

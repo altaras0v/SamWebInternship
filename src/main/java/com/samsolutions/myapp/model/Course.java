@@ -20,6 +20,7 @@ import java.util.List;
 
 /**
  * Class that is entity for course
+ * Connect with Lesson (one course - many lessons)
  */
 @Entity
 @Getter

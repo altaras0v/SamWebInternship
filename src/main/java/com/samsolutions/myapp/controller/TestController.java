@@ -15,18 +15,36 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Controller for test
+ * lesson id - id of lesson that have this test
+ */
 @Controller
 @SessionAttributes("lessonId")
 public class TestController {
 
-	@Autowired
+
 	private final TestService testService;
 
+	/**
+	 * Constructor of controller
+	 *
+	 * @param testService - service of test, get,upload and delete test
+	 */
+	@Autowired
 	public TestController(TestService testService)
 	{
 		this.testService = testService;
 	}
 
+	/**
+	 * Send empty testDTO to view and set value to model
+	 *
+	 * @param request -  id of lesson that will have this test
+	 * @param testDTO - DTO of test for model attribute
+	 * @param model   - model for session attribute (lesson id)
+	 * @return view for adding test
+	 */
 	@RequestMapping(value = "/addTest", method = RequestMethod.GET)
 	public ModelAndView showRegister(HttpServletRequest request, @ModelAttribute TestDTO testDTO, ModelMap model)
 	{
@@ -39,6 +57,13 @@ public class TestController {
 
 	//СДЕЛАТЬ РЕДИРЕКТ
 
+	/**
+	 * Add test to database
+	 *
+	 * @param testDTO  - object with name and description of test from view
+	 * @param modelMap - model for session attribute (lesson id)
+	 * @return view for adding test
+	 */
 	@RequestMapping(value = "/addTest", method = RequestMethod.POST)
 	public ModelAndView AddTest(@ModelAttribute("test") TestDTO testDTO, ModelMap modelMap)
 	{
@@ -50,13 +75,19 @@ public class TestController {
 		return mav;
 	}
 
+	/**
+	 * Delete test from database
+	 *
+	 * @param request - id of test that will be delete
+	 * @return mainpage view
+	 */
 	@RequestMapping(value = "/deleteTest", method = RequestMethod.GET)
-	public ModelAndView deleteTest(HttpServletRequest request) {
+	public ModelAndView deleteTest(HttpServletRequest request)
+	{
 		ModelAndView mav = new ModelAndView("mainpage");
 		long id = Long.parseLong(request.getParameter("testId"));
 		testService.deleteTest(id);
 		return mav;
 	}
-
 }
 

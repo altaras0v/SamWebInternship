@@ -10,13 +10,24 @@ import org.springframework.stereotype.Service;
 @Service
 public interface TestService {
 	/**
+	 * Get test for this lesson
 	 *
-	 * @param id
-	 * @return
+	 * @param id - id of lesson
+	 * @return TestDTO for view
 	 */
 	TestDTO getTestByLessonId(long id);
 
+	/**
+	 * Add test
+	 *
+	 * @param test - test entity(name and description)
+	 */
 	void addTest(Test test);
 
+	/**
+	 * Delete test
+	 *
+	 * @param id - id of test
+	 */
 	void deleteTest(long id);
 }

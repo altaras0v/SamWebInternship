@@ -27,10 +27,11 @@ public class CourseServiceImpl implements CourseService {
 	/**
 	 * Constructor with needed repository
 	 *
-	 * @param courseRepository - repository for course
+	 * @param courseRepository - repository(CRUD) for course
 	 */
 	@Autowired
-	public CourseServiceImpl(CourseRepository courseRepository) {
+	public CourseServiceImpl(CourseRepository courseRepository)
+	{
 
 		this.courseRepository = courseRepository;
 	}
@@ -42,7 +43,8 @@ public class CourseServiceImpl implements CourseService {
 	 */
 	@Override
 	@Transactional
-	public List<CourseDTO> getCourses() {
+	public List<CourseDTO> getCourses()
+	{
 		List<Course> courses = (List<Course>) courseRepository.findAll();
 		logger.info("getCourses method");
 
@@ -58,7 +60,8 @@ public class CourseServiceImpl implements CourseService {
 	 */
 	@Override
 	@Transactional
-	public void addCourse(CourseDTO course) {
+	public void addCourse(CourseDTO course)
+	{
 		courseRepository.save(new Course(course.getName(), course.getDescription(), course.getFullDescription()));
 		logger.info("addCourses method");
 	}
@@ -73,7 +76,8 @@ public class CourseServiceImpl implements CourseService {
 	 */
 	@Override
 	@Transactional
-	public CourseDTO getCourseById(long id) {
+	public CourseDTO getCourseById(long id)
+	{
 		Course course = courseRepository.findOne(id);
 		logger.info("getCourseById method");
 		return new CourseDTO(course.getName(), course.getDescription(), course.getFullDescription(), course.getId());
@@ -86,7 +90,8 @@ public class CourseServiceImpl implements CourseService {
 	 */
 	@Override
 	@Transactional
-	public void deleteCourse(long id) {
+	public void deleteCourse(long id)
+	{
 		courseRepository.delete(id);
 		logger.info("deleteLesson method");
 	}

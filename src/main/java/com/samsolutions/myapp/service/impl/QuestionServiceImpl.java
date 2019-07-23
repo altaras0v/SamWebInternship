@@ -13,6 +13,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of {@link QuestionService}
+ */
 @Service
 public class QuestionServiceImpl implements QuestionService {
 
@@ -20,13 +23,23 @@ public class QuestionServiceImpl implements QuestionService {
 
 	private final QuestionRepository questionRepository;
 
+	/**
+	 * Constructor with needed repository
+	 *
+	 * @param questionRepository - repository(CRUD) for question
+	 */
 	@Autowired
 	public QuestionServiceImpl(QuestionRepository questionRepository)
 	{
 		this.questionRepository = questionRepository;
 	}
 
-
+	/**
+	 * Get question from database for this test
+	 *
+	 * @param id - test id
+	 * @return list with question DTOs for needed test (for view)
+	 */
 	@Override
 	public List<QuestionDTO> getQuestionsByTestId(long id)
 	{
@@ -43,6 +56,11 @@ public class QuestionServiceImpl implements QuestionService {
 
 	}
 
+	/**
+	 * Add question to database
+	 *
+	 * @param question - text of question
+	 */
 	@Override
 	public void addQuestion(Question question)
 	{
@@ -50,6 +68,11 @@ public class QuestionServiceImpl implements QuestionService {
 		logger.info("addQuestion method");
 	}
 
+	/**
+	 * Delete question from database
+	 *
+	 * @param id - id of question
+	 */
 	@Override
 	public void deleteQuestion(long id)
 	{

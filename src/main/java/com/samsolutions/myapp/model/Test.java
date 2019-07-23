@@ -27,6 +27,8 @@ import java.util.List;
 @Table(name = "test")
 /**
  * Entity for test
+ * Connected with Lesson (1 lesson - 1 test)
+ * Connected with Question (one test - many questions)
  */
 public class Test implements Serializable {
 	@Id

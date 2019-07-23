@@ -24,30 +24,39 @@ public class TestDTO implements Serializable {
 	private String description;
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+	public boolean equals(Object o)
+	{
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
 		TestDTO testDTO = (TestDTO) o;
 		return id == testDTO.id && Objects.equals(name, testDTO.name) && Objects.equals(description, testDTO.description);
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 
 		return Objects.hash(id, name, description);
 	}
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "TestDTO{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + '}';
 	}
 
 	/**
 	 * Constructor for creating test
-	 * @param name - name of test
+	 *
+	 * @param name        - name of test
 	 * @param description - description for test
 	 */
-	public TestDTO(String name, String description) {
+	public TestDTO(String name, String description)
+	{
 		this.name = name;
 		this.description = description;
 	}

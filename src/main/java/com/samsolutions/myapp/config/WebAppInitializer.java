@@ -38,7 +38,12 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		characterEncodingFilter.setForceEncoding(true);
 		return new Filter[]{characterEncodingFilter};
 	}
-	
+
+	/**
+	 * Config for error redirection
+	 * @param servletAppContext - context
+	 * @return dispatcherServlet
+	 */
 	@Override
 	protected FrameworkServlet createDispatcherServlet(WebApplicationContext servletAppContext) {
 		DispatcherServlet dispatcher = (DispatcherServlet) super.createDispatcherServlet(servletAppContext);

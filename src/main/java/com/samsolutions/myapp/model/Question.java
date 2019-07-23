@@ -16,15 +16,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
 
+/**
+ * Entity for question
+ * Connected with Test (many question for one test)
+ */
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "question")
-/**
- * Entity for question
- */ public class Question implements Serializable {
+public class Question implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +39,12 @@ import java.io.Serializable;
 	@JoinColumn(name = "test_id")
 	private Test test;
 
+	/**
+	 * Constructor for adding question
+	 *
+	 * @param question - text of question
+	 * @param test     - test for this file (use only for assignment question to test)
+	 */
 	public Question(String question, Test test)
 	{
 		this.question = question;

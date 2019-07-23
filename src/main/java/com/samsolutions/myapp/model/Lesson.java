@@ -23,6 +23,9 @@ import java.util.List;
 
 /**
  * Entity for lesson
+ * Connected with Course (many lessons for one course)
+ * Connected with LessonFile (one lesson - many lessonFiles)
+ * Connected with Test (1 lesson - 1 test)
  */
 @Entity
 @Getter
@@ -53,11 +56,13 @@ public class Lesson implements Serializable {
 
 	/**
 	 * Constructor for creating lesson
-	 * @param name - name of lesson
+	 *
+	 * @param name        - name of lesson
 	 * @param description - description of lesson
-	 * @param course - course for this lesson (use only for assignment lesson to course)
+	 * @param course      - course for this lesson (use only for assignment lesson to course)
 	 */
-	public Lesson(String name, String description, Course course) {
+	public Lesson(String name, String description, Course course)
+	{
 		this.name = name;
 		this.description = description;
 		this.course = course;

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -23,21 +24,28 @@ public class LessonFileDTO implements Serializable {
 	private String description;
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+	public boolean equals(Object o)
+	{
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
 		LessonFileDTO that = (LessonFileDTO) o;
 		return id == that.id && Objects.equals(name, that.name) && Objects.equals(description, that.description);
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 
 		return Objects.hash(id, name, description);
 	}
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "LessonFileDTO{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + '}';
 	}
 }

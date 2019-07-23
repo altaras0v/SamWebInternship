@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service for lesson
+ */
 @Service
 public interface LessonService {
 

@@ -26,10 +26,11 @@ public class LessonServiceImpl implements LessonService {
 	/**
 	 * Constructor with needed repository
 	 *
-	 * @param lessonRepository - repository for lesson
+	 * @param lessonRepository - repository(CRUD) for lesson
 	 */
 	@Autowired
-	public LessonServiceImpl(LessonRepository lessonRepository) {
+	public LessonServiceImpl(LessonRepository lessonRepository)
+	{
 
 		this.lessonRepository = lessonRepository;
 	}
@@ -41,7 +42,8 @@ public class LessonServiceImpl implements LessonService {
 	 */
 	@Override
 	@Transactional
-	public List<LessonDTO> getLessons() {
+	public List<LessonDTO> getLessons()
+	{
 		List<Lesson> lessons = (List<Lesson>) lessonRepository.findAll();
 		logger.info("getLessons method");
 
@@ -56,10 +58,11 @@ public class LessonServiceImpl implements LessonService {
 	 * Get lessons from database for this course
 	 *
 	 * @param id - course id
-	 * @return list with lesson DTOs for needed course
+	 * @return list with lesson DTOs for needed course (for view)
 	 */
 	@Override
-	public List<LessonDTO> getLessonsByCourseId(long id) {
+	public List<LessonDTO> getLessonsByCourseId(long id)
+	{
 		logger.info("getLessonsByCourseId");
 		List<Lesson> lessons = lessonRepository.findAllByCourseId(id);
 
@@ -75,7 +78,8 @@ public class LessonServiceImpl implements LessonService {
 	 * @return lesson DTOs with needed id
 	 */
 	@Override
-	public LessonDTO getLessonById(long id) {
+	public LessonDTO getLessonById(long id)
+	{
 		logger.info("getLessonsById method");
 
 		Lesson lesson = lessonRepository.findOne(id);
@@ -88,7 +92,8 @@ public class LessonServiceImpl implements LessonService {
 	 * @param id - lesson id
 	 */
 	@Override
-	public void deleteLesson(long id) {
+	public void deleteLesson(long id)
+	{
 		lessonRepository.delete(id);
 		logger.info("deleteLesson method");
 	}
@@ -100,7 +105,8 @@ public class LessonServiceImpl implements LessonService {
 	 */
 	@Override
 	@Transactional
-	public void addLesson(Lesson lesson) {
+	public void addLesson(Lesson lesson)
+	{
 		lessonRepository.save(lesson);
 		logger.info("addLesson method");
 	}

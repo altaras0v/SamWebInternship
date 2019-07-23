@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+/**
+ * Implementation of {@link TestService}
+ */
 @Service
 public class TestServiceImpl implements TestService {
 
@@ -18,19 +21,32 @@ public class TestServiceImpl implements TestService {
 
 	private final TestRepository testRepository;
 
+	/**
+	 * Constructor with needed repository
+	 *
+	 * @param testRepository - repository(CRUD) for test
+	 */
 	@Autowired
-	public TestServiceImpl(TestRepository testRepository) {
+	public TestServiceImpl(TestRepository testRepository)
+	{
 		this.testRepository = testRepository;
 	}
 
+	/**
+	 * Get test from database for this lesson
+	 *
+	 * @param id - id of lesson
+	 * @return TestDTO for needed course (for view)
+	 */
 	@Override
 	@Transactional
-	public TestDTO getTestByLessonId(long id) {
+	public TestDTO getTestByLessonId(long id)
+	{
 
 		if (testRepository.findByLessonId(id) != null) {
 			Test test = testRepository.findByLessonId(id);
 			logger.info("getTestByLessonId method");
-			return new TestDTO(test.getId(),test.getName(), test.getDescription());
+			return new TestDTO(test.getId(), test.getName(), test.getDescription());
 		}
 		else {
 			return new TestDTO();
@@ -38,6 +54,10 @@ public class TestServiceImpl implements TestService {
 
 	}
 
+	/**
+	 * Add test to database
+	 * @param test - test entity(name and description)
+	 */
 	@Override
 	public void addTest(Test test)
 	{
@@ -45,6 +65,10 @@ public class TestServiceImpl implements TestService {
 		logger.info("addTest method");
 	}
 
+	/**
+	 * Delete test from database
+	 * @param id - id of test
+	 */
 	@Override
 	public void deleteTest(long id)
 	{

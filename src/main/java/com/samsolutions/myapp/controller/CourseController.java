@@ -21,8 +21,14 @@ public class CourseController {
 
 	private final CourseService courseService;
 
+	/**
+	 * Constructor for controller
+	 *
+	 * @param courseService - service for course,getting,adding and deleting course
+	 */
 	@Autowired
-	public CourseController(CourseService courseService) {
+	public CourseController(CourseService courseService)
+	{
 		this.courseService = courseService;
 	}
 
@@ -32,7 +38,8 @@ public class CourseController {
 	 * @return modelAndView - list of courses
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView getCourse() {
+	public ModelAndView getCourse()
+	{
 		List<CourseDTO> listCourses = courseService.getCourses();
 
 		ModelAndView modelAndView = new ModelAndView("mainpage");
@@ -46,7 +53,8 @@ public class CourseController {
 	 * @return - view for adding course with courseDTO
 	 */
 	@RequestMapping(value = "/addCourse", method = RequestMethod.GET)
-	public ModelAndView showRegister() {
+	public ModelAndView showRegister()
+	{
 		ModelAndView mav = new ModelAndView("addCourse");
 		mav.addObject("course", new CourseDTO());
 		return mav;
@@ -60,7 +68,8 @@ public class CourseController {
 	 * @return - view where adding course(course add now)
 	 */
 	@RequestMapping(value = "/addCourse", method = RequestMethod.POST)
-	public ModelAndView AddCourse(@ModelAttribute("course") CourseDTO course) {
+	public ModelAndView AddCourse(@ModelAttribute("course") CourseDTO course)
+	{
 		ModelAndView mav = new ModelAndView("addCourse");
 		courseService.addCourse(course);
 		return mav;
@@ -72,7 +81,8 @@ public class CourseController {
 	 * @return - view for deleting course with courseDTOs(like list)
 	 */
 	@RequestMapping(value = "/deleteCourse", method = RequestMethod.GET)
-	public ModelAndView showCourseList() {
+	public ModelAndView showCourseList()
+	{
 		ModelAndView mav = new ModelAndView("deleteCourse");
 		List<CourseDTO> courseDTOList = courseService.getCourses();
 		mav.addObject("courseDTOList", courseDTOList);
@@ -85,7 +95,8 @@ public class CourseController {
 	 * @return - view where deleting course (course delete now)
 	 */
 	@RequestMapping(value = "/deleteCourse", method = RequestMethod.POST)
-	public ModelAndView deleteCourse(HttpServletRequest request) {
+	public ModelAndView deleteCourse(HttpServletRequest request)
+	{
 
 		ModelAndView mav = new ModelAndView(new RedirectView("/deleteCourse"));
 		Long id = Long.parseLong(request.getParameter("courseId"));

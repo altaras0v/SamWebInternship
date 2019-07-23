@@ -35,20 +35,29 @@ public class FileDownloadController {
 
 	private final BlobFileService blobFileService;
 
+	/**
+	 * Controller for files
+	 *
+	 * @param lessonFileService - service for lessonFile (name and description of file)
+	 * @param blobFileService   - service for blobFile (bytes of file)
+	 */
 	@Autowired
-	public FileDownloadController(LessonFileService lessonFileService, BlobFileService blobFileService) {
+	public FileDownloadController(LessonFileService lessonFileService, BlobFileService blobFileService)
+	{
 		this.lessonFileService = lessonFileService;
 		this.blobFileService = blobFileService;
 	}
 
 	/**
 	 * Download single file from server to user
+	 *
 	 * @param response - file for downloading
 	 * @param request  - id of downloading file
 	 */
 	@RequestMapping(value = "/download", method = RequestMethod.GET, produces = APPLICATION_PDF)
 	public @ResponseBody
-	void downloadFile(HttpServletResponse response, HttpServletRequest request) throws IOException {
+	void downloadFile(HttpServletResponse response, HttpServletRequest request) throws IOException
+	{
 
 		Long id = Long.parseLong(request.getParameter("id"));
 
