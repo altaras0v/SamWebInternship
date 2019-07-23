@@ -22,7 +22,6 @@ public class TestController {
 	@Autowired
 	private final TestService testService;
 
-
 	public TestController(TestService testService)
 	{
 		this.testService = testService;

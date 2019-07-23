@@ -24,8 +24,7 @@ import java.io.Serializable;
 @Table(name = "question")
 /**
  * Entity for question
- */
-public class Question implements Serializable {
+ */ public class Question implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +37,9 @@ public class Question implements Serializable {
 	@JoinColumn(name = "test_id")
 	private Test test;
 
-	public Question(String question) {
+	public Question(String question, Test test)
+	{
 		this.question = question;
+		this.test = test;
 	}
 }

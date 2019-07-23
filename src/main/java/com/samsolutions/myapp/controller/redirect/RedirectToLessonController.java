@@ -2,9 +2,11 @@ package com.samsolutions.myapp.controller.redirect;
 
 import com.samsolutions.myapp.dto.LessonDTO;
 import com.samsolutions.myapp.dto.LessonFileDTO;
+import com.samsolutions.myapp.dto.QuestionDTO;
 import com.samsolutions.myapp.dto.TestDTO;
 import com.samsolutions.myapp.service.api.LessonFileService;
 import com.samsolutions.myapp.service.api.LessonService;
+import com.samsolutions.myapp.service.api.QuestionService;
 import com.samsolutions.myapp.service.api.TestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +36,8 @@ public class RedirectToLessonController {
 
 	private final TestService testService;
 
+	private final QuestionService questionService;
+
 
 	/**
 	 * Constructor for controller
@@ -41,12 +45,14 @@ public class RedirectToLessonController {
 	 * @param lessonService     - service for lesson, used for getting lesson DTO
 	 * @param lessonFileService - service for files, used for getting files for this lesson
 	 * @param testService       - service for test, used for getting test for this lesson(if it exist)
+	 * @param questionService   - service for question, used for getting question for test
 	 */
 	@Autowired
-	public RedirectToLessonController(LessonService lessonService, LessonFileService lessonFileService, TestService testService) {
+	public RedirectToLessonController(LessonService lessonService, LessonFileService lessonFileService, TestService testService, QuestionService questionService) {
 		this.lessonService = lessonService;
 		this.lessonFileService = lessonFileService;
 		this.testService = testService;
+		this.questionService = questionService;
 	}
 
 	/**
@@ -54,7 +60,7 @@ public class RedirectToLessonController {
 	 * And send DTO to view
 	 *
 	 * @param request - id of lesson
-	 * @return - view with lessonDTO and list with files of this lesson
+	 * @return - view with lessonDTO and list with files and test(if it exist) of this lesson
 	 */
 	@RequestMapping(value = {"/lessonRedirect"}, method = RequestMethod.GET)
 	public ModelAndView redirectToLesson(HttpServletRequest request) {
@@ -64,10 +70,11 @@ public class RedirectToLessonController {
 		LessonDTO lessonDTO = lessonService.getLessonById(id);
 		List<LessonFileDTO> listFiles = lessonFileService.getFilesByLessonId(id);
 		TestDTO testDTO = testService.getTestByLessonId(id);
+		List<QuestionDTO> questionDTOList = questionService.getQuestionsByTestId(testDTO.getId());
 		modelAndView.addObject("testDTO", testDTO);
 		modelAndView.addObject("lessonDTO", lessonDTO);
 		modelAndView.addObject("listFiles", listFiles);
-
+		modelAndView.addObject("listQuestion",questionDTOList);
 
 		logger.info("redirect to lesson controller");
 

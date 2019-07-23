@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -32,7 +31,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	 * ViewResolver configuration required to work with views.
 	 */
 	@Bean
-	ViewResolver viewResolver() {
+	ViewResolver viewResolver()
+	{
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/pages/");
 		//resolver.setPrefix("");
@@ -45,7 +45,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	 * Messages to support internationalization/localization.
 	 */
 	@Bean
-	public MessageSource messageSource() {
+	public MessageSource messageSource()
+	{
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		messageSource.setBasename("/WEB-INF/messages");
 		messageSource.setDefaultEncoding("UTF-8");
@@ -56,7 +57,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	 * Configuration required to work with languages(locales).
 	 */
 	@Bean
-	public LocaleResolver localeResolver() {
+	public LocaleResolver localeResolver()
+	{
 		CookieLocaleResolver resolver = new CookieLocaleResolver();
 		resolver.setDefaultLocale(new Locale("ru"));
 		resolver.setCookieName("myLocaleCookie");
@@ -68,7 +70,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	 * Add interceptors
 	 */
 	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
+	public void addInterceptors(InterceptorRegistry registry)
+	{
 		LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
 		interceptor.setParamName("mylocale");
 		registry.addInterceptor(interceptor);
@@ -78,7 +81,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	 * Handler class for adding a new resource to the configuration.
 	 */
 	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	public void addResourceHandlers(ResourceHandlerRegistry registry)
+	{
 		registry.addResourceHandler("/css/**")
 				.addResourceLocations("/css/")
 				.setCachePeriod(31556926);
@@ -88,14 +92,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/js/**")
 				.addResourceLocations("/js/")
 				.setCachePeriod(31556926);
-	}
-
-	/**
-	 * Equivalent for <mvc:default-servlet-handler/> tag
-	 */
-	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		configurer.enable();
 	}
 
 }

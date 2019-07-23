@@ -485,6 +485,7 @@
                                         </div>
 
                             </form:form></td>
+
                             <div class="info"><center><h2 class="coursename"> Files for lesson </h2></center>
                                 <div class="moreinfo"></div>
                             </div>
@@ -494,13 +495,17 @@
                                  data-type="1">
                             <c:forEach items="${listFiles}" var="files">
 
-                                <td><form:form name="first" action="../download" method="get">
-
+                                <form:form name="first" action="../download" method="get">
                                             <button   type="submit" name="id" value="${files.id}" style="text-transform: capitalize" class="btn btn-link"><a style="text-transform: capitalize"> ${files.name}</a></button>
-                                        <div class="coursebox clearfix odd first collapsed" data-courseid="6"
+                                </form:form>
+                                <form:form name="fileId"  action="../deleteFile" method="get">
+                                    <div class="coursename"><button style="color: #4BA89C"  type="submit" name="fileId" value="${files.id}" class="btn btn-link">Удалить файл</button>
+                                    </div>
+                                </form:form>
+                                    <div class="coursebox clearfix odd first collapsed" data-courseid="6"
                                              data-type="1"> <font style="color: #00008B">  &nbsp;&nbsp; ${files.description}</font> </div>
 
-                                </form:form></td>
+
                                 <style>
                                     :focus {outline:none !important;}
                                 </style>
@@ -521,27 +526,43 @@
                             </div>
                             <br>
 
-                            <div class="coursebox clearfix odd first collapsed" data-courseid="6"
+                           <c:if test="${listQuestion.size()!=0}"> <div class="coursebox clearfix odd first collapsed" data-courseid="6"
                                  data-type="1">
 
-                                <form>
-                                    <div class="form-group">
-                                        <label style="color: #00008B" for="Textarea">Example textarea</label>
-                                        <textarea  maxlength="1000" class="form-control" id="Textarea" rows="3"></textarea>
 
+                                 <c:forEach items="${listQuestion}" var="question">
+                                    <div class="form-group">
+                                        <label style="color: #00008B" for="Textarea">${question.question}</label>
+                                        <textarea  maxlength="1000" class="form-control" id="Textarea" rows="3"></textarea>
+                                        <td><form:form name="questionId" action="../deleteQuestion" method="get">
+
+                                            <button  type="submit" name="questionId" value="${question.id}" style="text-transform: capitalize" class="btn btn-link"><a style="text-transform: capitalize"> Delete question </a></button>
+
+                                        </form:form></td>
                                     </div>
+                                 </c:forEach>
+
+
+
                                     <br>
-                                    <center><button type="submit"  class="btn btn-primary">Submit</button></center>
-                                </form>
+                                <center><button type="submit"  class="btn btn-primary">Submit</button></center>
+
 
 
                             </div>
-
+                           </c:if>
                             <form:form name="testId" action="../deleteTest" method="get">
                                 <button style="color: #3c867c;font-size: 16px" type="submit" name="testId"
                                         value="${testDTO.id}" class="btn btn-link"><a
                                         style="text-transform:capitalize">Delete test</a></button>
                             </form:form>
+                            <br>
+                            <td><form:form name="quest" action="../addQuestion" method="get">
+
+                                <c:if test="${testDTO!=null}"> <button   type="submit" name="testId" value="${testDTO.id}" style="color: #3c867c;font-size: 16px" class="btn btn-link"><a style="text-transform: capitalize"> Add question </a></button></c:if>
+
+                            </form:form></td>
+
                             <div id="notice" class="box generalbox py-3">Guests cannot access this course. Please
                                 log in.
                             </div>

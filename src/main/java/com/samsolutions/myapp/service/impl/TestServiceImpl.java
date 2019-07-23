@@ -16,7 +16,7 @@ public class TestServiceImpl implements TestService {
 
 	private static final Logger logger = LoggerFactory.getLogger(TestServiceImpl.class);
 
-	final TestRepository testRepository;
+	private final TestRepository testRepository;
 
 	@Autowired
 	public TestServiceImpl(TestRepository testRepository) {

@@ -42,14 +42,16 @@ import javax.servlet.http.HttpServletRequest;
 	private final FileValidator fileValidator;
 
 	@Autowired
-	public FileUploadController(LessonFileService lessonFileService, BlobFileService blobFileService, FileValidator fileValidator) {
+	public FileUploadController(LessonFileService lessonFileService, BlobFileService blobFileService, FileValidator fileValidator)
+	{
 		this.lessonFileService = lessonFileService;
 		this.blobFileService = blobFileService;
 		this.fileValidator = fileValidator;
 	}
 
 	@RequestMapping(value = {"/uploadRedirect"}, method = RequestMethod.POST)
-	public ModelAndView redirectToUpload(HttpServletRequest request,@ModelAttribute LessonDTO lessonDTO, ModelMap model) {
+	public ModelAndView redirectToUpload(HttpServletRequest request, @ModelAttribute LessonDTO lessonDTO, ModelMap model)
+	{
 		Long id = Long.parseLong(request.getParameter("id"));
 		model.addAttribute("lessonId", id);
 		ModelAndView modelAndView = new ModelAndView();
@@ -64,7 +66,8 @@ import javax.servlet.http.HttpServletRequest;
 	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public @ResponseBody
-	ModelAndView uploadFileHandler(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, BindingResult result, ModelMap model) {
+	ModelAndView uploadFileHandler(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, BindingResult result, ModelMap model)
+	{
 
 		long id = (long) model.get("lessonId");
 
@@ -76,14 +79,16 @@ import javax.servlet.http.HttpServletRequest;
 		String desc;
 		if (uploadedFile.getDescription() != null) {
 			desc = uploadedFile.getDescription();
-		} else {
+		}
+		else {
 			desc = "";
 		}
 
 		if (result.hasErrors()) {
 			logger.info("uploadFile method error");
 			modelAndView.setViewName("upload");
-		} else {
+		}
+		else {
 			try {
 
 				byte[] bytes = file.getBytes();
@@ -113,7 +118,19 @@ import javax.servlet.http.HttpServletRequest;
 	 * Go to upload.jsp
 	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)
-	public String fileUploaded() {
+	public String fileUploaded()
+	{
 		return "upload";
+	}
+
+
+	@RequestMapping(value = "/deleteFile", method = RequestMethod.GET)
+	public ModelAndView deleteQuestion(HttpServletRequest request)
+	{
+		ModelAndView mav = new ModelAndView(new RedirectView("/"));
+		long id = Long.parseLong(request.getParameter("fileId"));
+		blobFileService.deleteFile(id);
+		lessonFileService.deleteFile(id);
+		return mav;
 	}
 }

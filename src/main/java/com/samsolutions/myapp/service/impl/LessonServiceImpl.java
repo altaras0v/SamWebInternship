@@ -99,6 +99,7 @@ public class LessonServiceImpl implements LessonService {
 	 * @param lesson - object for adding
 	 */
 	@Override
+	@Transactional
 	public void addLesson(Lesson lesson) {
 		lessonRepository.save(lesson);
 		logger.info("addLesson method");

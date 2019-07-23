@@ -3,7 +3,6 @@ package com.samsolutions.myapp.service;
 import com.samsolutions.myapp.dto.CourseDTO;
 import com.samsolutions.myapp.model.Course;
 import com.samsolutions.myapp.repository.CourseRepository;
-import com.samsolutions.myapp.service.api.CourseService;
 import com.samsolutions.myapp.service.impl.CourseServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,10 +27,8 @@ public class CourseServiceImplTest {
     @Mock
     private CourseRepository courseRepository;
 
-
     @InjectMocks
-    private CourseService courseService = new CourseServiceImpl(courseRepository);
-
+    private CourseServiceImpl courseService;
 
     public List<Course> createCourseList() {
         Course courseOne = new Course();

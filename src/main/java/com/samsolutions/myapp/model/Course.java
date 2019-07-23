@@ -42,7 +42,7 @@ public class Course implements Serializable {
 	@Column(name = "full_description")
 	private String fullDescription;
 
-	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Lesson> lessons = new ArrayList<>();
 
 	/**

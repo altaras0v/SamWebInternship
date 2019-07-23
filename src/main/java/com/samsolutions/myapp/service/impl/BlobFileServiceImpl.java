@@ -57,4 +57,11 @@ public class BlobFileServiceImpl implements BlobFileService {
 		logger.info("addFile method");
 		blobFileRepository.save(blobFile);
 	}
+
+	@Override
+	public void deleteFile(long id)
+	{
+		blobFileRepository.delete(id);
+		logger.info("deleteFile method");
+	}
 }

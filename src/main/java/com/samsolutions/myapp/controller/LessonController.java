@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -51,6 +52,7 @@ public class LessonController {
 	@RequestMapping(value = "/addLesson", method = RequestMethod.POST)
 	public ModelAndView AddCourse(@ModelAttribute("lesson") LessonDTO lessonDTO, ModelMap modelMap) {
 		ModelAndView mav = new ModelAndView("addLesson");
+		System.out.println(lessonDTO.getName());
 		long id = (long)modelMap.get("courseId");
 		Course course = new Course();
 		course.setId(id);
@@ -71,7 +73,7 @@ public class LessonController {
 	@RequestMapping(value = "/deleteLesson", method = RequestMethod.POST)
 	public ModelAndView deleteLesson(HttpServletRequest request) {
 
-		ModelAndView modelAndView = new ModelAndView("deleteLesson");
+		ModelAndView modelAndView = new ModelAndView(new RedirectView("/deleteLesson"));
 		long id = Long.parseLong(request.getParameter("lessonId"));
 		lessonService.deleteLesson(id);
 		return modelAndView;

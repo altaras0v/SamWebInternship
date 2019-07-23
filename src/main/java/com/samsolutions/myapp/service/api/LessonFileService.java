@@ -41,4 +41,7 @@ public interface LessonFileService {
 	 */
 	void addFile(LessonFile lessonFile);
 
+	// TODO: 23.07.2019 comments 
+	void deleteFile(long id);
+
 }

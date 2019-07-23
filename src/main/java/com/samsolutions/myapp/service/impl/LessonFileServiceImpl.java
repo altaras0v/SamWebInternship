@@ -91,4 +91,11 @@ public class LessonFileServiceImpl implements LessonFileService {
 		logger.info("addFile method");
 	}
 
+	@Override
+	public void deleteFile(long id)
+	{
+		lessonFileRepository.delete(id);
+		logger.info("deleteLessonFile method");
+	}
+
 }

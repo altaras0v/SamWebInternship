@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -85,9 +85,9 @@ public class CourseController {
 	 * @return - view where deleting course (course delete now)
 	 */
 	@RequestMapping(value = "/deleteCourse", method = RequestMethod.POST)
-	public ModelAndView deleteCourse(HttpServletResponse response, HttpServletRequest request) {
+	public ModelAndView deleteCourse(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("deleteCourse");
+		ModelAndView mav = new ModelAndView(new RedirectView("/deleteCourse"));
 		Long id = Long.parseLong(request.getParameter("courseId"));
 		courseService.deleteCourse(id);
 		return mav;

@@ -22,4 +22,8 @@ public interface BlobFileService {
 	 * @param blobFile - object for adding
 	 */
 	void addFile(BlobFile blobFile);
+
+	// TODO: 23.07.2019 add comments
+
+	void deleteFile(long id);
 }

@@ -45,10 +45,10 @@ public class Lesson implements Serializable {
 	@JoinColumn(name = "course_id")
 	private Course course;
 
-	@OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<LessonFile> lessonFiles = new ArrayList<>();
 
-	@OneToOne(mappedBy = "lesson", fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Test test = new Test();
 
 	/**
