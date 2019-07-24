@@ -37,7 +37,7 @@ public class CourseController {
 	 *
 	 * @return modelAndView - list of courses
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/mainpage", method = RequestMethod.GET)
 	public ModelAndView getCourse()
 	{
 		List<CourseDTO> listCourses = courseService.getCourses();
