@@ -152,11 +152,12 @@ public class FileUploadController {
 	 * @return mainpage
 	 */
 	@RequestMapping(value = "/deleteFile", method = RequestMethod.GET)
-	public ModelAndView deleteQuestion(HttpServletRequest request)
+	public ModelAndView deleteFile(HttpServletRequest request)
 	{
 		ModelAndView mav = new ModelAndView(new RedirectView("/"));
 		long id = Long.parseLong(request.getParameter("fileId"));
-		blobFileService.deleteFile(id);
+		System.out.println(blobFileService.getFileByLessonFileId(id).getId());
+		blobFileService.deleteFile(blobFileService.getFileByLessonFileId(id).getId());
 		lessonFileService.deleteFile(id);
 		return mav;
 	}

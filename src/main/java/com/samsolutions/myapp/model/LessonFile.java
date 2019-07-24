@@ -42,6 +42,7 @@ public class LessonFile implements Serializable {
 	@JoinColumn(name = "lesson_id")
 	private Lesson lesson;
 
+
 	/**
 	 * Constructor for creating files for lesson
 	 *

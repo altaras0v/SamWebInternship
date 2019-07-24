@@ -26,4 +26,6 @@ public interface BlobFileService {
 	// TODO: 23.07.2019 add comments
 
 	void deleteFile(long id);
+
+
 }
