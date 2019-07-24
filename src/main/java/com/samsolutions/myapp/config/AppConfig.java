@@ -106,10 +106,5 @@ public class AppConfig {
 
 		return properties;
 	}
-	/*@Bean
-	public UserDetailsService getUserDetailsService(){
-		return new UserDetailsServiceImpl();
-	}*/
-
 }
 
