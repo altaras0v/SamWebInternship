@@ -156,8 +156,8 @@ public class FileUploadController {
 	{
 		ModelAndView mav = new ModelAndView(new RedirectView("/"));
 		long id = Long.parseLong(request.getParameter("fileId"));
-		System.out.println(blobFileService.getFileByLessonFileId(id).getId());
-		blobFileService.deleteFile(blobFileService.getFileByLessonFileId(id).getId());
+		blobFileService.deleteFile(blobFileService.getFileByLessonFileId(id)
+				.getId());
 		lessonFileService.deleteFile(id);
 		return mav;
 	}
