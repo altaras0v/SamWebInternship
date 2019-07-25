@@ -17,4 +17,5 @@ public interface BlobFileRepository extends CrudRepository<BlobFile, Long>, JpaS
 	 * @return BlobFile (object with bytes and etc)
 	 */
 	BlobFile findByLessonFileId(long id);
+	BlobFile findById(long id);
 }

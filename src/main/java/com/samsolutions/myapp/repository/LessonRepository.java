@@ -20,4 +20,5 @@ public interface LessonRepository extends CrudRepository<Lesson, Long>, JpaSpeci
 	 * @return - list with Lessons
 	 */
 	List<Lesson> findAllByCourseId(long id);
+	Lesson findById(long id);
 }

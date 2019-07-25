@@ -113,13 +113,13 @@ public class FileUploadController {
 			try {
 
 				byte[] bytes = file.getBytes();
-
 				name = file.getOriginalFilename();
 				Lesson lesson = new Lesson();
 				lesson.setId(id);
 				LessonFile lessonFile = new LessonFile(name, desc, lesson);
 				lessonFileService.addFile(lessonFile);
 				BlobFile blobFile = new BlobFile(bytes, lessonFile);
+				System.out.println(blobFile.getFile().length);
 				blobFileService.addFile(blobFile);
 
 				RedirectView redirectView = new RedirectView("upload");

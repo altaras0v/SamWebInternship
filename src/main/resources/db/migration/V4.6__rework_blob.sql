@@ -1,0 +1,1 @@
+ALTER TABLE blob_file MODIFY file LONGBLOB;

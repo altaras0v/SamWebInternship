@@ -82,7 +82,7 @@ public class LessonServiceImpl implements LessonService {
 	{
 		logger.info("getLessonsById method");
 
-		Lesson lesson = lessonRepository.findOne(id);
+		Lesson lesson = lessonRepository.findById(id);
 		return new LessonDTO(lesson.getId(), lesson.getName(), lesson.getDescription());
 	}
 
@@ -94,7 +94,7 @@ public class LessonServiceImpl implements LessonService {
 	@Override
 	public void deleteLesson(long id)
 	{
-		lessonRepository.delete(id);
+		lessonRepository.deleteById(id);
 		logger.info("deleteLesson method");
 	}
 

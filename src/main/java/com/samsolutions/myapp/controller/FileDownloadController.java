@@ -35,6 +35,7 @@ public class FileDownloadController {
 
 	private final BlobFileService blobFileService;
 
+
 	/**
 	 * Controller for files
 	 *
@@ -58,9 +59,7 @@ public class FileDownloadController {
 	public @ResponseBody
 	void downloadFile(HttpServletResponse response, HttpServletRequest request) throws IOException
 	{
-
-		Long id = Long.parseLong(request.getParameter("id"));
-
+		long id = Long.parseLong(request.getParameter("id"));
 
 		LessonFile lessonFile = lessonFileService.getFileById(id);
 		BlobFile blobFile = blobFileService.getFileByLessonFileId(lessonFile.getId());
@@ -73,8 +72,11 @@ public class FileDownloadController {
 		out.close();
 
 		InputStream in = new FileInputStream(file);
+
 		response.setCharacterEncoding("utf-8");
 		response.setContentType(APPLICATION_PDF);
+		response.setHeader("Content-Type", "application/octet-stream; charset=utf-8");
+		//String filename = URLEncoder.encode(lessonFile.getName(),"UTF-8");
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + lessonFile.getName() + "\"");
 		response.setHeader("Content-Length", String.valueOf(file.length()));
 		FileCopyUtils.copy(in, response.getOutputStream());

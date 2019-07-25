@@ -67,7 +67,7 @@ public class CourseController {
 	 * @param course - CourseDTO
 	 * @return - view where adding course(course add now)
 	 */
-	@RequestMapping(value = "/addCourse", method = RequestMethod.POST)
+	@RequestMapping(value = "/addCourse", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
 	public ModelAndView AddCourse(@ModelAttribute("course") CourseDTO course)
 	{
 		ModelAndView mav = new ModelAndView("addCourse");
@@ -99,7 +99,7 @@ public class CourseController {
 	{
 
 		ModelAndView mav = new ModelAndView(new RedirectView("/deleteCourse"));
-		Long id = Long.parseLong(request.getParameter("courseId"));
+		long id = Long.parseLong(request.getParameter("courseId"));
 		courseService.deleteCourse(id);
 		return mav;
 	}

@@ -19,4 +19,5 @@ public interface QuestionRepository extends CrudRepository<Question, Long>, JpaS
 	 * @return list with questions
 	 */
 	List<Question> findByTestId(long id);
+	Question findById(long id);
 }

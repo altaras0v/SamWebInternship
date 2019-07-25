@@ -28,8 +28,7 @@ public class LessonFileServiceImpl implements LessonFileService {
 	 * @param lessonFileRepository - repository(CRUD) for LessonFile
 	 */
 	@Autowired
-	public LessonFileServiceImpl(LessonFileRepository lessonFileRepository)
-	{
+	public LessonFileServiceImpl(LessonFileRepository lessonFileRepository) {
 		this.lessonFileRepository = lessonFileRepository;
 	}
 
@@ -39,8 +38,7 @@ public class LessonFileServiceImpl implements LessonFileService {
 	 * @return list with lessonFile DTOs
 	 */
 	@Override
-	public List<LessonFileDTO> getFiles()
-	{
+	public List<LessonFileDTO> getFiles() {
 		logger.info("getFiles method");
 		List<LessonFile> files = (List<LessonFile>) lessonFileRepository.findAll();
 
@@ -56,8 +54,7 @@ public class LessonFileServiceImpl implements LessonFileService {
 	 * @return LessonFile DTOs for this lesson(for view)
 	 */
 	@Override
-	public List<LessonFileDTO> getFilesByLessonId(long id)
-	{
+	public List<LessonFileDTO> getFilesByLessonId(long id) {
 		logger.info("getFilesByLessonId method");
 		List<LessonFile> files = lessonFileRepository.findAllByLessonId(id);
 
@@ -75,13 +72,11 @@ public class LessonFileServiceImpl implements LessonFileService {
 	 * @return LessonFile with needed id
 	 */
 	@Override
-	public LessonFile getFileById(long id)
-	{
+	public LessonFile getFileById(long id) {
 
 		logger.info("getFileById method");
 
-		LessonFile file = lessonFileRepository.findOne(id);
-		return file;
+		return lessonFileRepository.findById(id);
 	}
 
 	/**
@@ -90,16 +85,14 @@ public class LessonFileServiceImpl implements LessonFileService {
 	 * @param lessonFile - object for adding
 	 */
 	@Override
-	public void addFile(LessonFile lessonFile)
-	{
+	public void addFile(LessonFile lessonFile) {
 		lessonFileRepository.save(lessonFile);
 		logger.info("addFile method");
 	}
 
 	@Override
-	public void deleteFile(long id)
-	{
-		lessonFileRepository.delete(id);
+	public void deleteFile(long id) {
+		lessonFileRepository.deleteById(id);
 		logger.info("deleteLessonFile method");
 	}
 

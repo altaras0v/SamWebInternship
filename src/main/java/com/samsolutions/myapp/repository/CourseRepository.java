@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface CourseRepository extends CrudRepository<Course, Long>, JpaSpecificationExecutor<Course> {
+	Course findById(long id);
 }
