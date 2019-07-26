@@ -23,25 +23,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
 
-	// регистрируем нашу реализацию UserDetailsService
-	// а также PasswordEncoder для приведения пароля в формат SHA1
-	/*@Autowired
-	public void registerGlobalAuthentication(AuthenticationManagerBuilder auth) throws Exception
-	{
-		auth.userDetailsService(userDetailsService)
-				.passwordEncoder(getShaPasswordEncoder());
-	}
-*/
+
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder(11);
+		return new BCryptPasswordEncoder(12);
 	}
+
+	/*@SuppressWarnings("deprecation")
+	@Bean
+	public static NoOpPasswordEncoder passwordEncoder() {
+		return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
+	}*/
 
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 		authProvider.setUserDetailsService(getUserDetailsService());
-		//authProvider.setPasswordEncoder(passwordEncoder());
+		authProvider.setPasswordEncoder(passwordEncoder());
 		return authProvider;
 	}
 
@@ -67,6 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("j_username")
 				.passwordParameter("j_password")
 				.loginProcessingUrl("/j_spring_security_check")
+
 				// указываем URL при неудачном логине
 				.failureUrl("/login?error")
 				// Указываем параметры логина и пароля с формы логина

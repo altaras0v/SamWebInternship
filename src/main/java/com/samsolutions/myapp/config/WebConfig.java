@@ -94,10 +94,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 				.setCachePeriod(31556926);
 	}
 
-/*	@Bean
-	public UserDetailsService getUserDetailsService(){
-		return new UserDetailsServiceImpl();
-	}*/
+
 
 }
 

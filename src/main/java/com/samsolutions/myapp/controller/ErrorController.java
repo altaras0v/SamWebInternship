@@ -9,7 +9,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
  * Controller for error page
  */
 @ControllerAdvice
-public class PageNotFoundExceptionController {
+public class ErrorController {
 	/**
 	 * Error page controller
 	 *
@@ -19,8 +19,8 @@ public class PageNotFoundExceptionController {
 	@ExceptionHandler(NoHandlerFoundException.class)
 	public ModelAndView handle(Exception ex)
 	{
-		// TODO: 23.07.2019 make error jsp 
-		return new ModelAndView("test");
+		// TODO: 23.07.2019 make error jsp
+		return new ModelAndView("errorPage");
 	}
 
 }
