@@ -118,6 +118,7 @@ public class FileUploadController {
 				lesson.setId(id);
 				LessonFile lessonFile = new LessonFile(name, desc, lesson);
 				lessonFileService.addFile(lessonFile);
+
 				BlobFile blobFile = new BlobFile(bytes, lessonFile);
 				blobFileService.addFile(blobFile);
 
