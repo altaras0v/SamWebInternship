@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @Service
 public class LessonFileServiceImpl implements LessonFileService {
 
-	private static final Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(LessonFileServiceImpl.class);
 
 	private final LessonFileRepository lessonFileRepository;
 

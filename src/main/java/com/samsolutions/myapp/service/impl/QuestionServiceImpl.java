@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Service
 public class QuestionServiceImpl implements QuestionService {
 
-	private static final Logger logger = LoggerFactory.getLogger(TestServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(QuestionServiceImpl.class);
 
 	private final QuestionRepository questionRepository;
 

@@ -16,7 +16,7 @@ import javax.transaction.Transactional;
 @Service
 public class BlobFileServiceImpl implements BlobFileService {
 
-	private static final Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(BlobFileServiceImpl.class);
 
 	private final BlobFileRepository blobFileRepository;
 

@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Service
 public class LessonServiceImpl implements LessonService {
 
-	private static final Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(LessonServiceImpl.class);
 
 	private final LessonRepository lessonRepository;
 
