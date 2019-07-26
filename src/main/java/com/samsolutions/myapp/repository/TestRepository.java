@@ -17,5 +17,4 @@ public interface TestRepository extends CrudRepository<Test, Long>, JpaSpecifica
 	 * @return Test (for this lesson)
 	 */
 	Test findByLessonId(long id);
-	Test findById(long id);
 }

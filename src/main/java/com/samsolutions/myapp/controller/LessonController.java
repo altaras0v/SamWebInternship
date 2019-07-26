@@ -63,7 +63,7 @@ public class LessonController {
 	 * @return - view where adding course
 	 */
 	@RequestMapping(value = "/addLesson", method = RequestMethod.POST)
-	public ModelAndView AddCourse(@ModelAttribute("lesson") LessonDTO lessonDTO, ModelMap modelMap)
+	public ModelAndView addCourse(@ModelAttribute("lesson") LessonDTO lessonDTO, ModelMap modelMap)
 	{
 		ModelAndView mav = new ModelAndView("addLesson");
 		System.out.println(lessonDTO.getName());

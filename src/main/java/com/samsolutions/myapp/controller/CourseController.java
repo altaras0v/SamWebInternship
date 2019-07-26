@@ -68,7 +68,7 @@ public class CourseController {
 	 * @return - view where adding course(course add now)
 	 */
 	@RequestMapping(value = "/addCourse", produces = "text/plain;charset=UTF-8", method = RequestMethod.POST)
-	public ModelAndView AddCourse(@ModelAttribute("course") CourseDTO course)
+	public ModelAndView addCourse(@ModelAttribute("course") CourseDTO course)
 	{
 		ModelAndView mav = new ModelAndView("addCourse");
 		courseService.addCourse(course);

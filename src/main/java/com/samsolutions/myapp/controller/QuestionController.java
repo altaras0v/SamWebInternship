@@ -64,7 +64,7 @@ public class QuestionController {
 	 * @return view for adding question
 	 */
 	@RequestMapping(value = "/addQuestion", method = RequestMethod.POST)
-	public ModelAndView AddQuestion(@ModelAttribute("question") QuestionDTO questionDTO, ModelMap modelMap)
+	public ModelAndView addQuestion(@ModelAttribute("question") QuestionDTO questionDTO, ModelMap modelMap)
 	{
 		long id = (long) modelMap.get("testId");
 		ModelAndView mav = new ModelAndView("addQuestion");

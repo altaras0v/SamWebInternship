@@ -119,7 +119,6 @@ public class FileUploadController {
 				LessonFile lessonFile = new LessonFile(name, desc, lesson);
 				lessonFileService.addFile(lessonFile);
 				BlobFile blobFile = new BlobFile(bytes, lessonFile);
-				System.out.println(blobFile.getFile().length);
 				blobFileService.addFile(blobFile);
 
 				RedirectView redirectView = new RedirectView("upload");

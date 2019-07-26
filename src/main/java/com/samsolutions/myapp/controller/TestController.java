@@ -65,7 +65,7 @@ public class TestController {
 	 * @return view for adding test
 	 */
 	@RequestMapping(value = "/addTest", method = RequestMethod.POST)
-	public ModelAndView AddTest(@ModelAttribute("test") TestDTO testDTO, ModelMap modelMap)
+	public ModelAndView addTest(@ModelAttribute("test") TestDTO testDTO, ModelMap modelMap)
 	{
 		long id = (long) modelMap.get("lessonId");
 		ModelAndView mav = new ModelAndView("addTest");

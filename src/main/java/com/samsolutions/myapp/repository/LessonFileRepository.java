@@ -19,5 +19,4 @@ public interface LessonFileRepository extends CrudRepository<LessonFile, Long>, 
 	 * @return list with LessonFiles
 	 */
 	List<LessonFile> findAllByLessonId(long id);
-	LessonFile findById(long id);
 }

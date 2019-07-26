@@ -78,7 +78,7 @@ public class CourseServiceImpl implements CourseService {
 	@Transactional
 	public CourseDTO getCourseById(long id)
 	{
-		Course course = courseRepository.findById(id);
+		Course course = courseRepository.findById(id).get();
 		logger.info("getCourseById method");
 		return new CourseDTO(course.getName(), course.getDescription(), course.getFullDescription(), course.getId());
 	}

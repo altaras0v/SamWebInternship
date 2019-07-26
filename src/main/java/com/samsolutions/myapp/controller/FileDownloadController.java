@@ -15,11 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.net.URLEncoder;
 
 /**
  * * Controller for downloading files
@@ -59,27 +58,26 @@ public class FileDownloadController {
 	public @ResponseBody
 	void downloadFile(HttpServletResponse response, HttpServletRequest request) throws IOException
 	{
-		long id = Long.parseLong(request.getParameter("id"));
+		Long id = Long.parseLong(request.getParameter("id"));
 
 		LessonFile lessonFile = lessonFileService.getFileById(id);
 		BlobFile blobFile = blobFileService.getFileByLessonFileId(lessonFile.getId());
 		byte[] bytes = blobFile.getFile();
-		File file = new File(lessonFile.getName());
-		System.out.println(lessonFile.getName());
 
-		FileOutputStream out = new FileOutputStream(file);
-		out.write(bytes);
-		out.close();
 
-		InputStream in = new FileInputStream(file);
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		outputStream.write(bytes);
+		outputStream.close();
+
+		ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);
 
 		response.setCharacterEncoding("utf-8");
 		response.setContentType(APPLICATION_PDF);
 		response.setHeader("Content-Type", "application/octet-stream; charset=utf-8");
-		//String filename = URLEncoder.encode(lessonFile.getName(),"UTF-8");
-		response.setHeader("Content-Disposition", "attachment; filename=\"" + lessonFile.getName() + "\"");
-		response.setHeader("Content-Length", String.valueOf(file.length()));
-		FileCopyUtils.copy(in, response.getOutputStream());
+		String filename = URLEncoder.encode(lessonFile.getName(),"UTF-8");
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+		response.setHeader("Content-Length", String.valueOf(bytes.length));
+		FileCopyUtils.copy(inputStream, response.getOutputStream());
 
 		logger.info("download file controller");
 	}

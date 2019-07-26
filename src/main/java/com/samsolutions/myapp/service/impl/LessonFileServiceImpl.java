@@ -76,7 +76,7 @@ public class LessonFileServiceImpl implements LessonFileService {
 
 		logger.info("getFileById method");
 
-		return lessonFileRepository.findById(id);
+		return lessonFileRepository.findById(id).get();
 	}
 
 	/**
