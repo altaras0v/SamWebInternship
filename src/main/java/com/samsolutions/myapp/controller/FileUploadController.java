@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 
 /**
  * Controller for uploading files
@@ -96,6 +97,7 @@ public class FileUploadController {
 		String name;
 
 		MultipartFile file = uploadedFile.getFile();
+
 		fileValidator.validate(uploadedFile, result);
 		String desc;
 		if (uploadedFile.getDescription() != null) {
@@ -114,6 +116,9 @@ public class FileUploadController {
 
 				byte[] bytes = file.getBytes();
 				name = file.getOriginalFilename();
+
+				System.out.println(Arrays.toString(bytes));
+
 				Lesson lesson = new Lesson();
 				lesson.setId(id);
 				LessonFile lessonFile = new LessonFile(name, desc, lesson);
