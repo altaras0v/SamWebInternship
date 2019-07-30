@@ -65,7 +65,7 @@ public class AppConfig {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
-		dataSource.setUrl("jdbc:mysql://localhost:3306/e_learning?characterEncoding=utf8&useConfigs=maxPerformance&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Minsk");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/e_learning?characterEncoding=utf8&useConfigs=maxPerformance&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Minsk&maxAllowedPacket=67108864");
 		dataSource.setUsername("root");
 		dataSource.setPassword("root");
 		return dataSource;

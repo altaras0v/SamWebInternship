@@ -1,5 +1,6 @@
 package com.samsolutions.myapp.controller;
 
+import com.mysql.cj.xdevapi.PreparableStatement;
 import com.samsolutions.myapp.dto.LessonDTO;
 import com.samsolutions.myapp.model.BlobFile;
 import com.samsolutions.myapp.model.Lesson;
@@ -25,11 +26,18 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.sql.DataSource;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.Arrays;
 
 /**
- * Controller for uploading files
- * lessonId - id of lesson that will have this file
+ * Controller for uploading files lessonId - id of lesson that will have this
+ * file
  */
 @Controller
 @SessionAttributes("lessonId")
@@ -43,16 +51,20 @@ public class FileUploadController {
 
 	private final FileValidator fileValidator;
 
+	@Autowired
+	private DataSource ds;
+
 	/**
 	 * Constructor for controller
 	 *
-	 * @param lessonFileService - service for lessonFile (name and description of file)
+	 * @param lessonFileService - service for lessonFile (name and description of
+	 *                          file)
 	 * @param blobFileService   - service for blobFile (bytes of file)
 	 * @param fileValidator     - validation object (check size and type of file)
 	 */
 	@Autowired
-	public FileUploadController(LessonFileService lessonFileService, BlobFileService blobFileService, FileValidator fileValidator)
-	{
+	public FileUploadController(LessonFileService lessonFileService, BlobFileService blobFileService,
+			FileValidator fileValidator) {
 		this.lessonFileService = lessonFileService;
 		this.blobFileService = blobFileService;
 		this.fileValidator = fileValidator;
@@ -66,9 +78,9 @@ public class FileUploadController {
 	 * @param model     - model for session attribute
 	 * @return upload view
 	 */
-	@RequestMapping(value = {"/uploadRedirect"}, method = RequestMethod.POST)
-	public ModelAndView redirectToUpload(HttpServletRequest request, @ModelAttribute LessonDTO lessonDTO, ModelMap model)
-	{
+	@RequestMapping(value = { "/uploadRedirect" }, method = RequestMethod.POST)
+	public ModelAndView redirectToUpload(HttpServletRequest request, @ModelAttribute LessonDTO lessonDTO,
+			ModelMap model) {
 		Long id = Long.parseLong(request.getParameter("id"));
 		model.addAttribute("lessonId", id);
 		ModelAndView modelAndView = new ModelAndView();
@@ -81,15 +93,15 @@ public class FileUploadController {
 	/**
 	 * Upload single file using Spring Controller
 	 *
-	 * @param uploadedFile - file that will be upload (Multipart file and description)
+	 * @param uploadedFile - file that will be upload (Multipart file and
+	 *                     description)
 	 * @param result       - object of error
 	 * @param model        - model for session attribute (lesson id)
 	 * @return view for uploading
 	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-	public @ResponseBody
-	ModelAndView uploadFileHandler(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, BindingResult result, ModelMap model)
-	{
+	public @ResponseBody ModelAndView uploadFileHandler(@ModelAttribute("uploadedFile") UploadedFile uploadedFile,
+			BindingResult result, ModelMap model) {
 
 		long id = (long) model.get("lessonId");
 
@@ -102,22 +114,24 @@ public class FileUploadController {
 		String desc;
 		if (uploadedFile.getDescription() != null) {
 			desc = uploadedFile.getDescription();
-		}
-		else {
+		} else {
 			desc = "";
 		}
 
 		if (result.hasErrors()) {
 			logger.info("uploadFile method error");
 			modelAndView.setViewName("upload");
-		}
-		else {
+		} else {
+
+			Connection conn;
+			PreparedStatement ps;
+
 			try {
 
 				byte[] bytes = file.getBytes();
 				name = file.getOriginalFilename();
 
-				System.out.println(Arrays.toString(bytes));
+				// System.out.println(Arrays.toString(bytes));
 
 				Lesson lesson = new Lesson();
 				lesson.setId(id);
@@ -125,12 +139,22 @@ public class FileUploadController {
 				lessonFileService.addFile(lessonFile);
 
 				BlobFile blobFile = new BlobFile(bytes, lessonFile);
-				blobFileService.addFile(blobFile);
+				// blobFileService.addFile(blobFile);
+
+				conn = ds.getConnection();
+				ps = conn.prepareStatement("insert into blob_file(file) values (?)");
+				InputStream fis = new ByteArrayInputStream(bytes);
+				ps.setBinaryStream(1, fis);
+				ps.executeUpdate();
 
 				RedirectView redirectView = new RedirectView("upload");
 				redirectView.setStatusCode(HttpStatus.FOUND);
 				modelAndView.setView(redirectView);
+
 				modelAndView.addObject("lessonId", id);
+
+				fis.close();
+				ps.close();
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -144,11 +168,9 @@ public class FileUploadController {
 	 * Go to upload.jsp
 	 */
 	@RequestMapping(value = "/upload", method = RequestMethod.GET)
-	public String fileUploaded()
-	{
+	public String fileUploaded() {
 		return "upload";
 	}
-
 
 	/**
 	 * Controller for deleting files
@@ -157,12 +179,10 @@ public class FileUploadController {
 	 * @return mainpage
 	 */
 	@RequestMapping(value = "/deleteFile", method = RequestMethod.GET)
-	public ModelAndView deleteFile(HttpServletRequest request)
-	{
+	public ModelAndView deleteFile(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView(new RedirectView("/"));
 		long id = Long.parseLong(request.getParameter("fileId"));
-		blobFileService.deleteFile(blobFileService.getFileByLessonFileId(id)
-				.getId());
+		blobFileService.deleteFile(blobFileService.getFileByLessonFileId(id).getId());
 		lessonFileService.deleteFile(id);
 		return mav;
 	}
