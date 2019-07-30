@@ -8,79 +8,178 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * Class for file validation
+ * Check content-type of uploading file
+ * And check magic bytes of uploading file
+ * Almost all files have unique magic bytes (first bytes in file)
+ */
 public class MimeTypeValidator {
 
 	private static ApplicationProperties properties = new ApplicationProperties();
-
 	private static final List<String> TYPES_OF_FILE = Arrays.asList(properties.getProperty("TYPES_OF_FILE")
-			.split(","));
-
+			.split(","));  					// list with file extensions
 	private static final List<String> CONTENT_TYPE_OF_FILE = Arrays.asList(properties.getProperty("CONTENT_TYPE_OF_FILE")
-			.split(","));
+			.split(","));						// list with MIME types
+	private static final Map<String, String> TYPES_MAP = createMapFromLists(TYPES_OF_FILE, CONTENT_TYPE_OF_FILE);
 
+	private static int[] fBytes = new int[11]; 		// magic bytes
+
+	/**
+	 * Create Map from file extensions and MIME types of files
+	 * @param keys - file extensions
+	 * @param values - MIME types
+	 * @return map with file extensions like key and MIME types like value. Used for comparing MIME types.
+	 */
 	public static Map<String, String> createMapFromLists(List<String> keys, List<String> values) {
 		return IntStream.range(0, keys.size())
 				.boxed()
 				.collect(Collectors.toMap(keys::get, values::get));
 	}
 
-	private static final Map<String, String> TYPES_MAP = createMapFromLists(TYPES_OF_FILE, CONTENT_TYPE_OF_FILE);
-
-
+	/**
+	 * Check content-type (MIME type of file)
+	 * Method get content-type of file and compares with content-type that must have this file
+	 *
+	 * @param file          - file that will be upload
+	 * @param fileExtension - file extension.The corresponding type is in TYPES_MAP
+	 * @return true that MIME types are the same.
+	 */
 	public static boolean checkContentType(UploadedFile file, String fileExtension) {
 		return TYPES_MAP.get(fileExtension)
-						.equals(file.getFile()
+				.equals(file.getFile()
 						.getContentType());
 	}
 
+	/**
+	 * Check first bytes (magic bytes) of file
+	 * Method compare magic bytes of file with bytes that file must have
+	 * @param data - array of bytes (uploading file bytes)
+	 * @param fileExtension - extension of
+	 * @return true that magic bytes are the same
+	 */
 	public static boolean checkTypeByBytes(byte[] data, String fileExtension) {
 
-		String type = TYPES_MAP.get(fileExtension);
+		String contentType = TYPES_MAP.get(fileExtension);
 		byte[] header = new byte[11];
-		System.arraycopy(data, 0, header, 0, Math.min(data.length, header.length));
-		int c1 = header[0] & 0xff;
-		int c2 = header[1] & 0xff;
-		int c3 = header[2] & 0xff;
-		int c4 = header[3] & 0xff;
-		int c5 = header[4] & 0xff;
-		int c6 = header[5] & 0xff;
-		int c7 = header[6] & 0xff;
-		int c8 = header[7] & 0xff;
-		int c9 = header[8] & 0xff;
-		int c10 = header[9] & 0xff;
-		int c11 = header[10] & 0xff;
 
-		switch (type) {
+		//Copy first bytes of file (magic bytes) to separate array
+		System.arraycopy(data, 0, header, 0, Math.min(data.length, header.length));
+
+		// Interpret 8 bits as a number which takes values from 0 to 255 inclusive.
+		// 0xff is the int constant
+		fBytes = IntStream.range(0, 11)
+				.map(i -> header[i] & 0xff)
+				.toArray();
+
+		switch (contentType) {
 			case ("application/msword"):
-				return c1 == 0xD0 && c2 == 0xCF && c3 == 0x11 && c4 == 0xE0 && c5 == 0xA1 && c6 == 0xB1 && c7 == 0x1A && c8 == 0xE1;
-			case ("application/pdf"):
-				return c1 == 0x25 && c2 == 0x50 && c3 == 0x44 && c4 == 0x46 && c5 == 0x2d && c6 == 0x31 && c7 == 0x2e;
-			case ("audio/mpeg"):
-				return (c1 == 0x49 && c2 == 0x44 && c3 == 0x33) || (c1 == 0xff && c2 == 0xfb && c3 == 0x30);
-			case ("image/png"):
-				return c1 == 137 && c2 == 80 && c3 == 78 && c4 == 71 && c5 == 13 && c6 == 10 && c7 == 26 && c8 == 10;
-			case ("image/jpeg"):
-				return (c1 == 0xFF && c2 == 0xD8 && c3 == 0xFF) || ((c4 == 0xE1) && (c7 == 'E' && c8 == 'x' && c9 == 'i' && c10 == 'f' && c11 == 0));
-			case ("application/x-zip-compressed"):
-				return c1 == 'P' && c2 == 'K';
-			case ("video/mp4"):
-				return c1 == 0x00 && c2 == 0x00 && c3 == 0x00 && c4 == 0x18 && c5 == 0x66 && c6 == 0x74 && c7 == 0x79 && c8 == 0x70;
-			case ("application/vnd.openxmlformats-officedocument.wordprocessingml.document"):
-				return c1 == 0x50 && c2 == 0x4B && c3 == 0x03 && c4 == 0x04 && c5 == 0x14 && c6 == 0x00 && c7 == 0x06 && c8 == 0x00;
 			case ("application/vnd.ms-excel"):
-				return c1 == 0xD0 && c2 == 0xCF && c3 == 0x11 && c4 == 0xE0 && c5 == 0xA1 && c6 == 0xB1 && c7 == 0x1A && c8 == 0xE1;
-			case ("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"):
-				return c1 == 0x50 && c2 == 0x4B && c3 == 0x03 && c4 == 0x04 && c5 == 0x14 && c6 == 0x00 && c7 == 0x06 && c8 == 0x00;
 			case ("application/vnd.ms-powerpoint"):
-				return c1 == 0xD0 && c2 == 0xCF && c3 == 0x11 && c4 == 0xE0 && c5 == 0xA1 && c6 == 0xB1 && c7 == 0x1A && c8 == 0xE1;
+				return isMicrosoftOfficeFormat();
+			case ("application/pdf"):
+				return isPdf();
+			case ("audio/mpeg"):
+				return isMp3();
+			case ("image/png"):
+				return isPng();
+			case ("image/jpeg"):
+				return isJpg();
+			case ("application/x-zip-compressed"):
+				return isZip();
+			case ("video/mp4"):
+				return isMp4();
+			case ("application/vnd.openxmlformats-officedocument.wordprocessingml.document"):
+			case ("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"):
 			case ("application/vnd.openxmlformats-officedocument.presentationml.presentation"):
-				return c1 == 0x50 && c2 == 0x4B && c3 == 0x03 && c4 == 0x04 && c5 == 0x14 && c6 == 0x00 && c7 == 0x06 && c8 == 0x00;
+				return isMicrosoftOfficeXMLFormat();
 			case ("application/octet-stream"):
-				return (c1 == 0x41 && c2 == 0x54 && c3 == 0x26 && c4 == 0x54 && c5 == 0x46 && c6 == 0x4F && c7 == 0x52 && c8 == 0x4D) || (c1 == 0x52 && c2 == 0x61 && c3 == 0x72 && c4 == 0x21 && c5 == 0x1A && c6 == 0x07);
+				return isDjvu() || isRar();		// getContentType() method define rar and djvu like octet-stream
 			case ("text/plain"):
-				return c1 == 0x1A && c2 == 0x00 && c3 == 0x00 && c4 == 0x03 && c5 == 0x00 && c6 == 0x00 && c7 == 0x14 && c8 == 0x00;
+				return true;					// true cause txt format does not have magic bytes
 		}
 		return false;
+	}
+
+	/**
+	 * Check that file format is Microsoft Office
+	 * (doc,ppt,xls)
+	 * @return true that file is Microsoft Office format
+	 */
+	private static boolean isMicrosoftOfficeFormat() {
+		return fBytes[0] == 0xD0 && fBytes[1] == 0xCF && fBytes[2] == 0x11 && fBytes[3] == 0xE0 && fBytes[4] == 0xA1 && fBytes[5] == 0xB1 && fBytes[6] == 0x1A && fBytes[7] == 0xE1;
+	}
+
+	/**
+	 * Check that file format is PDF
+	 * @return true that file is PDF format
+	 */
+	private static boolean isPdf() {
+		return fBytes[0] == 0x25 && fBytes[1] == 0x50 && fBytes[2] == 0x44 && fBytes[3] == 0x46 && fBytes[4] == 0x2d && fBytes[5] == 0x31 && fBytes[6] == 0x2e;
+	}
+
+	/**
+	 * Check that file format is MP3
+	 * @return true that file is MP# format
+	 */
+	private static boolean isMp3() {
+		return (fBytes[0] == 0x49 && fBytes[1] == 0x44 && fBytes[2] == 0x33) || (fBytes[0] == 0xff && fBytes[1] == 0xfb && fBytes[2] == 0x30);
+	}
+
+	/**
+	 * Check that file format is PNG
+	 * @return true that file is PNG format
+	 */
+	private static boolean isPng() {
+		return fBytes[0] == 137 && fBytes[1] == 80 && fBytes[2] == 78 && fBytes[3] == 71 && fBytes[4] == 13 && fBytes[5] == 10 && fBytes[6] == 26 && fBytes[7] == 10;
+	}
+
+	/**
+	 * Check that file format is JPG
+	 * @return true that file is JPG format
+	 */
+	private static boolean isJpg() {
+		return (fBytes[0] == 0xFF && fBytes[1] == 0xD8 && fBytes[2] == 0xFF) || ((fBytes[3] == 0xE1) && (fBytes[6] == 'E' && fBytes[7] == 'x' && fBytes[8] == 'i' && fBytes[9] == 'f' && fBytes[10] == 0));
+	}
+
+	/**
+	 * Check that file format is ZIP
+	 * @return true that file is ZIP format
+	 */
+	private static boolean isZip() {
+		return fBytes[0] == 'P' && fBytes[1] == 'K';
+	}
+	/**
+	 * Check that file format is MP4
+	 * @return true that file is MP4 format
+	 */
+	private static boolean isMp4() {
+		return fBytes[0] == 0x00 && fBytes[1] == 0x00 && fBytes[2] == 0x00 && fBytes[3] == 0x18 && fBytes[4] == 0x66 && fBytes[5] == 0x74 && fBytes[6] == 0x79 && fBytes[7] == 0x70;
+	}
+
+	/**
+	 * Check that file format is Microsoft Office XML format
+	 * (docx,pptx,xlsx)
+	 * @return true that file is Microsoft Office XML format
+	 */
+	private static boolean isMicrosoftOfficeXMLFormat() {
+		return fBytes[0] == 0x50 && fBytes[1] == 0x4B && fBytes[2] == 0x03 && fBytes[3] == 0x04 && fBytes[4] == 0x14 && fBytes[5] == 0x00 && fBytes[6] == 0x06 && fBytes[7] == 0x00;
+	}
+
+	/**
+	 * Check that file format is RAR
+	 * @return true that file is RAR format
+	 */
+	private static boolean isRar() {
+		return fBytes[0] == 0x52 && fBytes[1] == 0x61 && fBytes[2] == 0x72 && fBytes[3] == 0x21 && fBytes[4] == 0x1A && fBytes[5] == 0x07;
+	}
+
+	/**
+	 * Check that file format is DJVU
+	 * @return true that file is DJVU format
+	 */
+	private static boolean isDjvu() {
+		return fBytes[0] == 0x41 && fBytes[1] == 0x54 && fBytes[2] == 0x26 && fBytes[3] == 0x54 && fBytes[4] == 0x46 && fBytes[5] == 0x4F && fBytes[6] == 0x52 && fBytes[7] == 0x4D;
 	}
 
 }

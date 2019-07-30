@@ -8,8 +8,7 @@ import org.springframework.validation.Validator;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-
-//ПРОВЕРИТЬ, ЧТО ТАКОЙ ФАЙЛ УЖЕ ЕСТЬ
+import java.util.Objects;
 
 /**
  * Class-validator for uploading files.
@@ -39,11 +38,16 @@ public class FileValidator implements Validator {
 
 		UploadedFile file = (UploadedFile) o;
 		// Check that size not null
-		if (file.getFile()
-				.getSize() == 0) {
+		if (Objects.equals(file.getFile()
+				.getOriginalFilename(), "")) {
 			errors.rejectValue("file", "uploadForm.selectFile", "Please select a file!");
 		}
 		else {
+			if (file.getFile()
+					.getSize() == 0) {
+				errors.rejectValue("file", "uploadForm.selectFile", "File is empty!");
+				return;
+			}
 
 			//Check valid format of file
 			String fileExtension = file.getFile()
@@ -59,11 +63,13 @@ public class FileValidator implements Validator {
 				return;
 			}
 
+			// check content-type of file
 			if (!MimeTypeValidator.checkContentType(file, fileExtension)) {
 				errors.rejectValue("file", "uploadForm.selectFile", "Invalid file format!");
 				return;
 			}
 
+			// check magic bytes of file
 			try {
 				if (!MimeTypeValidator.checkTypeByBytes(file.getFile()
 						.getBytes(), fileExtension)) {
@@ -79,7 +85,6 @@ public class FileValidator implements Validator {
 					.getSize() > MAX_SIZE) {
 				errors.rejectValue("file", "uploadForm.selectFile", "File size too large! Max size 16 MB");
 			}
-
 		}
 	}
 }
