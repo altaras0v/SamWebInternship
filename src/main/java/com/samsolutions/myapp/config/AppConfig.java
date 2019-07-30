@@ -63,11 +63,11 @@ public class AppConfig {
 	public DataSource dataSource() {
 
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
 		dataSource.setUrl("jdbc:mysql://localhost:3306/e_learning?characterEncoding=utf8&useConfigs=maxPerformance&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Minsk");
 		dataSource.setUsername("root");
-		dataSource.setPassword("admin");
+		dataSource.setPassword("root");
 		return dataSource;
 	}
 
