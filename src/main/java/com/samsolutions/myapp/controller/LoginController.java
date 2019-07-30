@@ -11,7 +11,7 @@ public class LoginController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String loginPage(Model model){
-		return "login";
+		return "mainlogin";
 	}
 
 }
