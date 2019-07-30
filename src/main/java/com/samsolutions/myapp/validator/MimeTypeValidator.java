@@ -17,13 +17,25 @@ import java.util.stream.IntStream;
 public class MimeTypeValidator {
 
 	private static ApplicationProperties properties = new ApplicationProperties();
+	/**
+	 * List with file extensions
+	 */
 	private static final List<String> TYPES_OF_FILE = Arrays.asList(properties.getProperty("TYPES_OF_FILE")
-			.split(","));  					// list with file extensions
+			.split(","));
+	/**
+	 * List with MIME types
+	 */
 	private static final List<String> CONTENT_TYPE_OF_FILE = Arrays.asList(properties.getProperty("CONTENT_TYPE_OF_FILE")
-			.split(","));						// list with MIME types
+			.split(","));
+	/**
+	 * Map with extensions and MIME types.
+	 */
 	private static final Map<String, String> TYPES_MAP = createMapFromLists(TYPES_OF_FILE, CONTENT_TYPE_OF_FILE);
 
-	private static int[] fBytes = new int[11]; 		// magic bytes
+	/**
+	 * Array with magic bytes
+	 */
+	private static int[] fBytes = new int[11];
 
 	/**
 	 * Create Map from file extensions and MIME types of files
