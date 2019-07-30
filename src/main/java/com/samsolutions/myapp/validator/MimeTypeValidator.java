@@ -107,7 +107,8 @@ public class MimeTypeValidator {
 	 * @return true that file is Microsoft Office format
 	 */
 	private static boolean isMicrosoftOfficeFormat() {
-		return fBytes[0] == 0xD0 && fBytes[1] == 0xCF && fBytes[2] == 0x11 && fBytes[3] == 0xE0 && fBytes[4] == 0xA1 && fBytes[5] == 0xB1 && fBytes[6] == 0x1A && fBytes[7] == 0xE1;
+		return fBytes[0] == 0xD0 && fBytes[1] == 0xCF && fBytes[2] == 0x11 && fBytes[3] == 0xE0 && fBytes[4] == 0xA1 &&
+				fBytes[5] == 0xB1 && fBytes[6] == 0x1A && fBytes[7] == 0xE1;
 	}
 
 	/**
@@ -115,7 +116,8 @@ public class MimeTypeValidator {
 	 * @return true that file is PDF format
 	 */
 	private static boolean isPdf() {
-		return fBytes[0] == 0x25 && fBytes[1] == 0x50 && fBytes[2] == 0x44 && fBytes[3] == 0x46 && fBytes[4] == 0x2d && fBytes[5] == 0x31 && fBytes[6] == 0x2e;
+		return fBytes[0] == 0x25 && fBytes[1] == 0x50 && fBytes[2] == 0x44 && fBytes[3] == 0x46 && fBytes[4] == 0x2d &&
+				fBytes[5] == 0x31 && fBytes[6] == 0x2e;
 	}
 
 	/**
@@ -123,7 +125,8 @@ public class MimeTypeValidator {
 	 * @return true that file is MP# format
 	 */
 	private static boolean isMp3() {
-		return (fBytes[0] == 0x49 && fBytes[1] == 0x44 && fBytes[2] == 0x33) || (fBytes[0] == 0xff && fBytes[1] == 0xfb && fBytes[2] == 0x30);
+		return (fBytes[0] == 0x49 && fBytes[1] == 0x44 && fBytes[2] == 0x33) ||
+				(fBytes[0] == 0xff && fBytes[1] == 0xfb && fBytes[2] == 0x30);
 	}
 
 	/**
@@ -131,7 +134,8 @@ public class MimeTypeValidator {
 	 * @return true that file is PNG format
 	 */
 	private static boolean isPng() {
-		return fBytes[0] == 137 && fBytes[1] == 80 && fBytes[2] == 78 && fBytes[3] == 71 && fBytes[4] == 13 && fBytes[5] == 10 && fBytes[6] == 26 && fBytes[7] == 10;
+		return fBytes[0] == 137 && fBytes[1] == 80 && fBytes[2] == 78 && fBytes[3] == 71 && fBytes[4] == 13 &&
+				fBytes[5] == 10 && fBytes[6] == 26 && fBytes[7] == 10;
 	}
 
 	/**
@@ -139,7 +143,9 @@ public class MimeTypeValidator {
 	 * @return true that file is JPG format
 	 */
 	private static boolean isJpg() {
-		return (fBytes[0] == 0xFF && fBytes[1] == 0xD8 && fBytes[2] == 0xFF) || ((fBytes[3] == 0xE1) && (fBytes[6] == 'E' && fBytes[7] == 'x' && fBytes[8] == 'i' && fBytes[9] == 'f' && fBytes[10] == 0));
+		return (fBytes[0] == 0xFF && fBytes[1] == 0xD8 && fBytes[2] == 0xFF) ||
+				((fBytes[3] == 0xE1) && (fBytes[6] == 'E' && fBytes[7] == 'x' && fBytes[8] == 'i' &&
+						fBytes[9] == 'f' && fBytes[10] == 0));
 	}
 
 	/**
@@ -154,7 +160,8 @@ public class MimeTypeValidator {
 	 * @return true that file is MP4 format
 	 */
 	private static boolean isMp4() {
-		return fBytes[0] == 0x00 && fBytes[1] == 0x00 && fBytes[2] == 0x00 && fBytes[3] == 0x18 && fBytes[4] == 0x66 && fBytes[5] == 0x74 && fBytes[6] == 0x79 && fBytes[7] == 0x70;
+		return fBytes[0] == 0x00 && fBytes[1] == 0x00 && fBytes[2] == 0x00 && fBytes[3] == 0x18 && fBytes[4] == 0x66 &&
+				fBytes[5] == 0x74 && fBytes[6] == 0x79 && fBytes[7] == 0x70;
 	}
 
 	/**
@@ -163,7 +170,8 @@ public class MimeTypeValidator {
 	 * @return true that file is Microsoft Office XML format
 	 */
 	private static boolean isMicrosoftOfficeXMLFormat() {
-		return fBytes[0] == 0x50 && fBytes[1] == 0x4B && fBytes[2] == 0x03 && fBytes[3] == 0x04 && fBytes[4] == 0x14 && fBytes[5] == 0x00 && fBytes[6] == 0x06 && fBytes[7] == 0x00;
+		return fBytes[0] == 0x50 && fBytes[1] == 0x4B && fBytes[2] == 0x03 && fBytes[3] == 0x04 && fBytes[4] == 0x14 &&
+				fBytes[5] == 0x00 && fBytes[6] == 0x06 && fBytes[7] == 0x00;
 	}
 
 	/**
@@ -171,7 +179,8 @@ public class MimeTypeValidator {
 	 * @return true that file is RAR format
 	 */
 	private static boolean isRar() {
-		return fBytes[0] == 0x52 && fBytes[1] == 0x61 && fBytes[2] == 0x72 && fBytes[3] == 0x21 && fBytes[4] == 0x1A && fBytes[5] == 0x07;
+		return fBytes[0] == 0x52 && fBytes[1] == 0x61 && fBytes[2] == 0x72 && fBytes[3] == 0x21 && fBytes[4] == 0x1A &&
+				fBytes[5] == 0x07;
 	}
 
 	/**
@@ -179,7 +188,8 @@ public class MimeTypeValidator {
 	 * @return true that file is DJVU format
 	 */
 	private static boolean isDjvu() {
-		return fBytes[0] == 0x41 && fBytes[1] == 0x54 && fBytes[2] == 0x26 && fBytes[3] == 0x54 && fBytes[4] == 0x46 && fBytes[5] == 0x4F && fBytes[6] == 0x52 && fBytes[7] == 0x4D;
+		return fBytes[0] == 0x41 && fBytes[1] == 0x54 && fBytes[2] == 0x26 && fBytes[3] == 0x54 && fBytes[4] == 0x46
+				&& fBytes[5] == 0x4F && fBytes[6] == 0x52 && fBytes[7] == 0x4D;
 	}
 
 }
