@@ -105,6 +105,8 @@ public class MimeTypeValidator {
 			case ("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"):
 			case ("application/vnd.openxmlformats-officedocument.presentationml.presentation"):
 				return isMicrosoftOfficeXMLFormat();
+			case("video/avi"):
+				return isAvi();
 			case ("application/octet-stream"):
 				return isDjvu() || isRar();		// getContentType() method define rar and djvu like octet-stream
 			case ("text/plain"):
@@ -202,6 +204,11 @@ public class MimeTypeValidator {
 	private static boolean isDjvu() {
 		return fBytes[0] == 0x41 && fBytes[1] == 0x54 && fBytes[2] == 0x26 && fBytes[3] == 0x54 && fBytes[4] == 0x46
 				&& fBytes[5] == 0x4F && fBytes[6] == 0x52 && fBytes[7] == 0x4D;
+	}
+
+	private static boolean isAvi() {
+		return fBytes[0] == 0x52 && fBytes[1] == 0x49 && fBytes[2] == 0x46 && fBytes[3] == 0x46 &&
+				fBytes[8] == 0x41 && fBytes[9] == 0x56 && fBytes[10] == 0x49;
 	}
 
 }

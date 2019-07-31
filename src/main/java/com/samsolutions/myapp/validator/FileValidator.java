@@ -37,6 +37,7 @@ public class FileValidator implements Validator {
 	public void validate(Object o, Errors errors) {
 
 		UploadedFile file = (UploadedFile) o;
+		System.out.println("----------------  "+file.getFile().getContentType());
 		// Check that size not null
 		if (Objects.equals(file.getFile()
 				.getOriginalFilename(), "")) {
@@ -46,6 +47,10 @@ public class FileValidator implements Validator {
 			if (file.getFile()
 					.getSize() == 0) {
 				errors.rejectValue("file", "uploadForm.selectFile", "File is empty!");
+				return;
+			}
+			if (Objects.equals(file.getDescription(), "")) {
+				errors.rejectValue("file", "uploadForm.selectFile", "Description is empty!");
 				return;
 			}
 

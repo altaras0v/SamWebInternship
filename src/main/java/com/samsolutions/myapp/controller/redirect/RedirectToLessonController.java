@@ -4,7 +4,7 @@ import com.samsolutions.myapp.dto.LessonDTO;
 import com.samsolutions.myapp.dto.LessonFileDTO;
 import com.samsolutions.myapp.dto.QuestionDTO;
 import com.samsolutions.myapp.dto.TestDTO;
-import com.samsolutions.myapp.service.api.LessonFileService;
+import com.samsolutions.myapp.service.api.FileService;
 import com.samsolutions.myapp.service.api.LessonService;
 import com.samsolutions.myapp.service.api.QuestionService;
 import com.samsolutions.myapp.service.api.TestService;
@@ -32,7 +32,8 @@ public class RedirectToLessonController {
 
 	private final LessonService lessonService;
 
-	private final LessonFileService lessonFileService;
+
+	private final FileService fileService;
 
 	private final TestService testService;
 
@@ -43,14 +44,15 @@ public class RedirectToLessonController {
 	 * Constructor for controller
 	 *
 	 * @param lessonService     - service for lesson, used for getting lesson DTO
-	 * @param lessonFileService - service for files, used for getting files for this lesson
+	 * @param fileService - service for files, used for getting files for this lesson
 	 * @param testService       - service for test, used for getting test for this lesson(if it exist)
 	 * @param questionService   - service for question, used for getting question for test
 	 */
 	@Autowired
-	public RedirectToLessonController(LessonService lessonService, LessonFileService lessonFileService, TestService testService, QuestionService questionService) {
+	public RedirectToLessonController(LessonService lessonService, FileService fileService, TestService testService,
+									  QuestionService questionService) {
 		this.lessonService = lessonService;
-		this.lessonFileService = lessonFileService;
+		this.fileService = fileService;
 		this.testService = testService;
 		this.questionService = questionService;
 	}
@@ -68,7 +70,7 @@ public class RedirectToLessonController {
 
 		int id = Integer.parseInt(request.getParameter("id"));
 		LessonDTO lessonDTO = lessonService.getLessonById(id);
-		List<LessonFileDTO> listFiles = lessonFileService.getFilesByLessonId(id);
+		List<LessonFileDTO> listFiles = fileService.getFilesByLessonId(id);
 		TestDTO testDTO = testService.getTestByLessonId(id);
 		List<QuestionDTO> questionDTOList = questionService.getQuestionsByTestId(testDTO.getId());
 		modelAndView.addObject("testDTO", testDTO);

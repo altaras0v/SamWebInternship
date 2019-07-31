@@ -21,7 +21,7 @@
         <div class="col-md-6 col-md-offset-3 well">
             <h3 class="text-center">Add files</h3>
 
-            <form:form method="post" enctype="multipart/form-data" modelAttribute="uploadedFile" action="/springMVC/upload">
+            <form:form method="post" enctype="multipart/form-data" modelAttribute="uploadedFile" action="../upload">
 
             <div class="col-xs-12">
                 <div class="form-group">

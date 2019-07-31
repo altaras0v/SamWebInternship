@@ -14,15 +14,14 @@
     <link rel="shortcut icon" href="http://moodle.lmsace.com/theme/image.php/eguru/theme/1560834156/favicon"/>
     <meta http-equiv="Content-Type" content="text/html; charset=cp1251"/>
     <meta name="keywords" content="moodle, Moodle Demo Environment"/>
-    <link rel="stylesheet" type="text/css"
-          href="http://moodle.lmsace.com/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple.css"/>
-    <script type="text/javascript"
-            src="http://gc.kis.v2.scr.kaspersky-labs.com/98ACBE77-507D-0043-A315-2C405C0C8900/main.js"
-            charset="UTF-8"></script>
+      <style>
+        <%@include file="/WEB-INF/css/login.css"%>
+        <%@include file="/WEB-INF/css/login_style.css"%>
+    </style>
     <script id="firstthemesheet"
             type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script>
-    <link rel="stylesheet" type="text/css" href="http://moodle.lmsace.com/theme/styles.php/eguru/1560834156_1/all"/>
-
+    <%--<link rel="stylesheet" type="text/css" href="http://moodle.lmsace.com/theme/styles.php/eguru/1560834156_1/all"/>
+--%>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -403,33 +402,7 @@
         <div class="policiesfooter"><a href="http://moodle.lmsace.com/admin/tool/policy/viewall.php">Policies</a></div>
 
 
-        <script type="text/javascript"
-                src="http://moodle.lmsace.com/lib/javascript.php/-1/lib/requirejs/require.js"></script>
 
-        <script type="text/javascript"
-                src="http://moodle.lmsace.com/lib/javascript.php/-1/theme/eguru/javascript/theme.js"></script>
-        <script type="text/javascript"
-                src="http://moodle.lmsace.com/lib/javascript.php/-1/local/vpt/javascript/videoplaytime.js"></script>
-
-
-        <script type="text/javascript">
-            //<![CDATA[
-            (function () {
-                Y.use("moodle-filter_mathjaxloader-loader", function () {
-                    M.filter_mathjaxloader.configure({
-                        "mathjaxconfig": "\nMathJax.Hub.Config({\n    config: [\"Accessible.js\", \"Safe.js\"],\n    errorSettings: { message: [\"!\"] },\n    skipStartupTypeset: true,\n    messageStyle: \"none\"\n});\n",
-                        "lang": "en"
-                    });
-                });
-                M.util.help_popups.setup(Y);
-                M.util.js_pending('random5d1b3626211ec11');
-                Y.on('domready', function () {
-                    M.util.js_complete("init");
-                    M.util.js_complete('random5d1b3626211ec11');
-                });
-            })();
-
-        </script>
 
 
     </footer>

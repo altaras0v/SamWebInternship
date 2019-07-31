@@ -1,16 +1,15 @@
 package com.samsolutions.myapp.service.api;
 
 import com.samsolutions.myapp.dto.LessonFileDTO;
+import com.samsolutions.myapp.model.BlobFile;
 import com.samsolutions.myapp.model.LessonFile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Service for LessonFile(name and description of file)
- */
 @Service
-public interface LessonFileService {
+public interface FileService {
+
 	/**
 	 * Get all files
 	 *
@@ -35,13 +34,25 @@ public interface LessonFileService {
 	LessonFile getFileById(long id);
 
 	/**
-	 * Add lessonFile
+	 * Add file
 	 *
-	 * @param lessonFile - object for adding
+	 * @param lessonFile - name and description of file
+	 * @param file - bytes of file
 	 */
-	void addFile(LessonFile lessonFile);
+	void addFile(LessonFile lessonFile, byte[] file);
 
-	// TODO: 23.07.2019 comments 
+	/**
+	 * Delete file
+	 *
+	 * @param id - if of file that will be delete
+	 */
 	void deleteFile(long id);
 
+	/**
+	 * Get file for this LessonFile
+	 *
+	 * @param id - LessonFile id
+	 * @return BlobFile (bytes)
+	 */
+	BlobFile getFileByLessonFileId(long id);
 }

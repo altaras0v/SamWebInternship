@@ -2,8 +2,7 @@ package com.samsolutions.myapp.controller;
 
 import com.samsolutions.myapp.model.BlobFile;
 import com.samsolutions.myapp.model.LessonFile;
-import com.samsolutions.myapp.service.api.BlobFileService;
-import com.samsolutions.myapp.service.api.LessonFileService;
+import com.samsolutions.myapp.service.api.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,22 +29,19 @@ public class FileDownloadController {
 
 	private static final String APPLICATION_PDF = "application/octet-stream";
 
-	private final LessonFileService lessonFileService;
+	private final FileService fileService;
 
-	private final BlobFileService blobFileService;
 
 
 	/**
 	 * Controller for files
 	 *
-	 * @param lessonFileService - service for lessonFile (name and description of file)
-	 * @param blobFileService   - service for blobFile (bytes of file)
+	 * @param fileService - service for lessonFile (name and description of file)
 	 */
 	@Autowired
-	public FileDownloadController(LessonFileService lessonFileService, BlobFileService blobFileService)
+	public FileDownloadController(FileService fileService)
 	{
-		this.lessonFileService = lessonFileService;
-		this.blobFileService = blobFileService;
+		this.fileService = fileService;
 	}
 
 	/**
@@ -60,8 +56,8 @@ public class FileDownloadController {
 	{
 		Long id = Long.parseLong(request.getParameter("id"));
 
-		LessonFile lessonFile = lessonFileService.getFileById(id);
-		BlobFile blobFile = blobFileService.getFileByLessonFileId(lessonFile.getId());
+		LessonFile lessonFile = fileService.getFileById(id);
+		BlobFile blobFile = fileService.getFileByLessonFileId(lessonFile.getId());
 		byte[] bytes = blobFile.getFile();
 
 

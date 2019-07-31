@@ -67,7 +67,7 @@ public class AppConfig {
 
 		dataSource.setUrl("jdbc:mysql://localhost:3306/e_learning?characterEncoding=utf8&useConfigs=maxPerformance&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Minsk&maxAllowedPacket=67108864");
 		dataSource.setUsername("root");
-		dataSource.setPassword("root");
+		dataSource.setPassword("admin");
 		return dataSource;
 	}
 

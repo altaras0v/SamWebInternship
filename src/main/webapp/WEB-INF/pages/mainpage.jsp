@@ -16,9 +16,7 @@
     <meta name="keywords" content="moodle, Moodle Demo Environment"/>
     <link rel="stylesheet" type="text/css"
           href="http://moodle.lmsace.com/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple.css"/>
-    <script type="text/javascript"
-            src="http://gc.kis.v2.scr.kaspersky-labs.com/98ACBE77-507D-0043-A315-2C405C0C8900/main.js"
-            charset="UTF-8"></script>
+
     <script id="firstthemesheet"
             type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script>
     <link rel="stylesheet" type="text/css" href="http://moodle.lmsace.com/theme/styles.php/eguru/1560834156_1/all"/>
