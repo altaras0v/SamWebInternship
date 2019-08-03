@@ -3,7 +3,7 @@ package com.samsolutions.myapp;
 public enum UserRoleEnum {
 
 	ADMIN,
-	USER,
+	ROLE_USER,
 	ANONYMOUS;
 
 	UserRoleEnum() {

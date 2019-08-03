@@ -1,17 +1,26 @@
 package com.samsolutions.myapp.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/login")
 public class LoginController {
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String loginPage(Model model){
-		return "mainlogin";
+	@RequestMapping(value = "/login",  method = {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView loginPage(@ModelAttribute("value") String string, HttpServletRequest request){
+		ModelAndView mnv = new ModelAndView("mainlogin");
+		String a = "eewe";
+		String isError = request.getParameter("error");
+		mnv.addObject("an",a);
+		if ("true".equals(isError)) {
+			mnv.addObject("errorMessage", "Wrong credentials");
+		}
+		return mnv;
 	}
 
 }

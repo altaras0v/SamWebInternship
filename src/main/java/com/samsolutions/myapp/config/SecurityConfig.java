@@ -29,11 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder(12);
 	}
 
-	/*@SuppressWarnings("deprecation")
-	@Bean
-	public static NoOpPasswordEncoder passwordEncoder() {
-		return (NoOpPasswordEncoder) NoOpPasswordEncoder.getInstance();
-	}*/
 
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
@@ -67,9 +62,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/j_spring_security_check")
 
 				// указываем URL при неудачном логине
-				.failureUrl("/login?error")
+				.failureUrl("/login?error=true")
 				// Указываем параметры логина и пароля с формы логина
-
+				.defaultSuccessUrl("/mainpage", true)
 				// даем доступ к форме логина всем
 				.permitAll();
 

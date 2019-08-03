@@ -12,28 +12,47 @@
     <title>Upload File Request Page</title>
 
     <script>
-        var totalFileLength, totalUploaded, fileCount, fileUploaded;
+        var totalFileLength, totalUploaded, fileCount, filesUploaded;
+
+        //To log everything on console
+        function debug(s) {
+            var debug = document.getElementById('debug');
+            if (debug) {
+                debug.innerHTML = debug.innerHTML + '<br/>' + s;
+            }
+        }
 
         //Will be called when upload is completed
         function onUploadComplete(e) {
-            totalUploaded += document.getElementById('file').file.size;
-            fileUploaded++;
+            totalUploaded += document.getElementById('files').files[filesUploaded].size;
+            filesUploaded++;
+            debug('complete ' + filesUploaded + " of " + fileCount);
+            debug('totalUploaded: ' + totalUploaded);
+            if (filesUploaded < fileCount) {
                 uploadNext();
+            } else {
                 var bar = document.getElementById('bar');
                 bar.style.width = '100%';
                 bar.innerHTML = '100% complete';
+                alert('Finished uploading file(s)');
+            }
         }
 
         //Will be called when user select the files in file control
         function onFileSelect(e) {
-           var files = e.target.files; // FileList object
+            var files = e.target.files; // FileList object
             var output = [];
-                var file = files[0];
+            fileCount = files.length;
+            totalFileLength = 0;
+            for (var i = 0; i < fileCount; i++) {
+                var file = files[i];
                 output.push(file.name, ' (', file.size, ' bytes, ', file.lastModifiedDate.toLocaleDateString(), ')');
                 output.push('<br/>');
-                totalFileLength = file.size;
-
+                debug('add ' + file.size);
+                totalFileLength += file.size;
+            }
             document.getElementById('selectedFiles').innerHTML = output.join('');
+            debug('totalFileLength:' + totalFileLength);
         }
 
         //This will continueously update the progress bar
@@ -43,6 +62,8 @@
                 var bar = document.getElementById('bar');
                 bar.style.width = percentComplete + '%';
                 bar.innerHTML = percentComplete + ' % complete';
+            } else {
+                debug('unable to compute');
             }
         }
 
@@ -55,24 +76,25 @@
         function uploadNext() {
             var xhr = new XMLHttpRequest();
             var fd = new FormData();
-            var file = document.getElementById('file').files[fileUploaded];
+            var file = document.getElementById('files').files[filesUploaded];
             fd.append("multipartFile", file);
             xhr.upload.addEventListener("progress", onUploadProgress, false);
             xhr.addEventListener("load", onUploadComplete, false);
             xhr.addEventListener("error", onUploadFailed, false);
             xhr.open("POST", "upload");
+            debug('uploading ' + file.name);
             xhr.send(fd);
         }
 
         //Let's begin the upload process
         function startUpload() {
-            totalUploaded = fileUploaded = 0;
+            totalUploaded = filesUploaded = 0;
             uploadNext();
         }
 
         //Event listeners for button clicks
-        window.onload = function () {
-            document.getElementById('file').addEventListener('change', onFileSelect, false);
+        window.onload = function() {
+            document.getElementById('files').addEventListener('change', onFileSelect, false);
             document.getElementById('uploadButton').addEventListener('click', startUpload, false);
         }
     </script>
@@ -96,7 +118,7 @@
                              <span class="input-group-btn">
                                 <span class="btn btn-primary"
                                       onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
-                                    <input name="file" id="file"
+                                    <input name="file" id="files"
                                            onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());"
                                            style="display: none;" type="file">
 
@@ -107,7 +129,7 @@
                         <div class="col-xs-12">
                             <div class="text-center col-xs-12">
                                 <div class="form-group">
-                                    <input type="text" placeholder="Description" name="description"
+                                    <input type="text"  placeholder="Description" name="description"
                                            id="description"/>
                                 </div>
                             </div>
@@ -117,7 +139,7 @@
                         <div class="text-center col-xs-12">
                             <input id="uploadButton" type="submit" value="Upload">
                         </div>
-                            <br><br><br><br>
+                        <br><br><br><br>
                         <div id='progressBar' style='height: 20px; border: 2px steelblue; margin-bottom: 20px'>
                             <div id='bar' style='height: 100%; background: steelblue; width: 0%'>
                             </div>
@@ -130,7 +152,7 @@
                 </form:form>
                 <td><form:form name="id" action="/" method="get">
                     <div class="coursename">
-                        <button style="color: steelblue" type="submit" class="btn btn-link">На главную</button>
+                        <button onclick="foo()" style="color: steelblue" type="submit" class="btn btn-link">На главную</button>
                     </div>
                 </form:form></td>
             </div>

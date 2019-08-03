@@ -1,6 +1,5 @@
 package com.samsolutions.myapp.service.impl;
 
-import com.samsolutions.myapp.UserTest;
 import com.samsolutions.myapp.dto.UserDTO;
 import com.samsolutions.myapp.model.User;
 import com.samsolutions.myapp.repository.UserRepository;
@@ -27,18 +26,13 @@ public class UserServiceImpl implements UserService {
 
 	//test
 	@Override
-	public UserTest getUser(String login) {
-		UserTest user = new UserTest();
-		user.setLogin(login);
-		user.setPassword("$2a$12$tqNvO4mlFfeNfl97ldP8x.Kd614EiD.oJGynKMvnv8qiNL7wzxvoO");
-
+	public User getUser(String login) {
+		User user = userRepository.findByName(login);
 		return user;
 	}
 
 	@Override
-	public void addUser(com.samsolutions.myapp.model.User user) {
-		userRepository.save(user);
-		logger.info("addUser method");
+	public void addUser(User user) {
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class MainController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String start(Model model){
-		return "mainlogin";
+		return "main";
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.samsolutions.myapp.service.api;
 
-import com.samsolutions.myapp.UserTest;
 import com.samsolutions.myapp.dto.UserDTO;
 import com.samsolutions.myapp.model.User;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,7 @@ import java.util.List;
 @Service
 public interface UserService {
 
-	UserTest getUser(String login); // test method
+	User getUser(String login);
 
 	void addUser(User user);
 

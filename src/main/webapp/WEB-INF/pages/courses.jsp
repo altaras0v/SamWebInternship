@@ -15,119 +15,83 @@
 
     <title>This is a Bootstrap example</title>
 
-
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/base.css">
-
-    <%--  <link href="../assets/css/bootstrap.css" rel="stylesheet">--%>
-
-    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
+    <style>
+        <%@include file="/WEB-INF/css/courses.css"%>
+        <%@include file="/WEB-INF/css/main.css"%>
+    </style>
 </head>
-<body>
+<section>
 
-<div class="jumbotron">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+<nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg "  color-on-scroll="100"  id="sectionsNav">
     <div class="container">
-        <!-- row 1 -->
-        <div class="row">
-            <header class="col-md-12">
-                <h2>E-Learning System</h2>
-            </header>
+        <div class="navbar-translate" >
+            <a style=  "margin: auto auto auto -100px; color: #FF8C00; font-size: 30px; font-weight: 500" href="<c:url value = "/"/>"
+               class="navbar-brand"  > <em>E-Learning System</em>
+            </a>
+
+        </div>
+        <div class="navbar-translate">
+            <ul class="navbar-nav ml-auto">
+                <form:form name="login" action="../login" method="get">
+                    <li style="margin: auto auto auto 90%;" class="nav-item">
+                        <button class="btn btn-link border-pretty" type="submit"
+                                style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Login<i
+                                class="icon ion-android-arrow-forward">
+                        </i></button>
+                    </li>
+                </form:form>
+            </ul>
         </div>
     </div>
-</div>
-<div class="container">
-
-    <div class="row">
-        <div class="col-md-offset-4 col-md-4">
-            <h3>
-                List of courses
-            </h3>
-        </div>
-
-
+</nav>
+<br>
+    <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <table class="table table-striped table-bordered table-hover">
-                    <thead>
-                    <tr>
-                        <th class="info">
-                            <h4 class="text-center w-5 p-3">Name of course</h4>
-                        </th>
-                        <th class="success">
-                            <h4 class="text-center">Description</h4>
-                        </th>
-
-                    </tr>
-                    </thead>
-
-                    <tbody>
+        <br><br><br>
+        <div class="row">
+            <h2 class="text-center"><span style="color:black;">Our courses</span> </h2>
+            <div class="col-md-8 offset-md-2">
+                <div class="bd-example" data-example-id="">
 
 
-                    <c:forEach items="${listsCourses}"  var="course">
-                        <tr>
-                            <%--<td>${course.name}</td>--%>
-                                <td><form:form name="first" action="../redirect/courseRedirect" method="get">
-                                    <button type="submit" name="first" value="${course.id}" class="btn btn-link">${course.name}</button>
-                                </form:form></td>
-                            <td>${course.description}</td>
-                        </tr>
-                    </c:forEach>
+                        <c:forEach items="${listsCourses}" var="course">
+                        <td><form:form name="first" action="../redirect/courseRedirect" method="get">
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingThree">
+                                <div class="mb-0">
+                                    <a data-toggle="collapse" data-parent="#accordion"
+                                       aria-expanded="false" aria-controls="collapseOne" class="collapsed">
+                                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                         <button style="color:#4682B4"
+                                                     type="submit" name="first"
+                                                     value="${course.id}"
+                                                 class="btn btn-link"><h3 style="color: #4682B4">${course.name}</h3></button>
+                                       <p> <h6 style="color:#9f26aa;">${course.description}</h6></p>
+                                    </a>
 
+                                </div>
+                            </div>
+                        </div>
+                        </form:form></td>
+                        </c:forEach>
 
-                    </tbody>
-                </table>
+                    </div>
+                </div>
             </div>
-
-
         </div>
-        <a href="<c:url value = "/addCourse"/>">Creazione Nuovo Corso</a>
-        <br>
-        <a href="<c:url value = "/upload"/>">Upload files</a>
-
-        <footer class="row jumbotron">
-
-            <div class="col-md-3">
-                <address>
-                    <strong>Name, Inc.</strong><br>
-                    Address line 1<br>
-                    Address line 2<br>
-                    <abbr title="Phone">P:</abbr> (123) 456-7890
-                </address>
-            </div>
+        <br><br><br>
+        <footer style="margin: 0 auto 0 auto;color: black" class="footer text-center ">
+            <p> Copyright &copy; localhost:8080&#128518;,2019. All rights reserved.</p>
+            <p>Contact: altaras0b@gmail.com</p>
         </footer>
+        </div>
     </div>
-
-
-</div>
-</div>
-</div>
-
-<style>
-    :focus {outline:none !important;}
-</style>
-
-
-
-
-<script src="../assets/js/jquery.js"></script>
-<script src="../assets/js/bootstrap-transition.js"></script>
-<script src="../assets/js/bootstrap-alert.js"></script>
-<script src="../assets/js/bootstrap-modal.js"></script>
-<script src="../assets/js/bootstrap-dropdown.js"></script>
-<script src="../assets/js/bootstrap-scrollspy.js"></script>
-<script src="../assets/js/bootstrap-tab.js"></script>
-<script src="../assets/js/bootstrap-tooltip.js"></script>
-<script src="../assets/js/bootstrap-popover.js"></script>
-<script src="../assets/js/bootstrap-button.js"></script>
-<script src="../assets/js/bootstrap-collapse.js"></script>
-<script src="../assets/js/bootstrap-carousel.js"></script>
-<script src="../assets/js/bootstrap-typeahead.js"></script>
-</body>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</section>
 </body>
 </html>

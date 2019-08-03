@@ -66,7 +66,6 @@ public class LessonController {
 	public ModelAndView addCourse(@ModelAttribute("lesson") LessonDTO lessonDTO, ModelMap modelMap)
 	{
 		ModelAndView mav = new ModelAndView("addLesson");
-		System.out.println(lessonDTO.getName());
 		long id = (long) modelMap.get("courseId");
 		Course course = new Course();
 		course.setId(id);
