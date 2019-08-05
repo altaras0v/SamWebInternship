@@ -2,6 +2,15 @@ html * {
     -webkit-font-smoothing: antialiased;
 }
 
+span {
+    font-family: Tahoma, sans-serif;
+
+    font-size: 26px;
+    color: #FF8C00;
+    text-transform: uppercase;
+    text-shadow: 0 0 6px  #43cea2;
+}
+
 .container h1 {
     font-size: 3.3125rem;
     line-height: 1.15em;

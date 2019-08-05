@@ -20,6 +20,7 @@
         <%@include file="/WEB-INF/css/main.css"%>
     </style>
 </head>
+<body>
 <section>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -32,7 +33,7 @@
     <div class="container">
         <div class="navbar-translate" >
             <a style=  "margin: auto auto auto -100px; color: #FF8C00; font-size: 30px; font-weight: 500" href="<c:url value = "/"/>"
-               class="navbar-brand"  > <em>E-Learning System</em>
+               class="navbar-brand"  > <em><span>E-Learning System</span></em>
             </a>
 
         </div>
@@ -55,7 +56,7 @@
         <div class="row">
         <br><br><br>
         <div class="row">
-            <h2 class="text-center"><span style="color:black;">Our courses</span> </h2>
+            <h2 class="text"><span style="color:whitesmoke;margin: 5% auto 0 18%;">Our courses</span> </h2>
             <div class="col-md-8 offset-md-2">
                 <div class="bd-example" data-example-id="">
 
@@ -72,7 +73,7 @@
                                                      type="submit" name="first"
                                                      value="${course.id}"
                                                  class="btn btn-link"><h3 style="color: #4682B4">${course.name}</h3></button>
-                                       <p> <h6 style="color:#9f26aa;">${course.description}</h6></p>
+                                       <p> <h6 style="color:#003333">${course.description}</h6></p>
                                     </a>
 
                                 </div>

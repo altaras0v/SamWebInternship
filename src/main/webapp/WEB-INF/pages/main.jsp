@@ -26,8 +26,10 @@
 <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg "    id="sectionsNav">
     <div class="container">
         <div class="navbar-translate" >
+
             <a style=  "margin: auto auto auto -100px; color: #FF8C00; font-size: 30px; font-weight: 500"
-               href="<c:url value = "/"/>"  class="navbar-brand" > <h3><em>E-Learning System</em></h3> </a>
+               href="<c:url value = "/"/>"  class="navbar-brand" > <h3><em><span>E-Learning System</span></em></h3>
+            </a>
 
         </div>
         <div class="navbar-translate" >

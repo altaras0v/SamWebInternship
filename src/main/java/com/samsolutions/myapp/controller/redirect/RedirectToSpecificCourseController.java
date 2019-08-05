@@ -54,7 +54,7 @@ public class RedirectToSpecificCourseController {
 		CourseDTO courseDTO = courseService.getCourseById(id);
 		List<LessonDTO> listLesson = lessonService.getLessonsByCourseId(id);
 
-		ModelAndView modelAndView = new ModelAndView("specificCourse");
+		ModelAndView modelAndView = new ModelAndView("mainlesson");
 		modelAndView.addObject("listLesson", listLesson);
 		modelAndView.addObject("courseDTO", courseDTO);
 

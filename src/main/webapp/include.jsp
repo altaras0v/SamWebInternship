@@ -1,3 +1,8 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -15,168 +20,164 @@
 
     <title>This is a Bootstrap example</title>
 
-
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/base.css">
-
-    <%--  <link href="../assets/css/bootstrap.css" rel="stylesheet">--%>
-
-    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <style>
-        <%@include file="/WEB-INF/css/courses.css"%>
-        <%@include file="/WEB-INF/css/main.css"%>
+
+        <%@include file="/WEB-INF/css/registrate.css"%>
+
+
+
     </style>
 </head>
 <body>
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-
-<nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg "  color-on-scroll="100"  id="sectionsNav">
-    <div class="container">
-        <div class="navbar-translate" >
-            <a style=  "color: #9c27b0; font-size: 30px; font-weight: 500"   class="navbar-brand" > <em>E-Learning
-                System</em>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <form:form name="login" action="../login" method="get">
-                    <li class="nav-item">
-                        <button class="btn btn-link border-pretty" type="submit"
-                                style="font-size:16px;background-color:#3C4858;color:rgb(255,255,255);">Login<i
-                                class="icon ion-android-arrow-forward">
-                        </i></button>
-                    </li>
-                </form:form>
-            </ul>
-        </div>
-    </div>
-</nav>
 <section>
-<div class="container">
-    <div class="row">
-        <br><br><br>
-        <div class="row">
-            <h2 class="text-center"><span>Bootstrap 4 Accordian</span>Created with <i class="fa fa-heart"></i> from Grafreez</h2>
-            <div class="col-md-8 offset-md-2">
-                <div class="bd-example" data-example-id="">
-                    <div id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingOne">
-                                <div class="mb-0">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
-                                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                        <h3>Collapsible Group Item</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                                    </a>
-                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                </div>
-                            </div>
+    <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100"
+         id="sectionsNav">
+        <div class="container">
+            <div class="navbar-translate">
+                <a style="margin: auto auto auto -100px; color: #FF8C00; font-size: 30px; font-weight: 500"
+                   href="<c:url value = "/"/>"
+                   class="navbar-brand"> <em>E-Learning System</em>
+                </a>
 
-                            <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="">
-                                <div class="card-block">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingTwo">
-                                <div class="mb-0">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
-                                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                        <h3>Collapsible Group Item</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                                    </a>
-                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false">
-                                <div class="card-block">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headingThree">
-                                <div class="mb-0">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
-                                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                        <h3>Collapsible Group Item</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                                    </a>
-                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="heakdingThree">
-                                <div class="mb-0">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
-                                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                        <h3>Collapsible Group Item</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                                    </a>
-                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headeingThree">
-                                <div class="mb-0">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
-                                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                        <h3>Collapsible Group Item</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                                    </a>
-                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headifngThree">
-                                <div class="mb-0">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
-                                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                        <h3>Collapsible Group Item</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                                    </a>
-                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" role="tab" id="headfifngThree">
-                                <div class="mb-0">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseOne" class="collapsed">
-                                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                        <h3>Collapsible Group Item</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                                    </a>
-                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="navbar-translate">
+                <ul class="navbar-nav ml-auto">
+                    <form:form name="login" action="../login" method="get">
+                        <li style="margin: auto auto auto 90%;" class="nav-item">
+                            <button class="btn btn-link border-pretty" type="submit"
+                                    style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Login<i
+                                    class="icon ion-android-arrow-forward">
+                            </i></button>
+                        </li>
+                    </form:form>
+                </ul>
             </div>
         </div>
-        <br><br><br><br><br>
-        <footer style="display: flex;flex-direction: column;min-height: 100%" class="footer text-center ">
-            <p> Copyright &copy; localhost:8080&#128518;,2019. All rights reserved.</p>
-            <p>Contact: altaras0b@gmail.com</p>
-        </footer>
+    </nav>
+    <br><br>
+    <div class="main main-raised" style="background: #d1e7e5;margin:0px 90px 0 90px">
+        <div class="container">
+            <div id="kv-avatar-errors-2" class="center-block" style="width:800px;display:none"></div>
+            <form class="form form-vertical" action="/site/avatar-upload/2" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <br>
+                    <div class="col-sm-4 text-center" >
+                        <div class="kv-avatar" >
+                            <div class="avatar-wrapper" style="margin: 40px auto 0 450px">
+
+                                <img class="profile-pic" src=""/>
+                                <div class="upload-button">
+                                    <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+                                </div>
+                                <input class="file-upload" type="file" accept="image/*"required/>
+                            </div>
+
+
+                        </div>
+                        <div class="col-sm-8" style="margin: 0px 0px 0px 435px">
+                        <span>Choose avatar<span class="kv-reqd">*</span></span>
+                        </div>
+                    </div>
+
+                            <div class="col-sm-8" style="margin: 30px 20px 20px 160px">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <center><label for="email">Login<span class="kv-reqd">*</span></label></center>
+                                            <input type="text" class="form-control" name="Login" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <center><label for="pwd">Password<span class="kv-reqd">*</span></label></center>
+                                            <input type="password" class="form-control" name="pwd" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                           <center> <label for="fname">First Name<span class="kv-reqd">*</span></label></center>
+                                            <input type="text" class="form-control" name="fname" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                           <center> <label for="lname">Last Name<span class="kv-reqd">*</span></label></center>
+                                            <input type="text" class="form-control" name="lname" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="text-right">
+                                        <center>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </center>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+            </form>
+
+        </div>
+
+
     </div>
-</div>
+<br>
 </section>
+
+<script>
+    var btnCust = '<button type="button" class="btn btn-secondary" title="Add picture tags" ' +
+        'onclick="alert(\'Call your custom code here.\')">' +
+        '<i class="glyphicon glyphicon-tag"></i>' +
+        '</button>';
+    $("#avatar-1").fileinput({
+        overwriteInitial: true,
+        maxFileSize: 1500,
+        showClose: false,
+        showCaption: false,
+        browseLabel: '',
+        removeLabel: '',
+        browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
+        removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
+        removeTitle: 'Cancel or reset changes',
+        elErrorContainer: '#kv-avatar-errors-1',
+        msgErrorClass: 'alert alert-block alert-danger',
+        defaultPreviewContent: '<img src="/samples/default-avatar-male.png" alt="Your Avatar">',
+        layoutTemplates: {main2: '{preview} ' + btnCust + ' {remove} {browse}'},
+        allowedFileExtensions: ["jpg", "png", "gif"]
+    });
+</script>
+<!-- the fileinput plugin initialization -->
+<script>
+    $(document).ready(function () {
+
+        var readURL = function (input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.profile-pic').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".file-upload").on('change', function () {
+            readURL(this);
+        });
+
+        $(".upload-button").on('click', function () {
+            $(".file-upload").click();
+        });
+    });
+
+</script>
+
 </body>
 </html>
