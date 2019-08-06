@@ -27,6 +27,7 @@
 
     </style>
 </head>
+<script> <%@include file="/WEB-INF/js/delete.js"%></script>
 <body>
 <section class="row-section">
     <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100"
@@ -73,10 +74,18 @@
                 <center> Материалы для урока</center>
             </h3>
             <br>
-            <c:forEach items="${listFiles}" var="files">
+            <td><form:form name="id"  action="../uploadRedirect" method="post">
 
 
-                <div class="col-md-10 offset-md-1 row-block">
+
+                <div class="coursename"><button style="color: #4BA89C"  type="submit" name="id" value="${lessonDTO.id}" class="btn btn-link">Загрузить файл</button>
+                </div>
+
+            </form:form></td>
+            <c:forEach items="${listFiles}" var="files" varStatus="counter">
+
+
+                <div id="${files.id}" class="col-md-10 offset-md-1 row-block">
                     <ul id="sortable">
                         <li>
                             <div class="media">
@@ -85,18 +94,22 @@
                                     <form:form name="first" action="../download" method="get">
                                         <button type="submit" name="id" value="${files.id}"
                                                 style="text-transform: capitalize;font-size: 18px" class="btn btn-link">
-                                            <P
-                                                    style="text-transform: capitalize"> ${files.name}</P></button>
+                                            <p
+                                                    style="text-transform: capitalize"> ${files.name}</p></button>
                                     </form:form>
                                     <p style="font-size: 16px">${files.description}</p>
+                                   <%-- <input type="hidden" --%>
                                 </div>
                                 <div class="media-right align-self-center">
-                                    <form:form name="fileId" action="../deleteFile" method="get">
-                                        <button style="color: #4BA89C" type="submit" name="fileId" value="${files.id}"
-                                                class="btn btn-link">Удалить файл
+                                    <form:form name="fileId" action="../deleteFile">
+                                        <button style="color: #4BA89C" onclick="deleteFile(${files.id})" type="button"
+                                                name="fileId"
+                                            <%-- value="${files.id}"--%>
+                                          <%--onclick="Delete(${files.id})"--%>      class="btn btn-link">Удалить файл
                                         </button>
 
                                     </form:form>
+
                                 </div>
                             </div>
                         </li>

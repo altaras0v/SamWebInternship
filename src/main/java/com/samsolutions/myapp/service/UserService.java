@@ -3,11 +3,13 @@ package com.samsolutions.myapp.service;
 import com.samsolutions.myapp.dto.UserDTO;
 import com.samsolutions.myapp.model.Role;
 import com.samsolutions.myapp.model.User;
+import com.samsolutions.myapp.model.UserInfo;
 import com.samsolutions.myapp.service.impl.RoleServiceImpl;
 import com.samsolutions.myapp.service.impl.UserServiceImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,25 +20,35 @@ public class UserService {
 	private final UserServiceImpl userService;
 	private final RoleServiceImpl roleService;
 
-	public UserService(UserServiceImpl userService, RoleServiceImpl roleService){
+	public UserService(UserServiceImpl userService, RoleServiceImpl roleService) {
 		this.userService = userService;
 		this.roleService = roleService;
 	}
 
-	public void addUser(UserDTO userDTO){
+	@Transactional
+	public void addUser(UserDTO userDTO) {
 		User user = new User();
 		user.setName(userDTO.getName());
 		user.setPassword(new BCryptPasswordEncoder(12).encode(userDTO.getPassword()));
 
+		UserInfo userInfo = new UserInfo();
+		userInfo.setFName(userDTO.getFName());
+		userInfo.setLName(userDTO.getLName());
+		System.out.println(userDTO.getPhoto());
+		//check blob
+		//checl type of file that it is photo
+
+
 		Set<Role> userRoles = new HashSet<>();
 		List<Role> roles = roleService.getRoles();
 		for (Role iter : roles) {
-			if (iter.getName().equals("ROLE_USER")) {
+			if (iter.getName()
+					.equals("ROLE_USER")) {
 				userRoles.add(iter);
 			}
 		}
-		user.setRoles(userRoles);
-		userService.addUser(user);
+		/*user.setRoles(userRoles);
+		userService.addUser(user);*/
 	}
 
 }

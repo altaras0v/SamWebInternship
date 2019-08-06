@@ -10,10 +10,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -137,14 +139,12 @@ public class FileUploadController {
 	/**
 	 * Controller for deleting files
 	 *
-	 * @param request - file id
+	 * @param id - file id
 	 * @return mainpage
 	 */
-	@RequestMapping(value = "/deleteFile", method = RequestMethod.GET)
-	public ModelAndView deleteFile(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView(new RedirectView("/"));
-		long id = Long.parseLong(request.getParameter("fileId"));
+	@RequestMapping(value = "/deleteFile/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Object> deleteFile(@PathVariable("id") final long id) {
 		fileService.deleteFile(id);
-		return mav;
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -58,10 +57,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserDTO> getUsers() {
 
-		List<User> users = (List<User>) userRepository.findAll();
+		/*List<User> users = (List<User>) userRepository.findAll();
 		logger.info("getUsers method");
 		return users.stream()
 				.map(c -> new UserDTO(c.getId(), c.getName(), c.getPassword()))
-				.collect(Collectors.toList());
+				.collect(Collectors.toList());*/
+		return null;
 	}
 }

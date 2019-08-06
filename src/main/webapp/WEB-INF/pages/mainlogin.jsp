@@ -60,7 +60,7 @@
                     <label style="color: red">${errorMessage}</label>
                 </form:form>
                 <div class="d-flex justify-content-center links">
-                    Don't have an account?<a href="#">Sign Up</a>
+                    Don't have an account?<a  href="<c:url value = "/addUser"/>">Sign Up</a>
                 </div>
                 <div class="d-flex justify-content-center">
                     <a  href="<c:url value = "/"/>">Return to main page</a>

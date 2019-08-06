@@ -73,13 +73,13 @@
         <div class="row">
             <div class="how-it-work clearfix">
                 <div style="top: 35%"  class="main-how-it">
-                    <h4> Follow <span class="bg-theme"> Steps</span> </h4>
+                    <h4><b> Follow</b> <b> Steps</b> </h4>
                 </div>
                 <c:forEach items="${listLesson}" var="lesson" varStatus="e">
                 <td><form:form name="first" action="../redirect/lessonRedirect" method="get">
 
                     <c:if test="${e.count %2 != 0}">
-                <div class="panel panel-default col-sm-10 col-sm-offset-2" style="background-color: #2f6d9d" >
+                <div class="panel panel-default col-sm-500 col-sm-offset-4" style="background-color: #2f6d9d" >
                     <div class="panel-body" >
                         <span style="color: #FF8C00"> ${e.count} </span> <h3 class="step-heading" ></h3>
                         <button style="color: #FF8C00;" type="submit"
@@ -90,7 +90,7 @@
                 </div>
                     </c:if>
                     <c:if test="${e.count %2 == 0}">
-                    <div class="panel panel-default col-sm-10 col-sm-offset-2" style="background-color: #369e79">
+                    <div class="panel panel-default col-sm-500 col-sm-offset-4" style="background-color: #369e79">
                         <div class="panel-body">
                             <span style="color: #FF8C00" > ${e.count} </span> <h3 class="step-heading"></h3>
                             <button style="color: #FF8C00;" type="submit"
@@ -102,45 +102,21 @@
                     </c:if>
                 </form:form></td>
                 </c:forEach>
-                <div class="panel panel-default col-sm-10 col-sm-offset-2">
-                    <div class="panel-body">
-                        <span> 2 </span> <h3 class="step-heading"> Step 2 </h3>
-                        Connect with an Expert related to your question. The licensed professionals are confirmed by a third-party verification firm.
-                    </div>
-                </div>
 
 
-                <div class="panel panel-default col-sm-10 col-sm-offset-2">
-                    <div class="panel-body">
-                        <span> 3 </span> <h3 class="step-heading"> Step 3 </h3>
-                        Get your answer within a min. Although, sometimes it may take a little longer to answer your question because of the solution it provides could be a little tricky or lengthy.
-                    </div>
-                </div>
-
-                <div class="panel panel-default col-sm-10 col-sm-offset-2">
-                    <div class="panel-body">
-                        <span> 4 </span> <h3 class="step-heading"> Step 4 </h3>
-                        Don’t forget to give rating to your expert. We need the ratings to keep a track of your satisfaction level and experience with us and of course to improve ourselves.
-                    </div>
-                </div>
-                <div class="panel panel-default col-sm-10 col-sm-offset-2">
-                    <div class="panel-body">
-                        <span> 4 </span> <h3 class="step-heading"> Step 4 </h3>
-                        Don’t forget to give rating to your expert. We need the ratings to keep a track of your satisfaction level and experience with us and of course to improve ourselves.
-                    </div>
-                </div>
                 <form:form name="courseId" action="../addLesson" method="get">
-                    <button style="color: #3c867c;font-size: 16px" type="submit" name="courseId"
-                            value="${courseDTO.id}" class="btn btn-link"><p
+                    <button style="font-size:16px;width: 142px;background-color:#3C4858;color: #FF8C00;" type="submit"
+                            name="courseId"
+                            value="${courseDTO.id}" class="btn btn-link border-pretty"><p
                             style="text-transform:capitalize">Add lesson</p></button>
                 </form:form>
                 <form:form name="courseId" action="../deleteLesson" method="get">
-                    <button style="color: #3c867c;font-size: 16px" type="submit" name="courseId"
-                            value="${courseDTO.id}" class="btn btn-link"><p
+                    <button style="font-size:16px;background-color:#3C4858;color: #FF8C00;" type="submit" name="courseId"
+                            value="${courseDTO.id}" class="btn btn-link border-pretty"><p
                             style="text-transform:capitalize">Delete lesson</p></button>
                 </form:form>
                 <br><br><br>
-                <footer style="margin: 0 auto 0 auto;color: black" class="footer text-center ">
+                <footer style="margin: 10px 0 0 250px;color: black"  class="footer text-center ">
                     <p> Copyright &copy; localhost:8080&#128518;,2019. All rights reserved.</p>
                     <p>Contact: altaras0b@gmail.com</p>
                 </footer>
