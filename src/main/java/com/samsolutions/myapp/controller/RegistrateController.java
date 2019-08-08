@@ -2,7 +2,6 @@ package com.samsolutions.myapp.controller;
 
 import com.samsolutions.myapp.dto.UserDTO;
 import com.samsolutions.myapp.service.UserService;
-import com.samsolutions.myapp.validator.PhotoValidator;
 import com.samsolutions.myapp.validator.UserValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,13 +19,11 @@ public class RegistrateController {
 	private static final Logger logger = LoggerFactory.getLogger(RegistrateController.class);
 
 	private final UserService userService;
-	private final PhotoValidator photoValidator;
 	private final UserValidator userValidator;
 
 	@Autowired
-	public RegistrateController(UserService userService, PhotoValidator photoValidator, UserValidator userValidator) {
+	public RegistrateController(UserService userService, UserValidator userValidator) {
 		this.userService = userService;
-		this.photoValidator = photoValidator;
 		this.userValidator = userValidator;
 	}
 
@@ -53,15 +50,6 @@ public class RegistrateController {
 		}
 		return mav;
 
-		/*photoValidator.validate(userDTO.getPhoto(), result);
-		if (result.hasErrors()) {
-			logger.info("uploadFile method error so" + result);
-			mav.setViewName("registrationPage");
-		}
-		else {
-			userService.addUser(userDTO);
-			mav.setViewName("registrationPage");
-		}
-		return mav;*/
+
 	}
 }
