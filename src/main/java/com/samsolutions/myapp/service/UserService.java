@@ -12,9 +12,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Service
@@ -42,7 +45,20 @@ public class UserService {
 		userInfo.setFName(userDTO.getFName());
 		userInfo.setLName(userDTO.getLName());
 		try {
-			userInfo.setPhoto(userDTO.getPhoto().getBytes());
+			if (userDTO.getPhoto().getSize() != 0) {
+				userInfo.setPhoto(userDTO.getPhoto()
+						.getBytes());
+			}
+			else {
+				String path = Objects.requireNonNull(getClass().getClassLoader()
+						.getResource(""))
+						.getPath();
+				File defaultAvatar = new File(path+"/user.png");
+				byte[] avatarContent = Files.readAllBytes(defaultAvatar.toPath());
+				userInfo.setPhoto(avatarContent);
+
+
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,14 +37,6 @@ public class UserValidator implements Validator {
 	public void validate(final Object o, final Errors errors) {
 		UserDTO user = (UserDTO) o;
 
-		MultipartFile file = user.getPhoto();
-
-		String fileExtension = file.getOriginalFilename()
-				.substring(file.getOriginalFilename()
-						.lastIndexOf(".") + 1, file.getOriginalFilename()
-						.length());
-
-
 		if (isEmpty(user.getName())) {
 			errors.rejectValue("name", "registration.error.login.required");
 		}
@@ -61,21 +52,10 @@ public class UserValidator implements Validator {
 			errors.rejectValue("password", "registration.error.login.length");
 		}
 		if (!Pattern.matches(properties.getProperty("VALID_PASSWORD.regexp"), user.getPassword())) {
-			errors.rejectValue("password", "registration.error.password.length");
+			errors.rejectValue("password", "registration.error.password.weakPassword");
 		}
 		if (userDAOService.getUserByName(user.getName()) != null) {
 			errors.rejectValue("name", "registration.error.login.exists");
-		}
-		if (file.getSize() == 0) {
-			errors.rejectValue("photo", "registration.error.photo.empty");
-		}
-
-		if (!TYPES_OF_PHOTO.contains(fileExtension.toLowerCase())) {
-			errors.rejectValue("photo", "registration.error.photo.format");
-			return;
-		}
-		if (file.getSize() > MAX_SIZE) {
-			errors.rejectValue("photo", "registration.error.photo.size");
 		}
 
 	}

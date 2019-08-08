@@ -73,7 +73,7 @@
         </div>
     </div>
 </nav>
-<div class="page-header header-filter" data-parallax="true" style=" background-image: url('/img/main.png')">
+<div class="page-header header-filter" data-parallax="true" style=" background-image: url('${pageContext.request.contextPath}/img/main.png')">
     <div class="container">
         <div class="row">
             <div class="col-md-6">

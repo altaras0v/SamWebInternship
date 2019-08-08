@@ -46,6 +46,7 @@ public class RegistrateController {
 		}
 		else {
 			userService.addUser(userDTO);
+			mav.addObject("user",new UserDTO());
 			mav.setViewName("registrationPage");
 		}
 		return mav;

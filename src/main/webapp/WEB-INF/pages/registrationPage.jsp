@@ -58,10 +58,10 @@
         </div>
     </nav>
     <br><br>
-    <div class="main main-raised" style="background: #d1e7e5;margin:0px 90px 0 90px">
+    <div class="main main-raised" style="background: #d1e7e5;margin:0 90px 0 90px">
         <div class="container">
             <div id="kv-avatar-errors-2" class="center-block" style="width:800px;display:none"></div>
-            <form id="registrationForm" class="form form-vertical"  action="/addUser" method="post"
+            <form id="registrationForm" class="form form-vertical"  action="${pageContext.request.contextPath}/addUser" method="post"
                   enctype="multipart/form-data">
                 <div class="row">
                     <br>
@@ -74,17 +74,15 @@
                                     <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                                 </div>
                                 <input name="photo" value="${user.photo}" class="file-upload" type="file"
-                                       accept="image/*"
-                                required/>
-                                <form:errors path="user.photo"/>
+                                       accept="image/*" />
+                                </div>
+                            <span style="margin:  0 0 0 450px"><form:errors path="user.photo"/></span>
+
+                            <div class="col-sm-8" style="margin: 0px 0px 0px 335px">
+                                <span>Choose avatar</span>
                             </div>
-
-
-
                         </div>
-                        <div class="col-sm-8" style="margin: 0px 0px 0px 435px">
-                            <span>Choose avatar<span class="kv-reqd">*</span></span>
-                        </div>
+
                     </div>
 
                     <div class="col-sm-8" style="margin: 30px 20px 20px 160px">
@@ -95,7 +93,7 @@
                                     <input value="${user.name}"  id="email" type="text"
                                            class="form-control"
                                                  name="name" required/>
-                                    <form:errors path="user.name"/>
+                                    <span style="color: red"> <form:errors path="user.name"/></span>
                                 </div>
                             </div>
                             <div class="col-sm-6">
@@ -104,7 +102,7 @@
                                     <input value="${user.password}" id="password"  type="password"
                                            class="form-control"
                                                 name="password" required/>
-                                    <form:errors path="user.password"/>
+                                  <span style="color: red"> <form:errors path="user.password"/> </span>
                                 </div>
                                   <%--  <form:errors path="user.password"/>--%>
                             </div>
@@ -159,7 +157,7 @@
 
 
     </div>
-    <br>
+    <br><br><br><br>
 </section>
 
 <!-- the fileinput plugin initialization -->
