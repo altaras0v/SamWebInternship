@@ -77,6 +77,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(interceptor);
 	}
 
+
+
 	/**
 	 * Handler class for adding a new resource to the configuration.
 	 */
@@ -92,6 +94,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		registry.addResourceHandler("/js/**")
 				.addResourceLocations("/js/")
 				.setCachePeriod(31556926);
+
 	}
 
 

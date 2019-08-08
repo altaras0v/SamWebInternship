@@ -43,4 +43,11 @@ public interface LessonService {
 	 * @param lesson - object for adding
 	 */
 	void addLesson(Lesson lesson);
+
+	/**
+	 * Get lesson for this test
+	 * @param id - test id
+	 * @return lesson with needed test id
+	 */
+	Lesson getLessonByTestId(long id);
 }

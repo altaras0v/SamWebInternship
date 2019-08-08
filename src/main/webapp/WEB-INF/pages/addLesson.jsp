@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page isELIgnored="false" %>
+<%@ page language="java"  pageEncoding="UTF-8" %>
 <html>
 <head>
     <title>Edit User</title>
@@ -37,9 +39,9 @@
 
                 <%--<form:button id="sibmit" name="submit">Submit</form:button>--%>
 
-
                 <br>
-                <a href="<c:url value='..' />">Return to start page</a>
+
+                <a href="<c:url value='/redirect/courseRedirect?first=${courseId}'/>">Return to previous page</a>
 
 
                 <%--  </table>--%>

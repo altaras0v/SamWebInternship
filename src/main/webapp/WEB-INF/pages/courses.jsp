@@ -56,7 +56,9 @@
         <div class="row">
         <br><br><br>
         <div class="row">
-            <h2 class="text"><span style="color:whitesmoke;margin: 5% auto 0 18%;">Our courses</span> </h2>
+            <h2 class="text"><span
+                    style="color:whitesmoke;margin: 5% auto 0 18%;"><spring:message code="coursepage.title"/></span>
+            </h2>
             <div class="col-md-8 offset-md-2">
                 <div class="bd-example" data-example-id="">
 
@@ -85,6 +87,17 @@
                     </div>
                 </div>
             </div>
+            <form:form name="courseId" action="/addCourse" method="get">
+                <button style="font-size:16px;width: 142px;background-color:#3C4858;color: #FF8C00;height: 50px" type="submit"
+
+                        class="btn btn-link border-pretty"><p
+                        style="text-transform:capitalize">Add course</p></button>
+            </form:form>
+            <form:form name="courseId" action="../deleteCourse" method="get">
+                <button style="font-size:16px;background-color:#3C4858;color: #FF8C00;height: 50px" type="submit"
+                        class="btn btn-link border-pretty"><p
+                        style="text-transform:capitalize">Delete course</p></button>
+            </form:form>
         </div>
         <br><br><br>
         <footer style="margin: 0 auto 0 auto;color: black" class="footer text-center ">

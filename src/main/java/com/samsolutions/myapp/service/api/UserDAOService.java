@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface UserService {
+public interface UserDAOService {
 
 	User getUser(String login);
 
@@ -18,6 +18,8 @@ public interface UserService {
 	User getUserById(long id);
 
 	void updateUser(User user);
+
+	User getUserByName(String login);
 
 	List<UserDTO> getUsers();
 

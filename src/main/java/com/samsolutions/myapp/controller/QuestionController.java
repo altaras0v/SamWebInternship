@@ -3,11 +3,15 @@ package com.samsolutions.myapp.controller;
 import com.samsolutions.myapp.dto.QuestionDTO;
 import com.samsolutions.myapp.model.Question;
 import com.samsolutions.myapp.model.Test;
+import com.samsolutions.myapp.service.api.LessonService;
 import com.samsolutions.myapp.service.api.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -25,15 +29,18 @@ public class QuestionController {
 
 	private final QuestionService questionService;
 
+	private final LessonService lessonService;
+
 	/**
 	 * Constructor for controller
 	 *
 	 * @param questionService - service for question, adding,getting and deleting of question
 	 */
 	@Autowired
-	public QuestionController(QuestionService questionService)
+	public QuestionController(QuestionService questionService, LessonService lessonService)
 	{
 		this.questionService = questionService;
+		this.lessonService = lessonService;
 	}
 
 	/**
@@ -50,6 +57,7 @@ public class QuestionController {
 		ModelAndView mav = new ModelAndView("addQuestion");
 		long id = Long.parseLong(request.getParameter("testId"));
 		model.addAttribute("testId", id);
+		mav.addObject("lessonId",lessonService.getLessonByTestId(id).getId());
 		mav.addObject("question", new QuestionDTO());
 		return mav;
 	}
@@ -77,16 +85,14 @@ public class QuestionController {
 	/**
 	 * Delete question from database
 	 *
-	 * @param request - id of question that will be delete
+	 * @param id - id of question that will be delete
 	 * @return mainpage view
 	 */
-	@RequestMapping(value = "/deleteQuestion", method = RequestMethod.GET)
-	public ModelAndView deleteQuestion(HttpServletRequest request)
+	@RequestMapping(value = "/deleteQuestion/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Object> deleteQuestion(@PathVariable("id") final long id)
 	{
-		ModelAndView mav = new ModelAndView("mainpage");
-		long id = Long.parseLong(request.getParameter("questionId"));
-		System.out.println(id);
 		questionService.deleteQuestion(id);
-		return mav;
+		return new ResponseEntity<>(HttpStatus.OK);
+
 	}
 }

@@ -1,6 +1,8 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src ="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <%@ page isELIgnored="false" %>
@@ -23,10 +25,12 @@
     <style>
 
         <%@include file="/WEB-INF/css/registrate.css"%>
+
     </style>
 </head>
 <script> <%@include file="/WEB-INF/js/registrate.js"%></script>
 <script> <%@include file="/WEB-INF/js/avatarInput.js"%></script>
+<script> <%@include file="/WEB-INF/js/passwordConfirm.js"%></script>
 <body>
 <section>
     <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100"
@@ -57,7 +61,7 @@
     <div class="main main-raised" style="background: #d1e7e5;margin:0px 90px 0 90px">
         <div class="container">
             <div id="kv-avatar-errors-2" class="center-block" style="width:800px;display:none"></div>
-            <form class="form form-vertical"  action="/addUser" method="post"
+            <form id="registrationForm" class="form form-vertical"  action="/addUser" method="post"
                   enctype="multipart/form-data">
                 <div class="row">
                     <br>
@@ -69,8 +73,12 @@
                                 <div class="upload-button">
                                     <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
                                 </div>
-                                <input name="photo" class="file-upload" type="file" accept="image/jpeg"required/>
+                                <input name="photo" value="${user.photo}" class="file-upload" type="file"
+                                       accept="image/*"
+                                required/>
+                                <form:errors path="user.photo"/>
                             </div>
+
 
 
                         </div>
@@ -84,36 +92,59 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <center><label for="email">Login<span class="kv-reqd">*</span></label></center>
-                                    <input  id="email" type="text"  class="form-control" name="name" required>
+                                    <input value="${user.name}"  id="email" type="text"
+                                           class="form-control"
+                                                 name="name" required/>
+                                    <form:errors path="user.name"/>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <center><label for="pwd">Password<span class="kv-reqd">*</span></label></center>
-                                    <input id="pwd" type="password" class="form-control" name="password" required>
+                                    <center><label for="password">Password<span class="kv-reqd">*</span></label></center>
+                                    <input value="${user.password}" id="password"  type="password"
+                                           class="form-control"
+                                                name="password" required/>
+                                    <form:errors path="user.password"/>
                                 </div>
+                                  <%--  <form:errors path="user.password"/>--%>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <center>
                                         <label for="fname">First Name<span class="kv-reqd">*</span></label></center>
-                                    <input id="fname" type="text" class="form-control" name="fName" required>
+                                    <input id="fname" value="${user.FName}" type="text" class="form-control" name="fName"
+                                           required>
+
                                 </div>
+
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <center> <label for="lname">Last Name<span class="kv-reqd">*</span></label></center>
-                                    <input id="lname" type="text" class="form-control" name="lName" required>
+                                    <center><label for="confirm_password">Confirm Password<span class="kv-reqd">*</span></label></center>
+                                    <input id="confirm_password" type="password" class="form-control"
+                                           name="confirm_password">
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <center> <label for="lname">Last Name<span class="kv-reqd">*</span></label></center>
+                                    <input value="${user.LName}" id="lname" type="text" class="form-control"
+                                           name="lName"
+                                           required>
+                                </div>
+                                <%--<span style="color: red">
+                                    <form:errors path="user.lname"/></span>--%>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="text-right">
                                 <center>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" onclick="validatePassword()" class="btn btn-primary">Submit</button>
                                 </center>
                             </div>
                         </div>

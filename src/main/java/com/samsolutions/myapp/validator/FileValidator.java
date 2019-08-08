@@ -86,7 +86,7 @@ public class FileValidator implements Validator {
 			//Check that file is not too large
 			if (file.getFile()
 					.getSize() > MAX_SIZE) {
-				errors.rejectValue("file", "uploadForm.selectFile", "File size too large! Max size 16 MB");
+				errors.rejectValue("file", "uploadForm.selectFile", "File size too large! Max size 32 MB");
 			}
 		}
 	}

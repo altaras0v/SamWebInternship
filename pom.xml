@@ -37,20 +37,16 @@
         <slf4j-api.version>1.7.6</slf4j-api.version>
         <slf4j-log4j12.version>1.7.6</slf4j-log4j12.version>
         <log4j.version>1.2.12</log4j.version>
+        <lang3.version>3.8.1</lang3.version>
     </properties>
 
-<!--    <dependencyManagement>-->
-<!--        <dependencies>-->
-<!--            <dependency>-->
-<!--                <groupId>org.springframework.data</groupId>-->
-<!--                <artifactId>spring-data-releasetrain</artifactId>-->
-<!--                <version>${spring-data.version}</version>-->
-<!--                <scope>import</scope>-->
-<!--                <type>pom</type>-->
-<!--            </dependency>-->
-<!--        </dependencies>-->
-<!--    </dependencyManagement>-->
     <dependencies>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${lang3.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>

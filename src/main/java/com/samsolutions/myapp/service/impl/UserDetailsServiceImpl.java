@@ -2,7 +2,7 @@ package com.samsolutions.myapp.service.impl;
 
 import com.samsolutions.myapp.model.Role;
 import com.samsolutions.myapp.model.User;
-import com.samsolutions.myapp.service.api.UserService;
+import com.samsolutions.myapp.service.api.UserDAOService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +16,7 @@ import java.util.HashSet;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private  UserService userService;
+	private UserDAOService userDAOService;
 
 
 	public UserDetailsServiceImpl() {
@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 		// с помощью нашего сервиса UserService получаем User
-		User user = userService.getUser(login);
+		User user = userDAOService.getUser(login);
 		// указываем роли для этого пользователя
 		HashSet<SimpleGrantedAuthority> roles = new HashSet<>();
 		for (Role role : user.getRoles()) {

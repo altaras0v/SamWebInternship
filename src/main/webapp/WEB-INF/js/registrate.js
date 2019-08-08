@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 
     var readURL = function (input) {
@@ -8,8 +7,15 @@ $(document).ready(function () {
             reader.onload = function (e) {
                 $('.profile-pic').attr('src', e.target.result);
             }
+            if (input.files[0].type.trim() != "image/png" && input.files[0].type.trim() != "image/jpeg"  ) {
+                alert('Bad file format')
+            } else if (input.files[0].size>16567500){
+                alert('Max photo size 16 MB')
+            }
 
-            reader.readAsDataURL(input.files[0]);
+            else {
+                reader.readAsDataURL(input.files[0]);
+            }
         }
     }
 

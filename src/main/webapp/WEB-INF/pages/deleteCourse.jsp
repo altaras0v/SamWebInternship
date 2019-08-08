@@ -42,7 +42,7 @@
                 </select>
             </div>
             <p><center><input class="btn btn-primary" type="submit" value="Submit"></center></p>
-            <a href="<c:url value='..' />">Return to start page</a>
+            <a href="<c:url value='/courses' />">Return to courses page</a>
             </form:form>
         </div>
     </div>

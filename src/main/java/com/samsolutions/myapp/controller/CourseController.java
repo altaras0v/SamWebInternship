@@ -97,7 +97,6 @@ public class CourseController {
 	@RequestMapping(value = "/deleteCourse", method = RequestMethod.POST)
 	public ModelAndView deleteCourse(HttpServletRequest request)
 	{
-
 		ModelAndView mav = new ModelAndView(new RedirectView("/deleteCourse"));
 		long id = Long.parseLong(request.getParameter("courseId"));
 		courseService.deleteCourse(id);

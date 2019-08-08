@@ -110,4 +110,15 @@ public class LessonServiceImpl implements LessonService {
 		lessonRepository.save(lesson);
 		logger.info("addLesson method");
 	}
+
+	/**
+	 * Get lesson from database with this test id
+	 * @param id - test id
+	 * @return - lesson entity with needed test id
+	 */
+	@Override
+	public Lesson getLessonByTestId(long id) {
+		logger.info("getLessonByTestId method");
+		return lessonRepository.findByTestId(id);
+	}
 }

@@ -12,6 +12,7 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.persistence.EntityManagerFactory;
@@ -21,6 +22,7 @@ import java.util.Properties;
 /**
  * Config class for application
  */
+@EnableTransactionManagement
 @EnableJpaRepositories("com.samsolutions.myapp")
 @Configuration
 public class AppConfig {

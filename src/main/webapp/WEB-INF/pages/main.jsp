@@ -34,18 +34,37 @@
         </div>
         <div class="navbar-translate" >
             <ul class="navbar-nav ml-auto">
+                <li style="margin: auto -80px auto 0;" class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                        <i class="material-icons">apps</i> <spring:message
+                            code="languages"/>
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+                        <a href="?mylocale=ru_RU" class="dropdown-item">
+                            <i class="material-icons">layers</i> <spring:message
+                                code="rus"/>
+                        </a>
+
+                        <a href="?mylocale=en_EN" class="dropdown-item">
+                            <i class="material-icons">layers</i><spring:message
+                                code="eng"/>
+                        </a>
+
+                    </div>
+                </li>
                 <form:form name="login" action="../courses" method="get">
                 <li style="margin: auto auto auto 40%;" class="nav-item">
                     <button   class="btn btn-link border-pretty" type="submit"
-                             style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Go to courses
-                        page <i class="icon ion-android-arrow-forward">
+                             style="font-size:16px;background-color:#3C4858;color: #FF8C00;"><spring:message
+                            code="mainpage.tocourse"/><i class="icon ion-android-arrow-forward">
                     </i></button>
                 </li>
                 </form:form>
                 <form:form name="login" action="../login" method="get">
                 <li style="margin: auto auto auto 90%;" class="nav-item">
                     <button class="btn btn-link border-pretty" type="submit"
-                             style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Login<i
+                             style="font-size:16px;background-color:#3C4858;color: #FF8C00;"><spring:message
+                            code="login"/><i
                             class="icon ion-android-arrow-forward">
                     </i></button>
                 </li>
@@ -58,7 +77,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h1 class="title">Your Story Starts With Us.</h1>
+                <h1 class="title"><spring:message code="mainpage.title2"/></h1>
                 <h4><spring:message code="mainpage.landingText"/></h4>
                 <br>
             </div>

@@ -3,7 +3,7 @@ package com.samsolutions.myapp.service.impl;
 import com.samsolutions.myapp.dto.UserDTO;
 import com.samsolutions.myapp.model.User;
 import com.samsolutions.myapp.repository.UserRepository;
-import com.samsolutions.myapp.service.api.UserService;
+import com.samsolutions.myapp.service.api.UserDAOService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,26 +12,29 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserDAOServiceImpl implements UserDAOService {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserDAOServiceImpl.class);
 
 	private final UserRepository userRepository;
 
 	@Autowired
-	public UserServiceImpl(UserRepository userRepository) {
+	public UserDAOServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 
 	//test
 	@Override
 	public User getUser(String login) {
+		logger.info("getUser method");
 		User user = userRepository.findByName(login);
 		return user;
 	}
 
 	@Override
 	public void addUser(User user) {
+		userRepository.save(user);
+		logger.info("addUser method");
 	}
 
 	@Override
@@ -52,6 +55,12 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(User user) {
 
 		logger.info("updateUser method");
+	}
+
+	@Override
+	public User getUserByName(String login) {
+		logger.info("getUserByName method");
+		return userRepository.findByName(login);
 	}
 
 	@Override

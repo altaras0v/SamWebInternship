@@ -27,7 +27,12 @@
 
     </style>
 </head>
-<script> <%@include file="/WEB-INF/js/delete.js"%></script>
+<script>
+    <%@include file="/WEB-INF/js/deleteFile.js" %>
+</script>
+<script>
+    <%@include file="/WEB-INF/js/deleteQuestion.js" %>
+</script>
 <body>
 <section class="row-section">
     <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100"
@@ -36,7 +41,8 @@
             <div class="navbar-translate">
                 <a style="margin: auto auto auto -100px; color: #FF8C00; font-size: 30px; font-weight: 500"
                    href="<c:url value = "/"/>"
-                   class="navbar-brand"><h3> <em><p>E-Learning System</p></em></h3>
+                   class="navbar-brand">
+                    <h3><em><p>E-Learning System</p></em></h3>
                 </a>
 
             </div>
@@ -74,11 +80,14 @@
                 <center> Материалы для урока</center>
             </h3>
             <br>
-            <td><form:form name="id"  action="../uploadRedirect" method="post">
+            <td><form:form name="id" action="../uploadRedirect" method="post">
 
 
-
-                <div class="coursename"><button style="color: #4BA89C"  type="submit" name="id" value="${lessonDTO.id}" class="btn btn-link">Загрузить файл</button>
+                <div class="coursename">
+                    <button style="font-size:16px;background-color:#3C4858;color: #FF8C00;height: 50px" type="submit"
+                            name="id" value="${lessonDTO.id}" class="btn btn-link border-pretty">
+                        Загрузить файл
+                    </button>
                 </div>
 
             </form:form></td>
@@ -98,17 +107,16 @@
                                                     style="text-transform: capitalize"> ${files.name}</p></button>
                                     </form:form>
                                     <p style="font-size: 16px">${files.description}</p>
-                                   <%-- <input type="hidden" --%>
+                                        <%-- <input type="hidden" --%>
                                 </div>
                                 <div class="media-right align-self-center">
-                                    <form:form name="fileId" action="../deleteFile">
-                                        <button style="color: #4BA89C" onclick="deleteFile(${files.id})" type="button"
-                                                name="fileId"
-                                            <%-- value="${files.id}"--%>
-                                          <%--onclick="Delete(${files.id})"--%>      class="btn btn-link">Удалить файл
-                                        </button>
 
-                                    </form:form>
+                                    <button style="color: #4BA89C" onclick="deleteFile(${files.id})" type="button"
+                                            name="fileId"
+                                        <%-- value="${files.id}"--%>
+                                        <%--onclick="Delete(${files.id})"--%> class="btn btn-link">Удалить файл
+                                    </button>
+
 
                                 </div>
                             </div>
@@ -126,9 +134,10 @@
 
                     <c:if test="${testDTO.id==0}">
 
-                            <button class="btn btn-link border-pretty" type="submit" name="lessonId"
-                                    value="${lessonDTO.id}"
-                                    style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Add test</button>
+                        <button class="btn btn-link border-pretty" type="submit" name="lessonId"
+                                value="${lessonDTO.id}"
+                                style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Add test
+                        </button>
 
 
                     </c:if>
@@ -157,20 +166,20 @@
                     <center> ${testDTO.name}</center>
                 </h3>
                 <br>
-        <td><form:form name="quest" action="../addQuestion" method="get">
-                <c:if test="${listQuestion.size()==0||listQuestion.size()==10}">
-                    <button class="btn btn-link border-pretty" type="submit" name="testId"
-                            value="${testDTO.id}"
-                            style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Add question</button>
-                </c:if>
-        </form:form></td>
+                <td><form:form name="quest" action="../addQuestion" method="get">
+                    <c:if test="${listQuestion.size()==0||listQuestion.size()==10}">
+                        <button class="btn btn-link border-pretty" type="submit" name="testId"
+                                value="${testDTO.id}"
+                                style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Add question
+                        </button>
+                    </c:if>
+                </form:form></td>
                 <c:if test="${listQuestion.size()!=0}">
                     <c:forEach items="${listQuestion}" var="question">
-                    <div class="col-md-10 offset-md-1 row-block" style="margin: 0px 180px 0 80px">
-                        <ul id="newsortable">
-                            <li>
-                                <div class="media">
-
+                        <div class="col-md-10 offset-md-1 row-block" style="margin: 0px 180px 0 80px" id=${question.id}>
+                            <ul id="newsortable">
+                                <li>
+                                    <div class="media">
 
                                         <div class="form-group">
                                             <label style="color: #00008B"
@@ -178,32 +187,33 @@
                                             <textarea maxlength="1000" class="form-control" id="Textarea" cols="100"
                                                       rows="3"></textarea>
                                         </div>
-                                </div>
+                                    </div>
 
-                            </li>
+                                </li>
 
-                        </ul>
+                            </ul>
 
-                    </div>
-                        <form:form name="questionId" action="../deleteQuestion"
-                                   method="get">
-                            <button type="submit" name="questionId" value="${question.id}"
+
+                            <button onclick="deleteQuestion(${question.id},${listQuestion.size()})" type="button"
+                                    name="questionId"
                                     style="text-transform: capitalize" class="btn btn-link"><p
-                                    style="text-transform: capitalize;margin: 0 100px 0 110px"><h6> Delete question
+                                    style="text-transform: capitalize;margin: 0 100px 0 110px"><h6>
+                                Delete question
                             </h6></p>
                             </button>
-                        </form:form>
+                        </div>
                     </c:forEach>
                     <br>
                     <center>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button id="0012" type="submit" class="btn btn-primary">Submit</button>
                     </center>
                     <br>
                     <td><form:form name="quest" action="../addQuestion" method="get">
                         <c:if test="${listQuestion.size()!=10}">
                             <button class="btn btn-link border-pretty" type="submit" name="testId"
                                     value="${testDTO.id}"
-                                    style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Add question</button>
+                                    style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Add question
+                            </button>
                         </c:if>
                     </form:form></td>
                 </c:if>
@@ -213,14 +223,11 @@
 
         </div>
     </c:if>
-        <footer style="margin: 0 auto 0 auto;color: black" class="footer text-center ">
-            <p> Copyright &copy; localhost:8080&#128518;,2019. All rights reserved.</p>
-            <p>Contact: altaras0b@gmail.com</p>
-        </footer>
-        <br><br>
-
-
-
+    <footer style="margin: 0 auto 0 auto;color: black" class="footer text-center ">
+        <p> Copyright &copy; localhost:8080&#128518;,2019. All rights reserved.</p>
+        <p>Contact: altaras0b@gmail.com</p>
+    </footer>
+    <br><br>
 
 
 </section>

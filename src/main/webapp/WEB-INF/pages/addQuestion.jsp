@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ page isELIgnored="false" %>
 <html>
 <head>
     <title>Edit User</title>
@@ -35,7 +37,7 @@
 
 
                 <br>
-                <a href="<c:url value='..' />">Return to start page</a>
+                <a href="<c:url value='/redirect/lessonRedirect?id=${lessonId}' />">Return to lesson page</a>
 
 
                 <%--  </table>--%>

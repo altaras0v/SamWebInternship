@@ -34,8 +34,7 @@ public class LessonController {
 	 * @param lessonService - service for lesson, getting,adding and deleting lesson
 	 */
 	@Autowired
-	public LessonController(LessonService lessonService)
-	{
+	public LessonController(LessonService lessonService) {
 		this.lessonService = lessonService;
 	}
 
@@ -45,8 +44,7 @@ public class LessonController {
 	 * @return mav - lessonDTO
 	 */
 	@RequestMapping(value = "/addLesson", method = RequestMethod.GET)
-	public ModelAndView showRegister(HttpServletRequest request, @ModelAttribute LessonDTO lessonDTO, ModelMap model)
-	{
+	public ModelAndView showRegister(HttpServletRequest request, @ModelAttribute LessonDTO lessonDTO, ModelMap model) {
 		ModelAndView mav = new ModelAndView("addLesson");
 		long id = Long.parseLong(request.getParameter("courseId"));
 		model.addAttribute("courseId", id);
@@ -63,8 +61,7 @@ public class LessonController {
 	 * @return - view where adding course
 	 */
 	@RequestMapping(value = "/addLesson", method = RequestMethod.POST)
-	public ModelAndView addCourse(@ModelAttribute("lesson") LessonDTO lessonDTO, ModelMap modelMap)
-	{
+	public ModelAndView addCourse(@ModelAttribute("lesson") LessonDTO lessonDTO, ModelMap modelMap) {
 		ModelAndView mav = new ModelAndView("addLesson");
 		long id = (long) modelMap.get("courseId");
 		Course course = new Course();
@@ -80,13 +77,13 @@ public class LessonController {
 	 * @return page for lesson deleting
 	 */
 	@RequestMapping(value = "/deleteLesson", method = RequestMethod.GET)
-	public ModelAndView showLessonList(HttpServletRequest request)
-	{
+	public ModelAndView showLessonList(HttpServletRequest request) {
 
 		ModelAndView modelAndView = new ModelAndView("deleteLesson");
 		long id = Long.parseLong(request.getParameter("courseId"));
 		List<LessonDTO> lessonDTOList = lessonService.getLessonsByCourseId(id);
 		modelAndView.addObject("lessonDTOList", lessonDTOList);
+		modelAndView.addObject("courseId",id);
 		return modelAndView;
 	}
 
@@ -97,8 +94,7 @@ public class LessonController {
 	 * @return page for lesson deleting
 	 */
 	@RequestMapping(value = "/deleteLesson", method = RequestMethod.POST)
-	public ModelAndView deleteLesson(HttpServletRequest request)
-	{
+	public ModelAndView deleteLesson(HttpServletRequest request) {
 
 		ModelAndView modelAndView = new ModelAndView(new RedirectView("/deleteLesson"));
 		long id = Long.parseLong(request.getParameter("lessonId"));

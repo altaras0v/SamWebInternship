@@ -116,7 +116,7 @@
                             style="text-transform:capitalize">Delete lesson</p></button>
                 </form:form>
                 <br><br><br>
-                <footer style="margin: 10px 0 0 250px;color: black"  class="footer text-center ">
+                <footer style="margin: 200px 0 0 250px;color: black"  class="footer text-center ">
                     <p> Copyright &copy; localhost:8080&#128518;,2019. All rights reserved.</p>
                     <p>Contact: altaras0b@gmail.com</p>
                 </footer>
