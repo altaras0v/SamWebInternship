@@ -1,10 +1,12 @@
 package com.samsolutions.myapp.service;
 
 import com.samsolutions.myapp.dto.UserDTO;
+import com.samsolutions.myapp.model.Result;
 import com.samsolutions.myapp.model.Role;
 import com.samsolutions.myapp.model.User;
 import com.samsolutions.myapp.model.UserInfo;
 import com.samsolutions.myapp.model.UserRole;
+import com.samsolutions.myapp.service.api.ResultDAOService;
 import com.samsolutions.myapp.service.api.RoleService;
 import com.samsolutions.myapp.service.api.UserDAOInfoService;
 import com.samsolutions.myapp.service.api.UserDAOService;
@@ -15,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,13 +35,16 @@ public class UserService {
 	private final RoleService roleService;
 	private final UserDAOInfoService userDAOInfoService;
 	private final UserRoleDaoService userRoleDaoService;
+	private final ResultDAOService resultDAOService;
+
 
 	@Autowired
-	public UserService(RoleService roleService, UserDAOInfoService userDAOInfoService, UserDAOService userDAOService, UserRoleDaoService userRoleDaoService) {
+	public UserService(RoleService roleService, UserDAOInfoService userDAOInfoService, UserDAOService userDAOService, UserRoleDaoService userRoleDaoService, ResultDAOService resultDAOService) {
 		this.roleService = roleService;
 		this.userDAOInfoService = userDAOInfoService;
 		this.userDAOService = userDAOService;
 		this.userRoleDaoService = userRoleDaoService;
+		this.resultDAOService = resultDAOService;
 	}
 
 	@Transactional
@@ -111,5 +117,23 @@ public class UserService {
 		UserRole userRole = userRoleDaoService.getUserRoleByUserId(id);
 
 		return userRole;
+	}
+	public ModelAndView getUserPage(String page)
+	{
+		ModelAndView mav = new ModelAndView(page);
+
+		org.springframework.security.core.userdetails.User authUser = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
+
+		String username = authUser.getUsername();
+		com.samsolutions.myapp.model.User user = userDAOService.getUser(username);
+		Long userId = user.getId();
+
+		List<Result> results = resultDAOService.getResultByUserId(userId);
+
+		mav.addObject("user",user);
+		mav.addObject("results",results);
+		return mav;
+
 	}
 }

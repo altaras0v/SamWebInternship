@@ -16,4 +16,6 @@ public interface ContactDAOService {
 
 	Contact getContactById(long id);
 
+	List<Contact> getContactsByMentorId(long id);
+
 }

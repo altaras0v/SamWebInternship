@@ -32,9 +32,18 @@ public class Result {
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	@OneToOne
+	@JoinColumn(name = "test_id")
+	private Test test;
+
 	@JoinColumn(name = "grade")
 	private int grade;
 
 	@JoinColumn(name = "comments")
 	private String comments;
+
+	public Result(User user,Test test){
+		this.user = user;
+		this.test = test;
+	}
 }

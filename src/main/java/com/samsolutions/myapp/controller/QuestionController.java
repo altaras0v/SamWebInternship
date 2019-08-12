@@ -1,6 +1,8 @@
 package com.samsolutions.myapp.controller;
 
+import com.samsolutions.myapp.dto.AnswerDTO;
 import com.samsolutions.myapp.dto.QuestionDTO;
+import com.samsolutions.myapp.service.AnswerService;
 import com.samsolutions.myapp.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 public class QuestionController {
 
 	private final QuestionService questionService;
+	private final AnswerService answerService;
 
 	/**
 	 * Constructor for controller
@@ -32,10 +36,11 @@ public class QuestionController {
 	 * @param questionService - service for question, adding,getting and deleting of question
 	 */
 	@Autowired
-	public QuestionController(QuestionService questionService)
+	public QuestionController(QuestionService questionService, AnswerService answerService)
 	{
 
 		this.questionService = questionService;
+		this.answerService = answerService;
 	}
 
 	/**
@@ -87,5 +92,15 @@ public class QuestionController {
 	{
 		questionService.deleteQuestion(id);
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/addAnswer", method = RequestMethod.POST)
+	public ModelAndView addAnswer(@ModelAttribute("answer") AnswerDTO answerDTO, HttpServletRequest request) {
+
+		long testId = Long.parseLong(request.getParameter("testId"));
+		ModelAndView modelAndView = new ModelAndView(new RedirectView("/elearning"));
+		answerService.addAnswer(answerDTO,testId);
+
+		return modelAndView;
 	}
 }

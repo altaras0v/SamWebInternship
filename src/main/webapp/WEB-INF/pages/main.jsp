@@ -36,16 +36,41 @@
         </div>
         <div class="navbar-translate" >
             <ul class="navbar-nav ml-auto">
-        <c:if test="${auth.authorities=='[ROLE_ADMIN]'}">
-            <form:form name="admin" action="${pageContext.request.contextPath}/admin" method="get">
-                <li style="margin: auto auto auto 100%;" class="nav-item">
-                    <button   class="btn btn-link border-pretty" type="submit"
-                              style="font-size:16px;background-color:#3C4858;color: #FF8C00;"><spring:message
-                            code="mainpage.toadmin"/><i class="icon ion-android-arrow-forward">
-                    </i></button>
-                </li>
-            </form:form>
-        </c:if>
+
+                <c:choose>
+                    <c:when test="${auth.authorities=='[ROLE_USER]'}">
+                        <form:form name="admin" action="${pageContext.request.contextPath}/user" method="get">
+                            <li style="margin: auto auto auto 100%;" class="nav-item">
+                                <button   class="btn btn-link border-pretty" type="submit"
+                                          style="font-size:16px;background-color:#3C4858;color: #FF8C00;"><spring:message
+                                        code="mainpage.touser"/><i class="icon ion-android-arrow-forward">
+                                </i></button>
+                            </li>
+                        </form:form>
+                    </c:when>
+                    <c:when test="${auth.authorities=='[ROLE_ADMIN]'}">
+                        <form:form name="admin" action="${pageContext.request.contextPath}/admin" method="get">
+                        <li style="margin: auto auto auto 100%;" class="nav-item">
+                            <button   class="btn btn-link border-pretty" type="submit"
+                                      style="font-size:16px;background-color:#3C4858;color: #FF8C00;"><spring:message
+                                    code="mainpage.toadmin"/><i class="icon ion-android-arrow-forward">
+                            </i></button>
+                        </li>
+                    </form:form>
+                    </c:when>
+                    <c:when test="${auth.authorities=='[ROLE_MENTOR]'}">
+                        <form:form name="admin" action="${pageContext.request.contextPath}/mentor" method="get">
+                            <li style="margin: auto auto auto 100%;" class="nav-item">
+                                <button   class="btn btn-link border-pretty" type="submit"
+                                          style="font-size:16px;background-color:#3C4858;color: #FF8C00;"><spring:message
+                                        code="mainpage.tomentor"/><i class="icon ion-android-arrow-forward">
+                                </i></button>
+                            </li>
+                        </form:form>
+                    </c:when>
+
+                </c:choose>
+
             </ul>
         </div>
         <div class="navbar-translate" >

@@ -30,4 +30,6 @@ public interface TestService {
 	 * @param id - id of test
 	 */
 	void deleteTest(long id);
+
+	Test getTestById(long id);
 }

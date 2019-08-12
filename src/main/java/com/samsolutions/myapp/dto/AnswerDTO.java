@@ -14,6 +14,15 @@ import java.util.Objects;
 public class AnswerDTO {
 
 	private long id;
+
+	public AnswerDTO(String answer1, String answer2, String answer3, String answer4, String answer5) {
+		this.answer1 = answer1;
+		this.answer2 = answer2;
+		this.answer3 = answer3;
+		this.answer4 = answer4;
+		this.answer5 = answer5;
+	}
+
 	private String answer1;
 	private String answer2;
 	private String answer3;

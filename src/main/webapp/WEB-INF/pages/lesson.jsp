@@ -198,6 +198,10 @@
                     </form:form></td>
                 </c:if>
                 <c:if test="${listQuestion.size()!=0}">
+                    <form:form name="result" modelAttribute="answer"
+                               action="${pageContext.request.contextPath}/addAnswer"
+                               method="post">
+
                     <c:forEach items="${listQuestion}" var="question" varStatus="count">
                         <div class="col-md-10 offset-md-1 row-block" style="margin: 0px 180px 0 80px" id=${question.id}>
                             <ul id="newsortable">
@@ -206,7 +210,7 @@
 
                                         <div class="form-group">
                                             <label style="color: #00008B" for="Textarea"><p>${question.question}</p></label>
-                                            <textarea name=${count.count} maxlength="1000" class="form-control"
+                                            <textarea name="answer${count.count}" maxlength="1000" class="form-control"
                                                       id="Textarea"
                                                       cols="100"
                                                       rows="3"></textarea>
@@ -229,13 +233,22 @@
                             </c:if>
                         </div>
                     </c:forEach>
+
                     <br>
-                <c:if test="${auth.authorities=='[ROLE_USER]'}">
-                    <center>
-                        <button id="0012" type="submit" class="btn btn-primary"><spring:message
-                                code="lesson.send"/></button>
-                    </center>
+                    <c:if test="${auth.authorities=='[ROLE_USER]'}">
+                        <center>
+                            <button id="0012" type="submit" name="testId" value="${testDTO.id}" class="btn
+                            btn-primary"><spring:message
+                                    code="lesson.send"/></button>
+                        </center>
+                    </c:if>
+                    </form:form>
                 </c:if>
+
+            </div>
+
+                <c:if test="${listQuestion.size()!=0}">
+
                     <br>
                     <c:if test="${auth.authorities!='[ROLE_USER]'}">
                         <td><form:form name="quest" action="${pageContext.request.contextPath}/addQuestion"

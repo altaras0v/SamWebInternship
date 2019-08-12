@@ -75,4 +75,9 @@ public class TestServiceImpl implements TestService {
 		testRepository.deleteById(id);
 		logger.info("deleteTest method");
 	}
+
+	@Override
+	public Test getTestById(long id) {
+		return testRepository.findById(id);
+	}
 }

@@ -70,21 +70,10 @@
 
     <!-- Main -->
 
-    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
-
-        <ul class="nav nav-pills nav-stacked" style="border-right:1px solid black">
-            <!--<li class="nav-header"></li>-->
-            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="#"><i class="fa fa-tags"></i> Referal Code</a></li>
-            <li><a href="#"><i class="fa fa-history"></i> Redeem History</a></li>
-            <li><a href="#"><i class="fa fa-lock"></i> Change Password</a></li>
-
-        </ul>
-    </div><!-- /span-3 -->
     <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
         <!-- Right -->
 
-        <a href="#"><strong><span class="fa fa-dashboard"></span> My Dashboard</strong></a>
+        <strong><span></span> Admin Page</strong>
         <hr>
     </div>
 

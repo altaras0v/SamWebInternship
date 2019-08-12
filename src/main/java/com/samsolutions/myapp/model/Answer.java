@@ -31,20 +31,27 @@ public class Answer {
 	@JoinColumn(name = "result_id")
 	private Result result;
 
-	@JoinColumn(name = "answer1")
-	private String answer1;
+	@JoinColumn(name = "answer_1")
+	private String answer_1;
 
-	@JoinColumn(name = "answer2")
-	private String answer2;
+	@JoinColumn(name = "answer_2")
+	private String answer_2;
 
-	@JoinColumn(name = "answer3")
-	private String answer3;
+	@JoinColumn(name = "answer_3")
+	private String answer_3;
 
-	@JoinColumn(name = "answer4")
-	private String answer4;
+	@JoinColumn(name = "answer_4")
+	private String answer_4;
 
-	@JoinColumn(name = "answer5")
-	private String answer5;
+	@JoinColumn(name = "answer_5")
+	private String answer_5;
 
-
+	public Answer(Result result, String answer_1, String answer_2, String answer_3, String answer_4, String answer_5) {
+		this.result = result;
+		this.answer_1 = answer_1;
+		this.answer_2 = answer_2;
+		this.answer_3 = answer_3;
+		this.answer_4 = answer_4;
+		this.answer_5 = answer_5;
+	}
 }

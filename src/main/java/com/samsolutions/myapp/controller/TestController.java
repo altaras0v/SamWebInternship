@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -84,10 +85,12 @@ public class TestController {
 	@RequestMapping(value = "/deleteTest", method = RequestMethod.GET)
 	public ModelAndView deleteTest(HttpServletRequest request)
 	{
-		ModelAndView mav = new ModelAndView("mainpage");
+		ModelAndView mav = new ModelAndView(new RedirectView("/elearning"));
 		long id = Long.parseLong(request.getParameter("testId"));
 		testService.deleteTest(id);
 		return mav;
 	}
+
+
 }
 

@@ -40,4 +40,9 @@ public class ContactDAOServiceImpl implements ContactDAOService {
 	public Contact getContactById(long id) {
 		return contactRepository.findById(id).get();
 	}
+
+	@Override
+	public List<Contact> getContactsByMentorId(long id) {
+		return contactRepository.findAllByMentorId(id);
+	}
 }

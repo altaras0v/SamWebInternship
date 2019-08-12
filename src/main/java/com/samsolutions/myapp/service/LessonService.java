@@ -1,8 +1,11 @@
 package com.samsolutions.myapp.service;
 
+import com.samsolutions.myapp.dto.AnswerDTO;
+import com.samsolutions.myapp.service.api.AnswerDAOService;
 import com.samsolutions.myapp.service.api.FileDAOService;
 import com.samsolutions.myapp.service.api.LessonDAOService;
 import com.samsolutions.myapp.service.api.QuestionDAOService;
+import com.samsolutions.myapp.service.api.ResultDAOService;
 import com.samsolutions.myapp.service.api.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,13 +26,19 @@ public class LessonService {
 
 	private final UserService userService;
 
+	private final ResultDAOService resultDAOService;
+
+	private final AnswerDAOService answerDAOService;
+
 	@Autowired
-	public LessonService(LessonDAOService lessonDAOService, FileDAOService fileDAOService, TestService testService, QuestionDAOService questionDAOService, UserService userService) {
+	public LessonService(LessonDAOService lessonDAOService, FileDAOService fileDAOService, TestService testService, QuestionDAOService questionDAOService, UserService userService, ResultDAOService resultDAOService, AnswerDAOService answerDAOService) {
 		this.lessonDAOService = lessonDAOService;
 		this.fileDAOService = fileDAOService;
 		this.testService = testService;
 		this.questionDAOService = questionDAOService;
 		this.userService = userService;
+		this.resultDAOService = resultDAOService;
+		this.answerDAOService = answerDAOService;
 	}
 
 	public ModelAndView getFullLesson(long id, String viewName){
@@ -42,6 +51,7 @@ public class LessonService {
 		modelAndView.addObject("testDTO",testService.getTestByLessonId(id));
 		modelAndView.addObject("listQuestion",questionDAOService.getQuestionsByTestId(testService.getTestByLessonId(id).getId()));
 		modelAndView.addObject("auth",userService.getUserAuth());
+		modelAndView.addObject("answer",new AnswerDTO());
 
 		return modelAndView;
 	}
