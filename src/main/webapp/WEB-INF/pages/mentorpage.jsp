@@ -104,9 +104,9 @@
             <tr>
                 <th scope="row">${answer.result.test.name}</th>
                 <td>${answer.answer_1}</td>
+                <td>${answer.answer_2}</td>
                 <td>${answer.answer_3}</td>
                 <td>${answer.answer_4}</td>
-                <td>${answer.answer_5}</td>
                 <td>${answer.answer_5}</td>
 
 
