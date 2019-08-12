@@ -8,4 +8,6 @@ public interface UserDAOInfoService {
 
 	void addInfo(UserInfo info);
 
+	UserInfo getInfoByUserId(long id);
+
 }

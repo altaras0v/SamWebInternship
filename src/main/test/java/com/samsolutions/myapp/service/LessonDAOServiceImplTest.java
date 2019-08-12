@@ -3,8 +3,8 @@ package com.samsolutions.myapp.service;
 import com.samsolutions.myapp.dto.LessonDTO;
 import com.samsolutions.myapp.model.Lesson;
 import com.samsolutions.myapp.repository.LessonRepository;
-import com.samsolutions.myapp.service.api.LessonService;
-import com.samsolutions.myapp.service.impl.LessonServiceImpl;
+import com.samsolutions.myapp.service.api.LessonDAOService;
+import com.samsolutions.myapp.service.impl.LessonDAOServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -20,13 +20,13 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
-public class LessonServiceImplTest {
+public class LessonDAOServiceImplTest {
 
     @Mock
     private LessonRepository lessonRepository;
 
     @InjectMocks
-    private LessonService lessonService = new LessonServiceImpl(lessonRepository);
+    private LessonDAOService lessonDAOService = new LessonDAOServiceImpl(lessonRepository);
 
     public List<Lesson> createLessonList(){
         Lesson lessonOne = new Lesson();
@@ -45,7 +45,7 @@ public class LessonServiceImplTest {
     public void getLessonsShouldCallRepository(){
 
         //when
-        lessonService.getLessons();
+        lessonDAOService.getLessons();
 
         //then
         verify(lessonRepository).findAll();
@@ -58,7 +58,7 @@ public class LessonServiceImplTest {
         when(lessonRepository.findAll()).thenReturn(Collections.emptyList());
 
         //when
-        List<LessonDTO> lessonsList = lessonService.getLessons();
+        List<LessonDTO> lessonsList = lessonDAOService.getLessons();
 
         //then
         assertThat(lessonsList).isNotNull();
@@ -71,7 +71,7 @@ public class LessonServiceImplTest {
         when(lessonRepository.findAll()).thenReturn(Collections.emptyList());
 
         //when
-        List<LessonDTO> lessonList = lessonService.getLessons();
+        List<LessonDTO> lessonList = lessonDAOService.getLessons();
 
         //then
         assertThat(lessonList).isEmpty();
@@ -84,7 +84,7 @@ public class LessonServiceImplTest {
         when(lessonRepository.findAll()).thenReturn(createLessonList());
 
         //when
-        List<LessonDTO> lessonDTOList = lessonService.getLessons();
+        List<LessonDTO> lessonDTOList = lessonDAOService.getLessons();
 
         //then
         assertThat(lessonDTOList).isNotNull();
@@ -95,7 +95,7 @@ public class LessonServiceImplTest {
 
         when(lessonRepository.findAll()).thenReturn(createLessonList());
 
-        List<LessonDTO> lessonDTOList = lessonService.getLessons();
+        List<LessonDTO> lessonDTOList = lessonDAOService.getLessons();
 
         assertThat(lessonDTOList.get(0).getName().contains("First Name") && lessonDTOList.get(0).getDescription().contains("First Desc")).isTrue();
         assertThat(lessonDTOList.get(1).getName().contains("Second Name") && lessonDTOList.get(1).getDescription().contains("Second Desc")).isTrue();

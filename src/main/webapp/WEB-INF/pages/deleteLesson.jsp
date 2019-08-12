@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/base.css">
 
-    <%--  <link href="../assets/css/bootstrap.css" rel="stylesheet">--%>
+
 
     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -30,19 +30,23 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3 well">
-            <h3 class="text-center">Delete courses</h3>
+            <h3 class="text-center"><spring:message
+                    code="deletelesson.title"/></h3>
 
-            <form:form  action="../deleteLesson" method="post">
+            <form:form  action="${pageContext.request.contextPath}/deleteLesson" method="post">
                 <div class="form-group">
-                    <label style="color:steelblue" for="ControlSelect">Choose lesson</label>
+                    <label style="color:steelblue" for="ControlSelect"><spring:message
+                            code="deletelesson.choose"/></label>
                     <select name="lessonId" class="form-control" id="ControlSelect">
                         <c:forEach items="${lessonDTOList}"  var="lesson">
                             <option value=${lesson.id}>${lesson.name}</option>
                         </c:forEach>
                     </select>
                 </div>
-                <p><center><input class="btn btn-primary" type="submit" value="Submit"></center></p>
-                <a href="<c:url value='/redirect/courseRedirect?first=${courseId}'/>">Return to lesson page</a>
+                <p><center><input class="btn btn-primary" type="submit" value="Submit"><spring:message
+                    code="deletelesson.submit"/></center></p>
+                <a href="<c:url value='/redirect/courseRedirect?first=${courseId}'/>"><spring:message
+                        code="deletelesson.return"/></a>
             </form:form>
         </div>
     </div>

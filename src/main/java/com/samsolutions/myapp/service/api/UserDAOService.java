@@ -11,6 +11,9 @@ public interface UserDAOService {
 
 	User getUser(String login);
 
+	List<UserDTO> getUsers();
+
+
 	void addUser(User user);
 
 	void deleteUser(long id);
@@ -21,6 +24,7 @@ public interface UserDAOService {
 
 	User getUserByName(String login);
 
-	List<UserDTO> getUsers();
+
+
 
 }

@@ -2,7 +2,7 @@
 function deleteQuestion(id,size) {
     $.ajax({
             type:"DELETE",
-            url: "/deleteQuestion/" + id,
+            url: "../deleteQuestion/" + id,
             success: function () {
                 console.log('easy');
 

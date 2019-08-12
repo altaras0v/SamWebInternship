@@ -14,14 +14,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3 well">
-            <h3 class="text-center">Add test</h3>
-            <form id="updateForm" modelAttribute="question" action="../addQuestion" method="post">
+            <h3 class="text-center"><spring:message
+                    code="addquestion.title"/></h3>
+            <form id="updateForm" modelAttribute="question" action="${pageContext.request.contextPath}/addQuestion" method="post">
                 <%--<table>--%>
                 <div class="col-xs-12">
                     <div class="form-group">
 
                         <div class="form-group">
-                            <label  style="color: #00008B" for="Textarea">Введите вопрос</label>
+                            <label  style="color: #00008B" for="Textarea"><spring:message
+                                    code="addquestion.add"/></label>
                             <textarea  maxlength="1000" name="question" class="form-control" id="Textarea" rows="3"></textarea>
 
                         </div>
@@ -30,17 +32,16 @@
                 </div>
 
                 <div class="text-center col-xs-12">
-                    <button class="btn btn-primary" id="sibmit" name="submit">Submit</button>
+                    <button class="btn btn-primary" id="sibmit" name="submit"><spring:message
+                            code="addquestion.submit"/></button>
                 </div>
 
-                <%--<form:button id="sibmit" name="submit">Submit</form:button>--%>
 
 
                 <br>
-                <a href="<c:url value='/redirect/lessonRedirect?id=${lessonId}' />">Return to lesson page</a>
+                <a href="<c:url value='/redirect/lessonRedirect?id=${lessonId}'/>"><spring:message
+                        code="addquestion.return"/></a>
 
-
-                <%--  </table>--%>
             </form>
         </div>
     </div>

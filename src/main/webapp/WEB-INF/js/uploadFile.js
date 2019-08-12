@@ -44,7 +44,9 @@ function onFileSelect(e) {
 //This will continueously update the progress bar
 function onUploadProgress(e) {
     if (e.lengthComputable) {
-        var percentComplete = parseInt((e.loaded + totalUploaded) * 100 / totalFileLength);
+        if(parseInt(((e.loaded + totalUploaded) * 100 / totalFileLength))<101) {
+            var percentComplete = parseInt((e.loaded + totalUploaded) * 100 / totalFileLength);
+        }else   var percentComplete = 100;
         var bar = document.getElementById('bar');
         bar.style.width = percentComplete + '%';
         bar.innerHTML = percentComplete + ' % complete';

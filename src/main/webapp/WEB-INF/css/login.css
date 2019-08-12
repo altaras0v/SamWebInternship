@@ -1,6 +1,6 @@
 
 html,body{
-    background-image: url('../img/login.png');
+    background-image: url('/img/login.png');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;

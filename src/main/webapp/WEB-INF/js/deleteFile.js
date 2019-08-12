@@ -2,7 +2,7 @@
 function deleteFile(id) {
     $.ajax({
             type:"DELETE",
-            url: "/deleteFile/" + id,
+            url: "../deleteFile/" + id,
             success: function () {
                 console.log('easy');
 

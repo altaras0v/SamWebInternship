@@ -27,6 +27,8 @@ import java.util.Properties;
 @Configuration
 public class AppConfig {
 
+	private ApplicationProperties properties = new ApplicationProperties();
+
 	/**
 	 * Bean for multipart
 	 * Need to uploading files
@@ -65,11 +67,11 @@ public class AppConfig {
 	public DataSource dataSource() {
 
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		dataSource.setDriverClassName(properties.getProperty("db.driver"));
 
-		dataSource.setUrl("jdbc:mysql://localhost:3306/e_learning?characterEncoding=utf8&useConfigs=maxPerformance&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Minsk&maxAllowedPacket=67108864");
-		dataSource.setUsername("root");
-		dataSource.setPassword("admin");
+		dataSource.setUrl(properties.getProperty("db.url"));
+		dataSource.setUsername(properties.getProperty("db.username"));
+		dataSource.setPassword(properties.getProperty("db.password"));
 		return dataSource;
 	}
 

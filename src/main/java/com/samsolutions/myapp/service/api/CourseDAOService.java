@@ -9,7 +9,7 @@ import java.util.List;
  * Service for course
  */
 @Service
-public interface CourseService {
+public interface CourseDAOService {
 	/**
 	 * Get all courses
 	 *

@@ -5,7 +5,7 @@ import com.samsolutions.myapp.model.BlobFile;
 import com.samsolutions.myapp.model.LessonFile;
 import com.samsolutions.myapp.repository.BlobFileRepository;
 import com.samsolutions.myapp.repository.LessonFileRepository;
-import com.samsolutions.myapp.service.api.FileService;
+import com.samsolutions.myapp.service.api.FileDAOService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +23,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Implementation of {@link FileService}
+ * Implementation of {@link FileDAOService}
  * Adding,getting,removing file from database
  */
 @Service
-public class FileServiceImpl implements FileService {
+public class FileDAOServiceImpl implements FileDAOService {
 
-	private static final Logger logger = LoggerFactory.getLogger(FileServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(FileDAOServiceImpl.class);
 
 	private final LessonFileRepository lessonFileRepository;
 
@@ -38,7 +38,7 @@ public class FileServiceImpl implements FileService {
 	private final DataSource dataSource;
 
 	@Autowired
-	public FileServiceImpl(LessonFileRepository lessonFileRepository, BlobFileRepository blobFileRepository, DataSource dataSource) {
+	public FileDAOServiceImpl(LessonFileRepository lessonFileRepository, BlobFileRepository blobFileRepository, DataSource dataSource) {
 		this.lessonFileRepository = lessonFileRepository;
 		this.blobFileRepository = blobFileRepository;
 		this.dataSource = dataSource;
@@ -84,7 +84,6 @@ public class FileServiceImpl implements FileService {
 	 * @return LessonFile with needed id
 	 */
 	@Override
-	@Transactional
 	public LessonFile getFileById(long id) {
 		logger.info("getFileById method");
 
@@ -99,25 +98,28 @@ public class FileServiceImpl implements FileService {
 	 * @param file       - bytes of file
 	 */
 	@Override
-	@Transactional
 	public void addFile(LessonFile lessonFile, byte[] file) {
-		lessonFileRepository.save(lessonFile);
+
 		Connection connection = null;
+
 		try {
 			connection = dataSource.getConnection();
+			connection.setAutoCommit(false);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 
 		assert connection != null;
 		try (PreparedStatement preparedStatement = connection.
 				prepareStatement("insert into blob_file(file_id,file) values (?,?)");
 			 InputStream inputStream = new ByteArrayInputStream(file)) {
 
+			lessonFileRepository.save(lessonFile);
 			preparedStatement.setLong(1, lessonFile.getId());
 			preparedStatement.setBinaryStream(2, inputStream);
 			preparedStatement.executeUpdate();
+			connection.commit();
+			connection.setAutoCommit(true);
 
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
@@ -131,10 +133,8 @@ public class FileServiceImpl implements FileService {
 	 * @param id - if of file that will be delete
 	 */
 	@Override
-	@Transactional
 	public void deleteFile(long id) {
 		lessonFileRepository.deleteById(id);
-
 		logger.info("deleteLessonFile method");
 	}
 
@@ -145,7 +145,6 @@ public class FileServiceImpl implements FileService {
 	 * @return - needed blob file
 	 */
 	@Override
-	@Transactional
 	public BlobFile getFileByLessonFileId(long id) {
 		logger.info("getFileByLessonId method");
 		return blobFileRepository.findByLessonFileId(id);

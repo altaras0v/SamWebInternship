@@ -3,7 +3,7 @@ package com.samsolutions.myapp.controller;
 import com.samsolutions.myapp.dto.LessonDTO;
 import com.samsolutions.myapp.model.Course;
 import com.samsolutions.myapp.model.Lesson;
-import com.samsolutions.myapp.service.api.LessonService;
+import com.samsolutions.myapp.service.api.LessonDAOService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,16 +26,16 @@ import java.util.List;
 public class LessonController {
 // TODO: 19.07.2019 add comments 
 
-	private final LessonService lessonService;
+	private final LessonDAOService lessonDAOService;
 
 	/**
 	 * Constructor for controller
 	 *
-	 * @param lessonService - service for lesson, getting,adding and deleting lesson
+	 * @param lessonDAOService - service for lesson, getting,adding and deleting lesson
 	 */
 	@Autowired
-	public LessonController(LessonService lessonService) {
-		this.lessonService = lessonService;
+	public LessonController(LessonDAOService lessonDAOService) {
+		this.lessonDAOService = lessonDAOService;
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class LessonController {
 		long id = (long) modelMap.get("courseId");
 		Course course = new Course();
 		course.setId(id);
-		lessonService.addLesson(new Lesson(lessonDTO.getName(), lessonDTO.getDescription(), course));
+		lessonDAOService.addLesson(new Lesson(lessonDTO.getName(), lessonDTO.getDescription(), course));
 		return mav;
 	}
 
@@ -81,7 +81,7 @@ public class LessonController {
 
 		ModelAndView modelAndView = new ModelAndView("deleteLesson");
 		long id = Long.parseLong(request.getParameter("courseId"));
-		List<LessonDTO> lessonDTOList = lessonService.getLessonsByCourseId(id);
+		List<LessonDTO> lessonDTOList = lessonDAOService.getLessonsByCourseId(id);
 		modelAndView.addObject("lessonDTOList", lessonDTOList);
 		modelAndView.addObject("courseId",id);
 		return modelAndView;
@@ -96,9 +96,9 @@ public class LessonController {
 	@RequestMapping(value = "/deleteLesson", method = RequestMethod.POST)
 	public ModelAndView deleteLesson(HttpServletRequest request) {
 
-		ModelAndView modelAndView = new ModelAndView(new RedirectView("/deleteLesson"));
+		ModelAndView modelAndView = new ModelAndView(new RedirectView("/elearning/deleteLesson"));
 		long id = Long.parseLong(request.getParameter("lessonId"));
-		lessonService.deleteLesson(id);
+		lessonDAOService.deleteLesson(id);
 		return modelAndView;
 	}
 

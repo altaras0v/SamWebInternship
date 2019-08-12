@@ -25,9 +25,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3 well">
-            <h3 class="text-center">Add files</h3>
+            <h3 class="text-center"><spring:message
+                    code="upload.title"/></h3>
 
-            <form:form method="post" enctype="multipart/form-data" modelAttribute="uploadedFile" action="../upload">
+            <form:form method="post" enctype="multipart/form-data" modelAttribute="uploadedFile" action="${pageContext.request.contextPath}/upload">
 
             <div class="col-xs-12">
                 <div class="form-group">
@@ -35,7 +36,8 @@
                         <div class="input-group">
                              <span class="input-group-btn">
                                 <span class="btn btn-primary"
-                                      onclick="$(this).parent().find('input[type=file]').click();">Browse</span>
+                                      onclick="$(this).parent().find('input[type=file]').click();"><spring:message
+                                        code="upload.browse"/></span>
                                     <input name="file" id="files"
                                            onchange="$(this).parent().parent().find('.form-control').html($(this).val().split(/[\\|/]/).pop());"
                                            style="display: none;" type="file">
@@ -47,7 +49,8 @@
                         <div class="col-xs-12">
                             <div class="text-center col-xs-12">
                                 <div class="form-group">
-                                    <input type="text"  placeholder="Description" name="description"
+                                    <input type="text"  placeholder=<spring:message
+                                            code="placeholder.desc"/> name="description"
                                            id="description"/>
                                 </div>
                             </div>
@@ -55,7 +58,8 @@
 
                         <h3 style="color: red; font-style: italic" ;><form:errors path="file"/></h3>
                         <div class="text-center col-xs-12">
-                            <input id="uploadButton" type="submit" value="Upload">
+                            <input id="uploadButton" type="submit" value=<spring:message
+                                    code="upload.submit"/>>
                         </div>
                         <br><br><br><br>
                         <div id='progressBar' style='height: 20px; border: 2px steelblue; margin-bottom: 20px'>
@@ -68,7 +72,8 @@
                 </div>
 
                 </form:form>
-                <a href="<c:url value='/redirect/lessonRedirect?id=${lessonId}' />">Return to lesson page</a>
+                <a href="<c:url value='/redirect/lessonRedirect?id=${lessonId}' />"><spring:message
+                        code="upload.return"/></a>
 
             </div>
         </div>

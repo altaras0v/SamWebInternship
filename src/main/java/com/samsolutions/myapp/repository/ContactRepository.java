@@ -1,12 +1,12 @@
 package com.samsolutions.myapp.repository;
 
-import com.samsolutions.myapp.model.UserInfo;
+import com.samsolutions.myapp.model.Contact;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserInfoRepository extends CrudRepository<UserInfo, Long>,
-		JpaSpecificationExecutor<UserInfo> {
-	UserInfo findByUserId(long id);
+public interface ContactRepository extends CrudRepository<Contact, Long>, JpaSpecificationExecutor<Contact> {
+
+
 }

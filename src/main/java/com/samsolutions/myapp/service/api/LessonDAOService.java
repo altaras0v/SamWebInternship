@@ -10,7 +10,7 @@ import java.util.List;
  * Service for lesson
  */
 @Service
-public interface LessonService {
+public interface LessonDAOService {
 
 	/**
 	 * Get all lessons

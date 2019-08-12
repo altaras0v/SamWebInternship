@@ -3,7 +3,7 @@ package com.samsolutions.myapp.service.impl;
 import com.samsolutions.myapp.dto.QuestionDTO;
 import com.samsolutions.myapp.model.Question;
 import com.samsolutions.myapp.repository.QuestionRepository;
-import com.samsolutions.myapp.service.api.QuestionService;
+import com.samsolutions.myapp.service.api.QuestionDAOService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Implementation of {@link QuestionService}
+ * Implementation of {@link QuestionDAOService}
  */
 @Service
-public class QuestionServiceImpl implements QuestionService {
+public class QuestionDAOServiceImpl implements QuestionDAOService {
 
-	private static final Logger logger = LoggerFactory.getLogger(QuestionServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(QuestionDAOServiceImpl.class);
 
 	private final QuestionRepository questionRepository;
 
@@ -29,7 +29,7 @@ public class QuestionServiceImpl implements QuestionService {
 	 * @param questionRepository - repository(CRUD) for question
 	 */
 	@Autowired
-	public QuestionServiceImpl(QuestionRepository questionRepository)
+	public QuestionDAOServiceImpl(QuestionRepository questionRepository)
 	{
 		this.questionRepository = questionRepository;
 	}

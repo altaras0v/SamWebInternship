@@ -33,8 +33,13 @@ public class UserDAOServiceImpl implements UserDAOService {
 
 	@Override
 	public void addUser(User user) {
-		userRepository.save(user);
-		logger.info("addUser method");
+		try {
+			userRepository.save(user);
+			logger.info("addUser method");
+		}catch (Throwable t){
+		t.printStackTrace();
+		}
+
 	}
 
 	@Override
@@ -45,8 +50,7 @@ public class UserDAOServiceImpl implements UserDAOService {
 
 	@Override
 	public User getUserById(long id) {
-		User user = userRepository.findById(id)
-				.get();
+		User user = userRepository.findById(id).get();
 		logger.info("getUserById method");
 		return user;
 	}
@@ -73,4 +77,5 @@ public class UserDAOServiceImpl implements UserDAOService {
 				.collect(Collectors.toList());*/
 		return null;
 	}
+
 }

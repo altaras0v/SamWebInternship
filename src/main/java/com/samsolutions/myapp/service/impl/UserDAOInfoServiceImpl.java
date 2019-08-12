@@ -25,4 +25,11 @@ public class UserDAOInfoServiceImpl implements UserDAOInfoService {
 		userInfoRepository.save(userInfo);
 		logger.info("addInfo method");
 	}
+
+	@Override
+	public UserInfo getInfoByUserId(long id) {
+		UserInfo userInfo = userInfoRepository.findByUserId(id);
+		logger.info("getInfoByUserId method");
+		return userInfo;
+	}
 }

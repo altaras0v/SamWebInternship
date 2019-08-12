@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public interface FileService {
+public interface FileDAOService {
 
 	/**
 	 * Get all files

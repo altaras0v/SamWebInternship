@@ -21,17 +21,22 @@ public class UserDTO {
 	private String fName;
 	private String lName;
 	private MultipartFile photo;
+	private byte[] bytePhoto;
+	private String role;
 
-	public UserDTO(String name, String password) {
+	public UserDTO(long id, String name, String password, String fName, String lName, byte[] bytePhoto, String role) {
+		this.id = id;
 		this.name = name;
 		this.password = password;
+		this.fName = fName;
+		this.lName = lName;
+		this.bytePhoto = bytePhoto;
+		this.role = role;
 	}
 
-
-
-	@Override
-	public String toString() {
-		return "UserDTO{" + "id=" + id + ", name='" + name + '\'' + ", password='" + password + '\'' + ", fName='" + fName + '\'' + ", lName='" + lName + '\'' + ", photo=" + Arrays.toString(new MultipartFile[]{photo}) + '}';
+	public UserDTO(long id, String name) {
+		this.id = id;
+		this.name = name;
 	}
 
 	@Override
@@ -43,11 +48,22 @@ public class UserDTO {
 			return false;
 		}
 		UserDTO userDTO = (UserDTO) o;
-		return id == userDTO.id && Objects.equals(name, userDTO.name) && Objects.equals(password, userDTO.password) && Objects.equals(fName, userDTO.fName) && Objects.equals(lName, userDTO.lName) && Objects.equals(photo, userDTO.photo);
+		return id == userDTO.id && Objects.equals(name, userDTO.name) && Objects.equals(password, userDTO.password) &&
+				Objects.equals(fName, userDTO.fName) && Objects.equals(lName, userDTO.lName) &&
+				Objects.equals(photo, userDTO.photo) && Arrays.equals(bytePhoto, userDTO.bytePhoto);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, name, password, fName, lName, photo);
+		int result = Objects.hash(id, name, password, fName, lName, photo);
+		result = 31 * result + Arrays.hashCode(bytePhoto);
+		return result;
+	}
+
+
+	@Override
+	public String toString() {
+		return "UserDTO{" + "id=" + id + ", name='" + name + '\'' + ", password='" + password + '\'' + ", fName='" +
+				fName + '\'' + ", lName='" + lName + '\'' + ", role='" + role + '\'' + '}';
 	}
 }

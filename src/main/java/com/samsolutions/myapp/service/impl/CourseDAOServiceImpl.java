@@ -3,24 +3,24 @@ package com.samsolutions.myapp.service.impl;
 import com.samsolutions.myapp.dto.CourseDTO;
 import com.samsolutions.myapp.model.Course;
 import com.samsolutions.myapp.repository.CourseRepository;
-import com.samsolutions.myapp.service.api.CourseService;
+import com.samsolutions.myapp.service.api.CourseDAOService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Implementation of {@link CourseService}
+ * Implementation of {@link CourseDAOService}
  */
 
 @Service
-public class CourseServiceImpl implements CourseService {
+public class CourseDAOServiceImpl implements CourseDAOService {
 
-	private static final Logger logger = LoggerFactory.getLogger(CourseServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(CourseDAOServiceImpl.class);
 
 	private final CourseRepository courseRepository;
 
@@ -30,7 +30,7 @@ public class CourseServiceImpl implements CourseService {
 	 * @param courseRepository - repository(CRUD) for course
 	 */
 	@Autowired
-	public CourseServiceImpl(CourseRepository courseRepository)
+	public CourseDAOServiceImpl(CourseRepository courseRepository)
 	{
 
 		this.courseRepository = courseRepository;

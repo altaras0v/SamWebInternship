@@ -10,7 +10,7 @@ import java.util.List;
  *
  */
 @Service
-public interface QuestionService {
+public interface QuestionDAOService {
 	/**
 	 * Get questions for this test
 	 *

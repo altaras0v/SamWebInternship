@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <style>
     <%@include file="/WEB-INF/css/error.css"%>
 </style>
@@ -12,7 +14,10 @@
 <div class='c'>
     <div class='_404'>404</div>
     <hr>
-    <div class='_1'>THE PAGE</div>
-    <div class='_2'>WAS NOT FOUND</div>
-    <a class='btn' href='mainpage'>BACK TO MAINPAGE</a>
+    <div class='_1'><spring:message
+            code="error.thepage"/></div>
+    <div class='_2'><spring:message
+            code="error.notfound"/> </div>
+    <a class='btn' href="<c:url value='/'/>"><spring:message
+            code="error.return"/></a>
 </div>

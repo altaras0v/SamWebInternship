@@ -1,9 +1,7 @@
 package com.samsolutions.myapp.controller;
 
 import com.samsolutions.myapp.dto.LessonDTO;
-import com.samsolutions.myapp.model.Lesson;
-import com.samsolutions.myapp.model.LessonFile;
-import com.samsolutions.myapp.service.api.FileService;
+import com.samsolutions.myapp.service.FileService;
 import com.samsolutions.myapp.validator.FileValidator;
 import com.samsolutions.myapp.validator.UploadedFile;
 import org.slf4j.Logger;
@@ -13,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,25 +19,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.net.URLEncoder;
 
 /**
- * Controller for uploading files lessonId - id of lesson that will have this
- * file
+ * Controller for uploading files.
+ * lessonId - id of lesson that will have this file
  */
 @Controller
 @SessionAttributes("lessonId")
-public class FileUploadController {
+public class FileController {
 
-	private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
+	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 
 	private final FileService fileService;
 
 	private final FileValidator fileValidator;
+
+	private static final String APPLICATION_PDF = "application/octet-stream";
 
 	/**
 	 * Constructor for controller
@@ -48,7 +52,7 @@ public class FileUploadController {
 	 * @param fileValidator - validation object (check size and type of file)
 	 */
 	@Autowired
-	public FileUploadController(FileValidator fileValidator, FileService fileService) {
+	public FileController(FileValidator fileValidator, FileService fileService) {
 		this.fileValidator = fileValidator;
 		this.fileService = fileService;
 	}
@@ -84,46 +88,22 @@ public class FileUploadController {
 	public @ResponseBody
 	ModelAndView uploadFileHandler(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, BindingResult result, ModelMap model) {
 
-		long id = (long) model.get("lessonId");
-
 		ModelAndView modelAndView = new ModelAndView();
-		String name;
-
-		MultipartFile file = uploadedFile.getFile();
 
 		fileValidator.validate(uploadedFile, result);
-		String desc;
-		if (uploadedFile.getDescription() != null) {
-			desc = uploadedFile.getDescription();
-		}
-		else {
-			desc = "";
-		}
 
 		if (result.hasErrors()) {
 			logger.info("uploadFile method error");
 			modelAndView.setViewName("upload");
 		}
 		else {
-			try {
-				byte[] bytes = file.getBytes();
-				name = file.getOriginalFilename();
-
-				Lesson lesson = new Lesson();
-				lesson.setId(id);
-				LessonFile lessonFile = new LessonFile(name, desc, lesson);
-				fileService.addFile(lessonFile,bytes);
+				long id = (long) model.get("lessonId");
+				fileService.addFile(uploadedFile,id);
 
 				RedirectView redirectView = new RedirectView("upload");
 				redirectView.setStatusCode(HttpStatus.FOUND);
 				modelAndView.setView(redirectView);
-
 				modelAndView.addObject("lessonId", id);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			logger.info("uploadFile method successful");
 		}
 		return modelAndView;
 	}
@@ -146,5 +126,30 @@ public class FileUploadController {
 	public ResponseEntity<Object> deleteFile(@PathVariable("id") final long id) {
 		fileService.deleteFile(id);
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	/**
+	 * Download single file from server to user
+	 *
+	 * @param response - file for downloading
+	 * @param request  - id of downloading file
+	 */
+	@RequestMapping(value = "/download", method = RequestMethod.GET, produces = APPLICATION_PDF)
+	public @ResponseBody
+	void downloadFile(HttpServletResponse response, HttpServletRequest request) throws IOException
+	{
+		long id = Long.parseLong(request.getParameter("id"));
+
+		ByteArrayInputStream inputStream = new ByteArrayInputStream(fileService.getDownloadFile(id).getValue());
+
+		response.setCharacterEncoding("utf-8");
+		response.setContentType(APPLICATION_PDF);
+		response.setHeader("Content-Type", "application/octet-stream; charset=utf-8");
+		String filename = URLEncoder.encode(fileService.getDownloadFile(id).getKey(),"UTF-8");
+		response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+		response.setHeader("Content-Length", String.valueOf(fileService.getDownloadFile(id).getValue().length));
+		FileCopyUtils.copy(inputStream, response.getOutputStream());
+		inputStream.close();
+		logger.info("download file controller");
 	}
 }

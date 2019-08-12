@@ -1,10 +1,7 @@
 package com.samsolutions.myapp.controller;
 
 import com.samsolutions.myapp.dto.QuestionDTO;
-import com.samsolutions.myapp.model.Question;
-import com.samsolutions.myapp.model.Test;
-import com.samsolutions.myapp.service.api.LessonService;
-import com.samsolutions.myapp.service.api.QuestionService;
+import com.samsolutions.myapp.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,18 +26,16 @@ public class QuestionController {
 
 	private final QuestionService questionService;
 
-	private final LessonService lessonService;
-
 	/**
 	 * Constructor for controller
 	 *
 	 * @param questionService - service for question, adding,getting and deleting of question
 	 */
 	@Autowired
-	public QuestionController(QuestionService questionService, LessonService lessonService)
+	public QuestionController(QuestionService questionService)
 	{
+
 		this.questionService = questionService;
-		this.lessonService = lessonService;
 	}
 
 	/**
@@ -57,7 +52,7 @@ public class QuestionController {
 		ModelAndView mav = new ModelAndView("addQuestion");
 		long id = Long.parseLong(request.getParameter("testId"));
 		model.addAttribute("testId", id);
-		mav.addObject("lessonId",lessonService.getLessonByTestId(id).getId());
+		mav.addObject("lessonId",questionService.getLessonId(id));
 		mav.addObject("question", new QuestionDTO());
 		return mav;
 	}
@@ -76,9 +71,8 @@ public class QuestionController {
 	{
 		long id = (long) modelMap.get("testId");
 		ModelAndView mav = new ModelAndView("addQuestion");
-		Test test = new Test();
-		test.setId(id);
-		questionService.addQuestion(new Question(questionDTO.getQuestion(), test));
+		mav.addObject("lessonId",questionService.getLessonId(id));
+		questionService.addQuestion(questionDTO,id);
 		return mav;
 	}
 
@@ -93,6 +87,5 @@ public class QuestionController {
 	{
 		questionService.deleteQuestion(id);
 		return new ResponseEntity<>(HttpStatus.OK);
-
 	}
 }

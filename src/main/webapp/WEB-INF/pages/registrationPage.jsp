@@ -25,7 +25,7 @@
     <style>
 
         <%@include file="/WEB-INF/css/registrate.css"%>
-
+        <%@include file="/WEB-INF/css/lesson.css"%>
     </style>
 </head>
 <script> <%@include file="/WEB-INF/js/registrate.js"%></script>
@@ -36,25 +36,13 @@
     <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100"
          id="sectionsNav">
         <div class="container">
-            <div class="navbar-translate">
-                <a style="margin: auto auto auto -100px; color: #FF8C00; font-size: 30px; font-weight: 500"
-                   href="<c:url value = "/"/>"
-                   class="navbar-brand"> <em>E-Learning System</em>
+            <div style="margin: 0 0 0 0% " >
+                <a style=  "margin: auto auto auto -100px; color: #FF8C00; font-size: 30px; font-weight: 500"
+                   href="<c:url value = "/"/>"  class="navbar-brand" > <h3><em><span>E-Learning System </span></em></h3>
                 </a>
 
             </div>
-            <div class="navbar-translate">
-                <ul class="navbar-nav ml-auto">
-                    <form:form name="login" action="../login" method="get">
-                        <li style="margin: auto auto auto 90%;" class="nav-item">
-                            <button class="btn btn-link border-pretty" type="submit"
-                                    style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Login<i
-                                    class="icon ion-android-arrow-forward">
-                            </i></button>
-                        </li>
-                    </form:form>
-                </ul>
-            </div>
+
         </div>
     </nav>
     <br><br>
@@ -63,9 +51,14 @@
             <div id="kv-avatar-errors-2" class="center-block" style="width:800px;display:none"></div>
             <form id="registrationForm" class="form form-vertical"  action="${pageContext.request.contextPath}/addUser" method="post"
                   enctype="multipart/form-data">
+                <br>
+                <a><span style="margin: 0 0 0 42%; color:#FF8C00 "> <spring:message
+                        code="regpage.reg"/></span></a>
                 <div class="row">
-                    <br>
+
+
                     <div class="col-sm-4 text-center" >
+
                         <div class="kv-avatar" >
                             <div class="avatar-wrapper" style="margin: 40px auto 0 450px">
 
@@ -78,8 +71,9 @@
                                 </div>
                             <span style="margin:  0 0 0 450px"><form:errors path="user.photo"/></span>
 
-                            <div class="col-sm-8" style="margin: 0px 0px 0px 335px">
-                                <span>Choose avatar</span>
+                            <div class="col-sm-8" style="margin: 0px 0px 0px 338px">
+                                <span><spring:message
+                                        code="regpage.choose"/></span>
                             </div>
                         </div>
 
@@ -89,7 +83,8 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <center><label for="email">Login<span class="kv-reqd">*</span></label></center>
+                                    <center><label for="email"><spring:message
+                                            code="regpage.login"/><span class="kv-reqd">*</span></label></center>
                                     <input value="${user.name}"  id="email" type="text"
                                            class="form-control"
                                                  name="name" required/>
@@ -98,7 +93,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <center><label for="password">Password<span class="kv-reqd">*</span></label></center>
+                                    <center><label for="password"><spring:message
+                                            code="regpage.password"/><span class="kv-reqd">*</span></label></center>
                                     <input value="${user.password}" id="password"  type="password"
                                            class="form-control"
                                                 name="password" required/>
@@ -109,7 +105,8 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <center>
-                                        <label for="fname">First Name<span class="kv-reqd">*</span></label></center>
+                                        <label for="fname"><spring:message
+                                                code="regpage.fname"/><span class="kv-reqd">*</span></label></center>
                                     <input id="fname" value="${user.FName}" type="text" class="form-control" name="fName"
                                            required>
 
@@ -118,7 +115,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <center><label for="confirm_password">Confirm Password<span class="kv-reqd">*</span></label></center>
+                                    <center><label for="confirm_password"><spring:message
+                                            code="regpage.conf"/><span class="kv-reqd">*</span></label></center>
                                     <input id="confirm_password" type="password" class="form-control"
                                            name="confirm_password">
                                 </div>
@@ -129,7 +127,8 @@
 
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <center> <label for="lname">Last Name<span class="kv-reqd">*</span></label></center>
+                                    <center> <label for="lname"><spring:message
+                                            code="regpage.lname"/><span class="kv-reqd">*</span></label></center>
                                     <input value="${user.LName}" id="lname" type="text" class="form-control"
                                            name="lName"
                                            required>
@@ -142,7 +141,8 @@
                         <div class="form-group">
                             <div class="text-right">
                                 <center>
-                                    <button type="submit" onclick="validatePassword()" class="btn btn-primary">Submit</button>
+                                    <button type="submit" onclick="validatePassword()" class="btn btn-primary"><spring:message
+                                            code="regpage.submit"/></button>
                                 </center>
                             </div>
                         </div>

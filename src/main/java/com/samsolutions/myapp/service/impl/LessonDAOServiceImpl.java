@@ -3,23 +3,23 @@ package com.samsolutions.myapp.service.impl;
 import com.samsolutions.myapp.dto.LessonDTO;
 import com.samsolutions.myapp.model.Lesson;
 import com.samsolutions.myapp.repository.LessonRepository;
-import com.samsolutions.myapp.service.api.LessonService;
+import com.samsolutions.myapp.service.api.LessonDAOService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Implementation of {@link LessonService}
+ * Implementation of {@link LessonDAOService}
  */
 @Service
-public class LessonServiceImpl implements LessonService {
+public class LessonDAOServiceImpl implements LessonDAOService {
 
-	private static final Logger logger = LoggerFactory.getLogger(LessonServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(LessonDAOServiceImpl.class);
 
 	private final LessonRepository lessonRepository;
 
@@ -29,7 +29,7 @@ public class LessonServiceImpl implements LessonService {
 	 * @param lessonRepository - repository(CRUD) for lesson
 	 */
 	@Autowired
-	public LessonServiceImpl(LessonRepository lessonRepository)
+	public LessonDAOServiceImpl(LessonRepository lessonRepository)
 	{
 
 		this.lessonRepository = lessonRepository;
@@ -61,6 +61,7 @@ public class LessonServiceImpl implements LessonService {
 	 * @return list with lesson DTOs for needed course (for view)
 	 */
 	@Override
+	@Transactional
 	public List<LessonDTO> getLessonsByCourseId(long id)
 	{
 		logger.info("getLessonsByCourseId");
@@ -78,6 +79,7 @@ public class LessonServiceImpl implements LessonService {
 	 * @return lesson DTOs with needed id
 	 */
 	@Override
+	@Transactional
 	public LessonDTO getLessonById(long id)
 	{
 		logger.info("getLessonsById method");
@@ -92,6 +94,7 @@ public class LessonServiceImpl implements LessonService {
 	 * @param id - lesson id
 	 */
 	@Override
+	@Transactional
 	public void deleteLesson(long id)
 	{
 		lessonRepository.deleteById(id);

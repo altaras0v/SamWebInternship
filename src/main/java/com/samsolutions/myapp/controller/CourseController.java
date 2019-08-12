@@ -1,7 +1,8 @@
 package com.samsolutions.myapp.controller;
 
 import com.samsolutions.myapp.dto.CourseDTO;
-import com.samsolutions.myapp.service.api.CourseService;
+import com.samsolutions.myapp.service.UserService;
+import com.samsolutions.myapp.service.api.CourseDAOService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,17 +20,21 @@ import java.util.List;
 @Controller
 public class CourseController {
 
-	private final CourseService courseService;
+	private final CourseDAOService courseDAOService;
+
+	private final UserService userService;
 
 	/**
 	 * Constructor for controller
 	 *
-	 * @param courseService - service for course,getting,adding and deleting course
+	 * @param courseDAOService - service for course,getting,adding and deleting course
+	 *  @param courseDAOService - service for user,getting Authentication for user
 	 */
 	@Autowired
-	public CourseController(CourseService courseService)
+	public CourseController(CourseDAOService courseDAOService, UserService userService)
 	{
-		this.courseService = courseService;
+		this.courseDAOService = courseDAOService;
+		this.userService = userService;
 	}
 
 	/**
@@ -40,10 +45,11 @@ public class CourseController {
 	@RequestMapping(value = "/courses", method = RequestMethod.GET)
 	public ModelAndView getCourse()
 	{
-		List<CourseDTO> listCourses = courseService.getCourses();
+		List<CourseDTO> listCourses = courseDAOService.getCourses();
 
 		ModelAndView modelAndView = new ModelAndView("courses");
 		modelAndView.addObject("listsCourses", listCourses);
+		modelAndView.addObject("auth",userService.getUserAuth());
 		return modelAndView;
 	}
 
@@ -71,7 +77,7 @@ public class CourseController {
 	public ModelAndView addCourse(@ModelAttribute("course") CourseDTO course)
 	{
 		ModelAndView mav = new ModelAndView("addCourse");
-		courseService.addCourse(course);
+		courseDAOService.addCourse(course);
 		return mav;
 	}
 
@@ -84,7 +90,7 @@ public class CourseController {
 	public ModelAndView showCourseList()
 	{
 		ModelAndView mav = new ModelAndView("deleteCourse");
-		List<CourseDTO> courseDTOList = courseService.getCourses();
+		List<CourseDTO> courseDTOList = courseDAOService.getCourses();
 		mav.addObject("courseDTOList", courseDTOList);
 		return mav;
 	}
@@ -97,9 +103,9 @@ public class CourseController {
 	@RequestMapping(value = "/deleteCourse", method = RequestMethod.POST)
 	public ModelAndView deleteCourse(HttpServletRequest request)
 	{
-		ModelAndView mav = new ModelAndView(new RedirectView("/deleteCourse"));
+		ModelAndView mav = new ModelAndView(new RedirectView("/elearning/deleteCourse"));
 		long id = Long.parseLong(request.getParameter("courseId"));
-		courseService.deleteCourse(id);
+		courseDAOService.deleteCourse(id);
 		return mav;
 	}
 }

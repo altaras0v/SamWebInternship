@@ -14,9 +14,7 @@ public class LoginController {
 	@RequestMapping(value = "/login",  method = {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView loginPage(@ModelAttribute("value") String string, HttpServletRequest request){
 		ModelAndView mnv = new ModelAndView("mainlogin");
-		String a = "eewe";
 		String isError = request.getParameter("error");
-		mnv.addObject("an",a);
 		if ("true".equals(isError)) {
 			mnv.addObject("errorMessage", "Wrong credentials");
 		}

@@ -14,8 +14,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3 well">
-            <h3 class="text-center">Add test</h3>
-            <form:form id="updateForm" modelAttribute="test" action="../addTest" method="post">
+            <h3 class="text-center"><spring:message
+                    code="addtest.title"/></h3>
+            <form:form id="updateForm" modelAttribute="test" action="${pageContext.request.contextPath}/addTest" method="post">
                 <%--<table>--%>
                 <div class="col-xs-12">
                     <div class="form-group">
@@ -37,14 +38,14 @@
                  <tr>
                      <td></td>--%>
                 <div class="text-center col-xs-12">
-                    <button class="btn btn-primary" id="sibmit" name="submit">Submit</button>
+                    <button class="btn btn-primary" id="sibmit" name="submit"><spring:message
+                            code="addtest.submit"/></button>
                 </div>
-
-                <%--<form:button id="sibmit" name="submit">Submit</form:button>--%>
 
 
                 <br>
-                <a href="<c:url value='/redirect/lessonRedirect?id=${lessonId}' />">Return to lesson page</a>
+                <a href="<c:url value='/redirect/lessonRedirect?id=${lessonId}' />"><spring:message
+                        code="addtest.return"/></a>
 
 
                 <%--  </table>--%>

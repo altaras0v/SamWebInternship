@@ -3,7 +3,7 @@ package com.samsolutions.myapp.service;
 import com.samsolutions.myapp.dto.CourseDTO;
 import com.samsolutions.myapp.model.Course;
 import com.samsolutions.myapp.repository.CourseRepository;
-import com.samsolutions.myapp.service.impl.CourseServiceImpl;
+import com.samsolutions.myapp.service.impl.CourseDAOServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -21,14 +21,14 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
-public class CourseServiceImplTest {
+public class CourseDAOServiceImplTest {
 
 
     @Mock
     private CourseRepository courseRepository;
 
     @InjectMocks
-    private CourseServiceImpl courseService;
+    private CourseDAOServiceImpl courseService;
 
     public List<Course> createCourseList() {
         Course courseOne = new Course();

@@ -1,7 +1,7 @@
 package com.samsolutions.myapp.config;
 
 
-import com.samsolutions.myapp.service.impl.UserDetailsServiceImpl;
+import com.samsolutions.myapp.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -42,18 +42,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception
 	{
 		// включаем защиту от CSRF атак
-		http.csrf()
-				.disable()
-				// указываем правила запросов
-				// по которым будет определятся доступ к ресурсам и остальным данным
-				.authorizeRequests()
-				.antMatchers("/resources/**", "/**")
-				.permitAll()
-				.anyRequest()
-				.permitAll()
-				.and();
 
-		http.formLogin()
+               http.csrf().disable()
+			.authorizeRequests()
+			.antMatchers("/").permitAll()
+			.antMatchers("/login").permitAll()
+			.antMatchers("//addUser").permitAll()
+			.antMatchers("/doRegister").permitAll()
+			.antMatchers("/register").permitAll()
+			.antMatchers("/user_details").permitAll()
+			.antMatchers("/userDetails").permitAll()
+			.antMatchers("/activate_account/*").permitAll()
+			.antMatchers("/after_activation_page").permitAll()
+			.anyRequest().authenticated()
+			.and()
+
+		.formLogin()
 				// указываем страницу с формой логина
 				.loginPage("/login")
 				// указываем action с формы логина
@@ -64,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// указываем URL при неудачном логине
 				.failureUrl("/login?error=true")
 				// Указываем параметры логина и пароля с формы логина
-				.defaultSuccessUrl("/mainpage", true)
+				.defaultSuccessUrl("/", true)
 				// даем доступ к форме логина всем
 				.permitAll();
 
@@ -74,46 +78,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// указываем URL логаута
 				.logoutUrl("/logout")
 				// указываем URL при удачном логауте
-				.logoutSuccessUrl("/login?logout")
+				.logoutSuccessUrl("/")
 				// делаем не валидной текущую сессию
 				.invalidateHttpSession(true);
 
 	}
 
-	// Указываем Spring контейнеру, что надо инициализировать ShaPasswordEncoder
-	// Это можно вынести в WebAppConfig, но для понимаемости оставил тут
-	/*@Bean
-	public ShaPasswordEncoder getShaPasswordEncoder()
-	{
-		return new ShaPasswordEncoder();
-	}*/
+
 	@Bean
 	public UserDetailsService getUserDetailsService(){
 		return new UserDetailsServiceImpl();
 	}
 }
 
-/*
-
-@Configuration
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("user").password("user").roles("USER");
-		auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
-		auth.inMemoryAuthentication().withUser("superadmin").password("superadmin").roles("SUPERADMIN");
-	}
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-
-		http.authorizeRequests()
-				.antMatchers("/protected/**").access("hasRole('ROLE_ADMIN')")
-				.antMatchers("/confidential/**").access("hasRole('ROLE_SUPERADMIN')")
-				.and().formLogin().defaultSuccessUrl("/", false);
-
-	}
-}
-*/
 

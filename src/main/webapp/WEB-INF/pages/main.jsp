@@ -1,3 +1,5 @@
+<%@ page import="org.springframework.security.core.Authentication" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -28,9 +30,23 @@
         <div class="navbar-translate" >
 
             <a style=  "margin: auto auto auto -100px; color: #FF8C00; font-size: 30px; font-weight: 500"
-               href="<c:url value = "/"/>"  class="navbar-brand" > <h3><em><span>E-Learning System</span></em></h3>
+               href="<c:url value = "/"/>"  class="navbar-brand" > <h3><em><span>E-Learning System </span></em></h3>
             </a>
 
+        </div>
+        <div class="navbar-translate" >
+            <ul class="navbar-nav ml-auto">
+        <c:if test="${auth.authorities=='[ROLE_ADMIN]'}">
+            <form:form name="admin" action="${pageContext.request.contextPath}/admin" method="get">
+                <li style="margin: auto auto auto 100%;" class="nav-item">
+                    <button   class="btn btn-link border-pretty" type="submit"
+                              style="font-size:16px;background-color:#3C4858;color: #FF8C00;"><spring:message
+                            code="mainpage.toadmin"/><i class="icon ion-android-arrow-forward">
+                    </i></button>
+                </li>
+            </form:form>
+        </c:if>
+            </ul>
         </div>
         <div class="navbar-translate" >
             <ul class="navbar-nav ml-auto">
@@ -52,7 +68,8 @@
 
                     </div>
                 </li>
-                <form:form name="login" action="../courses" method="get">
+
+                <form:form name="login" action="${pageContext.request.contextPath}/courses" method="get">
                 <li style="margin: auto auto auto 40%;" class="nav-item">
                     <button   class="btn btn-link border-pretty" type="submit"
                              style="font-size:16px;background-color:#3C4858;color: #FF8C00;"><spring:message
@@ -60,7 +77,8 @@
                     </i></button>
                 </li>
                 </form:form>
-                <form:form name="login" action="../login" method="get">
+                <c:if test="${auth.authorities=='[ROLE_ANONYMOUS]'}">
+                <form:form name="login" action="${pageContext.request.contextPath}/login" method="get">
                 <li style="margin: auto auto auto 90%;" class="nav-item">
                     <button class="btn btn-link border-pretty" type="submit"
                              style="font-size:16px;background-color:#3C4858;color: #FF8C00;"><spring:message
@@ -69,14 +87,29 @@
                     </i></button>
                 </li>
                 </form:form>
+                </c:if>
+
+
+                <c:if test="${auth.authorities!='[ROLE_ANONYMOUS]'}">
+                    <form:form name="login" action="${pageContext.request.contextPath}/logout" method="get">
+                        <li style="margin: auto auto auto 90%;" class="nav-item">
+                            <button class="btn btn-link border-pretty" type="submit"
+                                    style="font-size:16px;background-color:#3C4858;color: #FF8C00;"><spring:message
+                                    code="logout"/><i
+                                    class="icon ion-android-arrow-forward">
+                            </i></button>
+                        </li>
+                    </form:form>
+                </c:if>
             </ul>
         </div>
     </div>
 </nav>
-<div class="page-header header-filter" data-parallax="true" style=" background-image: url('${pageContext.request.contextPath}/img/main.png')">
+<div class="page-header header-filter" data-parallax="true" style=" background-image: url('/img/main.png')">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
+
                 <h1 class="title"><spring:message code="mainpage.title2"/></h1>
                 <h4><spring:message code="mainpage.landingText"/></h4>
                 <br>
@@ -95,6 +128,7 @@
             </div>
 
             <div class="features">
+
                 <div class="row">
                     <div class="col-md-4">
                         <div class="info">

@@ -30,19 +30,23 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3 well">
-            <h3 class="text-center">Delete courses</h3>
+            <h3 class="text-center"><spring:message
+                    code="deletecourse.title"/></h3>
 
-            <form:form  action="../deleteCourse" method="post">
+            <form:form  action="${pageContext.request.contextPath}/deleteCourse" method="post">
             <div class="form-group">
-                <label style="color:steelblue" for="ControlSelect">Choose course</label>
+                <label style="color:steelblue" for="ControlSelect"><spring:message
+                        code="deletecourse.choose"/></label>
                 <select name="courseId" class="form-control" id="ControlSelect">
                     <c:forEach items="${courseDTOList}"  var="course">
                     <option value=${course.id}>${course.name}</option>
                     </c:forEach>
                 </select>
             </div>
-            <p><center><input class="btn btn-primary" type="submit" value="Submit"></center></p>
-            <a href="<c:url value='/courses' />">Return to courses page</a>
+            <p><center><input class="btn btn-primary" type="submit" value="Submit"><spring:message
+                    code="deletecourse.submit"/></center></p>
+            <a href="<c:url value='/courses' />"><spring:message
+                    code="deletecourse.return"/></a>
             </form:form>
         </div>
     </div>

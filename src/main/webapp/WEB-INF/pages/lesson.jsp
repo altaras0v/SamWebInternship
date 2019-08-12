@@ -35,33 +35,37 @@
 </script>
 <body>
 <section class="row-section">
-    <nav class="navbar navbar-color-on-scroll navbar-transparent    fixed-top  navbar-expand-lg " color-on-scroll="100"
-         id="sectionsNav">
-        <div class="container">
-            <div class="navbar-translate">
-                <a style="margin: auto auto auto -100px; color: #FF8C00; font-size: 30px; font-weight: 500"
-                   href="<c:url value = "/"/>"
-                   class="navbar-brand">
-                    <h3><em><p>E-Learning System</p></em></h3>
-                </a>
 
-            </div>
-            <div class="navbar-translate">
-                <ul class="navbar-nav ml-auto">
-                    <form:form name="login" action="../login" method="get">
-                        <li style="margin: auto auto auto 90%;" class="nav-item">
-                            <button class="btn btn-link border-pretty" type="submit"
-                                    style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Login<i
-                                    class="icon ion-android-arrow-forward">
-                            </i></button>
-                        </li>
-                    </form:form>
-                </ul>
-            </div>
+    <div class="container">
+        <br>
+        <div class="navbar-translate">
+            <a style="margin: auto auto auto -100px; color: #FF8C00; font-size: 30px; font-weight: 500"
+               href="<c:url value = "/"/>"
+               class="navbar-brand">
+                <h3><em><p>E-Learning System</p></em></h3>
+            </a>
+
         </div>
-    </nav>
-    <br><br><br><br><br>
+        <%-- <div class="navbar-translate">
+             <ul class="navbar-nav ml-auto">
+                 <form:form name="login" action="${pageContext.request.contextPath}/login" method="get">
+                     <li style="margin: auto auto auto 90%;" class="nav-item">
+                         <button class="btn btn-link border-pretty" type="submit"
+                                 style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Login<i
+                                 class="icon ion-android-arrow-forward">
+                         </i></button>
+                     </li>
+                 </form:form>
+             </ul>
+         </div>--%>
+    </div>
+
+    <br><br>
     <div class="main main-raised" style="background: #d1e7e5;margin: 0 90px 0 90px">
+        <a href="<c:url value='/' />"><img style="margin: 0 0 -25% 84%" height="300" width="225" src=<c:url
+                value='/img/logo.png'/>></a>
+        <a href="<c:url value='/' />"><img style="margin: 0 0 -20% 0%" height="300" width="225" src=<c:url
+                value='/img/logo.png'/>></a>
         <div class="container">
             <div class="section text-center">
                 <div class="row">
@@ -77,20 +81,24 @@
         <div class="container">
 
             <h3 class="text-center">
-                <center> Материалы для урока</center>
+                <center><spring:message
+                        code="lesson.materials"/></center>
             </h3>
             <br>
-            <td><form:form name="id" action="../uploadRedirect" method="post">
+            <c:if test="${auth.authorities!='[ROLE_USER]'}">
+                <td><form:form name="id" action="${pageContext.request.contextPath}/uploadRedirect" method="post">
 
+                    <div class="coursename">
+                        <button style="font-size:16px;background-color:#3C4858;color: #FF8C00;height: 50px"
+                                type="submit"
+                                name="id" value="${lessonDTO.id}" class="btn btn-link border-pretty">
+                            <spring:message
+                                    code="lesson.addFile"/>
+                        </button>
+                    </div>
 
-                <div class="coursename">
-                    <button style="font-size:16px;background-color:#3C4858;color: #FF8C00;height: 50px" type="submit"
-                            name="id" value="${lessonDTO.id}" class="btn btn-link border-pretty">
-                        Загрузить файл
-                    </button>
-                </div>
-
-            </form:form></td>
+                </form:form></td>
+            </c:if>
             <c:forEach items="${listFiles}" var="files" varStatus="counter">
 
 
@@ -100,7 +108,8 @@
                             <div class="media">
 
                                 <div class="media-body">
-                                    <form:form name="first" action="../download" method="get">
+                                    <form:form name="first" action="${pageContext.request.contextPath}/download"
+                                               method="get">
                                         <button type="submit" name="id" value="${files.id}"
                                                 style="text-transform: capitalize;font-size: 18px" class="btn btn-link">
                                             <p
@@ -109,16 +118,17 @@
                                     <p style="font-size: 16px">${files.description}</p>
                                         <%-- <input type="hidden" --%>
                                 </div>
-                                <div class="media-right align-self-center">
+                                <c:if test="${auth.authorities!='[ROLE_USER]'}">
+                                    <div class="media-right align-self-center">
 
-                                    <button style="color: #4BA89C" onclick="deleteFile(${files.id})" type="button"
-                                            name="fileId"
-                                        <%-- value="${files.id}"--%>
-                                        <%--onclick="Delete(${files.id})"--%> class="btn btn-link">Удалить файл
-                                    </button>
+                                        <button style="color: #4BA89C" onclick="deleteFile(${files.id})" type="button"
+                                                name="fileId" class="btn btn-link"><spring:message
+                                                code="lesson.deleteFile"/>
+                                        </button>
 
 
-                                </div>
+                                    </div>
+                                </c:if>
                             </div>
                         </li>
                     </ul>
@@ -128,31 +138,40 @@
         <br>
     </div>
     <div class="container">
+
         <div class="section text-center">
             <div class="row">
-                <td><form:form name="lessonId" action="../addTest" method="get">
+                <c:if test="${auth.authorities!='[ROLE_USER]'}">
+                    <td><form:form name="lessonId" action="${pageContext.request.contextPath}/addTest" method="get">
 
-                    <c:if test="${testDTO.id==0}">
+                        <c:if test="${testDTO.id==0}">
 
-                        <button class="btn btn-link border-pretty" type="submit" name="lessonId"
-                                value="${lessonDTO.id}"
-                                style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Add test
-                        </button>
+                            <button class="btn btn-link border-pretty" type="submit" name="lessonId"
+                                    value="${lessonDTO.id}"
+                                    style="font-size:16px;background-color:#3C4858;color: #FF8C00;"><spring:message
+                                    code="lesson.addTest"/>
+                            </button>
 
 
-                    </c:if>
+                        </c:if>
 
-                </form:form></td>
+                    </form:form></td>
+                </c:if>
             </div>
         </div>
     </div>
     <c:if test="${testDTO.id!=0}">
         <div class="main main-raised" style="background: #d1e7e5;margin: 60px 90px 0 90px">
+            <a href="<c:url value='/' />"><img style="margin: 0 0 -25% 84%" height="300" width="225" src=<c:url
+                    value='/img/logo.png'/>></a>
+            <a href="<c:url value='/' />"><img style="margin: 0 0 -20% 0%" height="300" width="225" src=<c:url
+                    value='/img/logo.png'/>></a>
             <div class="container">
                 <div class="section text-center">
                     <div class="row">
                         <div class="col-md-10 ml-auto mr-auto">
-                            <h2>Тестирование</h2>
+                            <h2><spring:message
+                                    code="lesson.test"/></h2>
                             <br>
                             <h5 class="description" style="color:#696969;">${testDTO.description}</h5>
                         </div>
@@ -166,25 +185,30 @@
                     <center> ${testDTO.name}</center>
                 </h3>
                 <br>
-                <td><form:form name="quest" action="../addQuestion" method="get">
-                    <c:if test="${listQuestion.size()==0||listQuestion.size()==10}">
-                        <button class="btn btn-link border-pretty" type="submit" name="testId"
-                                value="${testDTO.id}"
-                                style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Add question
-                        </button>
-                    </c:if>
-                </form:form></td>
+                <c:if test="${auth.authorities!='[ROLE_USER]'}">
+                    <td><form:form name="quest" action="${pageContext.request.contextPath}/addQuestion" method="get">
+                        <c:if test="${listQuestion.size()==0||listQuestion.size()==10}">
+                            <button class="btn btn-link border-pretty" type="submit" name="testId"
+                                    value="${testDTO.id}"
+                                    style="font-size:16px;background-color:#3C4858;color: #FF8C00;
+                                    margin: 0 0 0 10%"><spring:message
+                                    code="lesson.addQw"/>
+                            </button>
+                        </c:if>
+                    </form:form></td>
+                </c:if>
                 <c:if test="${listQuestion.size()!=0}">
-                    <c:forEach items="${listQuestion}" var="question">
+                    <c:forEach items="${listQuestion}" var="question" varStatus="count">
                         <div class="col-md-10 offset-md-1 row-block" style="margin: 0px 180px 0 80px" id=${question.id}>
                             <ul id="newsortable">
                                 <li>
                                     <div class="media">
 
                                         <div class="form-group">
-                                            <label style="color: #00008B"
-                                                   for="Textarea"><p>${question.question}</p></label>
-                                            <textarea maxlength="1000" class="form-control" id="Textarea" cols="100"
+                                            <label style="color: #00008B" for="Textarea"><p>${question.question}</p></label>
+                                            <textarea name=${count.count} maxlength="1000" class="form-control"
+                                                      id="Textarea"
+                                                      cols="100"
                                                       rows="3"></textarea>
                                         </div>
                                     </div>
@@ -193,29 +217,38 @@
 
                             </ul>
 
-
-                            <button onclick="deleteQuestion(${question.id},${listQuestion.size()})" type="button"
-                                    name="questionId"
-                                    style="text-transform: capitalize" class="btn btn-link"><p
-                                    style="text-transform: capitalize;margin: 0 100px 0 110px"><h6>
-                                Delete question
-                            </h6></p>
-                            </button>
+                            <c:if test="${auth.authorities!='[ROLE_USER]'}">
+                                <button onclick="deleteQuestion(${question.id},${listQuestion.size()})" type="button"
+                                        name="questionId"
+                                        style="text-transform: capitalize" class="btn btn-link"><p
+                                        style="text-transform: capitalize;margin: 0 100px 0 110px"><h6>
+                                    <spring:message
+                                            code="lesson.deleteQw"/>
+                                </h6></p>
+                                </button>
+                            </c:if>
                         </div>
                     </c:forEach>
                     <br>
+                <c:if test="${auth.authorities=='[ROLE_USER]'}">
                     <center>
-                        <button id="0012" type="submit" class="btn btn-primary">Submit</button>
+                        <button id="0012" type="submit" class="btn btn-primary"><spring:message
+                                code="lesson.send"/></button>
                     </center>
+                </c:if>
                     <br>
-                    <td><form:form name="quest" action="../addQuestion" method="get">
-                        <c:if test="${listQuestion.size()!=10}">
-                            <button class="btn btn-link border-pretty" type="submit" name="testId"
-                                    value="${testDTO.id}"
-                                    style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Add question
-                            </button>
-                        </c:if>
-                    </form:form></td>
+                    <c:if test="${auth.authorities!='[ROLE_USER]'}">
+                        <td><form:form name="quest" action="${pageContext.request.contextPath}/addQuestion"
+                                       method="get">
+                            <c:if test="${listQuestion.size()!=10}">
+                                <button class="btn btn-link border-pretty" type="submit" name="testId"
+                                        value="${testDTO.id}"
+                                        style="font-size:16px;background-color:#3C4858;color: #FF8C00;"><spring:message
+                                        code="lesson.addQw"/>
+                                </button>
+                            </c:if>
+                        </form:form></td>
+                    </c:if>
                 </c:if>
             </div>
 

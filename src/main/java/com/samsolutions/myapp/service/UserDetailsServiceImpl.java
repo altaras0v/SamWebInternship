@@ -1,4 +1,4 @@
-package com.samsolutions.myapp.service.impl;
+package com.samsolutions.myapp.service;
 
 import com.samsolutions.myapp.model.Role;
 import com.samsolutions.myapp.model.User;

@@ -3,8 +3,8 @@ package com.samsolutions.myapp.service;
 import com.samsolutions.myapp.dto.LessonFileDTO;
 import com.samsolutions.myapp.repository.BlobFileRepository;
 import com.samsolutions.myapp.repository.LessonFileRepository;
-import com.samsolutions.myapp.service.api.FileService;
-import com.samsolutions.myapp.service.impl.FileServiceImpl;
+import com.samsolutions.myapp.service.api.FileDAOService;
+import com.samsolutions.myapp.service.impl.FileDAOServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.Silent.class)
-public class FileServiceImplTest {
+public class FileDAOServiceImplTest {
 
     @Mock
     LessonFileRepository lessonFileRepository;
@@ -32,13 +32,13 @@ public class FileServiceImplTest {
     DataSource dataSource;
 
     @InjectMocks
-    FileService fileService = new FileServiceImpl(lessonFileRepository,blobFileRepository,dataSource);
+	FileDAOService fileDAOService = new FileDAOServiceImpl(lessonFileRepository,blobFileRepository,dataSource);
 
     @Test
     public void getFilesShouldCallRepository(){
 
         //when
-        fileService.getFiles();
+        fileDAOService.getFiles();
 
         //then
         verify(lessonFileRepository).findAll();
@@ -50,7 +50,7 @@ public class FileServiceImplTest {
         when(lessonFileRepository.findAll()).thenReturn(Collections.emptyList());
 
         //when
-        List<LessonFileDTO> files = fileService.getFiles();
+        List<LessonFileDTO> files = fileDAOService.getFiles();
 
         //then
         assertThat(files).isNotNull();
@@ -62,7 +62,7 @@ public class FileServiceImplTest {
         when(lessonFileRepository.findAll()).thenReturn(Collections.emptyList());
 
         //when
-        List<LessonFileDTO> files = fileService.getFiles();
+        List<LessonFileDTO> files = fileDAOService.getFiles();
 
         //then
         assertThat(files).isEmpty();
