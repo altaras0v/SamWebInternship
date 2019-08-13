@@ -50,7 +50,7 @@ public class LessonService {
 	}
 
 	public ModelAndView getFullLesson(long id, String viewName) {
-		ModelAndView modelAndView = new ModelAndView();
+		ModelAndView modelAndView = new ModelAndView(viewName);
 		modelAndView.addObject(lessonDAOService.getLessonById(id));
 
 
@@ -65,10 +65,8 @@ public class LessonService {
 
 		User user = (User) userService.getUserAuth()
 				.getPrincipal();
+		modelAndView.addObject("contactCheck",ifContact(user,contacts));
 
-		if (ifContact(user, contacts)){
-			modelAndView.setViewName(viewName);
-		}else modelAndView.setViewName("main");
 
 		return modelAndView;
 	}

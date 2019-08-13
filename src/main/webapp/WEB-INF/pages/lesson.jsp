@@ -34,6 +34,7 @@
     <%@include file="/WEB-INF/js/deleteQuestion.js" %>
 </script>
 <body>
+
 <section class="row-section">
 
     <div class="container">
@@ -234,13 +235,14 @@
                         </div>
                     </c:forEach>
 
-                    <br>
+                    <br><c:if test="${contactCheck==true}">
                     <c:if test="${auth.authorities=='[ROLE_USER]'}">
                         <center>
                             <button id="0012" type="submit" name="testId" value="${testDTO.id}" class="btn
                             btn-primary"><spring:message
                                     code="lesson.send"/></button>
                         </center>
+                    </c:if>
                     </c:if>
                     </form:form>
                 </c:if>
@@ -277,5 +279,7 @@
 
 
 </section>
+
+
 </body>
 </html>

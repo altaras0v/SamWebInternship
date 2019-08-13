@@ -84,9 +84,12 @@
     <table class="table table-hover table-bordered results">
         <thead>
         <tr>
-            <th class="col-md-4 col-xs-4">Test Name</th>
-            <th class="col-md-6 col-xs-6">Test description</th>
-            <th class="col-md-2 col-xs-2">Grade</th>
+            <th class="col-md-4 col-xs-4"><spring:message
+                    code="user.testname"/></th>
+            <th class="col-md-6 col-xs-6"><spring:message
+                    code="user.desc"/></th>
+            <th class="col-md-2 col-xs-2"><spring:message
+                    code="user.grade"/></th>
 
 
         </tr>
