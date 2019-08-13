@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -94,5 +95,16 @@ public class CourseDAOServiceImpl implements CourseDAOService {
 	{
 		courseRepository.deleteById(id);
 		logger.info("deleteLesson method");
+	}
+
+	@Override
+	public void deleteIfCourseExist(long id) {
+		List<Long> coursesId = new ArrayList<>();
+		courseRepository.findAll().forEach(lesson -> coursesId.add(lesson.getId()));
+		for (long courseId: coursesId) {
+			if(courseId==id){
+				courseRepository.deleteById(id);
+			}
+		}
 	}
 }

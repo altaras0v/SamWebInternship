@@ -50,4 +50,6 @@ public interface LessonDAOService {
 	 * @return lesson with needed test id
 	 */
 	Lesson getLessonByTestId(long id);
+
+	List<Long> getLessonsId();
 }

@@ -7,7 +7,7 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>Edit User</title>
+    <title>Add test</title>
 </head>
 <body>
 <br><br><br><br><br>

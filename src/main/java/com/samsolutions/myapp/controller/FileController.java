@@ -90,20 +90,25 @@ public class FileController {
 
 		ModelAndView modelAndView = new ModelAndView();
 
-		fileValidator.validate(uploadedFile, result);
+		long lessonId = (long) model.get("lessonId");
 
-		if (result.hasErrors()) {
-			logger.info("uploadFile method error");
-			modelAndView.setViewName("upload");
-		}
-		else {
+		fileValidator.validate(uploadedFile, result);
+		if(fileService.checkQuestionsIsNotFull(lessonId)) {
+			if (result.hasErrors()) {
+				logger.info("uploadFile method error");
+				modelAndView.setViewName("upload");
+			}
+			else {
 				long id = (long) model.get("lessonId");
-				fileService.addFile(uploadedFile,id);
+				fileService.addFile(uploadedFile, id);
 
 				RedirectView redirectView = new RedirectView("upload");
 				redirectView.setStatusCode(HttpStatus.FOUND);
 				modelAndView.setView(redirectView);
 				modelAndView.addObject("lessonId", id);
+			}
+		}else {
+			modelAndView.setView(new RedirectView("/elearning"));
 		}
 		return modelAndView;
 	}

@@ -19,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>This is a Bootstrap example</title>
+    <title>Lesson</title>
 
     <style>
         <%@include file="/WEB-INF/css/speclesson.css"%>
@@ -47,18 +47,7 @@
             </a>
 
         </div>
-        <%-- <div class="navbar-translate">
-             <ul class="navbar-nav ml-auto">
-                 <form:form name="login" action="${pageContext.request.contextPath}/login" method="get">
-                     <li style="margin: auto auto auto 90%;" class="nav-item">
-                         <button class="btn btn-link border-pretty" type="submit"
-                                 style="font-size:16px;background-color:#3C4858;color: #FF8C00;">Login<i
-                                 class="icon ion-android-arrow-forward">
-                         </i></button>
-                     </li>
-                 </form:form>
-             </ul>
-         </div>--%>
+
     </div>
 
     <br><br>
@@ -90,7 +79,9 @@
                 <td><form:form name="id" action="${pageContext.request.contextPath}/uploadRedirect" method="post">
 
                     <div class="coursename">
-                        <button style="font-size:16px;background-color:#3C4858;color: #FF8C00;height: 50px"
+                        <button style="margin: 0 0 0 10%;
+                        font-size:16px;background-color:#3C4858;color: #FF8C00;height:
+                        50px"
                                 type="submit"
                                 name="id" value="${lessonDTO.id}" class="btn btn-link border-pretty">
                             <spring:message
@@ -216,6 +207,7 @@
                                                       cols="100"
                                                       rows="3"></textarea>
                                         </div>
+
                                     </div>
 
                                 </li>
@@ -255,7 +247,7 @@
                     <c:if test="${auth.authorities!='[ROLE_USER]'}">
                         <td><form:form name="quest" action="${pageContext.request.contextPath}/addQuestion"
                                        method="get">
-                            <c:if test="${listQuestion.size()!=10}">
+                            <c:if test="${listQuestion.size()<5}">
                                 <button class="btn btn-link border-pretty" type="submit" name="testId"
                                         value="${testDTO.id}"
                                         style="font-size:16px;background-color:#3C4858;color: #FF8C00;"><spring:message
@@ -271,7 +263,7 @@
 
         </div>
     </c:if>
-    <footer style="margin: 0 auto 0 auto;color: black" class="footer text-center ">
+    <footer style="margin: 7% auto 0 auto;color: black" class="footer text-center ">
         <p> Copyright &copy; localhost:8080&#128518;,2019. All rights reserved.</p>
         <p>Contact: altaras0b@gmail.com</p>
     </footer>

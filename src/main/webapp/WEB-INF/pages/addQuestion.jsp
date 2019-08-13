@@ -7,7 +7,7 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>Edit User</title>
+    <title>Add question</title>
 </head>
 <body>
 <br><br><br><br><br>
@@ -24,10 +24,10 @@
                         <div class="form-group">
                             <label  style="color: #00008B" for="Textarea"><spring:message
                                     code="addquestion.add"/></label>
-                            <textarea  maxlength="1000" name="question" class="form-control" id="Textarea" rows="3"></textarea>
+                            <textarea  maxlength="1000" name="question" class="form-control" id="Textarea" rows="3" required></textarea>
 
                         </div>
-
+                        <form:errors path="question.question"/>
                     </div>
                 </div>
 

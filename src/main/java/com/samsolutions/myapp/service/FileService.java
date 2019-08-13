@@ -1,5 +1,6 @@
 package com.samsolutions.myapp.service;
 
+import com.samsolutions.myapp.config.ApplicationProperties;
 import com.samsolutions.myapp.model.BlobFile;
 import com.samsolutions.myapp.model.Lesson;
 import com.samsolutions.myapp.model.LessonFile;
@@ -20,6 +21,8 @@ public class FileService {
 	private static final Logger logger = LoggerFactory.getLogger(FileService.class);
 
 	private final FileDAOService fileDAOService;
+
+	private ApplicationProperties properties = new ApplicationProperties();
 
 	@Autowired
 	public FileService(FileDAOService fileDAOService) {
@@ -56,5 +59,15 @@ public class FileService {
 		byte[] bytes = blobFile.getFile();
 
 		return new Pair<>(lessonFile.getName(), bytes);
+	}
+	@Transactional
+	public boolean checkQuestionsIsNotFull(long lessonId) {
+		if (fileDAOService.getFilesByLessonId(lessonId)
+				.size() < Integer.parseInt(properties.getProperty("file.count"))) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }

@@ -32,4 +32,6 @@ public interface QuestionDAOService {
 	 * @param id - id of question
 	 */
 	void deleteQuestion(long id);
+
+	public List<Long> getQuestionsId();
 }

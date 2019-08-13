@@ -41,7 +41,7 @@ public class RegistrateController {
 
 		userValidator.validate(userDTO,result);
 		if (result.hasErrors()) {
-			logger.info("uploadFile method error so" + result);
+			logger.info("user validate method error so" + result);
 			mav.addObject("user",userDTO);
 			mav.setViewName("registrationPage");
 		}

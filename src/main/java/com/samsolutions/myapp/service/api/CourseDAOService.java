@@ -38,4 +38,6 @@ public interface CourseDAOService {
 	 * @param id - id of course that will be delete
 	 */
 	void deleteCourse(long id);
+
+	void deleteIfCourseExist(long id);
 }

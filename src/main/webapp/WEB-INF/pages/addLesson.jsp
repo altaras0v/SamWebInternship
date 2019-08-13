@@ -7,7 +7,7 @@
 <%@ page language="java"  pageEncoding="UTF-8" %>
 <html>
 <head>
-    <title>Edit User</title>
+    <title>Add lesson</title>
 </head>
 <body>
 <br><br><br><br><br>
@@ -16,22 +16,27 @@
         <div class="col-md-6 col-md-offset-3 well">
             <h3 class="text-center"><spring:message
                     code="addlesson.title"/></h3>
-            <form:form id="updateForm" modelAttribute="lesson" action="${pageContext.request.contextPath}/addLesson" method="post">
+            <form  id="updateForm" modelAttribute="lesson" action="${pageContext.request.contextPath}/addLesson"
+                   method="post">
                 <%--<table>--%>
                 <div class="col-xs-12">
                     <div class="form-group">
 
                             <%-- <form:label path="name">name</form:label>--%>
-                        <form:input maxlength="100" path="name" placeholder="Name" name="name" id="name"/>
+                        <input maxlength="100" size="65"  path="name" placeholder="Name" name="name" id="name" required/>
 
                     </div>
+                    <form:errors path="lesson.name"/>
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <form:input maxlength="3000" path="description" placeholder="Description" name="description"
+                        <input maxlength="3000" path="description" size="65" placeholder="Description"
+                               name="description"
                                     id="description"/>
 
+
                     </div>
+                    <form:errors path="lesson.description"/>
                 </div>
 
                 <div class="text-center col-xs-12">
@@ -48,7 +53,7 @@
 
 
                 <%--  </table>--%>
-            </form:form>
+            </form>
         </div>
     </div>
 </div>

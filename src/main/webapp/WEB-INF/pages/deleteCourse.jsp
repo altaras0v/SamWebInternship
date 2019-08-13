@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>This is a Bootstrap example</title>
+    <title>Delete course</title>
 
 
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -43,8 +43,8 @@
                     </c:forEach>
                 </select>
             </div>
-            <p><center><input class="btn btn-primary" type="submit" value="Submit"><spring:message
-                    code="deletecourse.submit"/></center></p>
+            <p><center><input class="btn btn-primary" type="submit" value=<spring:message
+                    code="deletecourse.submit"/>></center></p>
             <a href="<c:url value='/courses' />"><spring:message
                     code="deletecourse.return"/></a>
             </form:form>

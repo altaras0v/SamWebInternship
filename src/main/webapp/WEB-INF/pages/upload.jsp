@@ -11,7 +11,7 @@
 <%@ page language="java"  %>
 <html>
 <head>
-    <title>Upload File Request Page</title>
+    <title>Upload File </title>
 
     <script>
         <%@include file="/WEB-INF/js/uploadFile.js"%>

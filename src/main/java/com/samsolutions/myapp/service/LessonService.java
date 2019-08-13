@@ -80,8 +80,17 @@ public class LessonService {
 				flag = true;
 				break;
 			}
-			else {
-				flag = false;
+		}
+		return flag;
+	}
+
+	public boolean deleteIfLessonExist(long id){
+		boolean flag = false;
+		for (long lessonId : lessonDAOService.getLessonsId()) {
+			if (lessonId == id) {
+				lessonDAOService.deleteLesson(id);
+				flag = true;
+				break;
 			}
 		}
 		return flag;

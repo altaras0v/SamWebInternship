@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -78,5 +79,12 @@ public class QuestionDAOServiceImpl implements QuestionDAOService {
 	{
 		questionRepository.deleteById(id);
 		logger.info("deleteQuestion method");
+	}
+
+	@Override
+	public List<Long> getQuestionsId() {
+		List<Long> questionsId = new ArrayList<>();
+		questionRepository.findAll().forEach(lesson -> questionsId.add(lesson.getId()));
+		return questionsId;
 	}
 }

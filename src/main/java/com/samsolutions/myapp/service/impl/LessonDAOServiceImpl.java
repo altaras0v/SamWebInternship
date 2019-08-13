@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -124,4 +125,13 @@ public class LessonDAOServiceImpl implements LessonDAOService {
 		logger.info("getLessonByTestId method");
 		return lessonRepository.findByTestId(id);
 	}
+
+	@Override
+	public List<Long> getLessonsId() {
+		List<Long> lessonsId = new ArrayList<>();
+		lessonRepository.findAll().forEach(lesson -> lessonsId.add(lesson.getId()));
+		return lessonsId;
+	}
+
+
 }

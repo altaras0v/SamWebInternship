@@ -7,7 +7,7 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
-    <title>Edit User</title>
+    <title>Add course</title>
 </head>
 <body>
 <br><br><br><br><br>
@@ -16,28 +16,31 @@
         <div class="col-md-6 col-md-offset-3 well">
             <h3 class="text-center"><spring:message
                     code="addcourse.title"/></h3>
-            <form:form id="updateForm" modelAttribute="course" action="${pageContext.request.contextPath}/addCourse" method="post">
+            <form id="updateForm" modelAttribute="course" action="${pageContext.request.contextPath}/addCourse" method="post">
                 <%--<table>--%>
                 <div class="col-xs-12">
                     <div class="form-group">
 
                             <%-- <form:label path="name">name</form:label>--%>
-                        <form:input maxlength="30" path="name" placeholder="Name" name="name" id="name"/>
+                        <input maxlength="30" size="65" path="name" placeholder="Name" name="name" id="name" required/>
 
                     </div>
+                    <form:errors path="course.name"/>
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <form:input maxlength="254" path="description" placeholder="Description" name="description"
+                        <input maxlength="254" size="65" path="description" placeholder="Description" name="description"
                                     id="description"/>
                     </div>
+                    <form:errors path="course.description"/>
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <form:input maxlength="3000" path="fullDescription" placeholder="Full Description"
+                        <input maxlength="3000" size="65" path="fullDescription" placeholder="Full Description"
                                     name="fullDescription"
                                     id="fullDescription"/>
                     </div>
+                    <form:errors path="course.fullDescription"/>
                 </div>
                 <%--     </td>
                  </tr>
@@ -57,7 +60,7 @@
 
 
                 <%--  </table>--%>
-            </form:form>
+            </form>
         </div>
     </div>
 </div>
