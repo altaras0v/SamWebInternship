@@ -61,7 +61,7 @@ public class LessonController {
 	 * @return - view where adding course
 	 */
 	@RequestMapping(value = "/addLesson", method = RequestMethod.POST)
-	public ModelAndView addCourse(@ModelAttribute("lesson") LessonDTO lessonDTO, ModelMap modelMap) {
+	public ModelAndView addLesson(@ModelAttribute("lesson") LessonDTO lessonDTO, ModelMap modelMap) {
 		ModelAndView mav = new ModelAndView("addLesson");
 		long id = (long) modelMap.get("courseId");
 		Course course = new Course();

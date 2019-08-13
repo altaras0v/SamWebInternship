@@ -17,7 +17,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
     <link rel="stylesgeet" href="https://rawgit.com/creativetimofficial/material-kit/master/assets/css/material-kit.css">
-
+    <link rel="icon" type="image/png" href="<c:url value='/img/paradrop.png'/>">
     <style>
         <%@include file="/WEB-INF/css/main.css"%>
     </style>
@@ -130,7 +130,8 @@
         </div>
     </div>
 </nav>
-<div class="page-header header-filter" data-parallax="true" style=" background-image: url('/img/main.png')">
+<div class="page-header header-filter" data-parallax="true" style=" background-image:
+        url('/img/main.png')">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -188,68 +189,7 @@
             </div>
         </div>
 
-        <div class="section text-center">
-            <h2 class="title">Here is our team</h2>
-            <div class="team">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="team-player">
-                            <div class="card card-plain">
-                                <div class="col-md-6 ml-auto mr-auto">
-                                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/a47c2a784683.5629a928cbcb7.jpg" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
 
-                                </div>
-                                <h4 class="card-title">Gigi Hadid <br>
-                                    <small class="card-description text-muted">Model</small>
-                                </h4>
-
-                                <div class="card-body">
-                                    <p class="card-description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="team-player">
-                            <div class="card card-plain">
-                                <div class="col-md-6 ml-auto mr-auto">
-                                    <img src="http://www.solstreamstudios.com/ss/wp-content/uploads/2015/11/Portrait-17-JRH-5018-PE-square.jpg" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
-
-                                </div>
-                                <h4 class="card-title">Christian Louboutin<br>
-                                    <small class="card-description text-muted">Designer</small>
-                                </h4>
-
-                                <div class="card-body">
-                                    <p class="card-description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="team-player">
-                            <div class="card card-plain">
-                                <div class="col-md-6 ml-auto mr-auto">
-                                    <img src="http://www.solstreamstudios.com/ss/wp-content/uploads/2015/11/Portrait-17-JRH-5018-PE-square.jpg" alt="Thumbnail Image" class="img-raised rounded-circle img-fluid">
-
-                                </div>
-                                <h4 class="card-title">Kendall Jenner<br>
-                                    <small class="card-description text-muted">Model</small>
-                                </h4>
-
-                                <div class="card-body">
-                                    <p class="card-description">You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="section section-contacts">
             <div class="row">
                 <div class="col-md-8 ml-auto mr-auto">

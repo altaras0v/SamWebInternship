@@ -30,7 +30,7 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	@Column(name = "name")
 	private String name;
@@ -44,5 +44,7 @@ public class User implements Serializable {
 			joinColumns = {@JoinColumn(name = "user_id")},
 			inverseJoinColumns = {@JoinColumn(name = "role_id")}
 	)
+
 	private Set<Role> roles = new HashSet<>();
+
 }

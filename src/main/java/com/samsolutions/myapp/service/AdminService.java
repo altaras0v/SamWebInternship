@@ -35,11 +35,21 @@ public class AdminService {
 		List<UserDTO> mentors = userService.getUsersForAdmin(3);
 		users.addAll(mentors);
 		List<Contact> contacts = contactDAOService.getAllContact();
+		List<UserDTO> userDTOS = contacts.stream()
+				.map(c -> new UserDTO(c.getUser()
+						.getId(), c.getUser().getName()))
+				.collect(Collectors.toList());
+		List<UserDTO> userDTOS1 = users.stream().map(c-> new UserDTO(c.getId(),c.getName())).collect(Collectors.toList());
+		List<UserDTO> mentorDTOs = mentors.stream().map(c-> new UserDTO(c.getId(),c.getName())).collect(Collectors.toList());
+
+
+		List<UserDTO> usersWithoutMentors = (List<UserDTO>) CollectionUtils.disjunction(userDTOS,mentorDTOs);
+		List<UserDTO> freeUsers = (List<UserDTO>) CollectionUtils.disjunction(usersWithoutMentors,userDTOS1);
 		ModelAndView modelAndView = new ModelAndView(name);
 		modelAndView.addObject("auth",userService.getUserAuth());
 		modelAndView.addObject("users",users);
 		modelAndView.addObject("mentors", mentors);
-		modelAndView.addObject("freeUsers",getFreeUsers(contacts,users,mentors));
+		modelAndView.addObject("freeUsers",freeUsers);
 		modelAndView.addObject("contacts",contacts);
 		return modelAndView;
 	}

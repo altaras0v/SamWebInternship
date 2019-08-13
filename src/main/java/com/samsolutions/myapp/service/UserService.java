@@ -17,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
@@ -57,10 +58,13 @@ public class UserService {
 		userInfo.setFName(userDTO.getFName());
 		userInfo.setLName(userDTO.getLName());
 		try {
-			if (userDTO.getPhoto()
-					.getSize() != 0) {
-				userInfo.setPhoto(userDTO.getPhoto()
-						.getBytes());
+			MultipartFile photo = userDTO.getPhoto();
+			if (photo != null) {
+				if (userDTO.getPhoto()
+						.getSize() != 0) {
+					userInfo.setPhoto(userDTO.getPhoto()
+							.getBytes());
+				}
 			}
 			else {
 				String path = Objects.requireNonNull(getClass().getClassLoader()
@@ -85,9 +89,15 @@ public class UserService {
 			}
 		}
 		user.setRoles(userRoles);
-		userDAOService.addUser(user);
+
+			userDAOService.addUser(user);
+
+		user = userDAOService.getUser(userDTO.getName());
+		System.out.println("debug");
 		userInfo.setUser(user);
-		userDAOInfoService.addInfo(userInfo);
+
+			userDAOInfoService.addInfo(userInfo);
+
 	}
 
 	public Authentication getUserAuth() {
@@ -100,30 +110,40 @@ public class UserService {
 		List<UserRole> userRoles = userRoleDaoService.getUserRolesByRoleId(id);
 
 		List<UserDTO> userDTOList = userRoles.stream()
-				.map(c -> new UserDTO(userDAOService.getUserById(c.getUser().getId())
-						.getId(), userDAOService.getUserById(c.getUser().getId())
-						.getName(), userDAOService.getUserById(c.getUser().getId())
-						.getPassword(), userDAOInfoService.getInfoByUserId(c.getUser().getId()).getFName(),
-						userDAOInfoService.getInfoByUserId(c.getUser().getId()).getLName(),
-						userDAOInfoService.getInfoByUserId(c.getUser().getId()).getPhoto(),
-						getUserRoleByUserId(c.getUser().getId()).getRole().getName())).collect(Collectors.toList());
+				.map(c -> new UserDTO(userDAOService.getUserById(c.getUser()
+						.getId())
+						.getId(), userDAOService.getUserById(c.getUser()
+						.getId())
+						.getName(), userDAOService.getUserById(c.getUser()
+						.getId())
+						.getPassword(), userDAOInfoService.getInfoByUserId(c.getUser()
+						.getId())
+						.getFName(), userDAOInfoService.getInfoByUserId(c.getUser()
+						.getId())
+						.getLName(), userDAOInfoService.getInfoByUserId(c.getUser()
+						.getId())
+						.getPhoto(), getUserRoleByUserId(c.getUser()
+						.getId()).getRole()
+						.getName()))
+				.collect(Collectors.toList());
 
-				return userDTOList;
+		return userDTOList;
 
 	}
 
-	public UserRole getUserRoleByUserId(long id){
+	public UserRole getUserRoleByUserId(long id) {
 
 		UserRole userRole = userRoleDaoService.getUserRoleByUserId(id);
 
 		return userRole;
 	}
-	public ModelAndView getUserPage(String page)
-	{
+
+	public ModelAndView getUserPage(String page) {
 		ModelAndView mav = new ModelAndView(page);
 
 		org.springframework.security.core.userdetails.User authUser = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
+				.getAuthentication()
+				.getPrincipal();
 
 		String username = authUser.getUsername();
 		com.samsolutions.myapp.model.User user = userDAOService.getUser(username);
@@ -131,8 +151,8 @@ public class UserService {
 
 		List<Result> results = resultDAOService.getResultByUserId(userId);
 
-		mav.addObject("user",user);
-		mav.addObject("results",results);
+		mav.addObject("user", user);
+		mav.addObject("results", results);
 		return mav;
 
 	}

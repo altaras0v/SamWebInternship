@@ -13,9 +13,11 @@ public class MainController {
 
 	private final UserService userService;
 
+
 	@Autowired
 	public MainController(UserService userService) {
 		this.userService = userService;
+
 	}
 
 	@RequestMapping(method = RequestMethod.GET)

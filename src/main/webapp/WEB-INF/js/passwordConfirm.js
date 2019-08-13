@@ -1,3 +1,12 @@
+$(document).ready(
+    function () {
+        $('#sub').click(function (event) {
+            event.preventDefault();
+            validatePassword();
+        });
+    });
+
+
 function validatePassword() {
     var validator = $("#registrationForm").validate( {
         rules: {

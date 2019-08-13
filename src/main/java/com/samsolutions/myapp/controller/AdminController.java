@@ -1,11 +1,8 @@
 package com.samsolutions.myapp.controller;
 
-import com.samsolutions.myapp.dto.UserDTO;
-import com.samsolutions.myapp.model.Contact;
 import com.samsolutions.myapp.service.AdminService;
 import com.samsolutions.myapp.service.UserService;
 import com.samsolutions.myapp.service.api.ContactDAOService;
-import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +12,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class AdminController {
@@ -36,28 +31,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public ModelAndView getAdminPage()
 	{
-		List<UserDTO> users = userService.getUsersForAdmin(2);
-		List<UserDTO> mentors = userService.getUsersForAdmin(3);
-		users.addAll(mentors);
-		List<Contact> contacts = contactDAOService.getAllContact();
-		List<UserDTO> userDTOS = contacts.stream()
-				.map(c -> new UserDTO(c.getUser()
-						.getId(), c.getUser().getName()))
-				.collect(Collectors.toList());
-		List<UserDTO> userDTOS1 = users.stream().map(c-> new UserDTO(c.getId(),c.getName())).collect(Collectors.toList());
-		List<UserDTO> mentorDTOs = mentors.stream().map(c-> new UserDTO(c.getId(),c.getName())).collect(Collectors.toList());
-
-
-		List<UserDTO> usersWithoutMentors = (List<UserDTO>) CollectionUtils.disjunction(userDTOS,mentorDTOs);
-		List<UserDTO> freeUsers = (List<UserDTO>) CollectionUtils.disjunction(usersWithoutMentors,userDTOS1);
-		ModelAndView modelAndView = new ModelAndView("adminpage");
-		modelAndView.addObject("auth",userService.getUserAuth());
-		modelAndView.addObject("users",users);
-		modelAndView.addObject("mentors", mentors);
-		modelAndView.addObject("freeUsers",freeUsers);
-		modelAndView.addObject("contacts",contacts);
-		return modelAndView;
-		/*return adminService.getInfoForAdmin("adminpage");*/
+		return adminService.getInfoForAdmin("adminpage");
 	}
 
 	@RequestMapping(value = "/makeMentor", method = RequestMethod.GET)

@@ -26,6 +26,7 @@
 
         <%@include file="/WEB-INF/css/registrate.css"%>
         <%@include file="/WEB-INF/css/lesson.css"%>
+
     </style>
 </head>
 <script> <%@include file="/WEB-INF/js/registrate.js"%></script>
@@ -46,7 +47,7 @@
         </div>
     </nav>
     <br><br>
-    <div class="main main-raised" style="background: #d1e7e5;margin:0 90px 0 90px">
+    <div class="main main-raised" style="background: #d1e7e5;margin:5% 90px 0 90px">
         <div class="container">
             <div id="kv-avatar-errors-2" class="center-block" style="width:800px;display:none"></div>
             <form id="registrationForm" class="form form-vertical"  action="${pageContext.request.contextPath}/addUser" method="post"
@@ -57,29 +58,8 @@
                 <div class="row">
 
 
-                    <div class="col-sm-4 text-center" >
 
-                        <div class="kv-avatar" >
-                            <div class="avatar-wrapper" style="margin: 40px auto 0 450px">
-
-                                <img class="profile-pic" src=""/>
-                                <div class="upload-button">
-                                    <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-                                </div>
-                                <input name="photo" value="${user.photo}" class="file-upload" type="file"
-                                       accept="image/*" />
-                                </div>
-                            <span style="margin:  0 0 0 450px"><form:errors path="user.photo"/></span>
-
-                            <div class="col-sm-8" style="margin: 0px 0px 0px 338px">
-                                <span><spring:message
-                                        code="regpage.choose"/></span>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-sm-8" style="margin: 30px 20px 20px 160px">
+                    <div class="col-sm-8" style="margin: 30px 20px 50px 160px">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -141,7 +121,8 @@
                         <div class="form-group">
                             <div class="text-right">
                                 <center>
-                                    <button type="submit" onclick="validatePassword()" class="btn btn-primary"><spring:message
+                                    <button name="sub" id="sub" type="submit" class="btn
+                                    btn-primary"><spring:message
                                             code="regpage.submit"/></button>
                                 </center>
                             </div>
@@ -157,7 +138,10 @@
 
 
     </div>
-    <br><br><br><br>
+    <footer style="margin: 3% 0 0 0" class="footer text-center ">
+    <p> Copyright &copy; localhost:8080&#128518;,2019. All rights reserved.</p>
+    <p>Contact: altaras0b@gmail.com</p>
+</footer> <br><br><br><br>
 </section>
 
 <!-- the fileinput plugin initialization -->
