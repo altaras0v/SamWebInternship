@@ -26,7 +26,7 @@
         <mockito.version>2.10.0</mockito.version>
         <spring-data.version>2.1.9.RELEASE</spring-data.version>
         <lombock.version>1.18.4</lombock.version>
-        <fileupload.version>1.3.1</fileupload.version>
+        <fileupload.version>1.3.3</fileupload.version>
         <slf4j.version>1.6.1</slf4j.version>
         <assertj.version>3.11.1</assertj.version>
         <mysql.version>8.0.17</mysql.version>
